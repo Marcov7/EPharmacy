@@ -1,0 +1,15 @@
+C:\Projetos\ProjetoControleEntrega\EPharmacy\BLL\bin\Debug\net8.0\BLL.deps.json
+C:\Projetos\ProjetoControleEntrega\EPharmacy\BLL\bin\Debug\net8.0\BLL.dll
+C:\Projetos\ProjetoControleEntrega\EPharmacy\BLL\bin\Debug\net8.0\BLL.pdb
+C:\Projetos\ProjetoControleEntrega\EPharmacy\BLL\bin\Debug\net8.0\DAL.dll
+C:\Projetos\ProjetoControleEntrega\EPharmacy\BLL\bin\Debug\net8.0\DAL.pdb
+C:\Projetos\ProjetoControleEntrega\EPharmacy\BLL\obj\Debug\net8.0\BLL.csproj.AssemblyReference.cache
+C:\Projetos\ProjetoControleEntrega\EPharmacy\BLL\obj\Debug\net8.0\BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projetos\ProjetoControleEntrega\EPharmacy\BLL\obj\Debug\net8.0\BLL.AssemblyInfoInputs.cache
+C:\Projetos\ProjetoControleEntrega\EPharmacy\BLL\obj\Debug\net8.0\BLL.AssemblyInfo.cs
+C:\Projetos\ProjetoControleEntrega\EPharmacy\BLL\obj\Debug\net8.0\BLL.csproj.CoreCompileInputs.cache
+C:\Projetos\ProjetoControleEntrega\EPharmacy\BLL\obj\Debug\net8.0\BLL.csproj.CopyComplete
+C:\Projetos\ProjetoControleEntrega\EPharmacy\BLL\obj\Debug\net8.0\BLL.dll
+C:\Projetos\ProjetoControleEntrega\EPharmacy\BLL\obj\Debug\net8.0\refint\BLL.dll
+C:\Projetos\ProjetoControleEntrega\EPharmacy\BLL\obj\Debug\net8.0\BLL.pdb
+C:\Projetos\ProjetoControleEntrega\EPharmacy\BLL\obj\Debug\net8.0\ref\BLL.dll
