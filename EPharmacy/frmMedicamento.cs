@@ -32,6 +32,8 @@ namespace ControleEntregada.Forms
             var optionsBuilder = new DbContextOptionsBuilder<EPharmacyContext>();
             optionsBuilder.UseSqlServer(Program.StrConn());
             _context = new EPharmacyContext(optionsBuilder.Options);
+
+            var x = 0;
         }
 
 

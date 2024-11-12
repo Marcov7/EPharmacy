@@ -1,4 +1,5 @@
-﻿using EPharmacy;
+﻿// Formulário de Medicamento Preço
+using EPharmacy;
 using EPharmacy.Data;
 using EPharmacy.Models;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +27,7 @@ namespace ControleEntregada.Forms
             var optionsBuilder = new DbContextOptionsBuilder<EPharmacyContext>();
             optionsBuilder.UseSqlServer(Program.StrConn());
             _context = new EPharmacyContext(optionsBuilder.Options);
+            var x = 0;
         }
 
 
