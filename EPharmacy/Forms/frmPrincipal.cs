@@ -161,6 +161,24 @@ namespace EPharmacy
             formulario.Location = new Point(220, 50);
         }
 
+        private void usuárioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (Form filho in this.MdiChildren)
+            {
+                if (filho is frmUsuarioSistema)
+                {
+                    filho.Activate();
+                    return;
+                }
+            }
+
+            frmUsuarioSistema formulario = new frmUsuarioSistema
+            {
+                MdiParent = this,
+            };
+            formulario.Show();
+            formulario.Location = new Point(220, 50);
+        }
     }
 }
 

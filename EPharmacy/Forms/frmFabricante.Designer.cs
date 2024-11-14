@@ -119,6 +119,7 @@
             // 
             // btnExcluir
             // 
+            btnExcluir.Enabled = false;
             btnExcluir.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnExcluir.Location = new Point(501, 452);
             btnExcluir.Margin = new Padding(4, 3, 4, 3);
@@ -131,6 +132,7 @@
             // 
             // btnSalvar
             // 
+            btnSalvar.Enabled = false;
             btnSalvar.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSalvar.Location = new Point(376, 452);
             btnSalvar.Margin = new Padding(4, 3, 4, 3);

@@ -30,18 +30,21 @@
         {
             btnSair = new Button();
             btnLogar = new Button();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
+            txtLogin = new TextBox();
+            txtSenha = new TextBox();
             lblLogin = new Label();
             lblSenha = new Label();
             lblMsgInicial = new Label();
+            lblVersao = new Label();
             SuspendLayout();
             // 
             // btnSair
             // 
-            btnSair.Location = new Point(171, 196);
+            btnSair.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnSair.ForeColor = Color.Red;
+            btnSair.Location = new Point(173, 196);
             btnSair.Name = "btnSair";
-            btnSair.Size = new Size(75, 23);
+            btnSair.Size = new Size(126, 23);
             btnSair.TabIndex = 0;
             btnSair.Text = "Sai&r";
             btnSair.UseVisualStyleBackColor = true;
@@ -49,27 +52,32 @@
             // 
             // btnLogar
             // 
-            btnLogar.Location = new Point(90, 196);
+            btnLogar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnLogar.ForeColor = Color.ForestGreen;
+            btnLogar.Location = new Point(38, 196);
             btnLogar.Name = "btnLogar";
-            btnLogar.Size = new Size(75, 23);
+            btnLogar.Size = new Size(125, 23);
             btnLogar.TabIndex = 1;
             btnLogar.Text = "&Entrar";
             btnLogar.UseVisualStyleBackColor = true;
             btnLogar.Click += btnLogar_Click;
             // 
-            // textBox1
+            // txtLogin
             // 
-            textBox1.Location = new Point(94, 76);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(152, 23);
-            textBox1.TabIndex = 2;
+            txtLogin.Location = new Point(94, 76);
+            txtLogin.Name = "txtLogin";
+            txtLogin.Size = new Size(152, 23);
+            txtLogin.TabIndex = 2;
+            txtLogin.Text = "Adm";
             // 
-            // textBox2
+            // txtSenha
             // 
-            textBox2.Location = new Point(94, 131);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(152, 23);
-            textBox2.TabIndex = 3;
+            txtSenha.Location = new Point(94, 131);
+            txtSenha.Name = "txtSenha";
+            txtSenha.Size = new Size(152, 23);
+            txtSenha.TabIndex = 3;
+            txtSenha.Text = "123";
+            txtSenha.UseSystemPasswordChar = true;
             // 
             // lblLogin
             // 
@@ -94,23 +102,35 @@
             // lblMsgInicial
             // 
             lblMsgInicial.AutoSize = true;
-            lblMsgInicial.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblMsgInicial.Location = new Point(12, 20);
+            lblMsgInicial.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblMsgInicial.Location = new Point(80, 15);
             lblMsgInicial.Name = "lblMsgInicial";
-            lblMsgInicial.Size = new Size(316, 15);
+            lblMsgInicial.Size = new Size(182, 19);
             lblMsgInicial.TabIndex = 4;
-            lblMsgInicial.Text = "Para acessaro Sistema enter com o seu Usuário e Senha.";
+            lblMsgInicial.Text = "Acessa ao Sistema - Login";
+            // 
+            // lblVersao
+            // 
+            lblVersao.AutoSize = true;
+            lblVersao.Font = new Font("Segoe UI", 7F, FontStyle.Bold);
+            lblVersao.ForeColor = Color.Purple;
+            lblVersao.Location = new Point(266, 233);
+            lblVersao.Name = "lblVersao";
+            lblVersao.Size = new Size(41, 12);
+            lblVersao.TabIndex = 4;
+            lblVersao.Text = "Versão: ";
             // 
             // frmLogin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(349, 249);
+            Controls.Add(lblVersao);
             Controls.Add(lblSenha);
             Controls.Add(lblMsgInicial);
             Controls.Add(lblLogin);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(txtSenha);
+            Controls.Add(txtLogin);
             Controls.Add(btnLogar);
             Controls.Add(btnSair);
             MaximizeBox = false;
@@ -126,10 +146,11 @@
 
         private Button btnSair;
         private Button btnLogar;
-        private TextBox textBox1;
-        private TextBox textBox2;
+        private TextBox txtLogin;
+        private TextBox txtSenha;
         private Label lblLogin;
         private Label lblSenha;
         private Label lblMsgInicial;
+        private Label lblVersao;
     }
 }

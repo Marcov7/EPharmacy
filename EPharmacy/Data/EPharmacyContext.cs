@@ -17,6 +17,8 @@ namespace EPharmacy.Data
         public DbSet<Fabricante> Fabricante { get; set; }
         public DbSet<Substancia> Substancia { get; set; }
         public DbSet<ReceitaItens> ReceitaItens { get; set; }
+        public DbSet<UsuarioSistema> UsuarioSistema { get; set; }
+
 
         public EPharmacyContext(DbContextOptions<EPharmacyContext> options) : base(options) { }
 
