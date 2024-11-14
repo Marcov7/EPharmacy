@@ -85,24 +85,28 @@
             classeTerapeuticaToolStripMenuItem.Name = "classeTerapeuticaToolStripMenuItem";
             classeTerapeuticaToolStripMenuItem.Size = new Size(181, 22);
             classeTerapeuticaToolStripMenuItem.Text = "Classe Terapeutica";
+            classeTerapeuticaToolStripMenuItem.Click += classeTerapeuticaToolStripMenuItem_Click;
             // 
             // fabricanteToolStripMenuItem
             // 
             fabricanteToolStripMenuItem.Name = "fabricanteToolStripMenuItem";
             fabricanteToolStripMenuItem.Size = new Size(181, 22);
             fabricanteToolStripMenuItem.Text = "Fabricante";
+            fabricanteToolStripMenuItem.Click += fabricanteToolStripMenuItem_Click;
             // 
             // substânciaToolStripMenuItem
             // 
             substânciaToolStripMenuItem.Name = "substânciaToolStripMenuItem";
             substânciaToolStripMenuItem.Size = new Size(181, 22);
             substânciaToolStripMenuItem.Text = "Substância";
+            substânciaToolStripMenuItem.Click += substanciaToolStripMenuItem_Click;
             // 
             // tipoReceitaToolStripMenuItem
             // 
             tipoReceitaToolStripMenuItem.Name = "tipoReceitaToolStripMenuItem";
             tipoReceitaToolStripMenuItem.Size = new Size(181, 22);
             tipoReceitaToolStripMenuItem.Text = "Tipo Receita";
+            tipoReceitaToolStripMenuItem.Click += tipoReceitaToolStripMenuItem_Click;
             // 
             // toolStripSeparator2
             // 
