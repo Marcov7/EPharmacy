@@ -1,5 +1,4 @@
-﻿// Formulário de Medicamento Preço
-using EPharmacy;
+﻿using EPharmacy;
 using EPharmacy.Data;
 using EPharmacy.Models;
 using Microsoft.EntityFrameworkCore;

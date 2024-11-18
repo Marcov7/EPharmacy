@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EPharmacy.Data
 {
+
     public class EPharmacyContext : DbContext
     {
         public DbSet<Medicamento> Medicamento { get; set; }
@@ -18,9 +19,12 @@ namespace EPharmacy.Data
         public DbSet<Substancia> Substancia { get; set; }
         public DbSet<ReceitaItens> ReceitaItens { get; set; }
         public DbSet<UsuarioSistema> UsuarioSistema { get; set; }
+        public DbSet<Sexo> Sexo { get; set; }
+        public DbSet<Paciente> Paciente { get; set; }
 
 
         public EPharmacyContext(DbContextOptions<EPharmacyContext> options) : base(options) { }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

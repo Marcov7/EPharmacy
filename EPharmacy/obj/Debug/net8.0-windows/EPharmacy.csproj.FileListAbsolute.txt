@@ -75,3 +75,11 @@ C:\Projetos\ProjetoControleEntrega\EPharmacy\EPharmacy\bin\Debug\net8.0-windows\
 C:\Projetos\ProjetoControleEntrega\EPharmacy\EPharmacy\bin\Debug\net8.0-windows\EPharmacy.pdb
 C:\Projetos\ProjetoControleEntrega\EPharmacy\EPharmacy\obj\Debug\net8.0-windows\EPharmacy.genruntimeconfig.cache
 C:\Projetos\ProjetoControleEntrega\EPharmacy\EPharmacy\obj\Debug\net8.0-windows\ref\EPharmacy.dll
+C:\Projetos\ProjetoControleEntrega\EPharmacy\EPharmacy\obj\Debug\net8.0-windows\EPharmacy.sourcelink.json
+C:\Projetos\ProjetoControleEntrega\EPharmacy\EPharmacy\obj\Debug\net8.0-windows\EPharmacy.Forms.frmFabricante.resources
+C:\Projetos\ProjetoControleEntrega\EPharmacy\EPharmacy\obj\Debug\net8.0-windows\EPharmacy.Forms.frmClasseTerapeutica.resources
+C:\Projetos\ProjetoControleEntrega\EPharmacy\EPharmacy\obj\Debug\net8.0-windows\EPharmacy.Forms.frmSubstancia.resources
+C:\Projetos\ProjetoControleEntrega\EPharmacy\EPharmacy\obj\Debug\net8.0-windows\EPharmacy.Forms.frmTipoReceita.resources
+C:\Projetos\ProjetoControleEntrega\EPharmacy\EPharmacy\obj\Debug\net8.0-windows\EPharmacy.Forms.frmUsuarioSistema.resources
+C:\Projetos\ProjetoControleEntrega\EPharmacy\EPharmacy\obj\Debug\net8.0-windows\EPharmacy.Forms.frmPaciente.resources
+C:\Projetos\ProjetoControleEntrega\EPharmacy\EPharmacy\obj\Debug\net8.0-windows\EPharmacy.Forms.frmReceita.resources

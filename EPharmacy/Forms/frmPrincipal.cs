@@ -28,8 +28,8 @@ namespace EPharmacy
             InitializeComponent();
         }
 
-
-        private void medicamentosToolStripMenuItem_Click(object sender, EventArgs e)
+                     
+        private void medicamentoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             foreach (Form filho in this.MdiChildren)
             {
@@ -48,8 +48,8 @@ namespace EPharmacy
             formulario.Location = new Point(20, 0);
         }
 
-
-        private void preçoMedicamentoToolStripMenuItem_Click(object sender, EventArgs e)
+                     
+        private void preçoDeMedicamentoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             foreach (Form filho in this.MdiChildren)
             {
@@ -84,6 +84,7 @@ namespace EPharmacy
             }
         }
 
+
         private void fabricanteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             foreach (Form filho in this.MdiChildren)
@@ -102,6 +103,7 @@ namespace EPharmacy
             formulario.Show();
             formulario.Location = new Point(220, 50);
         }
+
 
         private void classeTerapeuticaToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -142,6 +144,7 @@ namespace EPharmacy
             formulario.Location = new Point(220, 50);
         }
 
+
         private void tipoReceitaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             foreach (Form filho in this.MdiChildren)
@@ -161,6 +164,7 @@ namespace EPharmacy
             formulario.Location = new Point(220, 50);
         }
 
+
         private void usuárioToolStripMenuItem_Click(object sender, EventArgs e)
         {
             foreach (Form filho in this.MdiChildren)
@@ -178,6 +182,26 @@ namespace EPharmacy
             };
             formulario.Show();
             formulario.Location = new Point(220, 50);
+        }
+
+
+        private void cadastroDePacienteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (Form filho in this.MdiChildren)
+            {
+                if (filho is frmPaciente)
+                {
+                    filho.Activate();
+                    return;
+                }
+            }
+
+            frmPaciente formulario = new frmPaciente
+            {
+                MdiParent = this,
+            };
+            formulario.Show();
+            formulario.Location = new Point(180, 30);
         }
     }
 }

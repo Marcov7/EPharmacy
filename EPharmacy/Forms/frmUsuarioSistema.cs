@@ -171,7 +171,7 @@ namespace EPharmacy.Forms
                 {
                     Nome = Nome_,
                     Login = Login_,
-                    Senha = Senha_, 
+                    Senha = Senha_,
                     Email = Email_,
                     DataCadastro = DateTime.Now,
                     Usuario = 1,
@@ -319,8 +319,6 @@ namespace EPharmacy.Forms
                 }
             }
         }
-
-
 
     }
 }
