@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace ControleEntregada.Forms
 {
@@ -209,30 +210,94 @@ namespace ControleEntregada.Forms
 
         private void btnPesquisar_Click(object sender, EventArgs e)
         {
-            int idOutraTabela = 0;
+            dgvMedicamentos.DataSource = null;
+
+            // Recuperando os filtros dos campos de pesquisa
+            string Produto_ = txtProduto.Text;
+            string EAN_ = txtEAN.Text;
+
+            // Filtrando os medicamentos conforme o Produto e EAN
+            var medicamentosFiltrados = _context.Medicamento.AsQueryable();
+
+            if (!string.IsNullOrEmpty(Produto_))
+                medicamentosFiltrados = medicamentosFiltrados.Where(p => p.Produto.Contains(Produto_));
+
+            if (!string.IsNullOrEmpty(EAN_))
+                medicamentosFiltrados = medicamentosFiltrados.Where(p => p.EAN.Contains(EAN_));
+
+            // Recuperando os preços dos medicamentos
+            var medicamentoPreco = _context.MedicamentoPreco.AsQueryable();
+
+            // Você pode filtrar por MedicamentoPrecoId se necessário
+            int? MedicamentoPrecoId_ = string.IsNullOrEmpty(txtId.Text) ? (int?)null : Convert.ToInt32(txtId.Text);
+            if (MedicamentoPrecoId_ != null)
+                medicamentoPreco = medicamentoPreco.Where(p => p.Id == MedicamentoPrecoId_);
+
+            // Realizando o Join entre medicamentos e preços
+            var query = from m in medicamentosFiltrados
+                        join mp in medicamentoPreco on m.Id equals mp.MedicamentoId
+                        select new
+                        {
+                            MedicamentoPrecoId = mp.Id,
+                            MedicamentoId = m.Id,
+                            m.Produto,
+                            m.EAN,
+                            PrecoFabrica = mp.PrecoFabrica,
+                            PrecoPmcBrasindice = mp.PrecoPmcBrasindice,
+                            PrecoAcordado = mp.PrecoAcordado
+                        };
+
+            // Executa a consulta e converte em lista
+            var medicamentosComPreco = query.ToList();
+
+            // Define a fonte de dados para o DataGridView
+            if (medicamentosComPreco != null && medicamentosComPreco.Count > 0)
+                dgvMedicamentos.DataSource = medicamentosComPreco;
+            else
+                MessageBox.Show("Nenhum medicamento encontrado.");
+        }
+
+        /*
+        private void btnPesquisar_Click(object sender, EventArgs e)
+        {
+      
             string Produto_ = txtProduto.Text;
             string EAN_ = txtEAN.Text;
             var medicamento = _context.Medicamento.AsQueryable();
             if (!string.IsNullOrEmpty(Produto_)) medicamento = medicamento.Where(p => p.Produto.Contains(Produto_));
             if (!string.IsNullOrEmpty(EAN_)) medicamento = medicamento.Where(p => p.EAN.Contains(EAN_));
 
-            var medicamentox = _context.Medicamento.AsQueryable();
-            //if (!Produto_.IsNullOrEmpty() || !EAN_.IsNullOrEmpty())
-           // {
-            //    medicamentox = medicamento;
-                //if (medicamentox.Count > 0)
-                //   idOutraTabela = medicamentox[0].Id;
-            //}
+            var soMedicamento = medicamento.ToList();
 
-            int? MedicamentoId_ = txtId.Text.IsNullOrEmpty() ? null : Convert.ToInt32(txtId.Text);
+            int? MedicamentoPrecoId_ = txtId.Text.IsNullOrEmpty() ? null : Convert.ToInt32(txtId.Text);
             var medicamentoPreco = _context.MedicamentoPreco.AsQueryable();
-            if (MedicamentoId_ != null) 
-                medicamentoPreco = medicamentoPreco.Where(p => p.MedicamentoId == MedicamentoId_);
-            if (medicamento.Count() > 0)
-                medicamentoPreco = medicamentoPreco.Where(p => p.MedicamentoId == idOutraTabela);
+            if (MedicamentoPrecoId_ != null) 
+                medicamentoPreco = medicamentoPreco.Where(p => p.Id == MedicamentoPrecoId_);
+
+            if (soMedicamento.Count() > 0)
+            {
+           
+                var query = from m in medicamento
+                            join mp in medicamentoPreco on m.Id equals mp.MedicamentoId
+                            select new
+                            {
+                                mp.MedicamentoId,
+                                m.Produto,
+                                m.EAN,
+                                mp.Id,
+                                mp.PrecoFabrica,
+                                mp.PrecoPmcBrasindice,
+                                mp.PrecoAcordado
+                            };
+
+           
+                var medicamentosComPreco = query.ToList();
+            }
+
             var medicamentoPrecox = medicamentoPreco.ToList();
             if (medicamentoPrecox != null) 
                 dgvMedicamentos.DataSource = medicamentoPrecox;
         }
+        */
     }
 }

@@ -83,3 +83,10 @@ C:\Projetos\ProjetoControleEntrega\EPharmacy\EPharmacy\obj\Debug\net8.0-windows\
 C:\Projetos\ProjetoControleEntrega\EPharmacy\EPharmacy\obj\Debug\net8.0-windows\EPharmacy.Forms.frmUsuarioSistema.resources
 C:\Projetos\ProjetoControleEntrega\EPharmacy\EPharmacy\obj\Debug\net8.0-windows\EPharmacy.Forms.frmPaciente.resources
 C:\Projetos\ProjetoControleEntrega\EPharmacy\EPharmacy\obj\Debug\net8.0-windows\EPharmacy.Forms.frmReceita.resources
+C:\Projetos\ProjetoControleEntrega\EPharmacy\EPharmacy\obj\Debug\net8.0-windows\EPharmacy.Forms.frmClinica.resources
+C:\Projetos\ProjetoControleEntrega\EPharmacy\EPharmacy\obj\Debug\net8.0-windows\EPharmacy.Forms.frmConvenio.resources
+C:\Projetos\ProjetoControleEntrega\EPharmacy\EPharmacy\obj\Debug\net8.0-windows\EPharmacy.Forms.frmEspecialidade.resources
+C:\Projetos\ProjetoControleEntrega\EPharmacy\EPharmacy\obj\Debug\net8.0-windows\EPharmacy.Forms.frmMedico.resources
+C:\Projetos\ProjetoControleEntrega\EPharmacy\EPharmacy\obj\Debug\net8.0-windows\EPharmacy.Forms.frmModalidade.resources
+C:\Projetos\ProjetoControleEntrega\EPharmacy\EPharmacy\obj\Debug\net8.0-windows\EPharmacy.Forms.frmTipoEntrega.resources
+C:\Projetos\ProjetoControleEntrega\EPharmacy\EPharmacy\obj\Debug\net8.0-windows\EPharmacy.Forms.frmPeriodicidadeRefil.resources

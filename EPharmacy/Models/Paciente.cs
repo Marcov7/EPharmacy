@@ -28,6 +28,12 @@ namespace EPharmacy.Models
         public string Email { get; set; }
 
         public DateTime DataPrimeiroAtendimento { get; set; }
+
+        public int? ConvenioId { get; set; }
+        public string? Matricula { get; set; }
+        public string? Carteirinha { get; set; }
+        public DateTime? Validade { get; set; }
+
         public DateTime DataCadastro { get; set; }
         public int Usuario { get; set; }
     }

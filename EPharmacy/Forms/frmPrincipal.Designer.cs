@@ -32,25 +32,32 @@
             cadastroToolStripMenuItem = new ToolStripMenuItem();
             toolStripSeparator1 = new ToolStripSeparator();
             classeTerapeuticaToolStripMenuItem = new ToolStripMenuItem();
+            clinicaToolStripMenuItem = new ToolStripMenuItem();
+            convenioToolStripMenuItem = new ToolStripMenuItem();
             fabricanteToolStripMenuItem = new ToolStripMenuItem();
+            modalidadeToolStripMenuItem = new ToolStripMenuItem();
+            periodicidadeRefilToolStripMenuItem = new ToolStripMenuItem();
             substânciaToolStripMenuItem = new ToolStripMenuItem();
+            tipoEntregaToolStripMenuItem = new ToolStripMenuItem();
             tipoReceitaToolStripMenuItem = new ToolStripMenuItem();
             toolStripSeparator2 = new ToolStripSeparator();
             usuárioToolStripMenuItem = new ToolStripMenuItem();
             mmedicamentoToolStripMenuItem = new ToolStripMenuItem();
+            medicamentoToolStripMenuItem = new ToolStripMenuItem();
+            preçoDeMedicamentoToolStripMenuItem = new ToolStripMenuItem();
             pacienteToolStripMenuItem = new ToolStripMenuItem();
             cadastroDePacienteToolStripMenuItem = new ToolStripMenuItem();
+            receitaToolStripMenuItem = new ToolStripMenuItem();
             ajudaToolStripMenuItem = new ToolStripMenuItem();
             sobrceToolStripMenuItem = new ToolStripMenuItem();
             sairToolStripMenuItem = new ToolStripMenuItem();
-            medicamentoToolStripMenuItem = new ToolStripMenuItem();
-            preçoDeMedicamentoToolStripMenuItem = new ToolStripMenuItem();
+            medicoToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { cadastroToolStripMenuItem, mmedicamentoToolStripMenuItem, pacienteToolStripMenuItem, ajudaToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { cadastroToolStripMenuItem, mmedicamentoToolStripMenuItem, pacienteToolStripMenuItem, receitaToolStripMenuItem, ajudaToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(800, 24);
@@ -59,7 +66,7 @@
             // 
             // cadastroToolStripMenuItem
             // 
-            cadastroToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { toolStripSeparator1, classeTerapeuticaToolStripMenuItem, fabricanteToolStripMenuItem, substânciaToolStripMenuItem, tipoReceitaToolStripMenuItem, toolStripSeparator2, usuárioToolStripMenuItem });
+            cadastroToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { toolStripSeparator1, classeTerapeuticaToolStripMenuItem, clinicaToolStripMenuItem, convenioToolStripMenuItem, fabricanteToolStripMenuItem, medicoToolStripMenuItem, modalidadeToolStripMenuItem, periodicidadeRefilToolStripMenuItem, substânciaToolStripMenuItem, tipoEntregaToolStripMenuItem, tipoReceitaToolStripMenuItem, toolStripSeparator2, usuárioToolStripMenuItem });
             cadastroToolStripMenuItem.Name = "cadastroToolStripMenuItem";
             cadastroToolStripMenuItem.Size = new Size(66, 20);
             cadastroToolStripMenuItem.Text = "Cadastro";
@@ -67,45 +74,80 @@
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(167, 6);
+            toolStripSeparator1.Size = new Size(177, 6);
             // 
             // classeTerapeuticaToolStripMenuItem
             // 
             classeTerapeuticaToolStripMenuItem.Name = "classeTerapeuticaToolStripMenuItem";
-            classeTerapeuticaToolStripMenuItem.Size = new Size(170, 22);
+            classeTerapeuticaToolStripMenuItem.Size = new Size(180, 22);
             classeTerapeuticaToolStripMenuItem.Text = "Classe Terapeutica";
             classeTerapeuticaToolStripMenuItem.Click += classeTerapeuticaToolStripMenuItem_Click;
+            // 
+            // clinicaToolStripMenuItem
+            // 
+            clinicaToolStripMenuItem.Name = "clinicaToolStripMenuItem";
+            clinicaToolStripMenuItem.Size = new Size(180, 22);
+            clinicaToolStripMenuItem.Text = "Clinica";
+            clinicaToolStripMenuItem.Click += clinicaToolStripMenuItem_Click;
+            // 
+            // convenioToolStripMenuItem
+            // 
+            convenioToolStripMenuItem.Name = "convenioToolStripMenuItem";
+            convenioToolStripMenuItem.Size = new Size(180, 22);
+            convenioToolStripMenuItem.Text = "Convênio";
+            convenioToolStripMenuItem.Click += convenioToolStripMenuItem_Click;
             // 
             // fabricanteToolStripMenuItem
             // 
             fabricanteToolStripMenuItem.Name = "fabricanteToolStripMenuItem";
-            fabricanteToolStripMenuItem.Size = new Size(170, 22);
+            fabricanteToolStripMenuItem.Size = new Size(180, 22);
             fabricanteToolStripMenuItem.Text = "Fabricante";
             fabricanteToolStripMenuItem.Click += fabricanteToolStripMenuItem_Click;
+            // 
+            // modalidadeToolStripMenuItem
+            // 
+            modalidadeToolStripMenuItem.Name = "modalidadeToolStripMenuItem";
+            modalidadeToolStripMenuItem.Size = new Size(180, 22);
+            modalidadeToolStripMenuItem.Text = "Modalidade";
+            modalidadeToolStripMenuItem.Click += modalidadeToolStripMenuItem_Click;
+            // 
+            // periodicidadeRefilToolStripMenuItem
+            // 
+            periodicidadeRefilToolStripMenuItem.Name = "periodicidadeRefilToolStripMenuItem";
+            periodicidadeRefilToolStripMenuItem.Size = new Size(180, 22);
+            periodicidadeRefilToolStripMenuItem.Text = "Periodicidade Refil";
+            periodicidadeRefilToolStripMenuItem.Click += periodicidadeRefilToolStripMenuItem_Click;
             // 
             // substânciaToolStripMenuItem
             // 
             substânciaToolStripMenuItem.Name = "substânciaToolStripMenuItem";
-            substânciaToolStripMenuItem.Size = new Size(170, 22);
+            substânciaToolStripMenuItem.Size = new Size(180, 22);
             substânciaToolStripMenuItem.Text = "Substância";
             substânciaToolStripMenuItem.Click += substanciaToolStripMenuItem_Click;
+            // 
+            // tipoEntregaToolStripMenuItem
+            // 
+            tipoEntregaToolStripMenuItem.Name = "tipoEntregaToolStripMenuItem";
+            tipoEntregaToolStripMenuItem.Size = new Size(180, 22);
+            tipoEntregaToolStripMenuItem.Text = "Tipo Entrega";
+            tipoEntregaToolStripMenuItem.Click += tipoEntregaToolStripMenuItem_Click;
             // 
             // tipoReceitaToolStripMenuItem
             // 
             tipoReceitaToolStripMenuItem.Name = "tipoReceitaToolStripMenuItem";
-            tipoReceitaToolStripMenuItem.Size = new Size(170, 22);
+            tipoReceitaToolStripMenuItem.Size = new Size(180, 22);
             tipoReceitaToolStripMenuItem.Text = "Tipo Receita";
             tipoReceitaToolStripMenuItem.Click += tipoReceitaToolStripMenuItem_Click;
             // 
             // toolStripSeparator2
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(167, 6);
+            toolStripSeparator2.Size = new Size(177, 6);
             // 
             // usuárioToolStripMenuItem
             // 
             usuárioToolStripMenuItem.Name = "usuárioToolStripMenuItem";
-            usuárioToolStripMenuItem.Size = new Size(170, 22);
+            usuárioToolStripMenuItem.Size = new Size(180, 22);
             usuárioToolStripMenuItem.Text = "Usuário";
             usuárioToolStripMenuItem.Click += usuárioToolStripMenuItem_Click;
             // 
@@ -115,6 +157,20 @@
             mmedicamentoToolStripMenuItem.Name = "mmedicamentoToolStripMenuItem";
             mmedicamentoToolStripMenuItem.Size = new Size(93, 20);
             mmedicamentoToolStripMenuItem.Text = "Medicamento";
+            // 
+            // medicamentoToolStripMenuItem
+            // 
+            medicamentoToolStripMenuItem.Name = "medicamentoToolStripMenuItem";
+            medicamentoToolStripMenuItem.Size = new Size(197, 22);
+            medicamentoToolStripMenuItem.Text = "Medicamento";
+            medicamentoToolStripMenuItem.Click += medicamentoToolStripMenuItem_Click;
+            // 
+            // preçoDeMedicamentoToolStripMenuItem
+            // 
+            preçoDeMedicamentoToolStripMenuItem.Name = "preçoDeMedicamentoToolStripMenuItem";
+            preçoDeMedicamentoToolStripMenuItem.Size = new Size(197, 22);
+            preçoDeMedicamentoToolStripMenuItem.Text = "Preço de Medicamento";
+            preçoDeMedicamentoToolStripMenuItem.Click += preçoDeMedicamentoToolStripMenuItem_Click;
             // 
             // pacienteToolStripMenuItem
             // 
@@ -129,6 +185,12 @@
             cadastroDePacienteToolStripMenuItem.Size = new Size(185, 22);
             cadastroDePacienteToolStripMenuItem.Text = "Cadastro de Paciente";
             cadastroDePacienteToolStripMenuItem.Click += cadastroDePacienteToolStripMenuItem_Click;
+            // 
+            // receitaToolStripMenuItem
+            // 
+            receitaToolStripMenuItem.Name = "receitaToolStripMenuItem";
+            receitaToolStripMenuItem.Size = new Size(57, 20);
+            receitaToolStripMenuItem.Text = "Receita";
             // 
             // ajudaToolStripMenuItem
             // 
@@ -150,19 +212,12 @@
             sairToolStripMenuItem.Text = "Sai&r";
             sairToolStripMenuItem.Click += sairToolStripMenuItem_Click;
             // 
-            // medicamentoToolStripMenuItem
+            // medicoToolStripMenuItem
             // 
-            medicamentoToolStripMenuItem.Name = "medicamentoToolStripMenuItem";
-            medicamentoToolStripMenuItem.Size = new Size(197, 22);
-            medicamentoToolStripMenuItem.Text = "Medicamento";
-            medicamentoToolStripMenuItem.Click += medicamentoToolStripMenuItem_Click;
-            // 
-            // preçoDeMedicamentoToolStripMenuItem
-            // 
-            preçoDeMedicamentoToolStripMenuItem.Name = "preçoDeMedicamentoToolStripMenuItem";
-            preçoDeMedicamentoToolStripMenuItem.Size = new Size(197, 22);
-            preçoDeMedicamentoToolStripMenuItem.Text = "Preço de Medicamento";
-            preçoDeMedicamentoToolStripMenuItem.Click += preçoDeMedicamentoToolStripMenuItem_Click;
+            medicoToolStripMenuItem.Name = "medicoToolStripMenuItem";
+            medicoToolStripMenuItem.Size = new Size(180, 22);
+            medicoToolStripMenuItem.Text = "Medico";
+            medicoToolStripMenuItem.Click += medicoToolStripMenuItem_Click;
             // 
             // frmPrincipal
             // 
@@ -205,5 +260,12 @@
         private ToolStripMenuItem cadastroDePacienteToolStripMenuItem;
         private ToolStripMenuItem medicamentoToolStripMenuItem;
         private ToolStripMenuItem preçoDeMedicamentoToolStripMenuItem;
+        private ToolStripMenuItem modalidadeToolStripMenuItem;
+        private ToolStripMenuItem tipoEntregaToolStripMenuItem;
+        private ToolStripMenuItem clinicaToolStripMenuItem;
+        private ToolStripMenuItem convenioToolStripMenuItem;
+        private ToolStripMenuItem receitaToolStripMenuItem;
+        private ToolStripMenuItem periodicidadeRefilToolStripMenuItem;
+        private ToolStripMenuItem medicoToolStripMenuItem;
     }
 }

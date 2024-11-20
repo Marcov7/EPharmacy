@@ -13,3 +13,4 @@ C:\Projetos\ProjetoControleEntrega\EPharmacy\BLL\obj\Debug\net8.0\BLL.dll
 C:\Projetos\ProjetoControleEntrega\EPharmacy\BLL\obj\Debug\net8.0\refint\BLL.dll
 C:\Projetos\ProjetoControleEntrega\EPharmacy\BLL\obj\Debug\net8.0\BLL.pdb
 C:\Projetos\ProjetoControleEntrega\EPharmacy\BLL\obj\Debug\net8.0\ref\BLL.dll
+C:\Projetos\ProjetoControleEntrega\EPharmacy\BLL\obj\Debug\net8.0\BLL.sourcelink.json

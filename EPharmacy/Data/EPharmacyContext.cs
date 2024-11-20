@@ -17,10 +17,18 @@ namespace EPharmacy.Data
         public DbSet<TipoReceita> TipoReceita { get; set; }
         public DbSet<Fabricante> Fabricante { get; set; }
         public DbSet<Substancia> Substancia { get; set; }
+        public DbSet<Receita> Receita { get; set; }
         public DbSet<ReceitaItens> ReceitaItens { get; set; }
         public DbSet<UsuarioSistema> UsuarioSistema { get; set; }
         public DbSet<Sexo> Sexo { get; set; }
         public DbSet<Paciente> Paciente { get; set; }
+        public DbSet<Convenio> Convenio { get; set; }
+        public DbSet<Modalidade> Modalidade { get; set; }
+        public DbSet<TipoEntrega> TipoEntrega { get; set; }
+        public DbSet<Medico> Medico { get; set; }
+        public DbSet<Clinica> Clinica { get; set; }
+        public DbSet<Especialidade> Especialidade { get; set; }
+        public DbSet<PeriodicidadeRefil> PeriodicidadeRefil { get; set; }
 
 
         public EPharmacyContext(DbContextOptions<EPharmacyContext> options) : base(options) { }

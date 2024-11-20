@@ -44,6 +44,17 @@ namespace EPharmacy.Forms
             cboSexo.DataSource = sexo.ToList();
             cboSexo.DisplayMember = "Descricao";
             cboSexo.ValueMember = "Id";
+
+
+            var convenio = _context.Convenio.OrderBy(p => p.Descricao).ToList();
+            Convenio f = new Convenio();
+            f.Id = 0;
+            f.Descricao = "<Selecione uma opção>";
+            convenio.Insert(0, f);
+            cboConvenio.DataSource = convenio.ToList();
+            cboConvenio.DisplayMember = "Descricao";
+            cboConvenio.ValueMember = "Id";
+            // FIM
         }
 
 
@@ -99,6 +110,12 @@ namespace EPharmacy.Forms
             txtTelefone.Clear();
             txtEmail.Clear();
             dTPDataPrimeiroAtendimento.Value = DateTime.Now;
+
+            txtCarteirinha.Clear();
+            txtMatricula.Clear();
+            dTPValidade.Value = DateTime.Now;
+            cboConvenio.SelectedIndex = 0;
+
             dgvLista.DataSource = null;
 
             txtId.Enabled = true;
@@ -117,6 +134,12 @@ namespace EPharmacy.Forms
             txtTelefone.Enabled = true;
             txtEmail.Enabled = true;
             dTPDataPrimeiroAtendimento.Enabled = false;
+
+            txtCarteirinha.Enabled = true;
+            txtMatricula.Enabled = true;
+            dTPValidade.Enabled = true;
+            cboConvenio.Enabled = true;
+
             dgvLista.Enabled = true;
 
             btnNovo.Enabled = true;
@@ -280,6 +303,11 @@ namespace EPharmacy.Forms
             string email = txtEmail.Text;
             DateTime dataPrimeiroAtendimento = dTPDataPrimeiroAtendimento.Value;
 
+            string carteirinha = txtCarteirinha.Text;
+            string matricula = Utilitarios.limpaString(txtMatricula.Text).Trim();
+            DateTime? validade = dTPValidade.Value.Date == DateTime.Now.Date ? null : dTPValidade.Value.Date;
+            int? convenioId = Convert.ToInt32(cboConvenio.SelectedValue) == 0 ? null : Convert.ToInt32(cboConvenio.SelectedValue); 
+
             var insert = new Paciente();
             var update = new Paciente();
 
@@ -302,6 +330,12 @@ namespace EPharmacy.Forms
                     Telefone = telefone,    
                     Email = email, 
                     DataPrimeiroAtendimento=    dataPrimeiroAtendimento,
+
+                    ConvenioId = convenioId,
+                    Matricula = matricula,
+                    Carteirinha = carteirinha,
+                    Validade = validade,
+
                     DataCadastro = DateTime.Now.Date,
                     Usuario = 1,
                 };
@@ -345,6 +379,12 @@ namespace EPharmacy.Forms
                 update.Telefone = telefone; 
                 update.Email = email;
                 update.DataPrimeiroAtendimento = dataPrimeiroAtendimento;
+
+                update.ConvenioId = convenioId;
+                update.Matricula = matricula;
+                update.Carteirinha = carteirinha;
+                update.Validade = validade;
+
                 update.DataCadastro = DateTime.Now;
                 update.Usuario = 1;
 
@@ -429,6 +469,12 @@ namespace EPharmacy.Forms
             txtTelefone.Clear();
             txtEmail.Clear();
             dTPDataPrimeiroAtendimento.Value = DateTime.Now;
+
+            txtCarteirinha.Clear();
+            txtMatricula.Clear();
+            dTPValidade.Value = DateTime.Now;
+            cboConvenio.SelectedIndex = 0;
+
             dgvLista.DataSource = null;
 
             txtId.Enabled = false;
@@ -447,6 +493,12 @@ namespace EPharmacy.Forms
             txtTelefone.Enabled = true;
             txtEmail.Enabled = true;
             dTPDataPrimeiroAtendimento.Enabled = true;
+
+            txtCarteirinha.Enabled = true;
+            txtMatricula.Enabled = true;
+            dTPValidade.Enabled = true;
+            cboConvenio.Enabled = true;
+
             dgvLista.Enabled = true;
 
             btnNovo.Enabled = false;
