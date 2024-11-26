@@ -304,6 +304,7 @@ namespace EPharmacy
             formulario.Location = new Point(180, 30);
         }
 
+
         private void medicoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             foreach (Form filho in this.MdiChildren)
@@ -316,6 +317,46 @@ namespace EPharmacy
             }
 
             frmMedico formulario = new frmMedico
+            {
+                MdiParent = this,
+            };
+            formulario.Show();
+            formulario.Location = new Point(180, 30);
+        }
+
+
+        private void receitaToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            foreach (Form filho in this.MdiChildren)
+            {
+                if (filho is frmReceita)
+                {
+                    filho.Activate();
+                    return;
+                }
+            }
+
+            frmReceita formulario = new frmReceita
+            {
+                MdiParent = this,
+            };
+            formulario.Show();
+            formulario.Location = new Point(20, 10);
+        }
+
+
+        private void receitaItensToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (Form filho in this.MdiChildren)
+            {
+                if (filho is frmReceitaItens)
+                {
+                    filho.Activate();
+                    return;
+                }
+            }
+
+            frmReceitaItens formulario = new frmReceitaItens
             {
                 MdiParent = this,
             };

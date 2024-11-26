@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EPharmacy.Data
 {
-
+    // Não abra filme
     public class EPharmacyContext : DbContext
     {
         public DbSet<Medicamento> Medicamento { get; set; }
@@ -29,6 +29,9 @@ namespace EPharmacy.Data
         public DbSet<Clinica> Clinica { get; set; }
         public DbSet<Especialidade> Especialidade { get; set; }
         public DbSet<PeriodicidadeRefil> PeriodicidadeRefil { get; set; }
+        public DbSet<Status> Status { get; set; }
+
+
 
 
         public EPharmacyContext(DbContextOptions<EPharmacyContext> options) : base(options) { }

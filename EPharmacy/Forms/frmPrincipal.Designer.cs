@@ -35,6 +35,7 @@
             clinicaToolStripMenuItem = new ToolStripMenuItem();
             convenioToolStripMenuItem = new ToolStripMenuItem();
             fabricanteToolStripMenuItem = new ToolStripMenuItem();
+            medicoToolStripMenuItem = new ToolStripMenuItem();
             modalidadeToolStripMenuItem = new ToolStripMenuItem();
             periodicidadeRefilToolStripMenuItem = new ToolStripMenuItem();
             substânciaToolStripMenuItem = new ToolStripMenuItem();
@@ -48,10 +49,11 @@
             pacienteToolStripMenuItem = new ToolStripMenuItem();
             cadastroDePacienteToolStripMenuItem = new ToolStripMenuItem();
             receitaToolStripMenuItem = new ToolStripMenuItem();
+            receitaToolStripMenuItem1 = new ToolStripMenuItem();
+            receitaItensToolStripMenuItem = new ToolStripMenuItem();
             ajudaToolStripMenuItem = new ToolStripMenuItem();
             sobrceToolStripMenuItem = new ToolStripMenuItem();
             sairToolStripMenuItem = new ToolStripMenuItem();
-            medicoToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -74,80 +76,87 @@
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(177, 6);
+            toolStripSeparator1.Size = new Size(169, 6);
             // 
             // classeTerapeuticaToolStripMenuItem
             // 
             classeTerapeuticaToolStripMenuItem.Name = "classeTerapeuticaToolStripMenuItem";
-            classeTerapeuticaToolStripMenuItem.Size = new Size(180, 22);
+            classeTerapeuticaToolStripMenuItem.Size = new Size(172, 22);
             classeTerapeuticaToolStripMenuItem.Text = "Classe Terapeutica";
             classeTerapeuticaToolStripMenuItem.Click += classeTerapeuticaToolStripMenuItem_Click;
             // 
             // clinicaToolStripMenuItem
             // 
             clinicaToolStripMenuItem.Name = "clinicaToolStripMenuItem";
-            clinicaToolStripMenuItem.Size = new Size(180, 22);
+            clinicaToolStripMenuItem.Size = new Size(172, 22);
             clinicaToolStripMenuItem.Text = "Clinica";
             clinicaToolStripMenuItem.Click += clinicaToolStripMenuItem_Click;
             // 
             // convenioToolStripMenuItem
             // 
             convenioToolStripMenuItem.Name = "convenioToolStripMenuItem";
-            convenioToolStripMenuItem.Size = new Size(180, 22);
+            convenioToolStripMenuItem.Size = new Size(172, 22);
             convenioToolStripMenuItem.Text = "Convênio";
             convenioToolStripMenuItem.Click += convenioToolStripMenuItem_Click;
             // 
             // fabricanteToolStripMenuItem
             // 
             fabricanteToolStripMenuItem.Name = "fabricanteToolStripMenuItem";
-            fabricanteToolStripMenuItem.Size = new Size(180, 22);
+            fabricanteToolStripMenuItem.Size = new Size(172, 22);
             fabricanteToolStripMenuItem.Text = "Fabricante";
             fabricanteToolStripMenuItem.Click += fabricanteToolStripMenuItem_Click;
+            // 
+            // medicoToolStripMenuItem
+            // 
+            medicoToolStripMenuItem.Name = "medicoToolStripMenuItem";
+            medicoToolStripMenuItem.Size = new Size(172, 22);
+            medicoToolStripMenuItem.Text = "Medico";
+            medicoToolStripMenuItem.Click += medicoToolStripMenuItem_Click;
             // 
             // modalidadeToolStripMenuItem
             // 
             modalidadeToolStripMenuItem.Name = "modalidadeToolStripMenuItem";
-            modalidadeToolStripMenuItem.Size = new Size(180, 22);
+            modalidadeToolStripMenuItem.Size = new Size(172, 22);
             modalidadeToolStripMenuItem.Text = "Modalidade";
             modalidadeToolStripMenuItem.Click += modalidadeToolStripMenuItem_Click;
             // 
             // periodicidadeRefilToolStripMenuItem
             // 
             periodicidadeRefilToolStripMenuItem.Name = "periodicidadeRefilToolStripMenuItem";
-            periodicidadeRefilToolStripMenuItem.Size = new Size(180, 22);
+            periodicidadeRefilToolStripMenuItem.Size = new Size(172, 22);
             periodicidadeRefilToolStripMenuItem.Text = "Periodicidade Refil";
             periodicidadeRefilToolStripMenuItem.Click += periodicidadeRefilToolStripMenuItem_Click;
             // 
             // substânciaToolStripMenuItem
             // 
             substânciaToolStripMenuItem.Name = "substânciaToolStripMenuItem";
-            substânciaToolStripMenuItem.Size = new Size(180, 22);
+            substânciaToolStripMenuItem.Size = new Size(172, 22);
             substânciaToolStripMenuItem.Text = "Substância";
             substânciaToolStripMenuItem.Click += substanciaToolStripMenuItem_Click;
             // 
             // tipoEntregaToolStripMenuItem
             // 
             tipoEntregaToolStripMenuItem.Name = "tipoEntregaToolStripMenuItem";
-            tipoEntregaToolStripMenuItem.Size = new Size(180, 22);
+            tipoEntregaToolStripMenuItem.Size = new Size(172, 22);
             tipoEntregaToolStripMenuItem.Text = "Tipo Entrega";
             tipoEntregaToolStripMenuItem.Click += tipoEntregaToolStripMenuItem_Click;
             // 
             // tipoReceitaToolStripMenuItem
             // 
             tipoReceitaToolStripMenuItem.Name = "tipoReceitaToolStripMenuItem";
-            tipoReceitaToolStripMenuItem.Size = new Size(180, 22);
+            tipoReceitaToolStripMenuItem.Size = new Size(172, 22);
             tipoReceitaToolStripMenuItem.Text = "Tipo Receita";
             tipoReceitaToolStripMenuItem.Click += tipoReceitaToolStripMenuItem_Click;
             // 
             // toolStripSeparator2
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(177, 6);
+            toolStripSeparator2.Size = new Size(169, 6);
             // 
             // usuárioToolStripMenuItem
             // 
             usuárioToolStripMenuItem.Name = "usuárioToolStripMenuItem";
-            usuárioToolStripMenuItem.Size = new Size(180, 22);
+            usuárioToolStripMenuItem.Size = new Size(172, 22);
             usuárioToolStripMenuItem.Text = "Usuário";
             usuárioToolStripMenuItem.Click += usuárioToolStripMenuItem_Click;
             // 
@@ -188,9 +197,24 @@
             // 
             // receitaToolStripMenuItem
             // 
+            receitaToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { receitaToolStripMenuItem1, receitaItensToolStripMenuItem });
             receitaToolStripMenuItem.Name = "receitaToolStripMenuItem";
             receitaToolStripMenuItem.Size = new Size(57, 20);
             receitaToolStripMenuItem.Text = "Receita";
+            // 
+            // receitaToolStripMenuItem1
+            // 
+            receitaToolStripMenuItem1.Name = "receitaToolStripMenuItem1";
+            receitaToolStripMenuItem1.Size = new Size(180, 22);
+            receitaToolStripMenuItem1.Text = "Receita";
+            receitaToolStripMenuItem1.Click += receitaToolStripMenuItem1_Click;
+            // 
+            // receitaItensToolStripMenuItem
+            // 
+            receitaItensToolStripMenuItem.Name = "receitaItensToolStripMenuItem";
+            receitaItensToolStripMenuItem.Size = new Size(180, 22);
+            receitaItensToolStripMenuItem.Text = "Receita Itens";
+            receitaItensToolStripMenuItem.Click += receitaItensToolStripMenuItem_Click;
             // 
             // ajudaToolStripMenuItem
             // 
@@ -211,13 +235,6 @@
             sairToolStripMenuItem.Size = new Size(220, 22);
             sairToolStripMenuItem.Text = "Sai&r";
             sairToolStripMenuItem.Click += sairToolStripMenuItem_Click;
-            // 
-            // medicoToolStripMenuItem
-            // 
-            medicoToolStripMenuItem.Name = "medicoToolStripMenuItem";
-            medicoToolStripMenuItem.Size = new Size(180, 22);
-            medicoToolStripMenuItem.Text = "Medico";
-            medicoToolStripMenuItem.Click += medicoToolStripMenuItem_Click;
             // 
             // frmPrincipal
             // 
@@ -267,5 +284,7 @@
         private ToolStripMenuItem receitaToolStripMenuItem;
         private ToolStripMenuItem periodicidadeRefilToolStripMenuItem;
         private ToolStripMenuItem medicoToolStripMenuItem;
+        private ToolStripMenuItem receitaToolStripMenuItem1;
+        private ToolStripMenuItem receitaItensToolStripMenuItem;
     }
 }

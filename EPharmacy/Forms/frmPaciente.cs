@@ -8,6 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.ConstrainedExecution;
@@ -38,12 +39,12 @@ namespace EPharmacy.Forms
             // PREENCHE COMBOS INICIO
             var sexo = _context.Sexo.OrderBy(p => p.Descricao).ToList();
             Sexo c = new Sexo();
-            c.Id = 0;
+            //c.Id = 0;
             c.Descricao = "<Selecione uma opção>";
             sexo.Insert(0, c);
             cboSexo.DataSource = sexo.ToList();
             cboSexo.DisplayMember = "Descricao";
-            cboSexo.ValueMember = "Id";
+            cboSexo.ValueMember = "Descricao";
 
 
             var convenio = _context.Convenio.OrderBy(p => p.Descricao).ToList();
@@ -107,6 +108,8 @@ namespace EPharmacy.Forms
             txtComplemento.Clear();
             txtUF.Clear();
             txtCEP.Clear();
+            txtZona.Clear();
+            txtCelular.Clear();
             txtTelefone.Clear();
             txtEmail.Clear();
             dTPDataPrimeiroAtendimento.Value = DateTime.Now;
@@ -115,6 +118,7 @@ namespace EPharmacy.Forms
             txtMatricula.Clear();
             dTPValidade.Value = DateTime.Now;
             cboConvenio.SelectedIndex = 0;
+            txtAutorizacao.Clear();
 
             dgvLista.DataSource = null;
 
@@ -123,22 +127,25 @@ namespace EPharmacy.Forms
             txtNomeSocial.Enabled = true;
             txtCPF.Enabled = true;
             dTPNascimento.Enabled = true;
-            cboSexo.Enabled = true;
-            txtLogradouro.Enabled = true;
-            txtNumero.Enabled = true;
-            txtBairro.Enabled = true;
-            txtMunicipio.Enabled = true;
-            txtComplemento.Enabled = true;
-            txtUF.Enabled = true;
-            txtCEP.Enabled = true;
-            txtTelefone.Enabled = true;
-            txtEmail.Enabled = true;
+            cboSexo.Enabled = false;
+            txtLogradouro.Enabled = false;
+            txtNumero.Enabled = false;
+            txtBairro.Enabled = false;
+            txtMunicipio.Enabled = false;
+            txtComplemento.Enabled = false;
+            txtUF.Enabled = false;
+            txtCEP.Enabled = false;
+            txtZona.Enabled = false;
+            txtCelular.Enabled = false;
+            txtTelefone.Enabled = false;
+            txtEmail.Enabled = false;
             dTPDataPrimeiroAtendimento.Enabled = false;
 
-            txtCarteirinha.Enabled = true;
-            txtMatricula.Enabled = true;
-            dTPValidade.Enabled = true;
-            cboConvenio.Enabled = true;
+            txtCarteirinha.Enabled = false;
+            txtMatricula.Enabled = false;
+            dTPValidade.Enabled = false;
+            cboConvenio.Enabled = false;
+            txtAutorizacao.Enabled = false;
 
             dgvLista.Enabled = true;
 
@@ -148,6 +155,8 @@ namespace EPharmacy.Forms
             btnLimpar.Enabled = true;
             btnSair.Enabled = true;
             btnExcluir.Enabled = false;
+
+            btnBuscar.Enabled = false;
         }
 
 
@@ -217,10 +226,10 @@ namespace EPharmacy.Forms
             {
                 retorno += "Preencha o campo CPF com um CPF válido\n";
             }
-            if (cboSexo.SelectedIndex == -1 || cboSexo.SelectedValue.ToString() == "0")
+            if (cboSexo.SelectedIndex == 0)
             {
                 retorno += "Selecione o campo Sexo\n";
-            }           
+            }
             if (txtLogradouro.Text.IsNullOrEmpty())
             {
                 retorno += "Preencha o campo Logradouro\n";
@@ -249,24 +258,51 @@ namespace EPharmacy.Forms
             {
                 retorno += "Preencha o campo CEP\n";
             }
+            if (txtZona.Text.IsNullOrEmpty())
+            {
+                retorno += "Preencha o campo Zona\n";
+            }
+            /*if (Utilitarios.limpaString(txtCelular.Text).Trim().IsNullOrEmpty())
+            {
+                retorno += "Preencha o campo Celular\n";
+            }
             if (Utilitarios.limpaString(txtTelefone.Text).Trim().IsNullOrEmpty())
             {
                 retorno += "Preencha o campo Telefone\n";
-            }
+            }*/
             if (txtEmail.Text.IsNullOrEmpty())
             {
                 retorno += "Preencha o campo Email\n";
             }
+            else
+            {
+                bool isValid = Utilitarios.IsValidEmail(txtEmail.Text);
+
+                if (!isValid)
+                {
+                    retorno += "Preencha o campo e-mail com um e-mail válido.\n";
+                }
+            }
+
             if (dTPDataPrimeiroAtendimento.Value.Date == DateTime.Now.Date.Date)
             {
                 retorno += "Preencha o campo DataPrimeiroAtendimento\n";
             }
-            var cpfExiste = _context.Paciente.FirstOrDefault(p => p.CPF == Utilitarios.limpaString(txtCPF.Text).Trim()) ;
-            if (cpfExiste != null)
+            //var cpfExiste = _context.Paciente.FirstOrDefault(p => p.CPF == Utilitarios.limpaString(txtCPF.Text).Trim() && p.Id == Utilitarios.limpaString(txtId.Text).Trim());
+            var cpfExiste = _context.Paciente.FirstOrDefault(p => p.CPF == Utilitarios.limpaString(txtCPF.Text).Trim());
+
+            if (cpfExiste != null && cpfExiste.Id != null)
             {
-                retorno += "CPF já cadastrado\n";
+                if (cpfExiste.Id.ToString() != txtId.Text)
+                {
+                    retorno += "CPF já cadastrado\n";
+                }
             }
-         
+            if (txtAutorizacao.Text.IsNullOrEmpty())
+            {
+                retorno += "Preencha o campo Autorização\n";
+            }
+
             if (!retorno.IsNullOrEmpty())
             {
                 MessageBox.Show(retorno, "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -298,15 +334,18 @@ namespace EPharmacy.Forms
             string complemento = txtComplemento.Text;
             string uf = txtUF.Text;
             string cep = Utilitarios.limpaString(txtCEP.Text).Trim();
+            string zona = txtZona.Text;
 
             string telefone = Utilitarios.limpaString(txtTelefone.Text).Trim();
+            string celular = Utilitarios.limpaString(txtCelular.Text).Trim();
             string email = txtEmail.Text;
             DateTime dataPrimeiroAtendimento = dTPDataPrimeiroAtendimento.Value;
 
             string carteirinha = txtCarteirinha.Text;
             string matricula = Utilitarios.limpaString(txtMatricula.Text).Trim();
             DateTime? validade = dTPValidade.Value.Date == DateTime.Now.Date ? null : dTPValidade.Value.Date;
-            int? convenioId = Convert.ToInt32(cboConvenio.SelectedValue) == 0 ? null : Convert.ToInt32(cboConvenio.SelectedValue); 
+            int? convenioId = Convert.ToInt32(cboConvenio.SelectedValue) == 0 ? null : Convert.ToInt32(cboConvenio.SelectedValue);
+            string autorizacao = txtAutorizacao.Text;
 
             var insert = new Paciente();
             var update = new Paciente();
@@ -322,29 +361,32 @@ namespace EPharmacy.Forms
                     Sexo = sexo,
                     Logradouro = logradouro,
                     Numero = numero,
-                    Bairro = bairro,    
-                    Municipio = municipio,  
+                    Bairro = bairro,
+                    Municipio = municipio,
                     Uf = uf,
                     Complemento = complemento,
                     CEP = cep,
-                    Telefone = telefone,    
-                    Email = email, 
-                    DataPrimeiroAtendimento=    dataPrimeiroAtendimento,
+                    Zona = zona,
+                    Celular = celular,
+                    Telefone = telefone,
+                    Email = email,
+                    DataPrimeiroAtendimento = dataPrimeiroAtendimento,
 
                     ConvenioId = convenioId,
                     Matricula = matricula,
                     Carteirinha = carteirinha,
                     Validade = validade,
+                    Autorizacao = autorizacao,
 
                     DataCadastro = DateTime.Now.Date,
                     Usuario = 1,
                 };
 
                 /*    */
-                  
-                  
-                  
-                 
+
+
+
+
                 /*    */
                 _context.Paciente.Add(insert);
                 _context.SaveChanges();
@@ -375,8 +417,10 @@ namespace EPharmacy.Forms
                 update.Complemento = complemento;
                 update.Uf = uf;
                 update.CEP = cep;
+                update.Zona = zona;
 
-                update.Telefone = telefone; 
+                update.Celular = celular;
+                update.Telefone = telefone;
                 update.Email = email;
                 update.DataPrimeiroAtendimento = dataPrimeiroAtendimento;
 
@@ -384,6 +428,7 @@ namespace EPharmacy.Forms
                 update.Matricula = matricula;
                 update.Carteirinha = carteirinha;
                 update.Validade = validade;
+                update.Autorizacao = autorizacao;
 
                 update.DataCadastro = DateTime.Now;
                 update.Usuario = 1;
@@ -413,7 +458,7 @@ namespace EPharmacy.Forms
             string nomeSocial = txtNomeSocial.Text;
             string cpf = Utilitarios.limpaString(txtCPF.Text).Trim();
             DateTime dataNascimento = dTPNascimento.Value.Date;
-      
+
 
             var lista = _context.Paciente.AsQueryable();
 
@@ -466,6 +511,8 @@ namespace EPharmacy.Forms
             txtComplemento.Clear();
             txtUF.Clear();
             txtCEP.Clear();
+            txtZona.Clear();
+            txtCelular.Clear();
             txtTelefone.Clear();
             txtEmail.Clear();
             dTPDataPrimeiroAtendimento.Value = DateTime.Now;
@@ -474,6 +521,7 @@ namespace EPharmacy.Forms
             txtMatricula.Clear();
             dTPValidade.Value = DateTime.Now;
             cboConvenio.SelectedIndex = 0;
+            txtAutorizacao.Clear();
 
             dgvLista.DataSource = null;
 
@@ -490,6 +538,8 @@ namespace EPharmacy.Forms
             txtComplemento.Enabled = true;
             txtUF.Enabled = true;
             txtCEP.Enabled = true;
+            txtZona.Enabled = true;
+            txtCelular.Enabled = true;
             txtTelefone.Enabled = true;
             txtEmail.Enabled = true;
             dTPDataPrimeiroAtendimento.Enabled = true;
@@ -498,6 +548,7 @@ namespace EPharmacy.Forms
             txtMatricula.Enabled = true;
             dTPValidade.Enabled = true;
             cboConvenio.Enabled = true;
+            txtAutorizacao.Enabled = true;
 
             dgvLista.Enabled = true;
 
@@ -507,6 +558,152 @@ namespace EPharmacy.Forms
             btnLimpar.Enabled = true;
             btnSair.Enabled = true;
             btnExcluir.Enabled = false;
+
+            btnBuscar.Enabled = true;
+        }
+
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            if (Utilitarios.limpaString(txtCEP.Text).Trim().IsNullOrEmpty())
+            {
+                MessageBox.Show("Preencha o campo CEP para esta operação\n", "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+
+        }
+
+
+        private void dgvLista_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dgvLista.Rows[e.RowIndex];
+
+                var idCell = row.Cells["Id"];
+                var nomeCell = row.Cells["Nome"];
+                var nomeSocialCell = row.Cells["NomeSocial"];
+                var cpfCell = row.Cells["CPF"];
+                var nascimentoCell = row.Cells["DataNascimento"];
+                var dataPrimeiroAtendimentoCell = row.Cells["DataPrimeiroAtendimento"];
+                var validadeCell = row.Cells["Validade"];
+                var sexoCell = row.Cells["Sexo"];
+                var cepCell = row.Cells["CEP"];
+                var logradouroCell = row.Cells["Logradouro"];
+                var numeroCell = row.Cells["Numero"];
+                var bairroCell = row.Cells["Bairro"];
+                var municipioCell = row.Cells["Municipio"];
+                var ufCell = row.Cells["Uf"];
+                var complementoCell = row.Cells["Complemento"];
+                var zonaCell = row.Cells["Zona"];
+                var telefoneCell = row.Cells["Telefone"];
+                var celularCell = row.Cells["Celular"];
+                var emailCell = row.Cells["Email"];
+                var convenioCell = row.Cells["ConvenioId"];
+                var autorizacaoCell = row.Cells["Autorizacao"];
+
+
+                if (idCell.Value != null && nomeCell.Value != null)
+                {
+                    int id = Convert.ToInt32(idCell.Value);
+                    string nome = nomeCell.Value.ToString();
+                    string nomeSocial = nomeSocialCell.Value.ToString();
+                    string cpf = Utilitarios.limpaString(cpfCell.Value.ToString());
+
+
+                    string cep = cepCell.Value.ToString();
+                    string logradouro = logradouroCell.Value.ToString();
+                    string numero = numeroCell.Value.ToString();
+                    string bairro = bairroCell.Value.ToString();
+                    string municipio = municipioCell.Value.ToString();
+                    string uf = ufCell.Value.ToString();
+
+                    string? complemento = null;
+                    if(complementoCell.Value != null)
+                       complemento = complementoCell.Value.ToString();
+
+                    string? zona = null;
+                    if(zonaCell.Value != null)
+                       zona = zonaCell.Value.ToString();
+                    
+                    string? telefone = null;
+                    if(telefoneCell.Value != null)
+                       telefone = telefoneCell.Value.ToString();
+
+                    string? celular = null;
+                    if(celularCell.Value != null)
+                       celular = celularCell.Value.ToString();
+
+                    string email = emailCell.Value.ToString();
+
+                    DateTime nascimento = nascimentoCell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(nascimentoCell.Value);
+                    //DateTime nascimento = Convert.ToDateTime(nascimentoCell.Value);
+                    DateTime dataPrimeiroAtendimento = dataPrimeiroAtendimentoCell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(dataPrimeiroAtendimentoCell.Value);
+                    // Convert.ToDateTime(dataPrimeiroAtendimentoCell.Value);
+                    DateTime validade = validadeCell.Value == null ? DateTime.Now.Date :  Convert.ToDateTime(validadeCell.Value);
+
+                    string sexo = sexoCell.Value.ToString();
+                    int ? convenio = Convert.ToInt32(convenioCell.Value);
+                    string? autorizacao = autorizacaoCell.Value != null ? autorizacaoCell.Value.ToString() : "";
+
+                    txtId.Enabled = false;
+                    txtId.Text = id.ToString();
+                    txtNome.Text = nome;
+                    txtNomeSocial.Text = nomeSocial;
+                    txtCPF.Text = cpf;
+                    dTPNascimento.Value = nascimento;
+                    txtCEP.Text = cep;
+                    txtLogradouro.Text = logradouro;
+                    txtNumero.Text = numero;
+                    txtBairro.Text = bairro;
+                    txtMunicipio.Text = municipio;
+                    txtUF.Text = uf;
+                    txtComplemento.Text = complemento;
+                    txtZona.Text = zona;
+                    txtTelefone.Text = telefone;
+                    txtCelular.Text = celular;
+                    txtEmail.Text = email;
+                    dTPDataPrimeiroAtendimento.Value = dataPrimeiroAtendimento;
+                    dTPValidade.Value = validade;
+                    cboSexo.SelectedValue = sexo;
+                    cboConvenio.SelectedValue = convenio;
+                    txtAutorizacao.Text = autorizacao;            
+
+
+                    txtId.Enabled = false;
+                    txtNome.Enabled = true;
+                    txtNomeSocial.Enabled = true;
+                    txtCPF.Enabled = true;
+                    txtCEP.Enabled = true;
+                    txtLogradouro.Enabled = true;
+                    txtNumero.Enabled = true;
+                    txtBairro.Enabled = true;
+                    txtMunicipio.Enabled = true;
+                    txtUF.Enabled = true;
+                    txtComplemento.Enabled = true;
+                    txtZona.Enabled = true;
+                    txtTelefone.Enabled = true;
+                    txtCelular.Enabled = true;
+                    txtEmail.Enabled = true;
+                    dTPNascimento.Enabled = true;
+                    dTPDataPrimeiroAtendimento.Enabled = true;
+                    dTPValidade.Enabled = true;
+
+                    cboSexo.Enabled = true;
+                    cboConvenio.Enabled = true;
+                    txtAutorizacao.Enabled = true;
+
+                    dgvLista.Enabled = true;
+
+                    btnNovo.Enabled = true;
+                    btnPesquisar.Enabled = true;
+                    btnSalvar.Enabled = true;
+                    btnLimpar.Enabled = true;
+                    btnSair.Enabled = true;
+                    btnExcluir.Enabled = true;
+                }
+            }
         }
 
     }

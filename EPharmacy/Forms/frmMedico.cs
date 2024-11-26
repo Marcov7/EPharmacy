@@ -1,4 +1,5 @@
-﻿using EPharmacy.Data;
+﻿using BLL;
+using EPharmacy.Data;
 using EPharmacy.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -20,7 +21,17 @@ namespace EPharmacy.Forms
         private int Id;
 
 
-        private void Medicamento_Load(object sender, EventArgs e)
+        public frmMedico()
+        {
+            InitializeComponent();
+
+            var optionsBuilder = new DbContextOptionsBuilder<EPharmacyContext>();
+            optionsBuilder.UseSqlServer(Program.StrConn());
+            _context = new EPharmacyContext(optionsBuilder.Options);
+        }
+
+
+        private void frmMedico_Load(object sender, EventArgs e)
         {
             // PREENCHE COMBOS INICIO
             var especialidade = _context.Especialidade.OrderBy(p => p.Descricao).ToList();
@@ -31,16 +42,6 @@ namespace EPharmacy.Forms
             cboEspecialidade.DataSource = especialidade.ToList();
             cboEspecialidade.DisplayMember = "Descricao";
             cboEspecialidade.ValueMember = "Id";
-        }
-
-
-        public frmMedico()
-        {
-            InitializeComponent();
-
-            var optionsBuilder = new DbContextOptionsBuilder<EPharmacyContext>();
-            optionsBuilder.UseSqlServer(Program.StrConn());
-            _context = new EPharmacyContext(optionsBuilder.Options);
         }
 
 
@@ -189,6 +190,10 @@ namespace EPharmacy.Forms
                 entityNew = new Medico
                 {
                     Nome = Nome,
+                    CRM = CRM,  
+                    EspecialidadeId = Especialidade,
+                    DataCadastro = DateTime.Now,
+                    Usuario = 1
                 };
                 _context.Medico.Add(entityNew);
                 _context.SaveChanges();
@@ -225,15 +230,24 @@ namespace EPharmacy.Forms
         private void btnPesquisar_Click(object sender, EventArgs e)
         {
             int? Id_ = txtId.Text.IsNullOrEmpty() ? null : Convert.ToInt32(txtId.Text);
-            string Nome_ = txtNome.Text;
+            string? Nome_ = txtNome.Text;
+            string? CRM_ = Utilitarios.limpaString(txtCRM.Text);
+            int? Especialidade_ = cboEspecialidade.SelectedIndex > 0 ? Convert.ToInt32(cboEspecialidade.SelectedValue) : null;
 
             var entidade = _context.Medico.AsQueryable();
 
             if (Id_ != null)
                 entidade = entidade.Where(p => p.Id == Id_);
 
-            if (!string.IsNullOrEmpty(Nome_))
+            /*if (!string.IsNullOrEmpty(Nome_))
                 entidade = entidade.Where(p => p.Nome.Contains(Nome_));
+
+            if (!string.IsNullOrEmpty(CRM_))
+                entidade = entidade.Where(p => p.CRM.Contains(CRM_));
+
+            if (Especialidade_ != null)
+                entidade = entidade.Where(p => p.EspecialidadeId == Especialidade_);*/
+
 
             var entidadex = entidade.ToList();
 
@@ -286,14 +300,14 @@ namespace EPharmacy.Forms
                 var idCell = row.Cells["Id"];
                 var NomeCell = row.Cells["Nome"];
                 var CRMCell = row.Cells["CRM"];
-                var EspecialidadeCell = row.Cells["Especialidade"];
+                var EspecialidadeCell = row.Cells["EspecialidadeId"];
 
                 if (idCell.Value != null && NomeCell.Value != null)
                 {
                     int id = Convert.ToInt32(idCell.Value);
                     string Nome = NomeCell.Value.ToString();
                     string CRM = CRMCell.Value.ToString();
-                    string Especialidade = EspecialidadeCell.Value.ToString();
+                    int? Especialidade = Convert.ToInt32(EspecialidadeCell.Value); 
 
                     txtId.Enabled = false;
                     txtId.Text = id.ToString();

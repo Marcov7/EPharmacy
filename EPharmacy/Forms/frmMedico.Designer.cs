@@ -234,6 +234,7 @@
             Controls.Add(txtId);
             Name = "frmMedico";
             Text = "Médico";
+            Load += frmMedico_Load;
             ((System.ComponentModel.ISupportInitialize)dgvLista).EndInit();
             ResumeLayout(false);
             PerformLayout();

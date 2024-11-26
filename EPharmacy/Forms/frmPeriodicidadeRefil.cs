@@ -102,13 +102,13 @@ namespace EPharmacy.Forms
 
             if (Delete != null)
             {
-                var receita = _context.Receita.FirstOrDefault(b => b.PeriodicidadeRefilId == Id_);
+                //var receita = _context.ReceitaI.FirstOrDefault(b => b.PeriodicidadeRefilId == Id_);
 
-                if (receita != null)
-                {
-                    MessageBox.Show("Periodicidade não pode ser excluído. Tem dados relacionados entre Receita com Periodicidade!");
-                    return;
-                }
+                //if (receita != null)
+                //{
+                //    MessageBox.Show("Periodicidade não pode ser excluído. Tem dados relacionados entre Receita com Periodicidade!");
+                //    return;
+                //}
 
                 _context.PeriodicidadeRefil.Remove(Delete);
                 _context.SaveChangesAsync();

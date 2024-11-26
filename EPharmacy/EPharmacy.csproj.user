@@ -55,5 +55,8 @@
     <Compile Update="Forms\frmUsuarioSistema.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\frmReceitaItens.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

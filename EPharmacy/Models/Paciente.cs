@@ -20,11 +20,13 @@ namespace EPharmacy.Models
         public string Bairro { get; set; }
 
         public string Municipio { get; set; }
-        public string Complemento { get; set; }
+        public string ? Complemento { get; set; }
         public string Uf { get; set; }
         public string CEP { get; set; }
+        public string ? Zona { get; set; }
 
-        public string Telefone { get; set; }
+        public string? Telefone { get; set; }
+        public string? Celular { get; set; }
         public string Email { get; set; }
 
         public DateTime DataPrimeiroAtendimento { get; set; }
@@ -33,6 +35,7 @@ namespace EPharmacy.Models
         public string? Matricula { get; set; }
         public string? Carteirinha { get; set; }
         public DateTime? Validade { get; set; }
+        public string? Autorizacao { get; set; }
 
         public DateTime DataCadastro { get; set; }
         public int Usuario { get; set; }

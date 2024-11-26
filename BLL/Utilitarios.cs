@@ -1,4 +1,6 @@
-﻿namespace BLL
+﻿using System.Text.RegularExpressions;
+
+namespace BLL
 {
     public static class Utilitarios
     {
@@ -59,6 +61,16 @@
 
             // Verifica se os dois dígitos verificadores estão corretos
             return cpf.EndsWith(digito1.ToString() + digito2.ToString());
+        }
+
+
+        public static bool IsValidEmail(string email)
+        {
+            // Expressão regular para validar um e-mail básico
+            string pattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+
+            // Valida se a string corresponde à expressão regular
+            return Regex.IsMatch(email, pattern);
         }
     }
 }
