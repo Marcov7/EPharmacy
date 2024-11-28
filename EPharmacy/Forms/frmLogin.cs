@@ -1,6 +1,5 @@
 using EPharmacy.Data;
 using Microsoft.EntityFrameworkCore;
-using System;
 
 namespace EPharmacy
 {

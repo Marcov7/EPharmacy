@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using EPharmacy.Models;
+﻿using EPharmacy.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace EPharmacy.Data
@@ -30,7 +25,7 @@ namespace EPharmacy.Data
         public DbSet<Especialidade> Especialidade { get; set; }
         public DbSet<PeriodicidadeRefil> PeriodicidadeRefil { get; set; }
         public DbSet<Status> Status { get; set; }
-
+        public DbSet<Endereco> Endereco { get; set; }
 
 
 

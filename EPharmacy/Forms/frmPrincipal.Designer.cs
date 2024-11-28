@@ -50,7 +50,7 @@
             cadastroDePacienteToolStripMenuItem = new ToolStripMenuItem();
             receitaToolStripMenuItem = new ToolStripMenuItem();
             receitaToolStripMenuItem1 = new ToolStripMenuItem();
-            receitaItensToolStripMenuItem = new ToolStripMenuItem();
+            BaseCadastralToolStripMenuItem = new ToolStripMenuItem();
             ajudaToolStripMenuItem = new ToolStripMenuItem();
             sobrceToolStripMenuItem = new ToolStripMenuItem();
             sairToolStripMenuItem = new ToolStripMenuItem();
@@ -197,7 +197,7 @@
             // 
             // receitaToolStripMenuItem
             // 
-            receitaToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { receitaToolStripMenuItem1, receitaItensToolStripMenuItem });
+            receitaToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { receitaToolStripMenuItem1, BaseCadastralToolStripMenuItem });
             receitaToolStripMenuItem.Name = "receitaToolStripMenuItem";
             receitaToolStripMenuItem.Size = new Size(57, 20);
             receitaToolStripMenuItem.Text = "Receita";
@@ -209,12 +209,12 @@
             receitaToolStripMenuItem1.Text = "Receita";
             receitaToolStripMenuItem1.Click += receitaToolStripMenuItem1_Click;
             // 
-            // receitaItensToolStripMenuItem
+            // BaseCadastralToolStripMenuItem
             // 
-            receitaItensToolStripMenuItem.Name = "receitaItensToolStripMenuItem";
-            receitaItensToolStripMenuItem.Size = new Size(180, 22);
-            receitaItensToolStripMenuItem.Text = "Receita Itens";
-            receitaItensToolStripMenuItem.Click += receitaItensToolStripMenuItem_Click;
+            BaseCadastralToolStripMenuItem.Name = "BaseCadastralToolStripMenuItem";
+            BaseCadastralToolStripMenuItem.Size = new Size(180, 22);
+            BaseCadastralToolStripMenuItem.Text = "Base Cadastral";
+            BaseCadastralToolStripMenuItem.Click += baseCadastralToolStripMenuItem_Click;
             // 
             // ajudaToolStripMenuItem
             // 
@@ -285,6 +285,6 @@
         private ToolStripMenuItem periodicidadeRefilToolStripMenuItem;
         private ToolStripMenuItem medicoToolStripMenuItem;
         private ToolStripMenuItem receitaToolStripMenuItem1;
-        private ToolStripMenuItem receitaItensToolStripMenuItem;
+        private ToolStripMenuItem BaseCadastralToolStripMenuItem;
     }
 }

@@ -3,19 +3,9 @@ using EPharmacy.Data;
 using EPharmacy.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Diagnostics.Eventing.Reader;
-using System.Drawing;
-using System.Linq;
 using System.Runtime.ConstrainedExecution;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace EPharmacy.Forms
 {
@@ -23,6 +13,8 @@ namespace EPharmacy.Forms
     {
         private readonly EPharmacyContext _context;
         private int Id;
+        private ViaCepService _viaCepService;
+
 
         public frmPaciente()
         {
@@ -31,7 +23,10 @@ namespace EPharmacy.Forms
             var optionsBuilder = new DbContextOptionsBuilder<EPharmacyContext>();
             optionsBuilder.UseSqlServer(Program.StrConn());
             _context = new EPharmacyContext(optionsBuilder.Options);
+
+            _viaCepService = new ViaCepService();
         }
+
 
 
         private void frmPaciente_Load(object sender, EventArgs e)
@@ -515,6 +510,8 @@ namespace EPharmacy.Forms
             txtCelular.Clear();
             txtTelefone.Clear();
             txtEmail.Clear();
+            txtMatricula.Clear();
+            txtCarteirinha.Clear();
             dTPDataPrimeiroAtendimento.Value = DateTime.Now;
 
             txtCarteirinha.Clear();
@@ -542,6 +539,8 @@ namespace EPharmacy.Forms
             txtCelular.Enabled = true;
             txtTelefone.Enabled = true;
             txtEmail.Enabled = true;
+            txtMatricula.Enabled    = true;
+            txtCarteirinha.Enabled = true;
             dTPDataPrimeiroAtendimento.Enabled = true;
 
             txtCarteirinha.Enabled = true;
@@ -563,7 +562,7 @@ namespace EPharmacy.Forms
         }
 
 
-        private void btnBuscar_Click(object sender, EventArgs e)
+        private async void btnBuscar_Click(object sender, EventArgs e)
         {
             if (Utilitarios.limpaString(txtCEP.Text).Trim().IsNullOrEmpty())
             {
@@ -571,6 +570,16 @@ namespace EPharmacy.Forms
                 return;
             }
 
+
+            Endereco endereco = await _viaCepService.BuscarEnderecoAsync(Utilitarios.limpaString(txtCEP.Text));
+
+            if (endereco != null)
+            {
+                txtLogradouro.Text = endereco.logradouro;
+                txtBairro.Text = endereco.bairro;
+                txtMunicipio.Text = endereco.localidade;
+                txtUF.Text = endereco.uf;
+            }
 
         }
 
@@ -600,6 +609,10 @@ namespace EPharmacy.Forms
                 var telefoneCell = row.Cells["Telefone"];
                 var celularCell = row.Cells["Celular"];
                 var emailCell = row.Cells["Email"];
+
+                var matriculaCell = row.Cells["Matricula"];
+                var carteirinhaCell = row.Cells["Carteirinha"];
+
                 var convenioCell = row.Cells["ConvenioId"];
                 var autorizacaoCell = row.Cells["Autorizacao"];
 
@@ -637,6 +650,14 @@ namespace EPharmacy.Forms
 
                     string email = emailCell.Value.ToString();
 
+                    string ? matricula = null;
+                    if(matriculaCell.Value != null)
+                       matricula = matriculaCell.Value.ToString();
+
+                    string ? carteirinha = null;
+                    if(carteirinhaCell.Value != null)
+                       carteirinha = carteirinhaCell.Value.ToString();
+
                     DateTime nascimento = nascimentoCell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(nascimentoCell.Value);
                     //DateTime nascimento = Convert.ToDateTime(nascimentoCell.Value);
                     DateTime dataPrimeiroAtendimento = dataPrimeiroAtendimentoCell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(dataPrimeiroAtendimentoCell.Value);
@@ -664,6 +685,8 @@ namespace EPharmacy.Forms
                     txtTelefone.Text = telefone;
                     txtCelular.Text = celular;
                     txtEmail.Text = email;
+                    txtMatricula.Text = matricula;
+                    txtCarteirinha.Text = carteirinha;
                     dTPDataPrimeiroAtendimento.Value = dataPrimeiroAtendimento;
                     dTPValidade.Value = validade;
                     cboSexo.SelectedValue = sexo;
@@ -686,6 +709,8 @@ namespace EPharmacy.Forms
                     txtTelefone.Enabled = true;
                     txtCelular.Enabled = true;
                     txtEmail.Enabled = true;
+                    txtMatricula.Enabled    = true;
+                    txtCarteirinha.Enabled  = true;
                     dTPNascimento.Enabled = true;
                     dTPDataPrimeiroAtendimento.Enabled = true;
                     dTPValidade.Enabled = true;
@@ -702,6 +727,7 @@ namespace EPharmacy.Forms
                     btnLimpar.Enabled = true;
                     btnSair.Enabled = true;
                     btnExcluir.Enabled = true;
+                    btnBuscar.Enabled = true;
                 }
             }
         }

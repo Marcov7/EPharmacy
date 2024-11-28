@@ -1,8 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using EPharmacy;
 using EPharmacy.Data;
-using EPharmacy.Models;
-using ControleEntregada.Forms;
+using System.Runtime.ConstrainedExecution;
 
 namespace EPharmacy
 {
@@ -27,9 +25,17 @@ namespace EPharmacy
            // Application.Run(new frmMedicamento());
         }
 
+
         public static string StrConn()
         {
             return @"Server=LAPTOP-5CRV3IV2\SQLEXPRESS;Database=CONTROLE_ENTREGA;Trusted_Connection=True;Encrypt=False;";
+        }
+
+
+        public static string StrLinkEndereco(string cep)
+        {
+            string url = $"https://viacep.com.br/ws/{cep}/json/";
+            return url;
         }
     }
 }

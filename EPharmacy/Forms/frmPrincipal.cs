@@ -1,23 +1,5 @@
 ﻿using ControleEntregada.Forms;
-using EPharmacy;
-using EPharmacy.Data;
 using EPharmacy.Forms;
-using EPharmacy.Models;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static Azure.Core.HttpHeader;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace EPharmacy
 {
@@ -201,7 +183,7 @@ namespace EPharmacy
                 MdiParent = this,
             };
             formulario.Show();
-            formulario.Location = new Point(180, 30);
+            formulario.Location = new Point(90, 30);
         }
 
 
@@ -347,21 +329,26 @@ namespace EPharmacy
 
         private void receitaItensToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            foreach (Form filho in this.MdiChildren)
-            {
-                if (filho is frmReceitaItens)
-                {
-                    filho.Activate();
-                    return;
-                }
-            }
+          
+        }
 
-            frmReceitaItens formulario = new frmReceitaItens
-            {
-                MdiParent = this,
-            };
-            formulario.Show();
-            formulario.Location = new Point(180, 30);
+        private void baseCadastralToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+              foreach (Form filho in this.MdiChildren)
+                        {
+                            if (filho is frmBaseCadastral)
+                            {
+                                filho.Activate();
+                                return;
+                            }
+                        }
+
+                        frmBaseCadastral formulario = new frmBaseCadastral
+                        {
+                            MdiParent = this,
+                        };
+                        formulario.Show();
+                        formulario.Location = new Point(5, 5);
         }
     }
 }

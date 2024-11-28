@@ -2,14 +2,7 @@
 using EPharmacy.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace EPharmacy.Forms
@@ -18,7 +11,7 @@ namespace EPharmacy.Forms
     {
         private readonly EPharmacyContext _context;
         private int Id;
-
+        private bool ControlaDsiparoDeEvento = false;
 
         public frmReceita()
         {
@@ -78,14 +71,14 @@ namespace EPharmacy.Forms
             cboClinica.DisplayMember = "Descricao";
             cboClinica.ValueMember = "Id";
 
-            //var medico = _context.Medico.OrderBy(p => p.Nome).ToList();
-            //Medico me = new Medico();
-            //me.Id = 0;
-            //me.Nome = "<Selecione uma opção>";
-            //medico.Insert(0, me);
-            //cboMedico.DataSource = medico.ToList();
-            //cboMedico.DisplayMember = "Nome";
-            //cboMedico.ValueMember = "Id";
+            var medico = _context.Medico.OrderBy(p => p.Nome).ToList();
+            Medico me = new Medico();
+            me.Id = 0;
+            me.Nome = "<Selecione uma opção>";
+            medico.Insert(0, me);
+            cboMedico.DataSource = medico.ToList();
+            cboMedico.DisplayMember = "Nome";
+            cboMedico.ValueMember = "Id";
 
             var status = _context.Status.OrderBy(p => p.Descricao).ToList();
             Status st = new Status();
@@ -105,6 +98,18 @@ namespace EPharmacy.Forms
             cboMedicamento.DisplayMember = "Produto";
             cboMedicamento.ValueMember = "Id";
             // FIM
+
+            // Adiciona uma coluna de botões ao DataGridView
+            DataGridViewButtonColumn btnExcluirColumn = new DataGridViewButtonColumn();
+            btnExcluirColumn.Name = "btnExcluirdGVReceitaItens";
+            btnExcluirColumn.HeaderText = "Excluir";
+            btnExcluirColumn.Text = "<Excluir>";
+            btnExcluirColumn.UseColumnTextForButtonValue = true; // Isso faz com que o texto "Excluir" apareça nos botões
+            dGVReceitaItens.Columns.Add(btnExcluirColumn);
+            // Associando o evento de clique da célula
+            dGVReceitaItens.CellContentClick += new DataGridViewCellEventHandler(dGVReceitaItens_CellContentClick);
+
+            Limpar();
         }
 
 
@@ -147,6 +152,7 @@ namespace EPharmacy.Forms
             txtId.Clear();
             txtDescricao.Clear();
             dTPUltimaReceita.Value = DateTime.Now;
+            dTPReceita.Value = DateTime.Now;
             cboPaciente.SelectedIndex = 0;
             cboTipoEntrega.SelectedIndex = 0;
             cboConvenio.SelectedIndex = 0;
@@ -154,18 +160,27 @@ namespace EPharmacy.Forms
             // cboMedico.SelectedIndex = 0;
             cboPeriodicidadeRefil.SelectedIndex = 0;
             dgvLista.DataSource = null;
+            dGVReceitaItens.DataSource = null;
 
             txtId.Enabled = true;
             txtDescricao.Enabled = true;
-            dTPUltimaReceita.Enabled = true;
+            dTPUltimaReceita.Enabled = false;
+            dTPReceita.Enabled = true;
             cboPaciente.Enabled = true;
-            cboTipoEntrega.Enabled = true;
+            cboTipoEntrega.Enabled = false;
             cboPeriodicidadeRefil.Enabled = true;
-            cboConvenio.Enabled = true;
-            cboClinica.Enabled = true;
-            cboMedico.Enabled = true;
+            cboConvenio.Enabled = false;
+            cboClinica.Enabled = false;
+            cboMedico.Enabled = false;
             cboMedicamento.Enabled = true;
-            dgvLista.Enabled = true;
+            dgvLista.Enabled = false;
+
+            txtReceitaItemId.Enabled = false;
+            txtReceitaId.Enabled = false;
+            cboMedicamento.Enabled = false;
+            cboPeriodicidadeRefil.Enabled = false;
+            cboStatus.Enabled = false;
+            dGVReceitaItens.Enabled = false;
 
             btnNovo.Enabled = true;
             btnPesquisar.Enabled = true;
@@ -173,6 +188,8 @@ namespace EPharmacy.Forms
             btnLimpar.Enabled = true;
             btnSair.Enabled = true;
             btnExcluir.Enabled = false;
+
+            btnAdicionar.Enabled = false;
         }
 
 
@@ -195,11 +212,11 @@ namespace EPharmacy.Forms
 
             if (Delete != null)
             {
-                //var medicamento = _context.Receita.FirstOrDefault(b => b.Usuario == Id_);
+                //var receitaItens = _context.ReceitaItens.FirstOrDefault(b => b.ReceitaId == Id_);
 
-                //if (medicamento != null)
+                //if (receitaItens != null)
                 //{
-                //    MessageBox.Show("Usuário não pode ser excluído. Tem dados relacionados entre Medicamento com Usuário!");
+                //    MessageBox.Show("Receita não pode ser excluído. Tem dados relacionados entre Receita com Receita Itens!");
                 //    return;
                 //}
 
@@ -236,10 +253,7 @@ namespace EPharmacy.Forms
             {
                 retorno += "Selecione o campo Tipo Entrega\n";
             }
-            if (cboPeriodicidadeRefil.SelectedIndex == -1 || cboPeriodicidadeRefil.SelectedValue.ToString() == "0")
-            {
-                retorno += "Selecione o campo Periodicidade Refil\n";
-            }
+
             if (cboConvenio.SelectedIndex == -1 || cboConvenio.SelectedValue.ToString() == "0")
             {
                 retorno += "Selecione o campo Convênio\n";
@@ -272,10 +286,10 @@ namespace EPharmacy.Forms
             }
 
             string Descricao_ = txtDescricao.Text;
-            DateTime DataReceita_ = dTPUltimaReceita.Value.Date;
+            DateTime DataUltimaReceita_ = dTPUltimaReceita.Value.Date;
+            DateTime DataReceita_ = dTPReceita.Value.Date;
             int PacienteId_ = Convert.ToInt32(cboPaciente.SelectedValue);
             int TipoEntregaId_ = Convert.ToInt32(cboTipoEntrega.SelectedValue);
-            //int PeriodicidadeRefilId_ = Convert.ToInt32(cboPeriodicidadeRefil.SelectedValue);
             int ConvenioId_ = Convert.ToInt32(cboConvenio.SelectedValue);
             int ClinicaId_ = Convert.ToInt32(cboClinica.SelectedValue);
             int MedicoId_ = Convert.ToInt32(cboMedico.SelectedValue);
@@ -288,10 +302,10 @@ namespace EPharmacy.Forms
                 entityNew = new Receita
                 {
                     Descricao = Descricao_,
+                    DataUltimaReceita = DataUltimaReceita_,
                     DataReceita = DataReceita_,
                     PacienteId = PacienteId_,
                     TipoEntregaId = TipoEntregaId_,
-                    //PeriodicidadeRefilId = PeriodicidadeRefilId_,
                     ConvenioId = ConvenioId_,
                     ClinicaId = ClinicaId_,
                     MedicoId = MedicoId_,
@@ -312,15 +326,24 @@ namespace EPharmacy.Forms
                 int Id_ = Convert.ToInt32(txtId.Text);
                 entityUpdate = _context.Receita.Find(Id_);
                 entityUpdate.Descricao = Descricao_;
+                entityUpdate.DataUltimaReceita = DataUltimaReceita_;
                 entityUpdate.DataReceita = DataReceita_;
                 entityUpdate.PacienteId = PacienteId_;
                 entityUpdate.TipoEntregaId = TipoEntregaId_;
-                //entityUpdate.PeriodicidadeRefilId = PeriodicidadeRefilId_;
                 entityUpdate.ConvenioId = ConvenioId_;
                 entityUpdate.ClinicaId = ClinicaId_;
                 entityUpdate.MedicoId = MedicoId_;
                 entityUpdate.DataCadastro = DateTime.Now;
                 entityUpdate.Usuario = 1;
+
+
+                //if (cboPeriodicidadeRefil.SelectedIndex == -1 || cboPeriodicidadeRefil.SelectedValue.ToString() == "0")
+                //{
+                //    retorno += "Selecione o campo Periodicidade Refil\n";
+                //}
+
+                //int PeriodicidadeRefilId_ = Convert.ToInt32(cboPeriodicidadeRefil.SelectedValue);
+                //entityUpdate.PeriodicidadeRefilId = PeriodicidadeRefilId_;
 
                 _context.SaveChanges();
                 Limpar();
@@ -341,28 +364,31 @@ namespace EPharmacy.Forms
         private void btnPesquisar_Click(object sender, EventArgs e)
         {
             int? Id_ = txtId.Text.IsNullOrEmpty() ? null : Convert.ToInt32(txtId.Text);
-            string Nome_ = txtDescricao.Text;
-            string Login_ = txtLogin.Text;
-            string Email_ = txtEmail.Text;
+            string Descriaco_ = txtDescricao.Text;
+            DateTime dataReceita_ = dTPReceita.Value.Date;
+            DateTime dataUltimaReceita_ = dTPUltimaReceita.Value.Date;
 
-            var entidade = _context.UsuarioSistema.AsQueryable();
+            var lista = _context.Receita.AsQueryable();
 
             if (Id_ != null)
-                entidade = entidade.Where(p => p.Id == Id_);
+                lista = lista.Where(p => p.Id == Id_);
 
-            if (!string.IsNullOrEmpty(Nome_))
-                entidade = entidade.Where(p => p.Nome.Contains(Nome_));
+            if (!string.IsNullOrEmpty(Descriaco_))
+                lista = lista.Where(p => p.Descricao.Contains(Descriaco_));
 
-            if (!string.IsNullOrEmpty(Login_))
-                entidade = entidade.Where(p => p.Login.Contains(Login_));
+            if (dTPReceita.Value.Date < DateTime.Now.Date)
+                lista = lista.Where(p => p.DataReceita.Date == dataReceita_.Date);
 
-            if (!string.IsNullOrEmpty(Email_))
-                entidade = entidade.Where(p => p.Email.Contains(Email_));
+            if (dTPUltimaReceita.Value.Date < DateTime.Now.Date)
+                lista = lista.Where(p => p.DataUltimaReceita.Date == dataUltimaReceita_.Date);
 
-            var entidadex = entidade.ToList();
+            var listax = lista.ToList();
 
-            if (entidadex != null)
-                dgvLista.DataSource = entidadex;
+            if (listax != null)
+            {
+                dgvLista.DataSource = listax;
+                dgvLista.Enabled = true;
+            }
         }
 
 
@@ -383,6 +409,7 @@ namespace EPharmacy.Forms
             txtId.Clear();
             txtDescricao.Clear();
             dTPUltimaReceita.Value = DateTime.Now;
+            dTPReceita.Value = DateTime.Now;
             cboPaciente.SelectedIndex = 0;
             cboTipoEntrega.SelectedIndex = 0;
             cboPeriodicidadeRefil.SelectedIndex = 0;
@@ -390,17 +417,21 @@ namespace EPharmacy.Forms
             cboClinica.SelectedIndex = 0;
             //cboMedico.SelectedIndex = 0;
             dgvLista.DataSource = null;
+            dGVReceitaItens.DataSource = null;
 
             txtId.Enabled = false;
             txtDescricao.Enabled = true;
             dTPUltimaReceita.Enabled = true;
             cboPaciente.Enabled = true;
             cboTipoEntrega.Enabled = true;
-            cboPeriodicidadeRefil.Enabled = true;
             cboConvenio.Enabled = true;
             cboClinica.Enabled = true;
             cboMedico.Enabled = true;
-            cboMedicamento.Enabled = true;
+
+            txtReceitaItemId.Enabled = false;
+            cboPeriodicidadeRefil.Enabled = false;
+            cboMedicamento.Enabled = false;
+            cboStatus.Enabled = false;
             dgvLista.Enabled = false;
 
             btnNovo.Enabled = false;
@@ -409,6 +440,9 @@ namespace EPharmacy.Forms
             btnLimpar.Enabled = true;
             btnSair.Enabled = true;
             btnExcluir.Enabled = false;
+            btnAdicionar.Enabled = false;
+
+            dGVReceitaItens.Enabled = false;
         }
 
 
@@ -419,30 +453,47 @@ namespace EPharmacy.Forms
                 DataGridViewRow row = dgvLista.Rows[e.RowIndex];
 
                 var idCell = row.Cells["Id"];
-                var nomeCell = row.Cells["Nome"];
-                var loginCell = row.Cells["Login"];
-                var senhaCell = row.Cells["Senha"];
-                var emailCell = row.Cells["Email"];
+                var descricaoCell = row.Cells["Descricao"];
+                var dataReceitaCell = row.Cells["DataReceita"];
+                var dataUltimaReceitaCell = row.Cells["DataUltimaReceita"];
+                var pacienteCell = row.Cells["PacienteId"];
+                var tipoEntregaCell = row.Cells["tipoEntregaId"];
 
-                if (idCell.Value != null && nomeCell.Value != null)
+                var convenioCell = row.Cells["ConvenioId"];
+                var clinicaCell = row.Cells["ClinicaId"];
+                var medicoCell = row.Cells["medicoId"];
+
+                if (idCell.Value != null && descricaoCell.Value != null)
                 {
                     int id = Convert.ToInt32(idCell.Value);
-                    string nome = nomeCell.Value.ToString();
-                    string login = loginCell.Value.ToString();
-                    string senha = senhaCell.Value.ToString();
-                    string email = emailCell.Value.ToString();
+                    string descricao = descricaoCell.Value.ToString();
+                    DateTime dataReceita = dataReceitaCell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(dataReceitaCell.Value);
+                    DateTime dataUltimaReceita = dataUltimaReceitaCell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(dataUltimaReceitaCell.Value);
+                    int? paciente = Convert.ToInt32(pacienteCell.Value);
+                    int? tipoEntrega = Convert.ToInt32(tipoEntregaCell.Value);
+                    int? convenio = Convert.ToInt32(convenioCell.Value);
+                    int? clinica = Convert.ToInt32(clinicaCell.Value);
+                    int? medico = Convert.ToInt32(medicoCell.Value);
 
                     txtId.Text = id.ToString();
-                    txtDescricao.Text = nome;
-                    txtLogin.Text = login;
-                    txtSenha.Text = senha;
-                    txtEmail.Text = email;
+                    txtDescricao.Text = descricao;
+                    dTPReceita.Value = dataReceita.Date;
+                    dTPUltimaReceita.Value = dataUltimaReceita.Date;
+                    cboPaciente.SelectedValue = paciente;
+                    cboTipoEntrega.SelectedValue = tipoEntrega;
+                    cboConvenio.SelectedValue = convenio;
+                    cboClinica.SelectedValue = clinica;
+                    cboMedico.SelectedValue = medico;
 
                     txtId.Enabled = false;
                     txtDescricao.Enabled = true;
-                    txtLogin.Enabled = true;
-                    txtSenha.Enabled = true;
-                    txtEmail.Enabled = true;
+                    dTPReceita.Enabled = true;
+                    dTPUltimaReceita.Enabled = true;
+                    cboPaciente.Enabled = true;
+                    cboTipoEntrega.Enabled = true;
+                    cboConvenio.Enabled = true;
+                    cboClinica.Enabled = true;
+                    cboMedico.Enabled = true;
                     dgvLista.Enabled = true;
 
                     btnNovo.Enabled = true;
@@ -451,10 +502,154 @@ namespace EPharmacy.Forms
                     btnLimpar.Enabled = true;
                     btnSair.Enabled = true;
                     btnExcluir.Enabled = true;
+
+                    dgvLista_CellClick_Para_dgvReceitaItens();
                 }
             }
         }
 
+
+        private void dgvLista_CellClick_Para_dgvReceitaItens()
+        {
+            int? Id_ = txtId.Text.IsNullOrEmpty() ? null : Convert.ToInt32(txtId.Text);
+            txtReceitaId.Text = Id_.ToString();
+            string Descriaco_ = txtDescricao.Text;
+            DateTime dataReceita_ = dTPReceita.Value.Date;
+            DateTime dataUltimaReceita_ = dTPUltimaReceita.Value.Date;
+
+            var lista = _context.ReceitaItens.AsQueryable();
+
+            if (Id_ != null)
+                lista = lista.Where(p => p.ReceitaId == Id_);
+
+            var listax = lista.ToList();
+
+            if (listax != null)
+            {
+                dGVReceitaItens.DataSource = listax;
+
+                txtReceitaItemId.Enabled = false;
+                txtReceitaId.Enabled = false;
+                cboMedicamento.Enabled = true;
+                cboPeriodicidadeRefil.Enabled = true;
+                cboStatus.Enabled = true;
+                btnAdicionar.Enabled = true;
+                dGVReceitaItens.Enabled = true;
+            }
+        }
+
+
+        private void btnAdicionar_Click(object sender, EventArgs e)
+        {
+            string retorno = "";
+            if (txtReceitaId.Text.IsNullOrEmpty())
+            {
+                retorno += "Preencha o campo Id da Receita\n";
+            }
+            if (cboMedicamento.SelectedIndex == -1 || cboMedicamento.SelectedValue.ToString() == "0")
+            {
+                retorno += "Selecione o campo Medicamento\n";
+            }
+            if (cboPeriodicidadeRefil.SelectedIndex == -1 || cboPeriodicidadeRefil.SelectedValue.ToString() == "0")
+            {
+                retorno += "Selecione o campo Periodicidade do Refil\n";
+            }
+            if (cboStatus.SelectedIndex == -1 || cboStatus.SelectedValue.ToString() == "0")
+            {
+                retorno += "Selecione o campo Status\n";
+            }
+
+            if (!retorno.IsNullOrEmpty())
+            {
+                MessageBox.Show(retorno, "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string receitaId_ = txtReceitaId.Text;
+            int medicamentoId_ = Convert.ToInt32(cboMedicamento.SelectedValue);
+            int periodicidadeRefilId_ = Convert.ToInt32(cboPeriodicidadeRefil.SelectedValue);
+            int statusId_ = Convert.ToInt32(cboStatus.SelectedValue);
+
+            var entityNew = new ReceitaItens();
+            var entityUpdate = new ReceitaItens();
+
+            entityNew = new ReceitaItens
+            {
+                ReceitaId = Convert.ToInt32(receitaId_),
+                MedicamentoId = medicamentoId_,
+                PeriodicidadeRefilId = periodicidadeRefilId_,
+                StatusId = statusId_,
+                DataCadastro = DateTime.Now,
+                Usuario = 1,
+            };
+            _context.ReceitaItens.Add(entityNew);
+            _context.SaveChanges();
+
+            // Limpar();
+            dgvLista_CellClick_Para_dgvReceitaItens();
+            //txtReceitaItemId.Clear();
+            //txtReceitaId.Clear();
+            cboMedicamento.SelectedIndex = 0;
+            cboPeriodicidadeRefil.SelectedIndex = 0;
+            cboStatus.SelectedIndex = 0;
+        }
+
+
+        private void dGVReceitaItens_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (ControlaDsiparoDeEvento == true)
+            {
+                ControlaDsiparoDeEvento = false;
+                return;
+            }
+
+            // Verifique se a célula clicada está na coluna de botões
+            if (e.ColumnIndex == dGVReceitaItens.Columns["btnExcluirdGVReceitaItens"].Index)
+            {
+                // Confirmar exclusão
+                var result = MessageBox.Show("Tem certeza de que deseja excluir esta linha?", "Confirmar Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    // Remove a linha clicada
+                    //dGVReceitaItens.Rows.RemoveAt(e.RowIndex);
+                    // Acessando a linha clicada
+                    int rowIndex = e.RowIndex;
+
+                    // Acessando os valores das células na linha clicada
+                    var Id_ = dGVReceitaItens.Rows[rowIndex].Cells["Id"].Value;
+
+                    //MessageBox.Show($"Id: {Id}");
+
+                    /* ----------------------------------- */
+                    var Delete = _context.ReceitaItens.Find(Id_);
+
+                    if (Delete != null)
+                    {
+                        _context.ReceitaItens.Remove(Delete);
+                        _context.SaveChangesAsync();
+
+                        EPharmacyContext _contextx;
+                        var optionsBuilderx = new DbContextOptionsBuilder<EPharmacyContext>();
+                        optionsBuilderx.UseSqlServer(Program.StrConn());
+                        _contextx = new EPharmacyContext(optionsBuilderx.Options);
+                        var lista = _contextx.ReceitaItens.AsQueryable();
+                        lista = lista.Where(p => p.Id == Convert.ToInt32(Id_));
+                        dGVReceitaItens.DataSource = lista.ToList();
+
+                        // coloquei esse controle pq estava disparando o evendo do grid ao executar isso dGVReceitaItens.DataSource
+                        ControlaDsiparoDeEvento = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Item de Receita não encontrado.");
+                    }
+
+                    /* ------------------------------------ */
+
+                }
+            }
+        }
 
     }
 }

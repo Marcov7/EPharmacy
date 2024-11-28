@@ -2,20 +2,8 @@
 using EPharmacy.Data;
 using EPharmacy.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static Azure.Core.HttpHeader;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
 namespace ControleEntregada.Forms
