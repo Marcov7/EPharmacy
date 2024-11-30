@@ -47,6 +47,8 @@
             txtPrecoFabrica = new MaskedTextBox();
             txtPMCBrasindice = new MaskedTextBox();
             txtPrecoAcordo = new MaskedTextBox();
+            txtMedicamentoId = new MaskedTextBox();
+            label6 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvMedicamentos).BeginInit();
             SuspendLayout();
             // 
@@ -112,7 +114,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(252, 21);
+            label4.Location = new Point(311, 21);
             label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
             label4.Size = new Size(51, 13);
@@ -123,7 +125,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(109, 22);
+            label3.Location = new Point(183, 22);
             label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
             label3.Size = new Size(32, 13);
@@ -188,30 +190,30 @@
             // 
             // txtProduto
             // 
-            txtProduto.Location = new Point(248, 37);
+            txtProduto.Location = new Point(306, 37);
             txtProduto.Margin = new Padding(4, 3, 4, 3);
             txtProduto.MaxLength = 280;
             txtProduto.Multiline = true;
             txtProduto.Name = "txtProduto";
-            txtProduto.Size = new Size(946, 47);
+            txtProduto.Size = new Size(888, 47);
             txtProduto.TabIndex = 27;
             // 
             // txtId
             // 
             txtId.Location = new Point(31, 38);
             txtId.Margin = new Padding(4, 3, 4, 3);
-            txtId.Mask = "00000";
+            txtId.Mask = "000000";
             txtId.Name = "txtId";
-            txtId.Size = new Size(60, 23);
+            txtId.Size = new Size(67, 23);
             txtId.TabIndex = 25;
             // 
             // txtEAN
             // 
-            txtEAN.Location = new Point(105, 38);
+            txtEAN.Location = new Point(181, 38);
             txtEAN.Margin = new Padding(4, 3, 4, 3);
             txtEAN.Mask = "0000000000000";
             txtEAN.Name = "txtEAN";
-            txtEAN.Size = new Size(134, 23);
+            txtEAN.Size = new Size(123, 23);
             txtEAN.TabIndex = 26;
             // 
             // btnExcluir
@@ -253,14 +255,36 @@
             txtPrecoAcordo.Size = new Size(216, 23);
             txtPrecoAcordo.TabIndex = 26;
             // 
+            // txtMedicamentoId
+            // 
+            txtMedicamentoId.Location = new Point(100, 38);
+            txtMedicamentoId.Margin = new Padding(4, 3, 4, 3);
+            txtMedicamentoId.Mask = "00000";
+            txtMedicamentoId.Name = "txtMedicamentoId";
+            txtMedicamentoId.Size = new Size(79, 23);
+            txtMedicamentoId.TabIndex = 25;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.Location = new Point(98, 23);
+            label6.Margin = new Padding(4, 0, 4, 0);
+            label6.Name = "label6";
+            label6.Size = new Size(76, 13);
+            label6.TabIndex = 28;
+            label6.Text = "Id Medicam.";
+            // 
             // frmMedicamentoPreco
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1217, 600);
             Controls.Add(btnExcluir);
+            Controls.Add(label6);
             Controls.Add(label7);
             Controls.Add(txtProduto);
+            Controls.Add(txtMedicamentoId);
             Controls.Add(txtId);
             Controls.Add(txtPrecoAcordo);
             Controls.Add(txtPMCBrasindice);
@@ -309,5 +333,8 @@
         private MaskedTextBox txtPrecoFabrica;
         private MaskedTextBox txtPMCBrasindice;
         private MaskedTextBox txtPrecoAcordo;
+        private MaskedTextBox maskedTextBox1;
+        private Label label6;
+        private MaskedTextBox txtMedicamentoId;
     }
 }

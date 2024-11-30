@@ -223,7 +223,7 @@ namespace EPharmacy.Forms
         {
             int? Id_ = txtId.Text.IsNullOrEmpty() ? null : Convert.ToInt32(txtId.Text);
             string? Nome_ = txtNome.Text;
-            string? CRM_ = Utilitarios.limpaString(txtCRM.Text);
+            string? CRM_ = UtilitariosBLL.limpaString(txtCRM.Text);
             int? Especialidade_ = cboEspecialidade.SelectedIndex > 0 ? Convert.ToInt32(cboEspecialidade.SelectedValue) : null;
 
             var entidade = _context.Medico.AsQueryable();

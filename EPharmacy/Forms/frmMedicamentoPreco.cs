@@ -1,5 +1,7 @@
-﻿using EPharmacy;
+﻿using BLL;
+using EPharmacy;
 using EPharmacy.Data;
+using EPharmacy.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Data;
@@ -78,6 +80,30 @@ namespace ControleEntregada.Forms
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
+            string retorno = "";
+            if (txtMedicamentoId.Text.IsNullOrEmpty())
+            {
+                retorno += "Preencha o campo Medicamento Id \n";
+            }
+            if (txtPrecoFabrica.Text.IsNullOrEmpty())
+            {
+                retorno += "Preencha o campo Preço Fábrica \n";
+            }
+            if (txtPMCBrasindice.Text.IsNullOrEmpty())
+            {
+                retorno += "Preencha o campo PMC Brasindice \n";
+            }
+            if (txtPrecoAcordo.Text.IsNullOrEmpty())
+            {
+                retorno += "Preencha o campo Preço Acordado \n";
+            }
+
+            if (!retorno.IsNullOrEmpty())
+            {
+                MessageBox.Show(retorno, "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             DialogResult resultado = MessageBox.Show(
             "Você tem certeza que deseja Salvar?",
             "Confirmação",
@@ -90,8 +116,44 @@ namespace ControleEntregada.Forms
                 return;
             }
 
+            int medicamentoId_ = Convert.ToInt32(txtMedicamentoId.Text);
+            decimal precoFabrica_ = Convert.ToDecimal(UtilitariosBLL.limpaString(txtPrecoFabrica.Text));
+            decimal precoPMC_ = Convert.ToDecimal(UtilitariosBLL.limpaString(txtPMCBrasindice.Text));
+            decimal precoAcordado_ = Convert.ToDecimal(UtilitariosBLL.limpaString(txtPrecoAcordo.Text));
+
+            var entityNew = new MedicamentoPreco();
+            var entityUpdate = new MedicamentoPreco();
+
+            if (txtId.Text.IsNullOrEmpty())
+            {
+                entityNew = new MedicamentoPreco
+                {
+                    MedicamentoId = medicamentoId_,
+                    PrecoFabrica = precoFabrica_,   
+                    PrecoPmcBrasindice = precoPMC_,
+                    PrecoAcordado = precoAcordado_,
+                    Usuario = 1,
+                    DataCadastro = DateTime.Now.Date,
+            };
+                _context.MedicamentoPreco.Add(entityNew);
+                _context.SaveChanges();
+                btnPesquisar_Click(null, null);
+            }
+            else
+            {
+                int Id_ = Convert.ToInt32(txtId.Text);
+                entityUpdate = _context.MedicamentoPreco.Find(Id_);
+                entityUpdate.MedicamentoId = medicamentoId_;
+                entityUpdate.PrecoFabrica = precoFabrica_;
+                entityUpdate.PrecoAcordado = precoAcordado_;
+                entityUpdate.Usuario = 1;
+                entityUpdate.DataCadastro = DateTime.Now.Date;
+                _context.SaveChanges();
+                btnPesquisar_Click(null, null);
+            }
+
             MessageBox.Show(
-                "Salvando um Novo",
+                "Preço de Medicamento Novo Gravado com sucesso.",
                 "",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Exclamation

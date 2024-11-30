@@ -2,7 +2,7 @@
 
 namespace BLL
 {
-    public static class Utilitarios
+    public static class UtilitariosBLL
     {
         public static string limpaString(string s)
         {

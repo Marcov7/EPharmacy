@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EPharmacy.BLL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,12 @@ namespace EPharmacy.Forms
         public frmBaseCadastral()
         {
             InitializeComponent();
+        }
+
+        private void btnPesquisar_Click(object sender, EventArgs e)
+        {
+            ReceitaBLL receitaBLL = new ReceitaBLL();
+            dgvLista.DataSource = receitaBLL.GetMedicamentosParaProximos6Meses();
         }
     }
 }

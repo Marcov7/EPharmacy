@@ -213,11 +213,11 @@ namespace EPharmacy.Forms
             {
                 retorno += "Selecione o campo Data de Nascimento\n";
             }
-            if (Utilitarios.limpaString(txtCPF.Text).Trim().IsNullOrEmpty())
+            if (UtilitariosBLL.limpaString(txtCPF.Text).Trim().IsNullOrEmpty())
             {
                 retorno += "Preencha o campo CPF\n";
             }
-            if (!Utilitarios.Validar(Utilitarios.limpaString(txtCPF.Text)))
+            if (!UtilitariosBLL.Validar(UtilitariosBLL.limpaString(txtCPF.Text)))
             {
                 retorno += "Preencha o campo CPF com um CPF válido\n";
             }
@@ -249,7 +249,7 @@ namespace EPharmacy.Forms
             {
                 retorno += "Preencha o campo Uf\n";
             }
-            if (Utilitarios.limpaString(txtCEP.Text).Trim().IsNullOrEmpty())
+            if (UtilitariosBLL.limpaString(txtCEP.Text).Trim().IsNullOrEmpty())
             {
                 retorno += "Preencha o campo CEP\n";
             }
@@ -271,7 +271,7 @@ namespace EPharmacy.Forms
             }
             else
             {
-                bool isValid = Utilitarios.IsValidEmail(txtEmail.Text);
+                bool isValid = UtilitariosBLL.IsValidEmail(txtEmail.Text);
 
                 if (!isValid)
                 {
@@ -284,7 +284,7 @@ namespace EPharmacy.Forms
                 retorno += "Preencha o campo DataPrimeiroAtendimento\n";
             }
             //var cpfExiste = _context.Paciente.FirstOrDefault(p => p.CPF == Utilitarios.limpaString(txtCPF.Text).Trim() && p.Id == Utilitarios.limpaString(txtId.Text).Trim());
-            var cpfExiste = _context.Paciente.FirstOrDefault(p => p.CPF == Utilitarios.limpaString(txtCPF.Text).Trim());
+            var cpfExiste = _context.Paciente.FirstOrDefault(p => p.CPF == UtilitariosBLL.limpaString(txtCPF.Text).Trim());
 
             if (cpfExiste != null && cpfExiste.Id != null)
             {
@@ -318,7 +318,7 @@ namespace EPharmacy.Forms
 
             string nome = txtNome.Text;
             string nomeSocial = txtNomeSocial.Text;
-            string cpf = Utilitarios.limpaString(txtCPF.Text).Trim();
+            string cpf = UtilitariosBLL.limpaString(txtCPF.Text).Trim();
             DateTime dataNascimento = dTPNascimento.Value;
             string sexo = cboSexo.Text;
 
@@ -328,16 +328,16 @@ namespace EPharmacy.Forms
             string municipio = txtMunicipio.Text;
             string complemento = txtComplemento.Text;
             string uf = txtUF.Text;
-            string cep = Utilitarios.limpaString(txtCEP.Text).Trim();
+            string cep = UtilitariosBLL.limpaString(txtCEP.Text).Trim();
             string zona = txtZona.Text;
 
-            string telefone = Utilitarios.limpaString(txtTelefone.Text).Trim();
-            string celular = Utilitarios.limpaString(txtCelular.Text).Trim();
+            string telefone = UtilitariosBLL.limpaString(txtTelefone.Text).Trim();
+            string celular = UtilitariosBLL.limpaString(txtCelular.Text).Trim();
             string email = txtEmail.Text;
             DateTime dataPrimeiroAtendimento = dTPDataPrimeiroAtendimento.Value;
 
             string carteirinha = txtCarteirinha.Text;
-            string matricula = Utilitarios.limpaString(txtMatricula.Text).Trim();
+            string matricula = UtilitariosBLL.limpaString(txtMatricula.Text).Trim();
             DateTime? validade = dTPValidade.Value.Date == DateTime.Now.Date ? null : dTPValidade.Value.Date;
             int? convenioId = Convert.ToInt32(cboConvenio.SelectedValue) == 0 ? null : Convert.ToInt32(cboConvenio.SelectedValue);
             string autorizacao = txtAutorizacao.Text;
@@ -451,7 +451,7 @@ namespace EPharmacy.Forms
             int? Id_ = txtId.Text.IsNullOrEmpty() ? null : Convert.ToInt32(txtId.Text);
             string nome = txtNome.Text;
             string nomeSocial = txtNomeSocial.Text;
-            string cpf = Utilitarios.limpaString(txtCPF.Text).Trim();
+            string cpf = UtilitariosBLL.limpaString(txtCPF.Text).Trim();
             DateTime dataNascimento = dTPNascimento.Value.Date;
 
 
@@ -564,14 +564,14 @@ namespace EPharmacy.Forms
 
         private async void btnBuscar_Click(object sender, EventArgs e)
         {
-            if (Utilitarios.limpaString(txtCEP.Text).Trim().IsNullOrEmpty())
+            if (UtilitariosBLL.limpaString(txtCEP.Text).Trim().IsNullOrEmpty())
             {
                 MessageBox.Show("Preencha o campo CEP para esta operação\n", "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
 
-            Endereco endereco = await _viaCepService.BuscarEnderecoAsync(Utilitarios.limpaString(txtCEP.Text));
+            Endereco endereco = await _viaCepService.BuscarEnderecoAsync(UtilitariosBLL.limpaString(txtCEP.Text));
 
             if (endereco != null)
             {
@@ -622,7 +622,7 @@ namespace EPharmacy.Forms
                     int id = Convert.ToInt32(idCell.Value);
                     string nome = nomeCell.Value.ToString();
                     string nomeSocial = nomeSocialCell.Value.ToString();
-                    string cpf = Utilitarios.limpaString(cpfCell.Value.ToString());
+                    string cpf = UtilitariosBLL.limpaString(cpfCell.Value.ToString());
 
 
                     string cep = cepCell.Value.ToString();
