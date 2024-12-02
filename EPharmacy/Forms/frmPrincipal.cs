@@ -42,7 +42,7 @@ namespace EPharmacy
                 }
             }
 
-            frmMedicamentoPreco formulario = new frmMedicamentoPreco
+            frmMedicamentoPreco formulario = new frmMedicamentoPreco(0)
             {
                 MdiParent = this,
             };

@@ -5,6 +5,7 @@ using EPharmacy.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Data;
+using System.Drawing;
 
 namespace ControleEntregada.Forms
 {
@@ -12,7 +13,7 @@ namespace ControleEntregada.Forms
     {
         private readonly EPharmacyContext _context;
 
-        public frmMedicamentoPreco()
+        public frmMedicamentoPreco(int ? MedicamentoId)
         {
             InitializeComponent();
 
@@ -54,6 +55,7 @@ namespace ControleEntregada.Forms
             }
 
             txtId.Clear();
+            txtMedicamentoId.Clear();
             txtEAN.Clear();
             txtProduto.Clear();
             txtPMCBrasindice.Clear();
@@ -62,8 +64,9 @@ namespace ControleEntregada.Forms
 
 
             txtId.Enabled = false;
-            txtEAN.Enabled = true;
-            txtProduto.Enabled = true;
+            txtMedicamentoId.Enabled = true;
+            txtEAN.Enabled = false;
+            txtProduto.Enabled = false;
             txtPMCBrasindice.Enabled = true;
             txtPrecoFabrica.Enabled = true;
             txtPrecoAcordo.Enabled = true;
@@ -129,12 +132,12 @@ namespace ControleEntregada.Forms
                 entityNew = new MedicamentoPreco
                 {
                     MedicamentoId = medicamentoId_,
-                    PrecoFabrica = precoFabrica_,   
+                    PrecoFabrica = precoFabrica_,
                     PrecoPmcBrasindice = precoPMC_,
                     PrecoAcordado = precoAcordado_,
                     Usuario = 1,
                     DataCadastro = DateTime.Now.Date,
-            };
+                };
                 _context.MedicamentoPreco.Add(entityNew);
                 _context.SaveChanges();
                 btnPesquisar_Click(null, null);
@@ -182,6 +185,7 @@ namespace ControleEntregada.Forms
         private void Limpar()
         {
             txtId.Clear();
+            txtMedicamentoId.Clear();
             txtEAN.Clear();
             txtProduto.Clear();
             txtPMCBrasindice.Clear();
@@ -190,6 +194,7 @@ namespace ControleEntregada.Forms
             dgvMedicamentos.DataSource = null;
 
             txtId.Enabled = true;
+            txtMedicamentoId.Enabled = true;
             txtEAN.Enabled = true;
             txtProduto.Enabled = true;
             txtPMCBrasindice.Enabled = false;
@@ -285,6 +290,10 @@ namespace ControleEntregada.Forms
             if (MedicamentoPrecoId_ != null)
                 medicamentoPreco = medicamentoPreco.Where(p => p.Id == MedicamentoPrecoId_);
 
+            int? MedicamentoId_ = string.IsNullOrEmpty(txtMedicamentoId.Text) ? (int?)null : Convert.ToInt32(txtMedicamentoId.Text);
+            if (MedicamentoId_ != null)
+                medicamentoPreco = medicamentoPreco.Where(p => p.MedicamentoId == MedicamentoId_);
+
             // Realizando o Join entre medicamentos e preços
             var query = from m in medicamentosFiltrados
                         join mp in medicamentoPreco on m.Id equals mp.MedicamentoId
@@ -294,9 +303,9 @@ namespace ControleEntregada.Forms
                             MedicamentoId = m.Id,
                             m.Produto,
                             m.EAN,
-                            PrecoFabrica = mp.PrecoFabrica,
-                            PrecoPmcBrasindice = mp.PrecoPmcBrasindice,
-                            PrecoAcordado = mp.PrecoAcordado
+                            mp.PrecoFabrica,
+                            mp.PrecoPmcBrasindice,
+                            mp.PrecoAcordado
                         };
 
             // Executa a consulta e converte em lista
@@ -308,6 +317,7 @@ namespace ControleEntregada.Forms
             else
                 MessageBox.Show("Nenhum medicamento encontrado.");
         }
+
 
         /*
         private void btnPesquisar_Click(object sender, EventArgs e)

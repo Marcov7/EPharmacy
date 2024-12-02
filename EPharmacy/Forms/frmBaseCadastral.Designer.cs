@@ -35,10 +35,14 @@
             btnLimpar = new Button();
             btnSair = new Button();
             dgvLista = new DataGridView();
-            label4 = new Label();
             label7 = new Label();
-            txtDescricao = new TextBox();
             txtId = new MaskedTextBox();
+            label6 = new Label();
+            txtMedicamentoId = new MaskedTextBox();
+            txtEAN = new MaskedTextBox();
+            label3 = new Label();
+            label16 = new Label();
+            dTPData = new DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)dgvLista).BeginInit();
             SuspendLayout();
             // 
@@ -99,6 +103,7 @@
             btnLimpar.TabIndex = 83;
             btnLimpar.Text = "&Limpar";
             btnLimpar.UseVisualStyleBackColor = true;
+            btnLimpar.Click += btnLimpar_Click;
             // 
             // btnSair
             // 
@@ -111,6 +116,7 @@
             btnSair.TabIndex = 84;
             btnSair.Text = "Sai&r";
             btnSair.UseVisualStyleBackColor = false;
+            btnSair.Click += btnSair_Click;
             // 
             // dgvLista
             // 
@@ -120,17 +126,6 @@
             dgvLista.Name = "dgvLista";
             dgvLista.Size = new Size(1309, 492);
             dgvLista.TabIndex = 78;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(81, 11);
-            label4.Margin = new Padding(4, 0, 4, 0);
-            label4.Name = "label4";
-            label4.Size = new Size(64, 13);
-            label4.TabIndex = 76;
-            label4.Text = "Descrição";
             // 
             // label7
             // 
@@ -143,30 +138,86 @@
             label7.TabIndex = 77;
             label7.Text = "Id";
             // 
-            // txtDescricao
-            // 
-            txtDescricao.Location = new Point(81, 27);
-            txtDescricao.Margin = new Padding(4, 3, 4, 3);
-            txtDescricao.MaxLength = 255;
-            txtDescricao.Multiline = true;
-            txtDescricao.Name = "txtDescricao";
-            txtDescricao.Size = new Size(774, 23);
-            txtDescricao.TabIndex = 75;
-            // 
             // txtId
             // 
-            txtId.Location = new Point(13, 27);
+            txtId.Location = new Point(13, 26);
             txtId.Margin = new Padding(4, 3, 4, 3);
             txtId.Mask = "00000";
             txtId.Name = "txtId";
             txtId.Size = new Size(60, 23);
             txtId.TabIndex = 74;
             // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.Location = new Point(81, 11);
+            label6.Margin = new Padding(4, 0, 4, 0);
+            label6.Name = "label6";
+            label6.Size = new Size(76, 13);
+            label6.TabIndex = 88;
+            label6.Text = "Id Medicam.";
+            // 
+            // txtMedicamentoId
+            // 
+            txtMedicamentoId.Location = new Point(83, 26);
+            txtMedicamentoId.Margin = new Padding(4, 3, 4, 3);
+            txtMedicamentoId.Mask = "00000";
+            txtMedicamentoId.Name = "txtMedicamentoId";
+            txtMedicamentoId.Size = new Size(79, 23);
+            txtMedicamentoId.TabIndex = 86;
+            // 
+            // txtEAN
+            // 
+            txtEAN.Location = new Point(172, 26);
+            txtEAN.Margin = new Padding(4, 3, 4, 3);
+            txtEAN.Mask = "0000000000000";
+            txtEAN.Name = "txtEAN";
+            txtEAN.Size = new Size(123, 23);
+            txtEAN.TabIndex = 87;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Location = new Point(174, 10);
+            label3.Margin = new Padding(4, 0, 4, 0);
+            label3.Name = "label3";
+            label3.Size = new Size(32, 13);
+            label3.TabIndex = 85;
+            label3.Text = "EAN";
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label16.Location = new Point(567, 10);
+            label16.Margin = new Padding(4, 0, 4, 0);
+            label16.Name = "label16";
+            label16.Size = new Size(34, 13);
+            label16.TabIndex = 90;
+            label16.Text = "Data";
+            // 
+            // dTPData
+            // 
+            dTPData.Enabled = false;
+            dTPData.Location = new Point(567, 26);
+            dTPData.Margin = new Padding(4, 3, 4, 3);
+            dTPData.Name = "dTPData";
+            dTPData.Size = new Size(237, 23);
+            dTPData.TabIndex = 89;
+            // 
             // frmBaseCadastral
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1335, 603);
+            Controls.Add(label16);
+            Controls.Add(dTPData);
+            Controls.Add(label6);
+            Controls.Add(txtMedicamentoId);
+            Controls.Add(txtEAN);
+            Controls.Add(label3);
             Controls.Add(btnPesquisar);
             Controls.Add(btnNovo);
             Controls.Add(btnExcluir);
@@ -174,9 +225,7 @@
             Controls.Add(btnLimpar);
             Controls.Add(btnSair);
             Controls.Add(dgvLista);
-            Controls.Add(label4);
             Controls.Add(label7);
-            Controls.Add(txtDescricao);
             Controls.Add(txtId);
             Name = "frmBaseCadastral";
             Text = "Base Cadastral";
@@ -194,9 +243,13 @@
         private Button btnLimpar;
         private Button btnSair;
         private DataGridView dgvLista;
-        private Label label4;
         private Label label7;
-        private TextBox txtDescricao;
         private MaskedTextBox txtId;
+        private Label label6;
+        private MaskedTextBox txtMedicamentoId;
+        private MaskedTextBox txtEAN;
+        private Label label3;
+        private Label label16;
+        private DateTimePicker dTPData;
     }
 }

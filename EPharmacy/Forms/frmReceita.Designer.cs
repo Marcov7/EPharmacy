@@ -59,7 +59,6 @@
             dTPReceita = new DateTimePicker();
             panel2 = new Panel();
             txtReceitaId = new TextBox();
-            btnSubtrair = new Button();
             btnAdicionar = new Button();
             dGVReceitaItens = new DataGridView();
             txtReceitaItemId = new MaskedTextBox();
@@ -399,7 +398,6 @@
             panel2.BackColor = SystemColors.Window;
             panel2.BorderStyle = BorderStyle.FixedSingle;
             panel2.Controls.Add(txtReceitaId);
-            panel2.Controls.Add(btnSubtrair);
             panel2.Controls.Add(btnAdicionar);
             panel2.Controls.Add(dGVReceitaItens);
             panel2.Controls.Add(txtReceitaItemId);
@@ -426,17 +424,6 @@
             txtReceitaId.Name = "txtReceitaId";
             txtReceitaId.Size = new Size(68, 23);
             txtReceitaId.TabIndex = 102;
-            // 
-            // btnSubtrair
-            // 
-            //btnSubtrair.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            //btnSubtrair.Location = new Point(1193, 32);
-            //btnSubtrair.Name = "btnSubtrair";
-            //btnSubtrair.Size = new Size(35, 23);
-            //btnSubtrair.TabIndex = 99;
-            //btnSubtrair.Text = "-";
-            //btnSubtrair.UseVisualStyleBackColor = true;
-            //btnSubtrair.Click += btnSubtrair_Click;
             // 
             // btnAdicionar
             // 

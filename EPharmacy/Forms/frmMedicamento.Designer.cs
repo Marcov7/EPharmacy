@@ -182,6 +182,7 @@
             dgvMedicamentos.Size = new Size(1255, 393);
             dgvMedicamentos.TabIndex = 7;
             dgvMedicamentos.CellClick += dgvMedicamentos_CellClick;
+            //dgvMedicamentos.CellContentClick += dgvMedicamentos_CellContentClick;
             // 
             // btnSair
             // 

@@ -4,6 +4,7 @@ using EPharmacy.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Data;
+using System.Drawing;
 
 
 namespace ControleEntregada.Forms
@@ -62,6 +63,17 @@ namespace ControleEntregada.Forms
             cboFabricante.DisplayMember = "Descricao";
             cboFabricante.ValueMember = "Id";
             // FIM
+
+            // Adiciona uma coluna de botões ao DataGridView
+            /*
+            DataGridViewButtonColumn btnPrecoColumn = new DataGridViewButtonColumn();
+            btnPrecoColumn.Name = "btnExcluirdGVReceitaItens";
+            btnPrecoColumn.HeaderText = "Preço";
+            btnPrecoColumn.Text = "<Preço>";
+            btnPrecoColumn.UseColumnTextForButtonValue = true; // Isso faz com que o texto "Excluir" apareça nos botões
+            dgvMedicamentos.Columns.Add(btnPrecoColumn);
+            // Associando o evento de clique da célula
+            dgvMedicamentos.CellContentClick += new DataGridViewCellEventHandler(dgvMedicamentos_CellContentClick);*/
 
             Limpar();
         }
@@ -435,6 +447,27 @@ namespace ControleEntregada.Forms
         }
 
 
+        /*
+        private void dgvMedicamentos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            foreach (Form filho in this.MdiChildren)
+            {
+                if (filho is frmMedicamentoPreco)
+                {
+                    filho.Activate();
+                    return;
+                }
+            }
+
+            int ? MedicamentoId = null;
+            if (!txtId.Text.IsNullOrEmpty())
+                MedicamentoId = Convert.ToInt32(txtId.Text);
+
+            frmMedicamentoPreco formulario = new frmMedicamentoPreco(MedicamentoId);
+            formulario.Show();
+            formulario.Location = new Point(20, 0);
+
+        }*/
     }
 
 }
