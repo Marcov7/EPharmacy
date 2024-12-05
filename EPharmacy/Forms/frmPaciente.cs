@@ -6,6 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Data;
 using System.Runtime.ConstrainedExecution;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace EPharmacy.Forms
 {
@@ -50,6 +51,16 @@ namespace EPharmacy.Forms
             cboConvenio.DataSource = convenio.ToList();
             cboConvenio.DisplayMember = "Descricao";
             cboConvenio.ValueMember = "Id";
+
+
+            var modalidade = _context.Modalidade.OrderBy(p => p.Descricao).ToList();
+            Modalidade m = new Modalidade();
+            m.Id = 0;
+            m.Descricao = "<Selecione uma opção>";
+            modalidade.Insert(0, m);
+            cboModalidadeEntrega.DataSource = modalidade.ToList();
+            cboModalidadeEntrega.DisplayMember = "Descricao";
+            cboModalidadeEntrega.ValueMember = "Id";
             // FIM
         }
 
@@ -108,6 +119,8 @@ namespace EPharmacy.Forms
             txtTelefone.Clear();
             txtEmail.Clear();
             dTPDataPrimeiroAtendimento.Value = DateTime.Now;
+            dTPDataInclusaoConvenio.Value = DateTime.Now;   
+            cboModalidadeEntrega.SelectedIndex = 0;
 
             txtCarteirinha.Clear();
             txtMatricula.Clear();
@@ -135,6 +148,8 @@ namespace EPharmacy.Forms
             txtTelefone.Enabled = false;
             txtEmail.Enabled = false;
             dTPDataPrimeiroAtendimento.Enabled = false;
+            dTPDataInclusaoConvenio.Enabled = false;
+            cboModalidadeEntrega.Enabled = false;
 
             txtCarteirinha.Enabled = false;
             txtMatricula.Enabled = false;
@@ -205,10 +220,10 @@ namespace EPharmacy.Forms
             {
                 retorno += "Preencha o campo Nome\n";
             }
-            if (txtNomeSocial.Text.IsNullOrEmpty())
+            /*if (txtNomeSocial.Text.IsNullOrEmpty())
             {
                 retorno += "Preencha o campo Nome Social\n";
-            }
+            }*/
             if (dTPNascimento.Value.Date == DateTime.Now.Date)
             {
                 retorno += "Selecione o campo Data de Nascimento\n";
@@ -279,10 +294,10 @@ namespace EPharmacy.Forms
                 }
             }
 
-            if (dTPDataPrimeiroAtendimento.Value.Date == DateTime.Now.Date.Date)
+            /*if (dTPDataPrimeiroAtendimento.Value.Date == DateTime.Now.Date.Date)
             {
                 retorno += "Preencha o campo DataPrimeiroAtendimento\n";
-            }
+            }*/
             //var cpfExiste = _context.Paciente.FirstOrDefault(p => p.CPF == Utilitarios.limpaString(txtCPF.Text).Trim() && p.Id == Utilitarios.limpaString(txtId.Text).Trim());
             var cpfExiste = _context.Paciente.FirstOrDefault(p => p.CPF == UtilitariosBLL.limpaString(txtCPF.Text).Trim());
 
@@ -293,10 +308,10 @@ namespace EPharmacy.Forms
                     retorno += "CPF já cadastrado\n";
                 }
             }
-            if (txtAutorizacao.Text.IsNullOrEmpty())
+            /*if (txtAutorizacao.Text.IsNullOrEmpty())
             {
                 retorno += "Preencha o campo Autorização\n";
-            }
+            }*/
 
             if (!retorno.IsNullOrEmpty())
             {
@@ -336,6 +351,9 @@ namespace EPharmacy.Forms
             string email = txtEmail.Text;
             DateTime dataPrimeiroAtendimento = dTPDataPrimeiroAtendimento.Value;
 
+            DateTime? dataInclusaoConvenio = dTPDataInclusaoConvenio.Value.Date == DateTime.Now.Date ? null : dTPDataInclusaoConvenio.Value.Date;
+            int? modalidadeId = Convert.ToInt32(cboModalidadeEntrega.SelectedValue) == 0 ? null : Convert.ToInt32(cboModalidadeEntrega.SelectedValue);
+
             string carteirinha = txtCarteirinha.Text;
             string matricula = UtilitariosBLL.limpaString(txtMatricula.Text).Trim();
             DateTime? validade = dTPValidade.Value.Date == DateTime.Now.Date ? null : dTPValidade.Value.Date;
@@ -366,6 +384,9 @@ namespace EPharmacy.Forms
                     Telefone = telefone,
                     Email = email,
                     DataPrimeiroAtendimento = dataPrimeiroAtendimento,
+                    DataInclusaoConvenio = dataInclusaoConvenio,
+                    ModalidadeEntregaId = modalidadeId,
+
 
                     ConvenioId = convenioId,
                     Matricula = matricula,
@@ -419,6 +440,9 @@ namespace EPharmacy.Forms
                 update.Email = email;
                 update.DataPrimeiroAtendimento = dataPrimeiroAtendimento;
 
+                update.DataInclusaoConvenio = dataInclusaoConvenio;
+                update.ModalidadeEntregaId = modalidadeId;
+
                 update.ConvenioId = convenioId;
                 update.Matricula = matricula;
                 update.Carteirinha = carteirinha;
@@ -438,7 +462,7 @@ namespace EPharmacy.Forms
             }
             //_context.Entry(entidade).State = EntityState.Modified;
             MessageBox.Show(
-                "Medicamento Gravado com sucesso",
+                "Paciente Gravado com sucesso",
                 "",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Exclamation
@@ -513,6 +537,8 @@ namespace EPharmacy.Forms
             txtMatricula.Clear();
             txtCarteirinha.Clear();
             dTPDataPrimeiroAtendimento.Value = DateTime.Now;
+            dTPDataInclusaoConvenio.Value = DateTime.Now;   
+            cboModalidadeEntrega.SelectedIndex = 0;
 
             txtCarteirinha.Clear();
             txtMatricula.Clear();
@@ -542,6 +568,8 @@ namespace EPharmacy.Forms
             txtMatricula.Enabled    = true;
             txtCarteirinha.Enabled = true;
             dTPDataPrimeiroAtendimento.Enabled = true;
+            dTPDataInclusaoConvenio.Enabled = true;
+            cboModalidadeEntrega.Enabled = true;
 
             txtCarteirinha.Enabled = true;
             txtMatricula.Enabled = true;
@@ -579,6 +607,7 @@ namespace EPharmacy.Forms
                 txtBairro.Text = endereco.bairro;
                 txtMunicipio.Text = endereco.localidade;
                 txtUF.Text = endereco.uf;
+                txtZona.Text = endereco.zona;
             }
 
         }
@@ -609,6 +638,9 @@ namespace EPharmacy.Forms
                 var telefoneCell = row.Cells["Telefone"];
                 var celularCell = row.Cells["Celular"];
                 var emailCell = row.Cells["Email"];
+
+                var dataInclusaoConvenioCell = row.Cells["DataInclusaoConvenio"];
+                var modalidadeEntregaIdCell = row.Cells["ModalidadeEntregaId"];
 
                 var matriculaCell = row.Cells["Matricula"];
                 var carteirinhaCell = row.Cells["Carteirinha"];
@@ -664,6 +696,9 @@ namespace EPharmacy.Forms
                     // Convert.ToDateTime(dataPrimeiroAtendimentoCell.Value);
                     DateTime validade = validadeCell.Value == null ? DateTime.Now.Date :  Convert.ToDateTime(validadeCell.Value);
 
+                    DateTime dataInclusaoConvenio = dataInclusaoConvenioCell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(dataInclusaoConvenioCell.Value);
+                    int? modalidadeEntregaId = Convert.ToInt32(modalidadeEntregaIdCell.Value);
+
                     string sexo = sexoCell.Value.ToString();
                     int ? convenio = Convert.ToInt32(convenioCell.Value);
                     string? autorizacao = autorizacaoCell.Value != null ? autorizacaoCell.Value.ToString() : "";
@@ -691,7 +726,9 @@ namespace EPharmacy.Forms
                     dTPValidade.Value = validade;
                     cboSexo.SelectedValue = sexo;
                     cboConvenio.SelectedValue = convenio;
-                    txtAutorizacao.Text = autorizacao;            
+                    txtAutorizacao.Text = autorizacao;
+                    dTPDataInclusaoConvenio.Value = dataInclusaoConvenio;
+                    cboModalidadeEntrega.SelectedValue = modalidadeEntregaId;
 
 
                     txtId.Enabled = false;
@@ -714,6 +751,9 @@ namespace EPharmacy.Forms
                     dTPNascimento.Enabled = true;
                     dTPDataPrimeiroAtendimento.Enabled = true;
                     dTPValidade.Enabled = true;
+   
+                    dTPDataInclusaoConvenio.Enabled = true;                    
+                    cboModalidadeEntrega.Enabled = true;
 
                     cboSexo.Enabled = true;
                     cboConvenio.Enabled = true;

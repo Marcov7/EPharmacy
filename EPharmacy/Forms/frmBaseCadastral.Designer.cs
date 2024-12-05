@@ -191,7 +191,7 @@
             // 
             label16.AutoSize = true;
             label16.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label16.Location = new Point(567, 10);
+            label16.Location = new Point(303, 10);
             label16.Margin = new Padding(4, 0, 4, 0);
             label16.Name = "label16";
             label16.Size = new Size(34, 13);
@@ -201,7 +201,7 @@
             // dTPData
             // 
             dTPData.Enabled = false;
-            dTPData.Location = new Point(567, 26);
+            dTPData.Location = new Point(303, 26);
             dTPData.Margin = new Padding(4, 3, 4, 3);
             dTPData.Name = "dTPData";
             dTPData.Size = new Size(237, 23);
@@ -229,6 +229,7 @@
             Controls.Add(txtId);
             Name = "frmBaseCadastral";
             Text = "Base Cadastral";
+            Load += frmBaseCadastral_Load;
             ((System.ComponentModel.ISupportInitialize)dgvLista).EndInit();
             ResumeLayout(false);
             PerformLayout();

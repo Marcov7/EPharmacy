@@ -44,12 +44,15 @@
             txtId = new MaskedTextBox();
             txtEAN = new MaskedTextBox();
             btnExcluir = new Button();
-            txtPrecoFabrica = new MaskedTextBox();
-            txtPMCBrasindice = new MaskedTextBox();
-            txtPrecoAcordo = new MaskedTextBox();
             txtMedicamentoId = new MaskedTextBox();
             label6 = new Label();
+            txtPrecoFabrica = new NumericUpDown();
+            txtPMCBrasindice = new NumericUpDown();
+            txtPrecoAcordo = new NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)dgvMedicamentos).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtPrecoFabrica).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtPMCBrasindice).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtPrecoAcordo).BeginInit();
             SuspendLayout();
             // 
             // btnNovo
@@ -109,6 +112,7 @@
             dgvMedicamentos.Name = "dgvMedicamentos";
             dgvMedicamentos.Size = new Size(1168, 410);
             dgvMedicamentos.TabIndex = 19;
+            dgvMedicamentos.CellClick += dgvMedicamentos_CellClick;
             // 
             // label4
             // 
@@ -136,7 +140,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(30, 98);
+            label1.Location = new Point(30, 100);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
             label1.Size = new Size(86, 13);
@@ -228,33 +232,6 @@
             btnExcluir.UseVisualStyleBackColor = true;
             btnExcluir.Click += btnExcluir_Click;
             // 
-            // txtPrecoFabrica
-            // 
-            txtPrecoFabrica.Location = new Point(26, 113);
-            txtPrecoFabrica.Margin = new Padding(4, 3, 4, 3);
-            txtPrecoFabrica.Mask = "0.000.000,00";
-            txtPrecoFabrica.Name = "txtPrecoFabrica";
-            txtPrecoFabrica.Size = new Size(216, 23);
-            txtPrecoFabrica.TabIndex = 26;
-            // 
-            // txtPMCBrasindice
-            // 
-            txtPMCBrasindice.Location = new Point(250, 114);
-            txtPMCBrasindice.Margin = new Padding(4, 3, 4, 3);
-            txtPMCBrasindice.Mask = "0.000.000,00";
-            txtPMCBrasindice.Name = "txtPMCBrasindice";
-            txtPMCBrasindice.Size = new Size(216, 23);
-            txtPMCBrasindice.TabIndex = 26;
-            // 
-            // txtPrecoAcordo
-            // 
-            txtPrecoAcordo.Location = new Point(476, 114);
-            txtPrecoAcordo.Margin = new Padding(4, 3, 4, 3);
-            txtPrecoAcordo.Mask = "0.000.000,00";
-            txtPrecoAcordo.Name = "txtPrecoAcordo";
-            txtPrecoAcordo.Size = new Size(216, 23);
-            txtPrecoAcordo.TabIndex = 26;
-            // 
             // txtMedicamentoId
             // 
             txtMedicamentoId.Location = new Point(100, 38);
@@ -275,20 +252,42 @@
             label6.TabIndex = 28;
             label6.Text = "Id Medicam.";
             // 
+            // txtPrecoFabrica
+            // 
+            txtPrecoFabrica.Location = new Point(26, 115);
+            txtPrecoFabrica.Name = "txtPrecoFabrica";
+            txtPrecoFabrica.Size = new Size(217, 23);
+            txtPrecoFabrica.TabIndex = 30;
+            txtPrecoFabrica.Leave += txtPrecoFabrica_Leave;
+            // 
+            // txtPMCBrasindice
+            // 
+            txtPMCBrasindice.Location = new Point(250, 115);
+            txtPMCBrasindice.Name = "txtPMCBrasindice";
+            txtPMCBrasindice.Size = new Size(217, 23);
+            txtPMCBrasindice.TabIndex = 30;
+            // 
+            // txtPrecoAcordo
+            // 
+            txtPrecoAcordo.Location = new Point(473, 115);
+            txtPrecoAcordo.Name = "txtPrecoAcordo";
+            txtPrecoAcordo.Size = new Size(217, 23);
+            txtPrecoAcordo.TabIndex = 30;
+            // 
             // frmMedicamentoPreco
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1217, 600);
+            Controls.Add(txtPrecoAcordo);
+            Controls.Add(txtPMCBrasindice);
+            Controls.Add(txtPrecoFabrica);
             Controls.Add(btnExcluir);
             Controls.Add(label6);
             Controls.Add(label7);
             Controls.Add(txtProduto);
             Controls.Add(txtMedicamentoId);
             Controls.Add(txtId);
-            Controls.Add(txtPrecoAcordo);
-            Controls.Add(txtPMCBrasindice);
-            Controls.Add(txtPrecoFabrica);
             Controls.Add(txtEAN);
             Controls.Add(btnPesquisar);
             Controls.Add(btnNovo);
@@ -306,6 +305,9 @@
             Name = "frmMedicamentoPreco";
             Text = "Preco de Medicamento";
             ((System.ComponentModel.ISupportInitialize)dgvMedicamentos).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtPrecoFabrica).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtPMCBrasindice).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtPrecoAcordo).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -330,11 +332,14 @@
         private MaskedTextBox txtId;
         private MaskedTextBox txtEAN;
         private Button btnExcluir;
-        private MaskedTextBox txtPrecoFabrica;
-        private MaskedTextBox txtPMCBrasindice;
+        /*private MaskedTextBox txtPMCBrasindice;
         private MaskedTextBox txtPrecoAcordo;
-        private MaskedTextBox maskedTextBox1;
+        private MaskedTextBox maskedTextBox1;*/
         private Label label6;
         private MaskedTextBox txtMedicamentoId;
+        private NumericUpDown txtPrecoFabrica;
+        private MaskedTextBox maskedTextBox2;
+        private NumericUpDown txtPMCBrasindice;
+        private NumericUpDown txtPrecoAcordo;
     }
 }

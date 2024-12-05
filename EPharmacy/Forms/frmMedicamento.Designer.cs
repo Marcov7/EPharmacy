@@ -49,6 +49,8 @@
             txtId = new MaskedTextBox();
             label7 = new Label();
             btnExcluir = new Button();
+            label8 = new Label();
+            txtTUSS = new MaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)dgvMedicamentos).BeginInit();
             SuspendLayout();
             // 
@@ -95,13 +97,13 @@
             cboSubstancia.Location = new Point(24, 163);
             cboSubstancia.Margin = new Padding(4, 3, 4, 3);
             cboSubstancia.Name = "cboSubstancia";
-            cboSubstancia.Size = new Size(854, 23);
+            cboSubstancia.Size = new Size(704, 23);
             cboSubstancia.TabIndex = 5;
             // 
             // cboFabricante
             // 
             cboFabricante.FormattingEnabled = true;
-            cboFabricante.Location = new Point(886, 163);
+            cboFabricante.Location = new Point(733, 163);
             cboFabricante.Margin = new Padding(4, 3, 4, 3);
             cboFabricante.Name = "cboFabricante";
             cboFabricante.Size = new Size(393, 23);
@@ -166,7 +168,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(886, 145);
+            label6.Location = new Point(733, 145);
             label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
             label6.Size = new Size(67, 13);
@@ -182,7 +184,6 @@
             dgvMedicamentos.Size = new Size(1255, 393);
             dgvMedicamentos.TabIndex = 7;
             dgvMedicamentos.CellClick += dgvMedicamentos_CellClick;
-            //dgvMedicamentos.CellContentClick += dgvMedicamentos_CellContentClick;
             // 
             // btnSair
             // 
@@ -277,12 +278,34 @@
             btnExcluir.UseVisualStyleBackColor = true;
             btnExcluir.Click += btnExcluir_Click;
             // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.Location = new Point(1134, 147);
+            label8.Margin = new Padding(4, 0, 4, 0);
+            label8.Name = "label8";
+            label8.Size = new Size(40, 13);
+            label8.TabIndex = 14;
+            label8.Text = "TUSS";
+            // 
+            // txtTUSS
+            // 
+            txtTUSS.Location = new Point(1134, 163);
+            txtTUSS.Margin = new Padding(4, 3, 4, 3);
+            txtTUSS.Mask = "00000000";
+            txtTUSS.Name = "txtTUSS";
+            txtTUSS.Size = new Size(145, 23);
+            txtTUSS.TabIndex = 13;
+            // 
             // frmMedicamento
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(224, 224, 224);
             ClientSize = new Size(1309, 635);
+            Controls.Add(label8);
+            Controls.Add(txtTUSS);
             Controls.Add(btnPesquisar);
             Controls.Add(btnNovo);
             Controls.Add(btnExcluir);
@@ -339,5 +362,7 @@
         private MaskedTextBox txtId;
         private Label label7;
         private Button btnExcluir;
+        private Label label8;
+        private MaskedTextBox txtTUSS;
     }
 }

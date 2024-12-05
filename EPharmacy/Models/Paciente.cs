@@ -4,7 +4,7 @@
     {
         public int Id { get; set; }
         public string Nome { get; set; }
-        public string NomeSocial { get; set; }
+        public string? NomeSocial { get; set; }
         public DateTime DataNascimento { get; set; }
         public string CPF { get; set; }
 
@@ -24,6 +24,9 @@
         public string Email { get; set; }
 
         public DateTime DataPrimeiroAtendimento { get; set; }
+
+        public DateTime? DataInclusaoConvenio { get; set; }
+        public int? ModalidadeEntregaId { get; set; }
 
         public int? ConvenioId { get; set; }
         public string? Matricula { get; set; }

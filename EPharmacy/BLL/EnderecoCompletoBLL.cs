@@ -3,12 +3,23 @@ using EPharmacy.Models;
 using System.Text.Json;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using EPharmacy.Data;
 
 
 namespace BLL
 {
     public class ViaCepService
     {
+        private readonly EPharmacyContext _context;
+       
+        public ViaCepService()
+        {
+            var optionsBuilder = new DbContextOptionsBuilder<EPharmacyContext>();
+            optionsBuilder.UseSqlServer(Program.StrConn());
+            _context = new EPharmacyContext(optionsBuilder.Options);
+        }
+
         public async Task<Endereco> BuscarEnderecoPorCepAsync(string cep)
         {
             // Criação do HttpClient para fazer a requisição HTTP
@@ -78,6 +89,8 @@ namespace BLL
                     // Endereco endereco = JsonSerializer.Deserialize<Endereco>(jsonResponse);
                     endereco = JsonSerializer.Deserialize<Endereco>(jsonResponse);
 
+                    string zona = BuscaZona(endereco.bairro, endereco.localidade);
+                    endereco.zona = zona;
                     endereco.retorno = "Sucesso";
                     return endereco;
                 }
@@ -96,6 +109,37 @@ namespace BLL
             }
                       
             return endereco;
+        }
+
+        private string BuscaZona(string bairro, string localidade)
+        {
+            string zona = "";
+
+            string bairro_ = bairro;
+            string localidade_ = localidade;
+
+            var entidade = _context.BairroZona.AsQueryable();
+
+            if (localidade_ == "Rio de Janeiro" && !string.IsNullOrEmpty(bairro_))
+            {
+                entidade = entidade.Where(p => p.Bairro.Contains(bairro_));
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(localidade_))
+                    entidade = entidade.Where(p => p.Municipio.Contains(localidade_));
+                
+                //return "";
+            }
+
+
+            var entidadex = entidade.ToList();
+
+            if (entidadex != null)
+            {
+                zona = entidadex[0].Zona;
+            }
+            return zona;
         }
     }
 

@@ -189,6 +189,7 @@ namespace ControleEntregada.Forms
             int TipoReceita_ = Convert.ToInt32(cboTipoReceita.SelectedValue);
             int Substancia_ = Convert.ToInt32(cboSubstancia.SelectedValue);
             int Fabricante_ = Convert.ToInt32(cboFabricante.SelectedValue);
+            string TUSS_ = txtTUSS.Text;
 
             var medicamentoNew = new Medicamento();
             var medicamentoUpdate = new Medicamento();
@@ -203,6 +204,7 @@ namespace ControleEntregada.Forms
                     TipoReceitaId = TipoReceita_,
                     SubstanciaId = Substancia_,
                     FabricanteId = Fabricante_,
+                    TUSS = TUSS_,
                     DataCadastro = DateTime.Now.Date,
                     Usuario = 1,
                 };
@@ -229,6 +231,7 @@ namespace ControleEntregada.Forms
                 medicamentoUpdate.TipoReceitaId = TipoReceita_;
                 medicamentoUpdate.SubstanciaId = Substancia_;
                 medicamentoUpdate.FabricanteId = Fabricante_;
+                medicamentoUpdate.TUSS = TUSS_;
                 medicamentoUpdate.DataCadastro = DateTime.Now;
                 medicamentoUpdate.Usuario = 1;
 
@@ -284,6 +287,7 @@ namespace ControleEntregada.Forms
             cboTipoReceita.SelectedIndex = 0;
             cboSubstancia.SelectedIndex = 0;
             cboFabricante.SelectedIndex = 0;
+            txtTUSS.Clear();
             dgvMedicamentos.DataSource = null;
 
             txtId.Enabled = true;
@@ -293,6 +297,7 @@ namespace ControleEntregada.Forms
             cboTipoReceita.Enabled = true;
             cboSubstancia.Enabled = true;
             cboFabricante.Enabled = true;
+            txtTUSS.Enabled = true;
             dgvMedicamentos.Enabled = true;
 
             btnNovo.Enabled = true;
@@ -358,6 +363,7 @@ namespace ControleEntregada.Forms
                 var tipoReceitaCell = row.Cells["TipoReceitaId"];
                 var fabricanteCell = row.Cells["FabricanteId"];
                 var substanciaCell = row.Cells["SubstanciaId"];
+                var TUSSCell = row.Cells["TUSS"];
 
                 if (idCell.Value != null && produtoCell.Value != null)
                 {
@@ -368,6 +374,7 @@ namespace ControleEntregada.Forms
                     int tipoReceita = Convert.ToInt32(tipoReceitaCell.Value);
                     int fabricante = Convert.ToInt32(fabricanteCell.Value);
                     int substancia = Convert.ToInt32(substanciaCell.Value);
+                    string TUSS = TUSSCell.Value == null ? null : TUSSCell.Value.ToString();    
 
                     txtId.Enabled = false;
                     txtId.Text = id.ToString();
@@ -377,7 +384,7 @@ namespace ControleEntregada.Forms
                     cboTipoReceita.SelectedValue = tipoReceita;
                     cboFabricante.SelectedValue = fabricante;
                     cboSubstancia.SelectedValue = substancia;
-
+                    txtTUSS.Text = TUSS;    
 
                     txtId.Enabled = false;
                     txtEAN.Enabled = true;
@@ -386,6 +393,7 @@ namespace ControleEntregada.Forms
                     cboTipoReceita.Enabled = true;
                     cboSubstancia.Enabled = true;
                     cboFabricante.Enabled = true;
+                    txtTUSS.Enabled = true;
                     dgvMedicamentos.Enabled = true;
 
                     btnNovo.Enabled = true;

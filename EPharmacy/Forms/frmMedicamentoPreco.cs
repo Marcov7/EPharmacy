@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Data;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace ControleEntregada.Forms
 {
@@ -13,7 +14,7 @@ namespace ControleEntregada.Forms
     {
         private readonly EPharmacyContext _context;
 
-        public frmMedicamentoPreco(int ? MedicamentoId)
+        public frmMedicamentoPreco(int? MedicamentoId)
         {
             InitializeComponent();
 
@@ -21,6 +22,30 @@ namespace ControleEntregada.Forms
             optionsBuilder.UseSqlServer(Program.StrConn());
             _context = new EPharmacyContext(optionsBuilder.Options);
             var x = 0;
+
+            /*
+            txtPrecoFabricaOld.Mask = "000000.00"; 
+            txtPrecoFabricaOld.ValidatingType = typeof(decimal);
+            txtPrecoFabricaOld.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+            txtPMCBrasindice.Mask = "000000.00";
+            txtPMCBrasindice.ValidatingType = typeof(decimal);
+            txtPMCBrasindice.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+            txtPrecoAcordo.Mask = "000000.00";
+            txtPrecoAcordo.ValidatingType = typeof(decimal);
+            txtPrecoAcordo.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;*/
+
+            txtPrecoFabrica.DecimalPlaces = 2;
+            txtPrecoFabrica.Minimum = 0;
+            txtPrecoFabrica.Maximum = 1000000;
+
+            txtPMCBrasindice.DecimalPlaces = 2;
+            txtPMCBrasindice.Minimum = 0;
+            txtPMCBrasindice.Maximum = 1000000;
+
+            txtPrecoAcordo.DecimalPlaces = 2;
+            txtPrecoAcordo.Minimum = 0;
+            txtPrecoAcordo.Maximum = 1000000;
+
         }
 
 
@@ -58,9 +83,9 @@ namespace ControleEntregada.Forms
             txtMedicamentoId.Clear();
             txtEAN.Clear();
             txtProduto.Clear();
-            txtPMCBrasindice.Clear();
-            txtPrecoFabrica.Clear();
-            txtPrecoAcordo.Clear();
+            txtPMCBrasindice.Value = 0;
+            txtPrecoFabrica.Value = 0;
+            txtPrecoAcordo.Value = 0;
 
 
             txtId.Enabled = false;
@@ -120,9 +145,9 @@ namespace ControleEntregada.Forms
             }
 
             int medicamentoId_ = Convert.ToInt32(txtMedicamentoId.Text);
-            decimal precoFabrica_ = Convert.ToDecimal(UtilitariosBLL.limpaString(txtPrecoFabrica.Text));
-            decimal precoPMC_ = Convert.ToDecimal(UtilitariosBLL.limpaString(txtPMCBrasindice.Text));
-            decimal precoAcordado_ = Convert.ToDecimal(UtilitariosBLL.limpaString(txtPrecoAcordo.Text));
+            decimal precoFabrica_ = Convert.ToDecimal(txtPrecoFabrica.Text);
+            decimal precoPMC_ = Convert.ToDecimal(txtPMCBrasindice.Text);
+            decimal precoAcordado_ = Convert.ToDecimal(txtPrecoAcordo.Text);
 
             var entityNew = new MedicamentoPreco();
             var entityUpdate = new MedicamentoPreco();
@@ -140,6 +165,7 @@ namespace ControleEntregada.Forms
                 };
                 _context.MedicamentoPreco.Add(entityNew);
                 _context.SaveChanges();
+                Limpar();
                 btnPesquisar_Click(null, null);
             }
             else
@@ -148,10 +174,12 @@ namespace ControleEntregada.Forms
                 entityUpdate = _context.MedicamentoPreco.Find(Id_);
                 entityUpdate.MedicamentoId = medicamentoId_;
                 entityUpdate.PrecoFabrica = precoFabrica_;
+                entityUpdate.PrecoPmcBrasindice = precoPMC_;
                 entityUpdate.PrecoAcordado = precoAcordado_;
                 entityUpdate.Usuario = 1;
                 entityUpdate.DataCadastro = DateTime.Now.Date;
                 _context.SaveChanges();
+                Limpar();
                 btnPesquisar_Click(null, null);
             }
 
@@ -188,9 +216,9 @@ namespace ControleEntregada.Forms
             txtMedicamentoId.Clear();
             txtEAN.Clear();
             txtProduto.Clear();
-            txtPMCBrasindice.Clear();
-            txtPrecoAcordo.Clear();
-            txtPrecoFabrica.Clear();
+            txtPMCBrasindice.Value = 0;
+            txtPrecoAcordo.Value = 0;
+            txtPrecoFabrica.Value = 0;
             dgvMedicamentos.DataSource = null;
 
             txtId.Enabled = true;
@@ -299,7 +327,7 @@ namespace ControleEntregada.Forms
                         join mp in medicamentoPreco on m.Id equals mp.MedicamentoId
                         select new
                         {
-                            MedicamentoPrecoId = mp.Id,
+                            Id = mp.Id,
                             MedicamentoId = m.Id,
                             m.Produto,
                             m.EAN,
@@ -317,6 +345,63 @@ namespace ControleEntregada.Forms
             else
                 MessageBox.Show("Nenhum medicamento encontrado.");
         }
+
+
+        private void dgvMedicamentos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dgvMedicamentos.Rows[e.RowIndex];
+
+                var idCell = row.Cells["Id"];
+                var medicamentoIdCell = row.Cells["MedicamentoId"];
+                var precoAcordadoCell = row.Cells["precoAcordado"];
+                var precoPMCCell = row.Cells["PrecoPmcBrasindice"];
+                var precoFabricaCell = row.Cells["PrecoFabrica"];
+
+                if (idCell.Value != null && medicamentoIdCell.Value != null)
+                {
+                    int id = Convert.ToInt32(idCell.Value);
+                    string medicamentoId = medicamentoIdCell.Value.ToString();
+                    string precoFabrica = precoFabricaCell.Value.ToString();
+                    string precoPMC = precoPMCCell.Value.ToString();
+                    string precoAcordado = precoAcordadoCell.Value.ToString();
+
+                    txtId.Text = id.ToString();
+                    txtMedicamentoId.Text = medicamentoId.ToString();
+                    txtPrecoFabrica.Text = precoFabrica.ToString();
+                    txtPMCBrasindice.Text = precoPMC.ToString();
+                    txtPrecoAcordo.Text = precoAcordado.ToString();
+
+                    txtId.Enabled = false;
+                    txtMedicamentoId.Enabled = true;
+                    txtPrecoFabrica.Enabled = true;
+                    txtPMCBrasindice.Enabled = true;
+                    txtPrecoAcordo.Enabled = true;
+                    dgvMedicamentos.Enabled = true;
+
+                    btnNovo.Enabled = true;
+                    btnPesquisar.Enabled = true;
+                    btnSalvar.Enabled = true;
+                    btnLimpar.Enabled = true;
+                    btnSair.Enabled = true;
+                    btnExcluir.Enabled = true;
+                }
+            }
+        }
+
+
+
+        private void txtPrecoFabrica_Leave(object sender, EventArgs e)
+        {
+            var medicamentosFiltrados = _context.Medicamento.AsQueryable();
+           //medicamentosFiltrados = medicamentosFiltrados.Where(p => p.Produto.Contains(Produto_));
+
+            //txtPrecoAcordo.Value = txtPMCBrasindice.Value math* 0.85;
+        }
+
+
+
 
 
         /*

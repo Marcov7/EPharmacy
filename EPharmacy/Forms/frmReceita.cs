@@ -180,6 +180,9 @@ namespace EPharmacy.Forms
             cboMedicamento.Enabled = false;
             cboPeriodicidadeRefil.Enabled = false;
             cboStatus.Enabled = false;
+            txtObs.Enabled = false;
+            txtQtdd.Enabled = false;    
+
             dGVReceitaItens.Enabled = false;
 
             btnNovo.Enabled = true;
@@ -237,17 +240,17 @@ namespace EPharmacy.Forms
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             string retorno = "";
-            if (txtDescricao.Text.IsNullOrEmpty())
+            /*if (txtDescricao.Text.IsNullOrEmpty())
             {
                 retorno += "Preencha o campo Nome \n";
-            }
+            }*/
             if (cboPaciente.SelectedIndex == -1 || cboPaciente.SelectedValue.ToString() == "0")
             {
                 retorno += "Selecione o campo Paciente\n";
             }
             if (dTPUltimaReceita.Value.Date == DateTime.Now.Date)
             {
-                retorno += "Selecione o campo Data Receita\n";
+                retorno += "Selecione o campo Data da Última Receita\n";
             }
             if (cboTipoEntrega.SelectedIndex == -1 || cboTipoEntrega.SelectedValue.ToString() == "0")
             {
@@ -432,6 +435,9 @@ namespace EPharmacy.Forms
             cboPeriodicidadeRefil.Enabled = false;
             cboMedicamento.Enabled = false;
             cboStatus.Enabled = false;
+            txtObs.Enabled = false;
+            txtQtdd.Enabled = false;
+
             dgvLista.Enabled = false;
 
             btnNovo.Enabled = false;
@@ -533,6 +539,8 @@ namespace EPharmacy.Forms
                 cboMedicamento.Enabled = true;
                 cboPeriodicidadeRefil.Enabled = true;
                 cboStatus.Enabled = true;
+                txtObs.Enabled = true;
+                txtQtdd.Enabled = true; 
                 btnAdicionar.Enabled = true;
                 dGVReceitaItens.Enabled = true;
             }
@@ -569,6 +577,8 @@ namespace EPharmacy.Forms
             int medicamentoId_ = Convert.ToInt32(cboMedicamento.SelectedValue);
             int periodicidadeRefilId_ = Convert.ToInt32(cboPeriodicidadeRefil.SelectedValue);
             int statusId_ = Convert.ToInt32(cboStatus.SelectedValue);
+            string ? obs_ = txtObs.Text;
+            int ? qtdd_ = txtQtdd.Text.IsNullOrEmpty() ? null : Convert.ToInt32(txtQtdd.Text);
 
             var entityNew = new ReceitaItens();
             var entityUpdate = new ReceitaItens();
@@ -579,6 +589,8 @@ namespace EPharmacy.Forms
                 MedicamentoId = medicamentoId_,
                 PeriodicidadeRefilId = periodicidadeRefilId_,
                 StatusId = statusId_,
+                Obs = obs_,
+                Qtdd = qtdd_,
                 DataCadastro = DateTime.Now,
                 Usuario = 1,
             };
@@ -592,6 +604,8 @@ namespace EPharmacy.Forms
             cboMedicamento.SelectedIndex = 0;
             cboPeriodicidadeRefil.SelectedIndex = 0;
             cboStatus.SelectedIndex = 0;
+            txtObs.Clear();  
+            txtQtdd.Clear();
         }
 
 

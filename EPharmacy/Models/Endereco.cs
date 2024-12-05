@@ -11,6 +11,7 @@
         public string localidade { get; set; }
         public string uf { get; set; }
         public string estado { get; set; }
+        public string zona { get; set; }
         public string regiao { get; set; }
         public string ibge { get; set; }
         public string gia { get; set; }

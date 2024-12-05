@@ -189,49 +189,52 @@ namespace EPharmacy.BLL
                                       join fa in _context.Fabricante on m.FabricanteId equals fa.Id
                                       join sb in _context.Substancia on m.SubstanciaId equals sb.Id
                                       join pc in _context.Paciente on re.PacienteId equals pc.Id
-                                      join cv in _context.Convenio on pc.ConvenioId equals cv.Id
+                                      join cv in _context.Convenio on re.ConvenioId equals cv.Id
                                       join st in _context.Status on ri.StatusId equals st.Id
                                       join pe in _context.PeriodicidadeRefil on ri.PeriodicidadeRefilId equals pe.Id
                                       join te in _context.TipoEntrega on re.TipoEntregaId equals te.Id
-                                      //join md in _context.Modalidade on xx.ModalidadeId equals md.Id
+                                      join md in _context.Modalidade on pc.ModalidadeEntregaId equals md.Id
 
                                       where re.DataReceita >= dataLimite
+                                      orderby re.Id, pc.Id
                                       select new MedicamentoPrecoViewModel
                                       {
                                           PacienteId = pc.Id,
                                           Matricula = pc.Matricula,
                                           //pc.ConvenioId,
-                                          ConvenioDescricao = cv.Descricao,
+                                          Convenio = cv.Descricao,
                                           CPF = pc.CPF,
                                           Nome = pc.Nome,
-                                          StatusDescricao = st.Descricao,
+                                          Status = st.Descricao,
                                           DataInclusaoConvenio = DateTime.Now.Date,
                                           //MedicamentoId = m.Id,
                                           EAN = m.EAN,
                                           Produto = m.Produto,
-                                          Qtdd = 1,
+                                          Qtdd = ri.Qtdd,
                                           /*ClasseTerapeuticaId = m.ClasseTerapeuticaId,
                                           TipoReceitaId = m.TipoReceitaId,
                                           FabricanteId = m.FabricanteId,
                                           SubstanciaId = m.SubstanciaId,
                                           MedicamentoPrecoId = mp.Id,*/
                                           PrecoAcordado = mp.PrecoAcordado,
-                                          Total = 1 * mp.PrecoAcordado, /// Qtdd fica na Receita Item ??
+                                          Total = ri.Qtdd.Value* mp.PrecoAcordado, /// Qtdd fica na Receita Item ??
 
-                                          DataRecReceita = DateTime.Now.Date,
+                                          /*ReceitaId = re.Id,
+                                          ReceitaDescricao = re.Descricao,*/
+                                          DataReceitaAnterior = re.DataUltimaReceita,
                                           DataReceita = re.DataReceita,
 
-                                          PeriodicidadeDescricao = pe.Descricao,
-                                          Refil1 = "",
-                                          Refil2 = "",
-                                          Refil3 = "",
-                                          Refil4 = "",
-                                          Refil5 = "",
-                                          Refil6 = "",
-                                          RefilExtra = "",
+                                          Periodicidade = pe.Descricao,
+                                          Refil1 = "Campo vem de onde",
+                                          Refil2 = "Campo vem de onde",
+                                          Refil3 = "Campo vem de onde",
+                                          Refil4 = "Campo vem de onde",
+                                          Refil5 = "Campo vem de onde",
+                                          Refil6 = "Campo vem de onde",
+                                          RefilExtra = "Campo vem de onde",
 
-                                          TipoReceitaDescricao = tr.Descricao,
-                                          Obs = "",
+                                          TipoReceita = tr.Descricao,
+                                          Obs = ri.Obs,
                                           Celular = pc.Celular,
                                           Telefone = pc.Telefone,
 
@@ -240,14 +243,14 @@ namespace EPharmacy.BLL
                                           Bairro = pc.Bairro,
                                           CEP = pc.CEP,
                                           Zona = pc.Zona,
-                                          ModalidadeDescricao = "vem de onde", 
-                                          TipoEntregaDescricao = te.Descricao,
-
+                                          Modalidade = md.Descricao, 
+                                          TipoEntrega = te.Descricao,
+                                          Autorizacao = pc.Autorizacao,
                                           // Incluindo as tabelas relacionadas
-                                          ClasseTerapeuticaDescricao = ct.Descricao,
+                                          ClasseTerapeutica = ct.Descricao,
    
-                                          FabricanteDescricao = fa.Descricao,
-                                          SubstanciaDescricao = sb.Descricao
+                                          Fabricante = fa.Descricao,
+                                          Substancia = sb.Descricao
 
                                       })
                                       .ToList();
@@ -255,65 +258,8 @@ namespace EPharmacy.BLL
             return medicamentos;
         }
 
-        // ViewModel para retorno da consulta com dados relacionados
-        public class MedicamentoPrecoViewModel
-        {
-            public int PacienteId { get; set; }
-            public string Matricula { get; set; }
-            //public string ConvenioId { get; set; }
-            public string ConvenioDescricao { get; set; }
-            public string CPF { get; set; }
-            public string Nome { get; set; }
-            public string StatusDescricao { get; set; }
-            public DateTime DataInclusaoConvenio { get; set; }
-            //public int MedicamentoId { get; set; }
-            public string EAN { get; set; }
-            public string Produto { get; set; }
-            public int Qtdd { get; set; }
-            //public decimal Total { get { return Qtdd * PrecoAcordado; } }
-            public decimal PrecoAcordado { get; set; }
-            public decimal Total { get; set; }
-
-            public DateTime DataRecReceita { get; set; } // que data é esse ? é na receita ?
-            public DateTime DataReceita { get; set; }
-            public string PeriodicidadeDescricao { get; set; }
-            /*public int ClasseTerapeuticaId { get; set; }
-            public int TipoReceitaId { get; set; }
-            public int FabricanteId { get; set; }
-            public int SubstanciaId { get; set; }
-            public int MedicamentoPrecoId { get; set; }*/
-
-            public string Refil1 { get; set; }
-            public string Refil2 { get; set; }
-            public string Refil3 { get; set; }
-            public string Refil4 { get; set; }
-            public string Refil5 { get; set; }
-            public string Refil6 { get; set; }
-            public string RefilExtra { get; set; }
-
-            public string TipoReceitaDescricao { get; set; }
-            // Campos das tabelas relacionadas
-
-            public string Obs { get; set; }
-
-            public string Celular { get; set; }
-            public string Telefone { get; set; }
-
-            public string Logradouro { get; set; }
-            public string Numero { get; set; }
-            public string Bairro { get; set; }
-            public string CEP { get; set; }
-            public string Zona { get; set; }
-            public string ModalidadeDescricao { get; set; }
-            public string TipoEntregaDescricao { get; set; }
 
 
-            public string ClasseTerapeuticaDescricao { get; set; }
-
-            public string FabricanteDescricao { get; set; }
-            public string SubstanciaDescricao { get; set; }
-      
-        }
 
     }
 
