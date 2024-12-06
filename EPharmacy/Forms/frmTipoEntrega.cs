@@ -94,9 +94,9 @@ namespace EPharmacy.Forms
 
             if (Delete != null)
             {                                                                    
-                var receita = _context.Receita.FirstOrDefault(b => b.TipoEntregaId == Id_);
+                var paciente = _context.Paciente.FirstOrDefault(b => b.TipoEntregaId == Id_);
 
-                if (receita != null)
+                if (paciente != null)
                 {
                     MessageBox.Show("Tipo Entrega não pode ser excluído. Tem dados relacionados entre Receita com Tipo Entrega!");
                     return;

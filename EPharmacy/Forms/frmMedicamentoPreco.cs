@@ -7,6 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace ControleEntregada.Forms
 {
@@ -395,9 +396,24 @@ namespace ControleEntregada.Forms
         private void txtPrecoFabrica_Leave(object sender, EventArgs e)
         {
             var medicamentosFiltrados = _context.Medicamento.AsQueryable();
-           //medicamentosFiltrados = medicamentosFiltrados.Where(p => p.Produto.Contains(Produto_));
+            //medicamentosFiltrados = medicamentosFiltrados.Where(p => p.Produto.Contains(Produto_));
 
             //txtPrecoAcordo.Value = txtPMCBrasindice.Value math* 0.85;
+        }
+
+        private void btnCalcular_Click(object sender, EventArgs e)
+        {
+            string parametroPacordado;
+            var parametros = _context.Parametros.AsQueryable();
+
+            parametros = parametros.Where(p => p.Descricao.Contains("PercentePrecoAcordo"));
+
+
+            var parametrosList = parametros.ToList();
+            decimal ValorParametros = parametrosList[0].Valor;
+
+            if(txtPMCBrasindice.Value != 0 && ValorParametros != 0)
+               txtPrecoAcordo.Value = txtPMCBrasindice.Value * Convert.ToDecimal(1 - ValorParametros);
         }
 
 

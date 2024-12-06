@@ -113,13 +113,13 @@ namespace EPharmacy.Forms
 
             if (Delete != null)
             {
-                var receita = _context.Receita.FirstOrDefault(b => b.TipoEntregaId == Id_);
+                //var receita = _context.Receita.FirstOrDefault(b => b.TipoEntregaId == Id_);
 
-                if (receita != null)
-                {
-                    MessageBox.Show("Tipo Entrega não pode ser excluído. Tem dados relacionados entre Receita com Tipo Entrega!");
-                    return;
-                }
+                //if (receita != null)
+                //{
+                //    MessageBox.Show("Tipo Entrega não pode ser excluído. Tem dados relacionados entre Receita com Tipo Entrega!");
+                //    return;
+                //}
 
                 _context.TipoEntrega.Remove(Delete);
                 _context.SaveChangesAsync();

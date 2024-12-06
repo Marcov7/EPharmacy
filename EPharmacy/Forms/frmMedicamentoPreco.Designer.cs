@@ -49,6 +49,7 @@
             txtPrecoFabrica = new NumericUpDown();
             txtPMCBrasindice = new NumericUpDown();
             txtPrecoAcordo = new NumericUpDown();
+            btnCalcular = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvMedicamentos).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtPrecoFabrica).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtPMCBrasindice).BeginInit();
@@ -269,16 +270,30 @@
             // 
             // txtPrecoAcordo
             // 
+            txtPrecoAcordo.Enabled = false;
             txtPrecoAcordo.Location = new Point(473, 115);
             txtPrecoAcordo.Name = "txtPrecoAcordo";
             txtPrecoAcordo.Size = new Size(217, 23);
             txtPrecoAcordo.TabIndex = 30;
+            // 
+            // btnCalcular
+            // 
+            btnCalcular.Font = new Font("Segoe UI", 7F, FontStyle.Bold);
+            btnCalcular.ForeColor = Color.DarkGreen;
+            btnCalcular.Location = new Point(696, 115);
+            btnCalcular.Name = "btnCalcular";
+            btnCalcular.Size = new Size(136, 23);
+            btnCalcular.TabIndex = 100;
+            btnCalcular.Text = "Calcular Preço Acordado";
+            btnCalcular.UseVisualStyleBackColor = true;
+            btnCalcular.Click += btnCalcular_Click;
             // 
             // frmMedicamentoPreco
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1217, 600);
+            Controls.Add(btnCalcular);
             Controls.Add(txtPrecoAcordo);
             Controls.Add(txtPMCBrasindice);
             Controls.Add(txtPrecoFabrica);
@@ -341,5 +356,6 @@
         private MaskedTextBox maskedTextBox2;
         private NumericUpDown txtPMCBrasindice;
         private NumericUpDown txtPrecoAcordo;
+        private Button btnCalcular;
     }
 }

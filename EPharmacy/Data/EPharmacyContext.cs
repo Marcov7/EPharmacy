@@ -28,6 +28,7 @@ namespace EPharmacy.Data
         public DbSet<Endereco> Endereco { get; set; }
         public DbSet<BaseCadastral> BaseCadastral { get; set; }
         public DbSet<BairroZona> BairroZona { get; set; }
+        public DbSet<Parametros> Parametros { get; set; }
 
         public EPharmacyContext(DbContextOptions<EPharmacyContext> options) : base(options) { }
 

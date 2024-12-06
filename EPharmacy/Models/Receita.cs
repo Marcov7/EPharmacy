@@ -7,8 +7,8 @@
         public int PacienteId { get; set; }
         public DateTime DataUltimaReceita { get; set; }
         public DateTime DataReceita { get; set; }
-        public int TipoEntregaId { get; set; }
-        public int ConvenioId { get; set; }
+        //public int TipoEntregaId { get; set; }
+        //public int ConvenioId { get; set; }
         public int ClinicaId { get; set; }
         public int MedicoId { get; set; }
         public DateTime DataCadastro { get; set; }

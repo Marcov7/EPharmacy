@@ -94,13 +94,13 @@ namespace EPharmacy.Forms
 
             if (Delete != null)
             {
-                var receita = _context.Receita.FirstOrDefault(b => b.ConvenioId == Id_);
+                //var paciente = _context.Receita.FirstOrDefault(b => b.ConvenioId == Id_);
 
-                if (receita != null)
-                {
-                    MessageBox.Show("Convênio não pode ser excluído. Tem dados relacionados entre Receita com Modalidade!");
-                    return;
-                }
+                //if (receita != null)
+                //{
+                //    MessageBox.Show("Convênio não pode ser excluído. Tem dados relacionados entre Receita com Modalidade!");
+                //    return;
+                //}
 
                 _context.Modalidade.Remove(Delete);
                 _context.SaveChangesAsync();

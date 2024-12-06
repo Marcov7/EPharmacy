@@ -35,14 +35,14 @@ namespace EPharmacy.Forms
             cboPaciente.DisplayMember = "Nome";
             cboPaciente.ValueMember = "Id";
 
-            var tipoEntrega = _context.TipoEntrega.OrderBy(p => p.Descricao).ToList();
-            TipoEntrega f = new TipoEntrega();
-            f.Id = 0;
-            f.Descricao = "<Selecione uma opção>";
-            tipoEntrega.Insert(0, f);
-            cboTipoEntrega.DataSource = tipoEntrega.ToList();
-            cboTipoEntrega.DisplayMember = "Descricao";
-            cboTipoEntrega.ValueMember = "Id";
+            //var tipoEntrega = _context.TipoEntrega.OrderBy(p => p.Descricao).ToList();
+            //TipoEntrega f = new TipoEntrega();
+            //f.Id = 0;
+            //f.Descricao = "<Selecione uma opção>";
+            //tipoEntrega.Insert(0, f);
+            //cboTipoEntrega.DataSource = tipoEntrega.ToList();
+            //cboTipoEntrega.DisplayMember = "Descricao";
+            //cboTipoEntrega.ValueMember = "Id";
 
             var periodicidadeRefil = _context.PeriodicidadeRefil.OrderBy(p => p.Descricao).ToList();
             PeriodicidadeRefil p = new PeriodicidadeRefil();
@@ -53,14 +53,14 @@ namespace EPharmacy.Forms
             cboPeriodicidadeRefil.DisplayMember = "Descricao";
             cboPeriodicidadeRefil.ValueMember = "Id";
 
-            var convenio = _context.Convenio.OrderBy(p => p.Descricao).ToList();
-            Convenio co = new Convenio();
-            co.Id = 0;
-            co.Descricao = "<Selecione uma opção>";
-            convenio.Insert(0, co);
-            cboConvenio.DataSource = convenio.ToList();
-            cboConvenio.DisplayMember = "Descricao";
-            cboConvenio.ValueMember = "Id";
+            //var convenio = _context.Convenio.OrderBy(p => p.Descricao).ToList();
+            //Convenio co = new Convenio();
+            //co.Id = 0;
+            //co.Descricao = "<Selecione uma opção>";
+            //convenio.Insert(0, co);
+            //cboConvenio.DataSource = convenio.ToList();
+            //cboConvenio.DisplayMember = "Descricao";
+            //cboConvenio.ValueMember = "Id";
 
             var clinica = _context.Clinica.OrderBy(p => p.Descricao).ToList();
             Clinica cl = new Clinica();
@@ -154,8 +154,8 @@ namespace EPharmacy.Forms
             dTPUltimaReceita.Value = DateTime.Now;
             dTPReceita.Value = DateTime.Now;
             cboPaciente.SelectedIndex = 0;
-            cboTipoEntrega.SelectedIndex = 0;
-            cboConvenio.SelectedIndex = 0;
+            //cboTipoEntrega.SelectedIndex = 0;
+            //cboConvenio.SelectedIndex = 0;
             cboClinica.SelectedIndex = 0;
             // cboMedico.SelectedIndex = 0;
             cboPeriodicidadeRefil.SelectedIndex = 0;
@@ -167,9 +167,9 @@ namespace EPharmacy.Forms
             dTPUltimaReceita.Enabled = false;
             dTPReceita.Enabled = true;
             cboPaciente.Enabled = true;
-            cboTipoEntrega.Enabled = false;
+            //cboTipoEntrega.Enabled = false;
             cboPeriodicidadeRefil.Enabled = true;
-            cboConvenio.Enabled = false;
+            //cboConvenio.Enabled = false;
             cboClinica.Enabled = false;
             cboMedico.Enabled = false;
             cboMedicamento.Enabled = true;
@@ -248,19 +248,19 @@ namespace EPharmacy.Forms
             {
                 retorno += "Selecione o campo Paciente\n";
             }
-            if (dTPUltimaReceita.Value.Date == DateTime.Now.Date)
-            {
-                retorno += "Selecione o campo Data da Última Receita\n";
-            }
-            if (cboTipoEntrega.SelectedIndex == -1 || cboTipoEntrega.SelectedValue.ToString() == "0")
-            {
-                retorno += "Selecione o campo Tipo Entrega\n";
-            }
+            //if (dTPUltimaReceita.Value.Date == DateTime.Now.Date)
+            //{
+            //    retorno += "Selecione o campo Data da Última Receita\n";
+            //}
+            //if (cboTipoEntrega.SelectedIndex == -1 || cboTipoEntrega.SelectedValue.ToString() == "0")
+            //{
+            //    retorno += "Selecione o campo Tipo Entrega\n";
+            //}
 
-            if (cboConvenio.SelectedIndex == -1 || cboConvenio.SelectedValue.ToString() == "0")
-            {
-                retorno += "Selecione o campo Convênio\n";
-            }
+            //if (cboConvenio.SelectedIndex == -1 || cboConvenio.SelectedValue.ToString() == "0")
+            //{
+            //    retorno += "Selecione o campo Convênio\n";
+            //}
             if (cboClinica.SelectedIndex == -1 || cboClinica.SelectedValue.ToString() == "0")
             {
                 retorno += "Selecione o campo Clínica\n";
@@ -292,8 +292,8 @@ namespace EPharmacy.Forms
             DateTime DataUltimaReceita_ = dTPUltimaReceita.Value.Date;
             DateTime DataReceita_ = dTPReceita.Value.Date;
             int PacienteId_ = Convert.ToInt32(cboPaciente.SelectedValue);
-            int TipoEntregaId_ = Convert.ToInt32(cboTipoEntrega.SelectedValue);
-            int ConvenioId_ = Convert.ToInt32(cboConvenio.SelectedValue);
+            //int TipoEntregaId_ = Convert.ToInt32(cboTipoEntrega.SelectedValue);
+            //int ConvenioId_ = Convert.ToInt32(cboConvenio.SelectedValue);
             int ClinicaId_ = Convert.ToInt32(cboClinica.SelectedValue);
             int MedicoId_ = Convert.ToInt32(cboMedico.SelectedValue);
 
@@ -308,8 +308,8 @@ namespace EPharmacy.Forms
                     DataUltimaReceita = DataUltimaReceita_,
                     DataReceita = DataReceita_,
                     PacienteId = PacienteId_,
-                    TipoEntregaId = TipoEntregaId_,
-                    ConvenioId = ConvenioId_,
+                    //TipoEntregaId = TipoEntregaId_,
+                    //ConvenioId = ConvenioId_,
                     ClinicaId = ClinicaId_,
                     MedicoId = MedicoId_,
                     DataCadastro = DateTime.Now,
@@ -332,8 +332,8 @@ namespace EPharmacy.Forms
                 entityUpdate.DataUltimaReceita = DataUltimaReceita_;
                 entityUpdate.DataReceita = DataReceita_;
                 entityUpdate.PacienteId = PacienteId_;
-                entityUpdate.TipoEntregaId = TipoEntregaId_;
-                entityUpdate.ConvenioId = ConvenioId_;
+                //entityUpdate.TipoEntregaId = TipoEntregaId_;
+                //entityUpdate.ConvenioId = ConvenioId_;
                 entityUpdate.ClinicaId = ClinicaId_;
                 entityUpdate.MedicoId = MedicoId_;
                 entityUpdate.DataCadastro = DateTime.Now;
@@ -414,9 +414,9 @@ namespace EPharmacy.Forms
             dTPUltimaReceita.Value = DateTime.Now;
             dTPReceita.Value = DateTime.Now;
             cboPaciente.SelectedIndex = 0;
-            cboTipoEntrega.SelectedIndex = 0;
+            //cboTipoEntrega.SelectedIndex = 0;
             cboPeriodicidadeRefil.SelectedIndex = 0;
-            cboConvenio.SelectedIndex = 0;
+            //cboConvenio.SelectedIndex = 0;
             cboClinica.SelectedIndex = 0;
             //cboMedico.SelectedIndex = 0;
             dgvLista.DataSource = null;
@@ -426,8 +426,8 @@ namespace EPharmacy.Forms
             txtDescricao.Enabled = true;
             dTPUltimaReceita.Enabled = true;
             cboPaciente.Enabled = true;
-            cboTipoEntrega.Enabled = true;
-            cboConvenio.Enabled = true;
+            //cboTipoEntrega.Enabled = true;
+            //cboConvenio.Enabled = true;
             cboClinica.Enabled = true;
             cboMedico.Enabled = true;
 
@@ -463,9 +463,9 @@ namespace EPharmacy.Forms
                 var dataReceitaCell = row.Cells["DataReceita"];
                 var dataUltimaReceitaCell = row.Cells["DataUltimaReceita"];
                 var pacienteCell = row.Cells["PacienteId"];
-                var tipoEntregaCell = row.Cells["tipoEntregaId"];
+                //var tipoEntregaCell = row.Cells["tipoEntregaId"];
 
-                var convenioCell = row.Cells["ConvenioId"];
+                //var convenioCell = row.Cells["ConvenioId"];
                 var clinicaCell = row.Cells["ClinicaId"];
                 var medicoCell = row.Cells["medicoId"];
 
@@ -476,8 +476,8 @@ namespace EPharmacy.Forms
                     DateTime dataReceita = dataReceitaCell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(dataReceitaCell.Value);
                     DateTime dataUltimaReceita = dataUltimaReceitaCell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(dataUltimaReceitaCell.Value);
                     int? paciente = Convert.ToInt32(pacienteCell.Value);
-                    int? tipoEntrega = Convert.ToInt32(tipoEntregaCell.Value);
-                    int? convenio = Convert.ToInt32(convenioCell.Value);
+                    //int? tipoEntrega = Convert.ToInt32(tipoEntregaCell.Value);
+                    //int? convenio = Convert.ToInt32(convenioCell.Value);
                     int? clinica = Convert.ToInt32(clinicaCell.Value);
                     int? medico = Convert.ToInt32(medicoCell.Value);
 
@@ -486,8 +486,8 @@ namespace EPharmacy.Forms
                     dTPReceita.Value = dataReceita.Date;
                     dTPUltimaReceita.Value = dataUltimaReceita.Date;
                     cboPaciente.SelectedValue = paciente;
-                    cboTipoEntrega.SelectedValue = tipoEntrega;
-                    cboConvenio.SelectedValue = convenio;
+                    //cboTipoEntrega.SelectedValue = tipoEntrega;
+                    //cboConvenio.SelectedValue = convenio;
                     cboClinica.SelectedValue = clinica;
                     cboMedico.SelectedValue = medico;
 
@@ -496,8 +496,8 @@ namespace EPharmacy.Forms
                     dTPReceita.Enabled = true;
                     dTPUltimaReceita.Enabled = true;
                     cboPaciente.Enabled = true;
-                    cboTipoEntrega.Enabled = true;
-                    cboConvenio.Enabled = true;
+                    //cboTipoEntrega.Enabled = true;
+                    //cboConvenio.Enabled = true;
                     cboClinica.Enabled = true;
                     cboMedico.Enabled = true;
                     dgvLista.Enabled = true;

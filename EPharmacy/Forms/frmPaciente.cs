@@ -61,6 +61,17 @@ namespace EPharmacy.Forms
             cboModalidadeEntrega.DataSource = modalidade.ToList();
             cboModalidadeEntrega.DisplayMember = "Descricao";
             cboModalidadeEntrega.ValueMember = "Id";
+
+
+            var tipoEntrega = _context.TipoEntrega.OrderBy(p => p.Descricao).ToList();
+            TipoEntrega te = new TipoEntrega();
+            te.Id = 0;
+            te.Descricao = "<Selecione uma opção>";
+            tipoEntrega.Insert(0, te);
+            cboTipoEntrega.DataSource = tipoEntrega.ToList();
+            cboTipoEntrega.DisplayMember = "Descricao";
+            cboTipoEntrega.ValueMember = "Id";
+
             // FIM
         }
 
@@ -119,12 +130,14 @@ namespace EPharmacy.Forms
             txtTelefone.Clear();
             txtEmail.Clear();
             dTPDataPrimeiroAtendimento.Value = DateTime.Now;
-            dTPDataInclusaoConvenio.Value = DateTime.Now;   
+            //dTPDataInclusaoConvenio.Value = DateTime.Now;   
             cboModalidadeEntrega.SelectedIndex = 0;
+            cboTipoEntrega.SelectedIndex = 0;
+
 
             txtCarteirinha.Clear();
             txtMatricula.Clear();
-            dTPValidade.Value = DateTime.Now;
+            //dTPValidade.Value = DateTime.Now;
             cboConvenio.SelectedIndex = 0;
             txtAutorizacao.Clear();
 
@@ -148,12 +161,13 @@ namespace EPharmacy.Forms
             txtTelefone.Enabled = false;
             txtEmail.Enabled = false;
             dTPDataPrimeiroAtendimento.Enabled = false;
-            dTPDataInclusaoConvenio.Enabled = false;
+            //dTPDataInclusaoConvenio.Enabled = false;
             cboModalidadeEntrega.Enabled = false;
+            cboTipoEntrega.Enabled = false;
 
             txtCarteirinha.Enabled = false;
             txtMatricula.Enabled = false;
-            dTPValidade.Enabled = false;
+            //dTPValidade.Enabled = false;
             cboConvenio.Enabled = false;
             txtAutorizacao.Enabled = false;
 
@@ -280,12 +294,12 @@ namespace EPharmacy.Forms
             {
                 retorno += "Preencha o campo Telefone\n";
             }*/
-            if (txtEmail.Text.IsNullOrEmpty())
+            if (!txtEmail.Text.IsNullOrEmpty())
             {
-                retorno += "Preencha o campo Email\n";
-            }
-            else
-            {
+            //    retorno += "Preencha o campo Email\n";
+            //}
+            //else
+            //{
                 bool isValid = UtilitariosBLL.IsValidEmail(txtEmail.Text);
 
                 if (!isValid)
@@ -308,6 +322,12 @@ namespace EPharmacy.Forms
                     retorno += "CPF já cadastrado\n";
                 }
             }
+
+            if (cboTipoEntrega.SelectedIndex == -1 || cboTipoEntrega.SelectedValue.ToString() == "0")
+            {
+                retorno += "Selecione o campo Tipo Entrega\n";
+            }
+
             /*if (txtAutorizacao.Text.IsNullOrEmpty())
             {
                 retorno += "Preencha o campo Autorização\n";
@@ -351,14 +371,15 @@ namespace EPharmacy.Forms
             string email = txtEmail.Text;
             DateTime dataPrimeiroAtendimento = dTPDataPrimeiroAtendimento.Value;
 
-            DateTime? dataInclusaoConvenio = dTPDataInclusaoConvenio.Value.Date == DateTime.Now.Date ? null : dTPDataInclusaoConvenio.Value.Date;
+            //DateTime? dataInclusaoConvenio = dTPDataInclusaoConvenio.Value.Date == DateTime.Now.Date ? null : dTPDataInclusaoConvenio.Value.Date;
             int? modalidadeId = Convert.ToInt32(cboModalidadeEntrega.SelectedValue) == 0 ? null : Convert.ToInt32(cboModalidadeEntrega.SelectedValue);
 
             string carteirinha = txtCarteirinha.Text;
             string matricula = UtilitariosBLL.limpaString(txtMatricula.Text).Trim();
-            DateTime? validade = dTPValidade.Value.Date == DateTime.Now.Date ? null : dTPValidade.Value.Date;
+            //DateTime? validade = dTPValidade.Value.Date == DateTime.Now.Date ? null : dTPValidade.Value.Date;
             int? convenioId = Convert.ToInt32(cboConvenio.SelectedValue) == 0 ? null : Convert.ToInt32(cboConvenio.SelectedValue);
             string autorizacao = txtAutorizacao.Text;
+            int TipoEntregaId_ = Convert.ToInt32(cboTipoEntrega.SelectedValue);
 
             var insert = new Paciente();
             var update = new Paciente();
@@ -384,15 +405,16 @@ namespace EPharmacy.Forms
                     Telefone = telefone,
                     Email = email,
                     DataPrimeiroAtendimento = dataPrimeiroAtendimento,
-                    DataInclusaoConvenio = dataInclusaoConvenio,
+                    //DataInclusaoConvenio = dataInclusaoConvenio,
                     ModalidadeEntregaId = modalidadeId,
 
 
                     ConvenioId = convenioId,
                     Matricula = matricula,
                     Carteirinha = carteirinha,
-                    Validade = validade,
+                    //Validade = validade,
                     Autorizacao = autorizacao,
+                    TipoEntregaId = TipoEntregaId_,
 
                     DataCadastro = DateTime.Now.Date,
                     Usuario = 1,
@@ -440,14 +462,15 @@ namespace EPharmacy.Forms
                 update.Email = email;
                 update.DataPrimeiroAtendimento = dataPrimeiroAtendimento;
 
-                update.DataInclusaoConvenio = dataInclusaoConvenio;
+                //update.DataInclusaoConvenio = dataInclusaoConvenio;
                 update.ModalidadeEntregaId = modalidadeId;
 
                 update.ConvenioId = convenioId;
                 update.Matricula = matricula;
                 update.Carteirinha = carteirinha;
-                update.Validade = validade;
+                //update.Validade = validade;
                 update.Autorizacao = autorizacao;
+                update.TipoEntregaId = TipoEntregaId_;
 
                 update.DataCadastro = DateTime.Now;
                 update.Usuario = 1;
@@ -537,14 +560,15 @@ namespace EPharmacy.Forms
             txtMatricula.Clear();
             txtCarteirinha.Clear();
             dTPDataPrimeiroAtendimento.Value = DateTime.Now;
-            dTPDataInclusaoConvenio.Value = DateTime.Now;   
+            //dTPDataInclusaoConvenio.Value = DateTime.Now;   
             cboModalidadeEntrega.SelectedIndex = 0;
 
             txtCarteirinha.Clear();
             txtMatricula.Clear();
-            dTPValidade.Value = DateTime.Now;
+            //dTPValidade.Value = DateTime.Now;
             cboConvenio.SelectedIndex = 0;
             txtAutorizacao.Clear();
+            cboTipoEntrega.SelectedIndex = 0;
 
             dgvLista.DataSource = null;
 
@@ -568,14 +592,15 @@ namespace EPharmacy.Forms
             txtMatricula.Enabled    = true;
             txtCarteirinha.Enabled = true;
             dTPDataPrimeiroAtendimento.Enabled = true;
-            dTPDataInclusaoConvenio.Enabled = true;
+            //dTPDataInclusaoConvenio.Enabled = true;
             cboModalidadeEntrega.Enabled = true;
 
             txtCarteirinha.Enabled = true;
             txtMatricula.Enabled = true;
-            dTPValidade.Enabled = true;
+            //dTPValidade.Enabled = true;
             cboConvenio.Enabled = true;
             txtAutorizacao.Enabled = true;
+            cboTipoEntrega.Enabled = true;
 
             dgvLista.Enabled = true;
 
@@ -647,6 +672,7 @@ namespace EPharmacy.Forms
 
                 var convenioCell = row.Cells["ConvenioId"];
                 var autorizacaoCell = row.Cells["Autorizacao"];
+                var tipoEntregaCell = row.Cells["tipoEntregaId"];
 
 
                 if (idCell.Value != null && nomeCell.Value != null)
@@ -702,6 +728,7 @@ namespace EPharmacy.Forms
                     string sexo = sexoCell.Value.ToString();
                     int ? convenio = Convert.ToInt32(convenioCell.Value);
                     string? autorizacao = autorizacaoCell.Value != null ? autorizacaoCell.Value.ToString() : "";
+                    int? tipoEntrega = Convert.ToInt32(tipoEntregaCell.Value);
 
                     txtId.Enabled = false;
                     txtId.Text = id.ToString();
@@ -723,12 +750,13 @@ namespace EPharmacy.Forms
                     txtMatricula.Text = matricula;
                     txtCarteirinha.Text = carteirinha;
                     dTPDataPrimeiroAtendimento.Value = dataPrimeiroAtendimento;
-                    dTPValidade.Value = validade;
+                    //dTPValidade.Value = validade;
                     cboSexo.SelectedValue = sexo;
                     cboConvenio.SelectedValue = convenio;
                     txtAutorizacao.Text = autorizacao;
-                    dTPDataInclusaoConvenio.Value = dataInclusaoConvenio;
+                    //dTPDataInclusaoConvenio.Value = dataInclusaoConvenio;
                     cboModalidadeEntrega.SelectedValue = modalidadeEntregaId;
+                    cboTipoEntrega.SelectedValue = tipoEntrega;
 
 
                     txtId.Enabled = false;
@@ -750,14 +778,15 @@ namespace EPharmacy.Forms
                     txtCarteirinha.Enabled  = true;
                     dTPNascimento.Enabled = true;
                     dTPDataPrimeiroAtendimento.Enabled = true;
-                    dTPValidade.Enabled = true;
+                    //dTPValidade.Enabled = true;
    
-                    dTPDataInclusaoConvenio.Enabled = true;                    
+                    //dTPDataInclusaoConvenio.Enabled = true;                    
                     cboModalidadeEntrega.Enabled = true;
 
                     cboSexo.Enabled = true;
                     cboConvenio.Enabled = true;
                     txtAutorizacao.Enabled = true;
+                    cboTipoEntrega.Enabled = true;
 
                     dgvLista.Enabled = true;
 

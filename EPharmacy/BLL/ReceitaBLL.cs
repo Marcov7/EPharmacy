@@ -143,10 +143,10 @@ namespace EPharmacy.BLL
             // Realizando a consulta com filtro de DataReceita nos últimos 6 meses
             var consulta = from receita in _context.Receita
                            join paciente in _context.Paciente on receita.PacienteId equals paciente.Id
-                           join convenio in _context.Convenio on receita.ConvenioId equals convenio.Id
+                           join convenio in _context.Convenio on paciente.ConvenioId equals convenio.Id
                            join clinica in _context.Clinica on receita.ClinicaId equals clinica.Id
                            join medico in _context.Medico on receita.MedicoId equals medico.Id
-                           join tipoEntrega in _context.TipoEntrega on receita.TipoEntregaId equals tipoEntrega.Id
+                           join tipoEntrega in _context.TipoEntrega on paciente.TipoEntregaId equals tipoEntrega.Id
                            where receita.DataReceita >= dataLimite
                            select new
                            {
@@ -189,10 +189,10 @@ namespace EPharmacy.BLL
                                       join fa in _context.Fabricante on m.FabricanteId equals fa.Id
                                       join sb in _context.Substancia on m.SubstanciaId equals sb.Id
                                       join pc in _context.Paciente on re.PacienteId equals pc.Id
-                                      join cv in _context.Convenio on re.ConvenioId equals cv.Id
+                                      join cv in _context.Convenio on pc.ConvenioId equals cv.Id
                                       join st in _context.Status on ri.StatusId equals st.Id
                                       join pe in _context.PeriodicidadeRefil on ri.PeriodicidadeRefilId equals pe.Id
-                                      join te in _context.TipoEntrega on re.TipoEntregaId equals te.Id
+                                      join te in _context.TipoEntrega on pc.TipoEntregaId equals te.Id
                                       join md in _context.Modalidade on pc.ModalidadeEntregaId equals md.Id
 
                                       where re.DataReceita >= dataLimite
