@@ -259,7 +259,6 @@
             txtPrecoFabrica.Name = "txtPrecoFabrica";
             txtPrecoFabrica.Size = new Size(217, 23);
             txtPrecoFabrica.TabIndex = 30;
-            txtPrecoFabrica.Leave += txtPrecoFabrica_Leave;
             // 
             // txtPMCBrasindice
             // 
@@ -270,6 +269,7 @@
             // 
             // txtPrecoAcordo
             // 
+            txtPrecoAcordo.DecimalPlaces = 2;
             txtPrecoAcordo.Enabled = false;
             txtPrecoAcordo.Location = new Point(473, 115);
             txtPrecoAcordo.Name = "txtPrecoAcordo";

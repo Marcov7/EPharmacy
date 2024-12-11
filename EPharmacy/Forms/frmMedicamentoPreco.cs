@@ -95,7 +95,7 @@ namespace ControleEntregada.Forms
             txtProduto.Enabled = false;
             txtPMCBrasindice.Enabled = true;
             txtPrecoFabrica.Enabled = true;
-            txtPrecoAcordo.Enabled = true;
+            txtPrecoAcordo.Enabled = false;
 
 
             btnNovo.Enabled = false;
@@ -256,7 +256,7 @@ namespace ControleEntregada.Forms
 
             int Id_;
 
-            if (txtId.Text.IsNullOrEmpty())
+            if (!txtId.Text.IsNullOrEmpty())
             {
                 Id_ = Convert.ToInt32(txtId.Text);
                 var medicamentoDelete = _context.MedicamentoPreco.Find(Id_);
@@ -378,7 +378,7 @@ namespace ControleEntregada.Forms
                     txtMedicamentoId.Enabled = true;
                     txtPrecoFabrica.Enabled = true;
                     txtPMCBrasindice.Enabled = true;
-                    txtPrecoAcordo.Enabled = true;
+                    txtPrecoAcordo.Enabled = false;
                     dgvMedicamentos.Enabled = true;
 
                     btnNovo.Enabled = true;
@@ -392,15 +392,6 @@ namespace ControleEntregada.Forms
         }
 
 
-
-        private void txtPrecoFabrica_Leave(object sender, EventArgs e)
-        {
-            var medicamentosFiltrados = _context.Medicamento.AsQueryable();
-            //medicamentosFiltrados = medicamentosFiltrados.Where(p => p.Produto.Contains(Produto_));
-
-            //txtPrecoAcordo.Value = txtPMCBrasindice.Value math* 0.85;
-        }
-
         private void btnCalcular_Click(object sender, EventArgs e)
         {
             string parametroPacordado;
@@ -412,8 +403,12 @@ namespace ControleEntregada.Forms
             var parametrosList = parametros.ToList();
             decimal ValorParametros = parametrosList[0].Valor;
 
-            if(txtPMCBrasindice.Value != 0 && ValorParametros != 0)
-               txtPrecoAcordo.Value = txtPMCBrasindice.Value * Convert.ToDecimal(1 - ValorParametros);
+            if (txtPMCBrasindice.Value != 0 && ValorParametros != 0)
+            {
+                txtPrecoAcordo.Value = txtPMCBrasindice.Value * Convert.ToDecimal(1 - ValorParametros);
+                txtPrecoAcordo.Show();
+
+            }
         }
 
 

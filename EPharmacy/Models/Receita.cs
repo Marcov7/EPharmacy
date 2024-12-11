@@ -5,7 +5,6 @@
         public int Id { get; set; }
         public string Descricao { get; set; }
         public int PacienteId { get; set; }
-        public DateTime DataUltimaReceita { get; set; }
         public DateTime DataReceita { get; set; }
         //public int TipoEntregaId { get; set; }
         //public int ConvenioId { get; set; }

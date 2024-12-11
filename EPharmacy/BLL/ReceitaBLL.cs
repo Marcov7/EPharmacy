@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -154,7 +155,7 @@ namespace EPharmacy.BLL
                                receita.Id,
                                receita.Descricao,
                                receita.DataReceita,
-                               receita.DataUltimaReceita,
+                               //receita.DataReceitaAnterior,
                                // Campos das entidades associadas
                                PacienteNome = paciente.Nome,
                                PacienteCpf = paciente.CPF,
@@ -192,22 +193,24 @@ namespace EPharmacy.BLL
                                       join cv in _context.Convenio on pc.ConvenioId equals cv.Id
                                       join st in _context.Status on ri.StatusId equals st.Id
                                       join pe in _context.PeriodicidadeRefil on ri.PeriodicidadeRefilId equals pe.Id
-                                      join te in _context.TipoEntrega on pc.TipoEntregaId equals te.Id
+                                      join te in  _context.TipoEntrega on pc.TipoEntregaId equals te.Id
                                       join md in _context.Modalidade on pc.ModalidadeEntregaId equals md.Id
 
                                       where re.DataReceita >= dataLimite
                                       orderby re.Id, pc.Id
                                       select new MedicamentoPrecoViewModel
                                       {
+                                          ReceitaItensId = ri.Id,
                                           PacienteId = pc.Id,
                                           Matricula = pc.Matricula,
-                                          //pc.ConvenioId,
+                                          ConvenioId = pc.ConvenioId.Value,
                                           Convenio = cv.Descricao,
                                           CPF = pc.CPF,
                                           Nome = pc.Nome,
+                                          StatusId = ri.StatusId,
                                           Status = st.Descricao,
                                           DataInclusaoConvenio = DateTime.Now.Date,
-                                          //MedicamentoId = m.Id,
+                                          MedicamentoId = m.Id,
                                           EAN = m.EAN,
                                           Produto = m.Produto,
                                           Qtdd = ri.Qtdd,
@@ -217,21 +220,23 @@ namespace EPharmacy.BLL
                                           SubstanciaId = m.SubstanciaId,
                                           MedicamentoPrecoId = mp.Id,*/
                                           PrecoAcordado = mp.PrecoAcordado,
-                                          Total = ri.Qtdd.Value* mp.PrecoAcordado, /// Qtdd fica na Receita Item ??
-
+                                          //Total = ri.Qtdd.Value* mp.PrecoAcordado,
+                                          //Total = Math.Round(ri.Qtdd.Value * mp.PrecoAcordado, 2),
+                                          Total = $"{ri.Qtdd.Value * mp.PrecoAcordado:F2}"   ,
                                           /*ReceitaId = re.Id,
                                           ReceitaDescricao = re.Descricao,*/
-                                          DataReceitaAnterior = re.DataUltimaReceita,
+                                          DataReceitaAnterior = ri.DataReceitaAnterior,
                                           DataReceita = re.DataReceita,
 
+                                          PeriodicidadeId = ri.PeriodicidadeRefilId,
                                           Periodicidade = pe.Descricao,
-                                          Refil1 = "Campo vem de onde",
-                                          Refil2 = "Campo vem de onde",
-                                          Refil3 = "Campo vem de onde",
-                                          Refil4 = "Campo vem de onde",
-                                          Refil5 = "Campo vem de onde",
-                                          Refil6 = "Campo vem de onde",
-                                          RefilExtra = "Campo vem de onde",
+                                          Refil1 = ri.Refil1.Value,
+                                          Refil2 = ri.Refil2.Value,
+                                          Refil3 = ri.Refil3.Value,
+                                          Refil4 = ri.Refil4.Value,
+                                          Refil5 = ri.Refil5.Value,
+                                          Refil6 = ri.Refil6.Value,
+                                          RefilExtra = ri.RefilExtra.Value,
 
                                           TipoReceita = tr.Descricao,
                                           Obs = ri.Obs,

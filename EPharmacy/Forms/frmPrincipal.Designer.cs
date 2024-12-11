@@ -37,6 +37,7 @@
             fabricanteToolStripMenuItem = new ToolStripMenuItem();
             medicoToolStripMenuItem = new ToolStripMenuItem();
             modalidadeToolStripMenuItem = new ToolStripMenuItem();
+            parâmetrosToolStripMenuItem = new ToolStripMenuItem();
             periodicidadeRefilToolStripMenuItem = new ToolStripMenuItem();
             substânciaToolStripMenuItem = new ToolStripMenuItem();
             tipoEntregaToolStripMenuItem = new ToolStripMenuItem();
@@ -54,12 +55,14 @@
             ajudaToolStripMenuItem = new ToolStripMenuItem();
             sobrceToolStripMenuItem = new ToolStripMenuItem();
             sairToolStripMenuItem = new ToolStripMenuItem();
+            pedidoToolStripMenuItem = new ToolStripMenuItem();
+            pedidoToolStripMenuItem1 = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { cadastroToolStripMenuItem, mmedicamentoToolStripMenuItem, pacienteToolStripMenuItem, receitaToolStripMenuItem, ajudaToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { cadastroToolStripMenuItem, mmedicamentoToolStripMenuItem, pacienteToolStripMenuItem, receitaToolStripMenuItem, pedidoToolStripMenuItem, ajudaToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(800, 24);
@@ -68,7 +71,7 @@
             // 
             // cadastroToolStripMenuItem
             // 
-            cadastroToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { toolStripSeparator1, classeTerapeuticaToolStripMenuItem, clinicaToolStripMenuItem, convenioToolStripMenuItem, fabricanteToolStripMenuItem, medicoToolStripMenuItem, modalidadeToolStripMenuItem, periodicidadeRefilToolStripMenuItem, substânciaToolStripMenuItem, tipoEntregaToolStripMenuItem, tipoReceitaToolStripMenuItem, toolStripSeparator2, usuárioToolStripMenuItem });
+            cadastroToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { toolStripSeparator1, classeTerapeuticaToolStripMenuItem, clinicaToolStripMenuItem, convenioToolStripMenuItem, fabricanteToolStripMenuItem, medicoToolStripMenuItem, modalidadeToolStripMenuItem, parâmetrosToolStripMenuItem, periodicidadeRefilToolStripMenuItem, substânciaToolStripMenuItem, tipoEntregaToolStripMenuItem, tipoReceitaToolStripMenuItem, toolStripSeparator2, usuárioToolStripMenuItem });
             cadastroToolStripMenuItem.Name = "cadastroToolStripMenuItem";
             cadastroToolStripMenuItem.Size = new Size(66, 20);
             cadastroToolStripMenuItem.Text = "Cadastro";
@@ -119,6 +122,13 @@
             modalidadeToolStripMenuItem.Size = new Size(172, 22);
             modalidadeToolStripMenuItem.Text = "Modalidade";
             modalidadeToolStripMenuItem.Click += modalidadeToolStripMenuItem_Click;
+            // 
+            // parâmetrosToolStripMenuItem
+            // 
+            parâmetrosToolStripMenuItem.Name = "parâmetrosToolStripMenuItem";
+            parâmetrosToolStripMenuItem.Size = new Size(172, 22);
+            parâmetrosToolStripMenuItem.Text = "Parâmetros";
+            parâmetrosToolStripMenuItem.Click += parâmetrosToolStripMenuItem_Click;
             // 
             // periodicidadeRefilToolStripMenuItem
             // 
@@ -236,6 +246,20 @@
             sairToolStripMenuItem.Text = "Sai&r";
             sairToolStripMenuItem.Click += sairToolStripMenuItem_Click;
             // 
+            // pedidoToolStripMenuItem
+            // 
+            pedidoToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { pedidoToolStripMenuItem1 });
+            pedidoToolStripMenuItem.Name = "pedidoToolStripMenuItem";
+            pedidoToolStripMenuItem.Size = new Size(56, 20);
+            pedidoToolStripMenuItem.Text = "Pedido";
+            // 
+            // pedidoToolStripMenuItem1
+            // 
+            pedidoToolStripMenuItem1.Name = "pedidoToolStripMenuItem1";
+            pedidoToolStripMenuItem1.Size = new Size(180, 22);
+            pedidoToolStripMenuItem1.Text = "Pedido";
+            pedidoToolStripMenuItem1.Click += pedidoToolStripMenuItem1_Click;
+            // 
             // frmPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -286,5 +310,8 @@
         private ToolStripMenuItem medicoToolStripMenuItem;
         private ToolStripMenuItem receitaToolStripMenuItem1;
         private ToolStripMenuItem BaseCadastralToolStripMenuItem;
+        private ToolStripMenuItem parâmetrosToolStripMenuItem;
+        private ToolStripMenuItem pedidoToolStripMenuItem;
+        private ToolStripMenuItem pedidoToolStripMenuItem1;
     }
 }

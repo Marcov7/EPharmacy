@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Data;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Status = EPharmacy.Models.Status;
 
 namespace EPharmacy.Forms
 {
@@ -151,24 +153,25 @@ namespace EPharmacy.Forms
         {
             txtId.Clear();
             txtDescricao.Clear();
-            dTPUltimaReceita.Value = DateTime.Now;
+
             dTPReceita.Value = DateTime.Now;
             cboPaciente.SelectedIndex = 0;
             //cboTipoEntrega.SelectedIndex = 0;
             //cboConvenio.SelectedIndex = 0;
             cboClinica.SelectedIndex = 0;
             // cboMedico.SelectedIndex = 0;
+            dTPDataReceitaAnterior.Value = DateTime.Now;
             cboPeriodicidadeRefil.SelectedIndex = 0;
             dgvLista.DataSource = null;
             dGVReceitaItens.DataSource = null;
 
             txtId.Enabled = true;
             txtDescricao.Enabled = true;
-            dTPUltimaReceita.Enabled = false;
+
             dTPReceita.Enabled = true;
             cboPaciente.Enabled = true;
             //cboTipoEntrega.Enabled = false;
-            cboPeriodicidadeRefil.Enabled = true;
+            //cboPeriodicidadeRefil.Enabled = true;
             //cboConvenio.Enabled = false;
             cboClinica.Enabled = false;
             cboMedico.Enabled = false;
@@ -178,6 +181,7 @@ namespace EPharmacy.Forms
             txtReceitaItemId.Enabled = false;
             txtReceitaId.Enabled = false;
             cboMedicamento.Enabled = false;
+            dTPDataReceitaAnterior.Enabled = false;
             cboPeriodicidadeRefil.Enabled = false;
             cboStatus.Enabled = false;
             txtObs.Enabled = false;
@@ -289,7 +293,7 @@ namespace EPharmacy.Forms
             }
 
             string Descricao_ = txtDescricao.Text;
-            DateTime DataUltimaReceita_ = dTPUltimaReceita.Value.Date;
+            //DateTime DataUltimaReceita_ = dTPDataReceitaAnterior.Value.Date;
             DateTime DataReceita_ = dTPReceita.Value.Date;
             int PacienteId_ = Convert.ToInt32(cboPaciente.SelectedValue);
             //int TipoEntregaId_ = Convert.ToInt32(cboTipoEntrega.SelectedValue);
@@ -305,7 +309,7 @@ namespace EPharmacy.Forms
                 entityNew = new Receita
                 {
                     Descricao = Descricao_,
-                    DataUltimaReceita = DataUltimaReceita_,
+                    //DataReceitaAnterior = DataUltimaReceita_,
                     DataReceita = DataReceita_,
                     PacienteId = PacienteId_,
                     //TipoEntregaId = TipoEntregaId_,
@@ -329,7 +333,7 @@ namespace EPharmacy.Forms
                 int Id_ = Convert.ToInt32(txtId.Text);
                 entityUpdate = _context.Receita.Find(Id_);
                 entityUpdate.Descricao = Descricao_;
-                entityUpdate.DataUltimaReceita = DataUltimaReceita_;
+                //entityUpdate.DataReceitaAnterior = DataUltimaReceita_;
                 entityUpdate.DataReceita = DataReceita_;
                 entityUpdate.PacienteId = PacienteId_;
                 //entityUpdate.TipoEntregaId = TipoEntregaId_;
@@ -369,7 +373,7 @@ namespace EPharmacy.Forms
             int? Id_ = txtId.Text.IsNullOrEmpty() ? null : Convert.ToInt32(txtId.Text);
             string Descriaco_ = txtDescricao.Text;
             DateTime dataReceita_ = dTPReceita.Value.Date;
-            DateTime dataUltimaReceita_ = dTPUltimaReceita.Value.Date;
+            DateTime dataUltimaReceita_ = dTPDataReceitaAnterior.Value.Date;
 
             var lista = _context.Receita.AsQueryable();
 
@@ -382,8 +386,8 @@ namespace EPharmacy.Forms
             if (dTPReceita.Value.Date < DateTime.Now.Date)
                 lista = lista.Where(p => p.DataReceita.Date == dataReceita_.Date);
 
-            if (dTPUltimaReceita.Value.Date < DateTime.Now.Date)
-                lista = lista.Where(p => p.DataUltimaReceita.Date == dataUltimaReceita_.Date);
+            //if (dTPDataReceitaAnterior.Value.Date < DateTime.Now.Date)
+            //    lista = lista.Where(p => p.DataReceitaAnterior.Date == dataUltimaReceita_.Date);
 
             var listax = lista.ToList();
 
@@ -411,7 +415,7 @@ namespace EPharmacy.Forms
 
             txtId.Clear();
             txtDescricao.Clear();
-            dTPUltimaReceita.Value = DateTime.Now;
+            //dTPDataReceitaAnterior.Value = DateTime.Now;
             dTPReceita.Value = DateTime.Now;
             cboPaciente.SelectedIndex = 0;
             //cboTipoEntrega.SelectedIndex = 0;
@@ -424,7 +428,6 @@ namespace EPharmacy.Forms
 
             txtId.Enabled = false;
             txtDescricao.Enabled = true;
-            dTPUltimaReceita.Enabled = true;
             cboPaciente.Enabled = true;
             //cboTipoEntrega.Enabled = true;
             //cboConvenio.Enabled = true;
@@ -432,6 +435,7 @@ namespace EPharmacy.Forms
             cboMedico.Enabled = true;
 
             txtReceitaItemId.Enabled = false;
+            dTPDataReceitaAnterior.Enabled = false;
             cboPeriodicidadeRefil.Enabled = false;
             cboMedicamento.Enabled = false;
             cboStatus.Enabled = false;
@@ -461,7 +465,7 @@ namespace EPharmacy.Forms
                 var idCell = row.Cells["Id"];
                 var descricaoCell = row.Cells["Descricao"];
                 var dataReceitaCell = row.Cells["DataReceita"];
-                var dataUltimaReceitaCell = row.Cells["DataUltimaReceita"];
+                //var dataUltimaReceitaCell = row.Cells["DataReceitaAnterior"];
                 var pacienteCell = row.Cells["PacienteId"];
                 //var tipoEntregaCell = row.Cells["tipoEntregaId"];
 
@@ -474,7 +478,7 @@ namespace EPharmacy.Forms
                     int id = Convert.ToInt32(idCell.Value);
                     string descricao = descricaoCell.Value.ToString();
                     DateTime dataReceita = dataReceitaCell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(dataReceitaCell.Value);
-                    DateTime dataUltimaReceita = dataUltimaReceitaCell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(dataUltimaReceitaCell.Value);
+                    //DateTime dataUltimaReceita = dataUltimaReceitaCell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(dataUltimaReceitaCell.Value);
                     int? paciente = Convert.ToInt32(pacienteCell.Value);
                     //int? tipoEntrega = Convert.ToInt32(tipoEntregaCell.Value);
                     //int? convenio = Convert.ToInt32(convenioCell.Value);
@@ -484,7 +488,7 @@ namespace EPharmacy.Forms
                     txtId.Text = id.ToString();
                     txtDescricao.Text = descricao;
                     dTPReceita.Value = dataReceita.Date;
-                    dTPUltimaReceita.Value = dataUltimaReceita.Date;
+                    //dTPDataReceitaAnterior.Value = dataUltimaReceita.Date;
                     cboPaciente.SelectedValue = paciente;
                     //cboTipoEntrega.SelectedValue = tipoEntrega;
                     //cboConvenio.SelectedValue = convenio;
@@ -494,7 +498,7 @@ namespace EPharmacy.Forms
                     txtId.Enabled = false;
                     txtDescricao.Enabled = true;
                     dTPReceita.Enabled = true;
-                    dTPUltimaReceita.Enabled = true;
+                    //dTPDataReceitaAnterior.Enabled = true;
                     cboPaciente.Enabled = true;
                     //cboTipoEntrega.Enabled = true;
                     //cboConvenio.Enabled = true;
@@ -521,14 +525,39 @@ namespace EPharmacy.Forms
             txtReceitaId.Text = Id_.ToString();
             string Descriaco_ = txtDescricao.Text;
             DateTime dataReceita_ = dTPReceita.Value.Date;
-            DateTime dataUltimaReceita_ = dTPUltimaReceita.Value.Date;
+            //DateTime dataUltimaReceita_ = dTPDataReceitaAnterior.Value.Date;
 
             var lista = _context.ReceitaItens.AsQueryable();
+            var medicamento = _context.Medicamento.AsQueryable();
+            var periodicidade = _context.PeriodicidadeRefil.AsQueryable();
+            var status = _context.Status.AsQueryable();
 
             if (Id_ != null)
                 lista = lista.Where(p => p.ReceitaId == Id_);
 
-            var listax = lista.ToList();
+
+            var query = from m in lista
+                        join mp in medicamento on m.MedicamentoId equals mp.Id
+                        join pr in periodicidade on m.PeriodicidadeRefilId equals pr.Id
+                        join st in status on m.StatusId equals st.Id
+                        select new
+                        {
+                            m.Id,
+                            Receita = m.ReceitaId,
+                            MedicamentoId = m.Id,
+                            mp.Produto,
+                            mp.EAN,
+                            m.DataReceitaAnterior,
+                            Periodicidade = pr.Descricao,
+                            Status = st.Descricao,
+                            m.Qtdd,
+                            m.Obs
+                        };
+
+            // Executa a consulta e converte em lista
+            var listax = query.ToList();
+
+            //var listax = lista.ToList();
 
             if (listax != null)
             {
@@ -537,6 +566,7 @@ namespace EPharmacy.Forms
                 txtReceitaItemId.Enabled = false;
                 txtReceitaId.Enabled = false;
                 cboMedicamento.Enabled = true;
+                dTPDataReceitaAnterior.Enabled = true;
                 cboPeriodicidadeRefil.Enabled = true;
                 cboStatus.Enabled = true;
                 txtObs.Enabled = true;
@@ -558,6 +588,13 @@ namespace EPharmacy.Forms
             {
                 retorno += "Selecione o campo Medicamento\n";
             }
+
+            //sob subspeita de não obrigatoriedade
+            if (dTPDataReceitaAnterior.Value == DateTime.Now.Date)
+            {
+                retorno += "Selecione o campo Data Receita Anterior\n";
+            }
+
             if (cboPeriodicidadeRefil.SelectedIndex == -1 || cboPeriodicidadeRefil.SelectedValue.ToString() == "0")
             {
                 retorno += "Selecione o campo Periodicidade do Refil\n";
@@ -575,6 +612,7 @@ namespace EPharmacy.Forms
 
             string receitaId_ = txtReceitaId.Text;
             int medicamentoId_ = Convert.ToInt32(cboMedicamento.SelectedValue);
+            DateTime? dataReceitaAnterior_ = dTPDataReceitaAnterior.Value.Date;
             int periodicidadeRefilId_ = Convert.ToInt32(cboPeriodicidadeRefil.SelectedValue);
             int statusId_ = Convert.ToInt32(cboStatus.SelectedValue);
             string ? obs_ = txtObs.Text;
@@ -587,6 +625,7 @@ namespace EPharmacy.Forms
             {
                 ReceitaId = Convert.ToInt32(receitaId_),
                 MedicamentoId = medicamentoId_,
+                DataReceitaAnterior = dataReceitaAnterior_.Value,
                 PeriodicidadeRefilId = periodicidadeRefilId_,
                 StatusId = statusId_,
                 Obs = obs_,

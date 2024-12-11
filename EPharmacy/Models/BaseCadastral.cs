@@ -12,27 +12,30 @@ namespace EPharmacy.Models
 
     // ViewModel para retorno da consulta com dados relacionados
     public class MedicamentoPrecoViewModel
-    {
+    {   
+        public int ReceitaItensId { get; set; }
         public int PacienteId { get; set; }
         public string Matricula { get; set; }
-        //public string ConvenioId { get; set; }
-        public string Convenio { get; set; }
+        public int? ConvenioId { get; set; }
+        public string? Convenio { get; set; }
         public string CPF { get; set; }
         public string Nome { get; set; }
+        public int? StatusId { get; set; }
         public string Status { get; set; }
         public DateTime DataInclusaoConvenio { get; set; }
-        //public int MedicamentoId { get; set; }
+        public int MedicamentoId { get; set; }
         public string EAN { get; set; }
         public string Produto { get; set; }
         public int? Qtdd { get; set; }
         //public decimal Total { get { return Qtdd * PrecoAcordado; } }
         public decimal PrecoAcordado { get; set; }
-        public decimal Total { get; set; }
+        public string Total { get; set; }
 
         /*public int ReceitaId { get; set; }
         public string ReceitaDescricao { get; set; }*/
-        public DateTime DataReceitaAnterior { get; set; } // que data é esse ? é na receita ?
+        public DateTime? DataReceitaAnterior { get; set; } 
         public DateTime DataReceita { get; set; }
+        public int? PeriodicidadeId { get; set; }
         public string Periodicidade { get; set; }
         /*public int ClasseTerapeuticaId { get; set; }
         public int TipoReceitaId { get; set; }
@@ -40,13 +43,13 @@ namespace EPharmacy.Models
         public int SubstanciaId { get; set; }
         public int MedicamentoPrecoId { get; set; }*/
 
-        public string Refil1 { get; set; }
-        public string Refil2 { get; set; }
-        public string Refil3 { get; set; }
-        public string Refil4 { get; set; }
-        public string Refil5 { get; set; }
-        public string Refil6 { get; set; }
-        public string RefilExtra { get; set; }
+        public DateTime? Refil1 { get; set; }
+        public DateTime? Refil2 { get; set; }
+        public DateTime? Refil3 { get; set; }
+        public DateTime? Refil4 { get; set; }
+        public DateTime? Refil5 { get; set; }
+        public DateTime? Refil6 { get; set; }
+        public DateTime? RefilExtra { get; set; }
 
         public string TipoReceita { get; set; }
         // Campos das tabelas relacionadas
@@ -61,8 +64,8 @@ namespace EPharmacy.Models
         public string Bairro { get; set; }
         public string CEP { get; set; }
         public string Zona { get; set; }
-        public string Modalidade { get; set; }
-        public string TipoEntrega { get; set; }
+        public string ? Modalidade { get; set; }
+        public string ? TipoEntrega { get; set; }
         public string Autorizacao { get; set; }
 
         public string ClasseTerapeutica { get; set; }

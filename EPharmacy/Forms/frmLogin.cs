@@ -22,7 +22,7 @@ namespace EPharmacy
 
 
         private readonly EPharmacyContext _context;
-        private int Id;
+        //private int Id;
 
 
         private void btnSair_Click(object sender, EventArgs e)

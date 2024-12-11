@@ -329,26 +329,66 @@ namespace EPharmacy
 
         private void receitaItensToolStripMenuItem_Click(object sender, EventArgs e)
         {
-          
+
         }
 
         private void baseCadastralToolStripMenuItem_Click(object sender, EventArgs e)
         {
-              foreach (Form filho in this.MdiChildren)
-                        {
-                            if (filho is frmBaseCadastral)
-                            {
-                                filho.Activate();
-                                return;
-                            }
-                        }
+            foreach (Form filho in this.MdiChildren)
+            {
+                if (filho is frmBaseCadastral)
+                {
+                    filho.Activate();
+                    return;
+                }
+            }
 
-                        frmBaseCadastral formulario = new frmBaseCadastral
-                        {
-                            MdiParent = this,
-                        };
-                        formulario.Show();
-                        formulario.Location = new Point(5, 5);
+            frmBaseCadastral formulario = new frmBaseCadastral
+            {
+                MdiParent = this,
+            };
+            formulario.Show();
+            formulario.Location = new Point(0, 0);
+        }
+
+
+        private void parâmetrosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (Form filho in this.MdiChildren)
+            {
+                if (filho is frmParametros)
+                {
+                    filho.Activate();
+                    return;
+                }
+            }
+
+            frmParametros formulario = new frmParametros
+            {
+                MdiParent = this,
+            };
+            formulario.Show();
+            formulario.Location = new Point(5, 5);
+        }
+
+
+        private void pedidoToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            foreach (Form filho in this.MdiChildren)
+            {
+                if (filho is frmPedido)
+                {
+                    filho.Activate();
+                    return;
+                }
+            }
+
+            frmPedido formulario = new frmPedido
+            {
+                MdiParent = this,
+            };
+            formulario.Show();
+            formulario.Location = new Point(5, 5);
         }
     }
 }
