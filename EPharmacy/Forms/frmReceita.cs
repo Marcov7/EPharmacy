@@ -1,4 +1,5 @@
-﻿using EPharmacy.Data;
+﻿using BLL;
+using EPharmacy.Data;
 using EPharmacy.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -185,7 +186,7 @@ namespace EPharmacy.Forms
             cboPeriodicidadeRefil.Enabled = false;
             cboStatus.Enabled = false;
             txtObs.Enabled = false;
-            txtQtdd.Enabled = false;    
+            txtQtdd.Enabled = false;
 
             dGVReceitaItens.Enabled = false;
 
@@ -214,29 +215,36 @@ namespace EPharmacy.Forms
                 return;
             }
 
-            int Id_ = Convert.ToInt32(txtId.Text);
-            var Delete = _context.Receita.Find(Id_);
-
-            if (Delete != null)
+            try
             {
-                //var receitaItens = _context.ReceitaItens.FirstOrDefault(b => b.ReceitaId == Id_);
+                int Id_ = Convert.ToInt32(txtId.Text);
+                var Delete = _context.Receita.Find(Id_);
 
-                //if (receitaItens != null)
-                //{
-                //    MessageBox.Show("Receita não pode ser excluído. Tem dados relacionados entre Receita com Receita Itens!");
-                //    return;
-                //}
+                if (Delete != null)
+                {
+                    var receitaItens = _context.ReceitaItens.FirstOrDefault(b => b.ReceitaId == Id_);
 
-                _context.Receita.Remove(Delete);
-                _context.SaveChangesAsync();
-                MessageBox.Show("Receita excluída com sucesso!");
+                    if (receitaItens != null)
+                    {
+                        MessageBox.Show("Receita não pode ser excluído. Tem dados relacionados entre Receita com Receita Itens!");
+                        return;
+                    }
 
-                Limpar();
-                btnPesquisar_Click(null, null);
+                    _context.Receita.Remove(Delete);
+                    _context.SaveChangesAsync();
+                    MessageBox.Show("Receita excluída com sucesso!");
+
+                    Limpar();
+                    btnPesquisar_Click(null, null);
+                }
+                else
+                {
+                    MessageBox.Show("Receita não encontrada.");
+                }
             }
-            else
+            catch
             {
-                MessageBox.Show("Receita não encontrada.");
+                MessageBox.Show("Receita não ser excluída. Verifique se há Receita Item que precisa ser excluir primeiro.");
             }
         }
 
@@ -373,9 +381,11 @@ namespace EPharmacy.Forms
             int? Id_ = txtId.Text.IsNullOrEmpty() ? null : Convert.ToInt32(txtId.Text);
             string Descriaco_ = txtDescricao.Text;
             DateTime dataReceita_ = dTPReceita.Value.Date;
-            DateTime dataUltimaReceita_ = dTPDataReceitaAnterior.Value.Date;
+            int? pacienteId_ = cboPaciente.SelectedIndex > 0 ? Convert.ToInt32(cboPaciente.SelectedValue) : null;
+            string cpf_ = UtilitariosBLL.limpaString2(txtCPF.Text);
 
             var lista = _context.Receita.AsQueryable();
+            var listaPaciente = _context.Paciente.AsQueryable();
 
             if (Id_ != null)
                 lista = lista.Where(p => p.Id == Id_);
@@ -386,8 +396,16 @@ namespace EPharmacy.Forms
             if (dTPReceita.Value.Date < DateTime.Now.Date)
                 lista = lista.Where(p => p.DataReceita.Date == dataReceita_.Date);
 
-            //if (dTPDataReceitaAnterior.Value.Date < DateTime.Now.Date)
-            //    lista = lista.Where(p => p.DataReceitaAnterior.Date == dataUltimaReceita_.Date);
+            if (pacienteId_ > 0)
+                lista = lista.Where(p => p.PacienteId == pacienteId_);
+
+            if (!string.IsNullOrEmpty(cpf_))
+            {
+                lista = from r in lista
+                        join p in _context.Paciente on r.PacienteId equals p.Id
+                        where p.CPF.Contains(cpf_)
+                        select r;
+            }
 
             var listax = lista.ToList();
 
@@ -544,7 +562,7 @@ namespace EPharmacy.Forms
                         {
                             m.Id,
                             Receita = m.ReceitaId,
-                            MedicamentoId = m.Id,
+                            MedicamentoId = mp.Id,
                             mp.Produto,
                             mp.EAN,
                             m.DataReceitaAnterior,
@@ -570,7 +588,7 @@ namespace EPharmacy.Forms
                 cboPeriodicidadeRefil.Enabled = true;
                 cboStatus.Enabled = true;
                 txtObs.Enabled = true;
-                txtQtdd.Enabled = true; 
+                txtQtdd.Enabled = true;
                 btnAdicionar.Enabled = true;
                 dGVReceitaItens.Enabled = true;
             }
@@ -615,8 +633,8 @@ namespace EPharmacy.Forms
             DateTime? dataReceitaAnterior_ = dTPDataReceitaAnterior.Value.Date;
             int periodicidadeRefilId_ = Convert.ToInt32(cboPeriodicidadeRefil.SelectedValue);
             int statusId_ = Convert.ToInt32(cboStatus.SelectedValue);
-            string ? obs_ = txtObs.Text;
-            int ? qtdd_ = txtQtdd.Text.IsNullOrEmpty() ? null : Convert.ToInt32(txtQtdd.Text);
+            string? obs_ = txtObs.Text;
+            int? qtdd_ = txtQtdd.Text.IsNullOrEmpty() ? null : Convert.ToInt32(txtQtdd.Text);
 
             var entityNew = new ReceitaItens();
             var entityUpdate = new ReceitaItens();
@@ -643,7 +661,7 @@ namespace EPharmacy.Forms
             cboMedicamento.SelectedIndex = 0;
             cboPeriodicidadeRefil.SelectedIndex = 0;
             cboStatus.SelectedIndex = 0;
-            txtObs.Clear();  
+            txtObs.Clear();
             txtQtdd.Clear();
         }
 
@@ -704,5 +722,29 @@ namespace EPharmacy.Forms
             }
         }
 
+
+        private void cboMedicamento_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int? pacienteId_ = cboPaciente.SelectedIndex > 0 ? Convert.ToInt32(cboPaciente.SelectedValue) : null;
+            var lista = _context.Receita.AsQueryable();
+
+            if (pacienteId_ > 0) lista = lista.OrderByDescending(p => p.DataReceita).Where(p => p.PacienteId == pacienteId_);
+
+            // ESTOU AQUI
+            //if (pacienteId_ > 0)
+            //{
+            //    lista = from r in lista
+            //            join ri in _context.ReceitaItens on r.Id equals ri.ReceitaId
+            //            where r.PacienteId = pacienteId_
+            //            select r;
+            //}
+
+            var listax = lista.ToList();
+
+            if (listax != null)
+            {
+                //dgvLista.DataSource = listax;
+            }
+        }
     }
 }

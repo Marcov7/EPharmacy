@@ -7,6 +7,7 @@
         public decimal PrecoFabrica { get; set; }
         public decimal PrecoPmcBrasindice { get; set; }
         public decimal PrecoAcordado { get; set; }
+        public bool? Ativo { get; set; }
         public DateTime DataCadastro { get; set; }
         public int Usuario { get; set; }
     }

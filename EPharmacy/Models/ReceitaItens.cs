@@ -18,6 +18,7 @@
         public DateTime? Refil5 { get; set; }
         public DateTime? Refil6 { get; set; }
         public DateTime? RefilExtra { get; set; }
+        public bool? Ativo { get; set; }
 
         public DateTime DataCadastro { get; set; }
         public int Usuario { get; set; }

@@ -1,6 +1,7 @@
 ﻿using EPharmacy.Data;
 using EPharmacy.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace EPharmacy.BLL
 {
@@ -174,16 +176,25 @@ namespace EPharmacy.BLL
             //}
         }
 
-
-        public  IList<MedicamentoPrecoViewModel> GetMedicamentosParaProximos6Meses()
+         
+        public  IList<MedicamentoPrecoViewModel> GetMedicamentosParaProximos6Meses(DateTime? dataComparacao, string EAN, int? MedicamentoId, int? ConvenioId, string CPF, string Matricula, int? PacienteId, int? StatusId, string Bairro, string Zona, int? tipoReceitaId)
         {
+
+            int Mes = 0;
+            int Ano = 0;        
+            
+            if (dataComparacao != null) {
+                Mes = dataComparacao.Value.Month;
+                Ano = dataComparacao.Value.Year;
+            }
+
             var dataLimite = DateTime.Now.AddMonths(-6);  // Calculando a data para 6 meses a partir de hoje
 
             // Query para pegar os medicamentos e seus preços, incluindo as tabelas relacionadas
             IList<MedicamentoPrecoViewModel> medicamentos =  (
                                       from re in _context.Receita
                                       join ri in _context.ReceitaItens on re.Id equals ri.ReceitaId
-                                      join m in _context.Medicamento on ri.MedicamentoId equals m.Id
+                                      join m  in _context.Medicamento on ri.MedicamentoId equals m.Id
                                       join mp in _context.MedicamentoPreco on m.Id equals mp.MedicamentoId
                                       join ct in _context.ClasseTerapeutica on m.ClasseTerapeuticaId equals ct.Id
                                       join tr in _context.TipoReceita on m.TipoReceitaId equals tr.Id
@@ -193,11 +204,29 @@ namespace EPharmacy.BLL
                                       join cv in _context.Convenio on pc.ConvenioId equals cv.Id
                                       join st in _context.Status on ri.StatusId equals st.Id
                                       join pe in _context.PeriodicidadeRefil on ri.PeriodicidadeRefilId equals pe.Id
-                                      join te in  _context.TipoEntrega on pc.TipoEntregaId equals te.Id
+                                      join te in _context.TipoEntrega on pc.TipoEntregaId equals te.Id
                                       join md in _context.Modalidade on pc.ModalidadeEntregaId equals md.Id
 
                                       where re.DataReceita >= dataLimite
-                                      orderby re.Id, pc.Id
+                                      && ((ri.Refil1.Value.Month == Mes && ri.Refil1.Value.Year == Ano) ||
+                                          (ri.Refil2.Value.Month == Mes && ri.Refil2.Value.Year == Ano) || 
+                                          (ri.Refil3.Value.Month == Mes && ri.Refil3.Value.Year == Ano) || 
+                                          (ri.Refil4.Value.Month == Mes && ri.Refil4.Value.Year == Ano) || 
+                                          (ri.Refil5.Value.Month == Mes && ri.Refil5.Value.Year == Ano) ||
+                                          (ri.Refil6.Value.Month == Mes && ri.Refil6.Value.Year == Ano) ||
+                                          (ri.RefilExtra.Value.Month == Mes && ri.RefilExtra.Value.Year == Ano) || dataComparacao == null)
+                                      &&  (m.EAN == EAN || EAN.IsNullOrEmpty())
+                                      &&  (pc.Matricula == Matricula || Matricula.IsNullOrEmpty())
+                                      &&  (pc.CPF == CPF || CPF.IsNullOrEmpty())
+                                      &&  (pc.ConvenioId == ConvenioId || ConvenioId == null)
+                                      &&  (pc.Id == PacienteId || PacienteId == null)
+                                      &&  (m.Id == MedicamentoId || MedicamentoId == null)
+                                      &&  (ri.StatusId == StatusId || StatusId == null)
+                                      &&  (pc.Bairro == Bairro || Bairro.IsNullOrEmpty())
+                                      &&  (pc.Zona == Zona || Zona.IsNullOrEmpty())
+                                      &&  (m.TipoReceitaId == tipoReceitaId || tipoReceitaId == null)
+
+                                      orderby ri.Id, m.Id
                                       select new MedicamentoPrecoViewModel
                                       {
                                           ReceitaItensId = ri.Id,
@@ -215,7 +244,7 @@ namespace EPharmacy.BLL
                                           Produto = m.Produto,
                                           Qtdd = ri.Qtdd,
                                           /*ClasseTerapeuticaId = m.ClasseTerapeuticaId,
-                                          TipoReceitaId = m.TipoReceitaId,
+                 
                                           FabricanteId = m.FabricanteId,
                                           SubstanciaId = m.SubstanciaId,
                                           MedicamentoPrecoId = mp.Id,*/
@@ -223,8 +252,8 @@ namespace EPharmacy.BLL
                                           //Total = ri.Qtdd.Value* mp.PrecoAcordado,
                                           //Total = Math.Round(ri.Qtdd.Value * mp.PrecoAcordado, 2),
                                           Total = $"{ri.Qtdd.Value * mp.PrecoAcordado:F2}"   ,
-                                          /*ReceitaId = re.Id,
-                                          ReceitaDescricao = re.Descricao,*/
+                                          ReceitaId = re.Id,
+                                          ReceitaDescricao = re.Descricao,
                                           DataReceitaAnterior = ri.DataReceitaAnterior,
                                           DataReceita = re.DataReceita,
 
@@ -238,6 +267,7 @@ namespace EPharmacy.BLL
                                           Refil6 = ri.Refil6.Value,
                                           RefilExtra = ri.RefilExtra.Value,
 
+                                          TipoReceitaId = m.TipoReceitaId,
                                           TipoReceita = tr.Descricao,
                                           Obs = ri.Obs,
                                           Celular = pc.Celular,

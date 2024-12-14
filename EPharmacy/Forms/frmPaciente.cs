@@ -140,6 +140,7 @@ namespace EPharmacy.Forms
             //dTPValidade.Value = DateTime.Now;
             cboConvenio.SelectedIndex = 0;
             txtAutorizacao.Clear();
+            chkAtivo.Checked = false;
 
             dgvLista.DataSource = null;
 
@@ -170,6 +171,7 @@ namespace EPharmacy.Forms
             //dTPValidade.Enabled = false;
             cboConvenio.Enabled = false;
             txtAutorizacao.Enabled = false;
+            chkAtivo.Enabled = false;
 
             dgvLista.Enabled = true;
 
@@ -198,30 +200,37 @@ namespace EPharmacy.Forms
                 return;
             }
 
-            int Id_ = Convert.ToInt32(txtId.Text);
-            var Delete = _context.Paciente.Find(Id_);
-
-            if (Delete != null)
+            try
             {
-                /*
-                var medicamento = _context.Paciente.FirstOrDefault(b => b.PacienteId == Id_);
+                int Id_ = Convert.ToInt32(txtId.Text);
+                var Delete = _context.Paciente.Find(Id_);
 
-                if (medicamento != null)
+                if (Delete != null)
                 {
-                    MessageBox.Show("Paciente não pode ser excluído. Tem dados relacionados entre Medicamento com Paciente!");
-                    return;
-                }*/
 
-                _context.Paciente.Remove(Delete);
-                _context.SaveChangesAsync();
-                MessageBox.Show("Paciente excluído com sucesso!");
+                    var medicamento = _context.Receita.FirstOrDefault(b => b.PacienteId == Id_);
 
-                Limpar();
-                btnPesquisar_Click(null, null);
+                    if (medicamento != null)
+                    {
+                        MessageBox.Show("Paciente não pode ser excluído. Tem dados relacionados entre Receita com Paciente!");
+                        return;
+                    }
+
+                    _context.Paciente.Remove(Delete);
+                    _context.SaveChangesAsync();
+                    MessageBox.Show("Paciente excluído com sucesso!");
+
+                    Limpar();
+                    btnPesquisar_Click(null, null);
+                }
+                else
+                {
+
+                }
             }
-            else
+            catch
             {
-                MessageBox.Show("Paciente não encontrado.");
+                MessageBox.Show("Paciente não pode ser excluído.");
             }
         }
 
@@ -380,6 +389,7 @@ namespace EPharmacy.Forms
             int? convenioId = Convert.ToInt32(cboConvenio.SelectedValue) == 0 ? null : Convert.ToInt32(cboConvenio.SelectedValue);
             string autorizacao = txtAutorizacao.Text;
             int TipoEntregaId_ = Convert.ToInt32(cboTipoEntrega.SelectedValue);
+            bool ativo = chkAtivo.Checked;
 
             var insert = new Paciente();
             var update = new Paciente();
@@ -415,7 +425,7 @@ namespace EPharmacy.Forms
                     //Validade = validade,
                     Autorizacao = autorizacao,
                     TipoEntregaId = TipoEntregaId_,
-
+                    Ativo = ativo,
                     DataCadastro = DateTime.Now.Date,
                     Usuario = 1,
                 };
@@ -471,6 +481,7 @@ namespace EPharmacy.Forms
                 //update.Validade = validade;
                 update.Autorizacao = autorizacao;
                 update.TipoEntregaId = TipoEntregaId_;
+                update.Ativo = ativo;   
 
                 update.DataCadastro = DateTime.Now;
                 update.Usuario = 1;
@@ -569,6 +580,7 @@ namespace EPharmacy.Forms
             cboConvenio.SelectedIndex = 0;
             txtAutorizacao.Clear();
             cboTipoEntrega.SelectedIndex = 0;
+            chkAtivo.Checked = false;
 
             dgvLista.DataSource = null;
 
@@ -601,6 +613,7 @@ namespace EPharmacy.Forms
             cboConvenio.Enabled = true;
             txtAutorizacao.Enabled = true;
             cboTipoEntrega.Enabled = true;
+            chkAtivo.Enabled = true;
 
             dgvLista.Enabled = true;
 
@@ -672,8 +685,8 @@ namespace EPharmacy.Forms
 
                 var convenioCell = row.Cells["ConvenioId"];
                 var autorizacaoCell = row.Cells["Autorizacao"];
-                var tipoEntregaCell = row.Cells["tipoEntregaId"];
-
+                var tipoEntregaCell = row.Cells["TipoEntregaId"];
+                var ativoCell = row.Cells["Ativo"];
 
                 if (idCell.Value != null && nomeCell.Value != null)
                 {
@@ -729,6 +742,7 @@ namespace EPharmacy.Forms
                     int ? convenio = Convert.ToInt32(convenioCell.Value);
                     string? autorizacao = autorizacaoCell.Value != null ? autorizacaoCell.Value.ToString() : "";
                     int? tipoEntrega = Convert.ToInt32(tipoEntregaCell.Value);
+                    bool ativo = Convert.ToBoolean(ativoCell.Value);
 
                     txtId.Enabled = false;
                     txtId.Text = id.ToString();
@@ -757,7 +771,7 @@ namespace EPharmacy.Forms
                     //dTPDataInclusaoConvenio.Value = dataInclusaoConvenio;
                     cboModalidadeEntrega.SelectedValue = modalidadeEntregaId;
                     cboTipoEntrega.SelectedValue = tipoEntrega;
-
+                    chkAtivo.Checked = ativo;
 
                     txtId.Enabled = false;
                     txtNome.Enabled = true;
@@ -787,6 +801,7 @@ namespace EPharmacy.Forms
                     cboConvenio.Enabled = true;
                     txtAutorizacao.Enabled = true;
                     cboTipoEntrega.Enabled = true;
+                    chkAtivo.Enabled = true;    
 
                     dgvLista.Enabled = true;
 

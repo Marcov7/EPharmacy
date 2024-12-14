@@ -16,6 +16,22 @@ namespace BLL
             return s;
         }
 
+        public static string limpaString2(string s)
+        {
+            s = s.Replace("-", "");
+            s = s.Replace(".", "");
+            s = s.Replace(",", "");
+            s = s.Replace(";", "");
+            s = s.Replace(":", "");
+            s = s.Replace(")", "");
+            s = s.Replace("(", "");
+            s = s.Replace("/", "");
+            s = s.Replace("\\", "");
+            s = s.Replace("|", "");
+            s = s.Replace(" ", "");
+            return s;
+        }
+
 
         public static bool Validar(string cpf)
         {

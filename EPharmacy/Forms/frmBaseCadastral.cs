@@ -1,4 +1,5 @@
-﻿using EPharmacy.BLL;
+﻿using BLL;
+using EPharmacy.BLL;
 using EPharmacy.Data;
 using EPharmacy.Models;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace EPharmacy.Forms
 {
@@ -31,14 +33,91 @@ namespace EPharmacy.Forms
 
         private void btnPesquisar_Click(object sender, EventArgs e)
         {
+            string EAN = "";
+            if (!UtilitariosBLL.limpaString(txtEAN.Text).IsNullOrEmpty())
+            {
+                EAN = UtilitariosBLL.limpaString(txtEAN.Text);
+            }
+
+            int? MedicamentoId = null;
+            if (cboMedicamento.SelectedIndex > 0)
+            {
+                MedicamentoId = Convert.ToInt32(cboMedicamento.SelectedValue);
+            }
+
+            int? ConvenioId = null;
+            if (cboConvenio.SelectedIndex > 0)
+            {
+                ConvenioId = Convert.ToInt32(cboConvenio.SelectedValue);
+            }
+
+            string CPF = "";
+            if (!UtilitariosBLL.limpaString2(txtCPF.Text).IsNullOrEmpty())
+            {
+                CPF = UtilitariosBLL.limpaString(txtCPF.Text);
+            }
+
+            string Matricula = "";
+            if (!UtilitariosBLL.limpaString2(txtMatricula.Text).IsNullOrEmpty())
+            {
+                Matricula = UtilitariosBLL.limpaString(txtMatricula.Text);
+            }
+
+            int? PacienteId = null;
+            if (cboPaciente.SelectedIndex > 0)
+            {
+                PacienteId = Convert.ToInt32(cboPaciente.SelectedValue);
+            }
+
+            int? StatusId = null;
+            if (cboStatus.SelectedIndex > 0)
+            {
+                StatusId = Convert.ToInt32(cboStatus.SelectedValue);
+            }
+
+            string? bairro = null;
+            if (cboBairro.SelectedIndex > 0)
+            {
+                bairro = cboBairro.Text;
+            }
+
+            string? zona = null;
+            if (cboZona.SelectedIndex > 0)
+            {
+                zona = cboZona.Text;
+            }
+
+            int? tipoReceitaId = null;
+            if (cboTipoReceita.SelectedIndex > 0)
+            {
+                tipoReceitaId = Convert.ToInt32(cboTipoReceita.SelectedValue);
+            }
+
+            DateTime? datafiltro = null;
+            if (!UtilitariosBLL.limpaString2(txtMesAno.Text).IsNullOrEmpty())
+            {
+                string dataFiltro = "01/" + txtMesAno.Text;
+                if (!DateTime.TryParse(dataFiltro, out DateTime dataComparacao))
+                {
+                    MessageBox.Show("Formato de data inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                datafiltro = dataComparacao;
+            }
+
+
             ReceitaBLL receitaBLL = new ReceitaBLL();
-            dgvLista.DataSource = receitaBLL.GetMedicamentosParaProximos6Meses();
-            dgvLista.Columns["ReceitaItensId"].Visible = false;
-            dgvLista.Columns["PacienteId"].Visible = false;
-            dgvLista.Columns["StatusId"].Visible = false;
-            dgvLista.Columns["PacienteId"].Visible = false;
-            dgvLista.Columns["MedicamentoId"].Visible = false;
-            dgvLista.Columns["PeriodicidadeId"].Visible = false;
+            dgvLista.DataSource = receitaBLL.GetMedicamentosParaProximos6Meses(datafiltro, EAN, MedicamentoId, ConvenioId, CPF, Matricula, PacienteId, StatusId, bairro, zona, tipoReceitaId);
+            dgvLista.Columns["ReceitaItensId"].Visible = chkMostrarIds.Checked;
+            dgvLista.Columns["PacienteId"].Visible = chkMostrarIds.Checked;
+            dgvLista.Columns["StatusId"].Visible = chkMostrarIds.Checked;
+            dgvLista.Columns["PacienteId"].Visible = chkMostrarIds.Checked;
+            dgvLista.Columns["MedicamentoId"].Visible = chkMostrarIds.Checked;
+            dgvLista.Columns["PeriodicidadeId"].Visible = chkMostrarIds.Checked;
+            dgvLista.Columns["ReceitaId"].Visible = chkMostrarIds.Checked;
+            dgvLista.Columns["ReceitaDescricao"].Visible = chkMostrarIds.Checked;
+            dgvLista.Columns["TipoReceitaId"].Visible = chkMostrarIds.Checked;
+            dgvLista.Columns["ConvenioId"].Visible = chkMostrarIds.Checked;
 
             HighlightRowsByNameChange();
         }
@@ -89,6 +168,10 @@ namespace EPharmacy.Forms
             txtMatricula.Clear();
             cboPaciente.SelectedIndex = 0;
             cboStatus.SelectedIndex = 0;
+            txtMesAno.Clear();
+            cboBairro.SelectedIndex = 0;
+            cboZona.SelectedIndex = 0;
+            cboTipoReceita.SelectedIndex = 0;
 
             dTPRefil1.Format = DateTimePickerFormat.Custom;
             dTPRefil1.CustomFormat = " ";
@@ -117,6 +200,10 @@ namespace EPharmacy.Forms
             txtMatricula.Enabled = true;
             cboPaciente.Enabled = true;
             cboStatus.Enabled = true;
+            txtMesAno.Enabled = true;
+            cboBairro.Enabled = true;
+            cboZona.Enabled = true;
+            cboTipoReceita.Enabled = true;
             dgvLista.Enabled = true;
 
             btnNovo.Enabled = false;
@@ -166,6 +253,51 @@ namespace EPharmacy.Forms
             cboMedicamento.DataSource = medicamento.ToList();
             cboMedicamento.DisplayMember = "Produto";
             cboMedicamento.ValueMember = "Id";
+
+            var bairroZona = _context.BairroZona.OrderBy(p => p.Bairro).Distinct().ToList();
+            BairroZona bz = new BairroZona();
+            //bz.Id = 0;
+            bz.Bairro = "<Selecione uma opção>";
+            bairroZona.Insert(0, bz);
+            cboBairro.DataSource = bairroZona.ToList();
+            cboBairro.DisplayMember = "Bairro";
+            cboBairro.ValueMember = "Bairro";
+
+            // zona
+            var zona = _context.BairroZona
+                   .OrderBy(p => p.Zona)
+                   .Select(p => p.Zona)
+                   .Distinct()
+                   .ToList();
+
+            BairroZona bzz = new BairroZona();
+            bzz.Zona = "<Selecione uma opção>";
+
+            // Criando uma lista de BairroZona que inclui a opção inicial
+            var listaZona = new List<BairroZona> { bzz };
+
+            // Adicionando as zonas distintas
+            listaZona.AddRange(_context.BairroZona
+                                        .Where(p => zona.Contains(p.Zona))
+                                        .Select(p => new BairroZona { Zona = p.Zona })
+                                        .Distinct()
+                                        .ToList());
+
+            // Agora, o ComboBox pode receber a lista de BairroZona
+            cboZona.DataSource = listaZona;
+            cboZona.DisplayMember = "Zona";
+            cboZona.ValueMember = "Zona";
+            // fim zona
+
+
+            var tipoReceita = _context.TipoReceita.OrderBy(p => p.Descricao).ToList();
+            TipoReceita tr = new TipoReceita();
+            tr.Id = 0;
+            tr.Descricao = "<Selecione uma opção>";
+            tipoReceita.Insert(0, tr);
+            cboTipoReceita.DataSource = tipoReceita.ToList();
+            cboTipoReceita.DisplayMember = "Descricao";
+            cboTipoReceita.ValueMember = "Id";
 
             Limpar();
 
@@ -220,7 +352,7 @@ namespace EPharmacy.Forms
                     {
                         // corAtual = (corAtual == cor1) ? cor2 : cor1;
                         ncoroAleatorio = random.Next(0, 10);
-                        corAtual =  cor[ncoroAleatorio];
+                        corAtual = cor[ncoroAleatorio];
                         ultimoNome = nomeAtual;
                     }
 
@@ -234,26 +366,40 @@ namespace EPharmacy.Forms
         // Não serviu
         private void dgvLista_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            foreach (DataGridViewRow row in dgvLista.Rows)
-            {
-                // Supondo que a condição está na coluna "Status"
-                //var statusValue = row.Cells["Status"].Value?.ToString();
+            //////foreach (DataGridViewRow row in dgvLista.Rows)
+            //////{
+            // Supondo que a condição está na coluna "Status"
+            //var statusValue = row.Cells["Status"].Value?.ToString();
 
-                //if (statusValue == "Aprovado")
-                //{
-                row.DefaultCellStyle.BackColor = Color.LightGreen; // Cor de fundo
-                row.DefaultCellStyle.ForeColor = Color.Black;     // Cor do texto
-                //}
-                //else if (statusValue == "Reprovado")
-                //{
-                //    row.DefaultCellStyle.BackColor = Color.LightCoral;
-                //    row.DefaultCellStyle.ForeColor = Color.White;
-                //}
-                //else
-                //{
-                //    row.DefaultCellStyle.BackColor = Color.White;
-                //    row.DefaultCellStyle.ForeColor = Color.Black;
-                //}
+            //if (statusValue == "Aprovado")
+            //{
+            //////////row.DefaultCellStyle.BackColor = Color.LightGreen; // Cor de fundo
+            //////////row.DefaultCellStyle.ForeColor = Color.Black;     // Cor do texto
+            //}
+            //else if (statusValue == "Reprovado")
+            //{
+            //    row.DefaultCellStyle.BackColor = Color.LightCoral;
+            //    row.DefaultCellStyle.ForeColor = Color.White;
+            //}
+            //else
+            //{
+            //    row.DefaultCellStyle.BackColor = Color.White;
+            //    row.DefaultCellStyle.ForeColor = Color.Black;
+            //}
+            ////////}
+
+
+            if (dgvLista.Columns[e.ColumnIndex].Name == "PrecoAcordado" || dgvLista.Columns[e.ColumnIndex].Name == "Total")
+            {
+                if (e.Value != null && decimal.TryParse(e.Value.ToString(), out decimal cellValue))
+                {
+                    // Se o valor for zero, mudar a cor de fundo da célula
+                    if (cellValue == 0)
+                    {
+                        e.CellStyle.BackColor = Color.Red;       // Cor de fundo vermelha
+                        e.CellStyle.ForeColor = Color.White;     // Cor da fonte branca
+                    }
+                }
             }
         }
 
@@ -272,6 +418,10 @@ namespace EPharmacy.Forms
                 var pacienteIdCell = row.Cells["PacienteId"];
                 var convenioIdCell = row.Cells["ConvenioId"];
                 var statusIdCell = row.Cells["StatusId"];
+                var bairroCell = row.Cells["Bairro"];
+                var zonaCell = row.Cells["Zona"];
+                var tipoReceitaIdCell = row.Cells["TipoReceitaId"];
+
                 var refil1Cell = row.Cells["Refil1"];
                 var refil2Cell = row.Cells["Refil2"];
                 var refil3Cell = row.Cells["Refil3"];
@@ -289,13 +439,18 @@ namespace EPharmacy.Forms
                 int? pacienteId = Convert.ToInt32(pacienteIdCell.Value);
                 int? convenioId = Convert.ToInt32(convenioIdCell.Value);
                 int? statusId = Convert.ToInt32(statusIdCell.Value);
+
+                string? bairro = bairroCell.Value.ToString();
+                string? zona = zonaCell.Value.ToString();
+                int? tipoReceitaId = Convert.ToInt32(tipoReceitaIdCell.Value);
+
                 DateTime refil1 = refil1Cell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(refil1Cell.Value);
                 DateTime refil2 = refil2Cell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(refil2Cell.Value);
                 DateTime refil3 = refil3Cell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(refil3Cell.Value);
                 DateTime refil4 = refil4Cell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(refil4Cell.Value);
                 DateTime refil5 = refil5Cell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(refil5Cell.Value);
                 DateTime refil6 = refil6Cell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(refil6Cell.Value);
-                DateTime refilExtra = refilExtraCell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(refilExtraCell.Value);
+                DateTime? refilExtra = refilExtraCell.Value == null ? null : Convert.ToDateTime(refilExtraCell.Value);
                 periodicidade = periodicidadeCell.Value.ToString();
 
 
@@ -307,6 +462,14 @@ namespace EPharmacy.Forms
                 cboPaciente.SelectedValue = pacienteId;
                 cboConvenio.SelectedValue = convenioId;
                 cboStatus.SelectedValue = statusId;
+                cboBairro.SelectedValue = bairro;
+                cboZona.SelectedValue = zona;
+                cboTipoReceita.SelectedValue = tipoReceitaId;
+
+                cboBairro.SelectedValue = statusId;
+                cboZona.SelectedValue = statusId;
+                cboTipoReceita.SelectedValue = statusId;
+
                 dTPRefil1.Format = DateTimePickerFormat.Short;
                 dTPRefil1.Value = refil1.Date;
                 dTPRefil2.Format = DateTimePickerFormat.Short;
@@ -320,7 +483,21 @@ namespace EPharmacy.Forms
                 dTPRefil6.Format = DateTimePickerFormat.Short;
                 dTPRefil6.Value = refil6.Date;
                 dTPRefilExtra.Format = DateTimePickerFormat.Short;
-                dTPRefilExtra.Value = refilExtra.Date;
+                //dTPRefilExtra.Value = refilExtra.Date;
+
+                if (refilExtra != null)
+                {
+                    dTPRefilExtra.Value = refilExtra.Value;
+                }
+                else
+                {
+                    dTPRefilExtra.Value = dTPRefilExtra.MinDate;
+                    dTPRefilExtra.Format = DateTimePickerFormat.Custom;
+                    dTPRefilExtra.CustomFormat = " ";
+                }
+
+                //DateTime refilExtra = refilExtraCell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(refilExtraCell.Value);
+
 
                 // dTPReceita.Value = dataReceita.Date;
                 txtId.Enabled = false;
@@ -331,6 +508,11 @@ namespace EPharmacy.Forms
                 cboPaciente.Enabled = false;
                 cboConvenio.Enabled = false;
                 cboStatus.Enabled = false;
+
+                cboBairro.Enabled = false;
+                cboZona.Enabled = false;
+                cboTipoReceita.Enabled = false;
+
                 dgvLista.Enabled = true;
 
                 dTPRefil1.Enabled = true;
@@ -404,19 +586,16 @@ namespace EPharmacy.Forms
             DateTime refil4_ = dTPRefil4.Value;
             DateTime refil5_ = dTPRefil5.Value;
             DateTime refil6_ = dTPRefil6.Value;
-            DateTime refilExtra_ = dTPRefilExtra.Value;
+            DateTime? refilExtra_ = null;
+            if (dTPRefilExtra.Value.Date != new DateTime(1753, 1, 1))
+            {
+                refilExtra_ = dTPRefilExtra.Value;
+            }
 
             var entityUpdate = new ReceitaItens();
 
             int Id_ = Convert.ToInt32(txtId.Text);
             entityUpdate = _context.ReceitaItens.Find(Id_);
-
-            /*refil2_ = refil1_.AddDays(30);
-            refil3_ = refil2_.AddDays(30);
-            refil4_ = refil3_.AddDays(30);
-            refil5_ = refil4_.AddDays(30);
-            refil6_ = refil5_.AddDays(30);
-            refilExtra_ = refil6_.AddDays(30);*/
 
             entityUpdate.Refil1 = refil1_;
             entityUpdate.Refil2 = refil2_;
@@ -441,12 +620,20 @@ namespace EPharmacy.Forms
         {
             double dblperiodicidade = Convert.ToDouble(periodicidade);
             dTPRefil2.Value = dTPRefil1.Value.AddDays(dblperiodicidade);
-            dTPRefil3.Value = dTPRefil2.Value.AddDays(dblperiodicidade);   
+            dTPRefil3.Value = dTPRefil2.Value.AddDays(dblperiodicidade);
             dTPRefil4.Value = dTPRefil3.Value.AddDays(dblperiodicidade);
             dTPRefil5.Value = dTPRefil4.Value.AddDays(dblperiodicidade);
             dTPRefil6.Value = dTPRefil5.Value.AddDays(dblperiodicidade);
         }
 
 
+        private void dTPRefilExtra_ValueChanged(object sender, EventArgs e)
+        {
+            if (dTPRefilExtra.Value.Date  != new DateTime(1753, 1, 1))
+            {
+                //DateTime refilExtra_ = dTPRefilExtra.Value;
+                dTPRefilExtra.CustomFormat = "dd/MM/yyyy";
+            }
+        }
     }
 }

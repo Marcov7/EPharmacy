@@ -10,6 +10,7 @@
         public int FabricanteId { get; set; }
         public int SubstanciaId { get; set; }
         public string? TUSS { get; set; }
+        public bool? Ativo { get; set; }
         public DateTime DataCadastro { get; set; }
         public int Usuario { get; set; }
     }

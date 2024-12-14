@@ -10,6 +10,7 @@
         //public int ConvenioId { get; set; }
         public int ClinicaId { get; set; }
         public int MedicoId { get; set; }
+        public bool? Ativo { get; set; }
         public DateTime DataCadastro { get; set; }
         public int Usuario { get; set; }
     }

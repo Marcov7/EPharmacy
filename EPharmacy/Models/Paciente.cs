@@ -34,6 +34,7 @@
         public DateTime? Validade { get; set; }
         public string? Autorizacao { get; set; }
         public int? TipoEntregaId { get; set; }
+        public bool? Ativo {  get; set; }    
 
         public DateTime DataCadastro { get; set; }
         public int Usuario { get; set; }

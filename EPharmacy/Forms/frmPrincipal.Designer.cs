@@ -52,11 +52,12 @@
             receitaToolStripMenuItem = new ToolStripMenuItem();
             receitaToolStripMenuItem1 = new ToolStripMenuItem();
             BaseCadastralToolStripMenuItem = new ToolStripMenuItem();
+            pedidoToolStripMenuItem = new ToolStripMenuItem();
+            pedidoToolStripMenuItem1 = new ToolStripMenuItem();
             ajudaToolStripMenuItem = new ToolStripMenuItem();
             sobrceToolStripMenuItem = new ToolStripMenuItem();
             sairToolStripMenuItem = new ToolStripMenuItem();
-            pedidoToolStripMenuItem = new ToolStripMenuItem();
-            pedidoToolStripMenuItem1 = new ToolStripMenuItem();
+            pedidoToolStripMenuItem2 = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -207,10 +208,10 @@
             // 
             // receitaToolStripMenuItem
             // 
-            receitaToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { receitaToolStripMenuItem1, BaseCadastralToolStripMenuItem });
+            receitaToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { receitaToolStripMenuItem1, BaseCadastralToolStripMenuItem, pedidoToolStripMenuItem2 });
             receitaToolStripMenuItem.Name = "receitaToolStripMenuItem";
-            receitaToolStripMenuItem.Size = new Size(57, 20);
-            receitaToolStripMenuItem.Text = "Receita";
+            receitaToolStripMenuItem.Size = new Size(59, 20);
+            receitaToolStripMenuItem.Text = "Entrega";
             // 
             // receitaToolStripMenuItem1
             // 
@@ -225,6 +226,21 @@
             BaseCadastralToolStripMenuItem.Size = new Size(180, 22);
             BaseCadastralToolStripMenuItem.Text = "Base Cadastral";
             BaseCadastralToolStripMenuItem.Click += baseCadastralToolStripMenuItem_Click;
+            // 
+            // pedidoToolStripMenuItem
+            // 
+            pedidoToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { pedidoToolStripMenuItem1 });
+            pedidoToolStripMenuItem.Name = "pedidoToolStripMenuItem";
+            pedidoToolStripMenuItem.Size = new Size(56, 20);
+            pedidoToolStripMenuItem.Text = "Pedido";
+            pedidoToolStripMenuItem.Visible = false;
+            // 
+            // pedidoToolStripMenuItem1
+            // 
+            pedidoToolStripMenuItem1.Name = "pedidoToolStripMenuItem1";
+            pedidoToolStripMenuItem1.Size = new Size(111, 22);
+            pedidoToolStripMenuItem1.Text = "Pedido";
+            pedidoToolStripMenuItem1.Click += pedidoToolStripMenuItem1_Click;
             // 
             // ajudaToolStripMenuItem
             // 
@@ -246,19 +262,12 @@
             sairToolStripMenuItem.Text = "Sai&r";
             sairToolStripMenuItem.Click += sairToolStripMenuItem_Click;
             // 
-            // pedidoToolStripMenuItem
+            // pedidoToolStripMenuItem2
             // 
-            pedidoToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { pedidoToolStripMenuItem1 });
-            pedidoToolStripMenuItem.Name = "pedidoToolStripMenuItem";
-            pedidoToolStripMenuItem.Size = new Size(56, 20);
-            pedidoToolStripMenuItem.Text = "Pedido";
-            // 
-            // pedidoToolStripMenuItem1
-            // 
-            pedidoToolStripMenuItem1.Name = "pedidoToolStripMenuItem1";
-            pedidoToolStripMenuItem1.Size = new Size(180, 22);
-            pedidoToolStripMenuItem1.Text = "Pedido";
-            pedidoToolStripMenuItem1.Click += pedidoToolStripMenuItem1_Click;
+            pedidoToolStripMenuItem2.Name = "pedidoToolStripMenuItem2";
+            pedidoToolStripMenuItem2.Size = new Size(180, 22);
+            pedidoToolStripMenuItem2.Text = "Pedido";
+            pedidoToolStripMenuItem2.Click += pedidoToolStripMenuItem2_Click;
             // 
             // frmPrincipal
             // 
@@ -313,5 +322,6 @@
         private ToolStripMenuItem parâmetrosToolStripMenuItem;
         private ToolStripMenuItem pedidoToolStripMenuItem;
         private ToolStripMenuItem pedidoToolStripMenuItem1;
+        private ToolStripMenuItem pedidoToolStripMenuItem2;
     }
 }

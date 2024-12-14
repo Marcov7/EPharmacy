@@ -31,14 +31,14 @@ namespace EPharmacy.Models
         public decimal PrecoAcordado { get; set; }
         public string Total { get; set; }
 
-        /*public int ReceitaId { get; set; }
-        public string ReceitaDescricao { get; set; }*/
+        public int ReceitaId { get; set; }
+        public string ReceitaDescricao { get; set; }
         public DateTime? DataReceitaAnterior { get; set; } 
         public DateTime DataReceita { get; set; }
         public int? PeriodicidadeId { get; set; }
         public string Periodicidade { get; set; }
         /*public int ClasseTerapeuticaId { get; set; }
-        public int TipoReceitaId { get; set; }
+
         public int FabricanteId { get; set; }
         public int SubstanciaId { get; set; }
         public int MedicamentoPrecoId { get; set; }*/
@@ -51,6 +51,7 @@ namespace EPharmacy.Models
         public DateTime? Refil6 { get; set; }
         public DateTime? RefilExtra { get; set; }
 
+        public int TipoReceitaId { get; set; }
         public string TipoReceita { get; set; }
         // Campos das tabelas relacionadas
 

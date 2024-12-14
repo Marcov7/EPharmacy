@@ -64,6 +64,15 @@
             dTPRefil6 = new DateTimePicker();
             dTPRefilExtra = new DateTimePicker();
             txtId = new MaskedTextBox();
+            chkMostrarIds = new CheckBox();
+            txtMesAno = new MaskedTextBox();
+            label13 = new Label();
+            cboBairro = new ComboBox();
+            label14 = new Label();
+            cboZona = new ComboBox();
+            label15 = new Label();
+            cboTipoReceita = new ComboBox();
+            label16 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvLista).BeginInit();
             SuspendLayout();
             // 
@@ -149,10 +158,11 @@
             dgvLista.Size = new Size(1333, 496);
             dgvLista.TabIndex = 78;
             dgvLista.CellClick += dgvLista_CellClick;
+            dgvLista.CellFormatting += dgvLista_CellFormatting;
             // 
             // txtEAN
             // 
-            txtEAN.Location = new Point(14, 23);
+            txtEAN.Location = new Point(76, 23);
             txtEAN.Margin = new Padding(4, 3, 4, 3);
             txtEAN.Mask = "0000000000000";
             txtEAN.Name = "txtEAN";
@@ -163,7 +173,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(16, 9);
+            label3.Location = new Point(78, 9);
             label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
             label3.Size = new Size(32, 13);
@@ -174,7 +184,7 @@
             // 
             label20.AutoSize = true;
             label20.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label20.Location = new Point(405, 9);
+            label20.Location = new Point(467, 9);
             label20.Margin = new Padding(4, 0, 4, 0);
             label20.Name = "label20";
             label20.Size = new Size(60, 13);
@@ -185,7 +195,7 @@
             // 
             cboConvenio.Enabled = false;
             cboConvenio.FormattingEnabled = true;
-            cboConvenio.Location = new Point(405, 23);
+            cboConvenio.Location = new Point(466, 23);
             cboConvenio.Margin = new Padding(4, 3, 4, 3);
             cboConvenio.Name = "cboConvenio";
             cboConvenio.Size = new Size(96, 23);
@@ -195,7 +205,7 @@
             // 
             label17.AutoSize = true;
             label17.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label17.Location = new Point(503, 9);
+            label17.Location = new Point(565, 9);
             label17.Margin = new Padding(4, 0, 4, 0);
             label17.Name = "label17";
             label17.Size = new Size(59, 13);
@@ -205,7 +215,7 @@
             // txtMatricula
             // 
             txtMatricula.Enabled = false;
-            txtMatricula.Location = new Point(502, 23);
+            txtMatricula.Location = new Point(563, 23);
             txtMatricula.Margin = new Padding(4, 3, 4, 3);
             txtMatricula.Mask = "0000000000";
             txtMatricula.Name = "txtMatricula";
@@ -216,7 +226,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(577, 9);
+            label4.Location = new Point(716, 9);
             label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
             label4.Size = new Size(57, 13);
@@ -227,7 +237,7 @@
             // 
             cboStatus.Enabled = false;
             cboStatus.FormattingEnabled = true;
-            cboStatus.Location = new Point(885, 23);
+            cboStatus.Location = new Point(946, 23);
             cboStatus.Margin = new Padding(4, 3, 4, 3);
             cboStatus.Name = "cboStatus";
             cboStatus.Size = new Size(90, 23);
@@ -237,7 +247,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(886, 9);
+            label1.Location = new Point(948, 9);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
             label1.Size = new Size(43, 13);
@@ -248,7 +258,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(90, 9);
+            label2.Location = new Point(152, 9);
             label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
             label2.Size = new Size(82, 13);
@@ -259,7 +269,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(808, 9);
+            label6.Location = new Point(639, 9);
             label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
             label6.Size = new Size(30, 13);
@@ -268,7 +278,7 @@
             // 
             // txtCPF
             // 
-            txtCPF.Location = new Point(807, 23);
+            txtCPF.Location = new Point(636, 23);
             txtCPF.Margin = new Padding(4, 3, 4, 3);
             txtCPF.Mask = "000.000.000-00";
             txtCPF.Name = "txtCPF";
@@ -279,7 +289,7 @@
             // 
             cboMedicamento.Enabled = false;
             cboMedicamento.FormattingEnabled = true;
-            cboMedicamento.Location = new Point(91, 23);
+            cboMedicamento.Location = new Point(153, 23);
             cboMedicamento.Margin = new Padding(4, 3, 4, 3);
             cboMedicamento.Name = "cboMedicamento";
             cboMedicamento.Size = new Size(312, 23);
@@ -289,7 +299,7 @@
             // 
             cboPaciente.Enabled = false;
             cboPaciente.FormattingEnabled = true;
-            cboPaciente.Location = new Point(576, 23);
+            cboPaciente.Location = new Point(714, 23);
             cboPaciente.Margin = new Padding(4, 3, 4, 3);
             cboPaciente.Name = "cboPaciente";
             cboPaciente.Size = new Size(230, 23);
@@ -449,21 +459,118 @@
             dTPRefilExtra.Name = "dTPRefilExtra";
             dTPRefilExtra.Size = new Size(187, 22);
             dTPRefilExtra.TabIndex = 99;
+            dTPRefilExtra.ValueChanged += dTPRefilExtra_ValueChanged;
             // 
             // txtId
             // 
-            txtId.Location = new Point(937, -6);
+            txtId.Location = new Point(999, -6);
             txtId.Margin = new Padding(4, 3, 4, 3);
             txtId.Mask = "00000";
             txtId.Name = "txtId";
             txtId.Size = new Size(38, 23);
             txtId.TabIndex = 87;
             // 
+            // chkMostrarIds
+            // 
+            chkMostrarIds.AutoSize = true;
+            chkMostrarIds.Location = new Point(12, 603);
+            chkMostrarIds.Name = "chkMostrarIds";
+            chkMostrarIds.Size = new Size(85, 19);
+            chkMostrarIds.TabIndex = 100;
+            chkMostrarIds.Text = "Mostrar Ids";
+            chkMostrarIds.UseVisualStyleBackColor = true;
+            // 
+            // txtMesAno
+            // 
+            txtMesAno.BackColor = Color.AliceBlue;
+            txtMesAno.Location = new Point(13, 23);
+            txtMesAno.Margin = new Padding(4, 3, 4, 3);
+            txtMesAno.Mask = "00/0000";
+            txtMesAno.Name = "txtMesAno";
+            txtMesAno.Size = new Size(59, 23);
+            txtMesAno.TabIndex = 97;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label13.ForeColor = Color.MediumBlue;
+            label13.Location = new Point(14, 9);
+            label13.Margin = new Padding(4, 0, 4, 0);
+            label13.Name = "label13";
+            label13.Size = new Size(58, 13);
+            label13.TabIndex = 98;
+            label13.Text = "Mês/Ano";
+            // 
+            // cboBairro
+            // 
+            cboBairro.Enabled = false;
+            cboBairro.FormattingEnabled = true;
+            cboBairro.Location = new Point(1037, 23);
+            cboBairro.Margin = new Padding(4, 3, 4, 3);
+            cboBairro.Name = "cboBairro";
+            cboBairro.Size = new Size(115, 23);
+            cboBairro.TabIndex = 94;
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label14.Location = new Point(1040, 9);
+            label14.Margin = new Padding(4, 0, 4, 0);
+            label14.Name = "label14";
+            label14.Size = new Size(40, 13);
+            label14.TabIndex = 93;
+            label14.Text = "Bairro";
+            // 
+            // cboZona
+            // 
+            cboZona.Enabled = false;
+            cboZona.FormattingEnabled = true;
+            cboZona.Location = new Point(1153, 23);
+            cboZona.Margin = new Padding(4, 3, 4, 3);
+            cboZona.Name = "cboZona";
+            cboZona.Size = new Size(96, 23);
+            cboZona.TabIndex = 94;
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label15.Location = new Point(1151, 9);
+            label15.Margin = new Padding(4, 0, 4, 0);
+            label15.Name = "label15";
+            label15.Size = new Size(36, 13);
+            label15.TabIndex = 93;
+            label15.Text = "Zona";
+            // 
+            // cboTipoReceita
+            // 
+            cboTipoReceita.Enabled = false;
+            cboTipoReceita.FormattingEnabled = true;
+            cboTipoReceita.Location = new Point(1250, 23);
+            cboTipoReceita.Margin = new Padding(4, 3, 4, 3);
+            cboTipoReceita.Name = "cboTipoReceita";
+            cboTipoReceita.Size = new Size(96, 23);
+            cboTipoReceita.TabIndex = 94;
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label16.Location = new Point(1247, 9);
+            label16.Margin = new Padding(4, 0, 4, 0);
+            label16.Name = "label16";
+            label16.Size = new Size(80, 13);
+            label16.TabIndex = 93;
+            label16.Text = "Tipo Receita";
+            // 
             // frmBaseCadastral
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1355, 630);
+            Controls.Add(chkMostrarIds);
             Controls.Add(dTPRefilExtra);
             Controls.Add(dTPRefil6);
             Controls.Add(dTPRefil5);
@@ -471,15 +578,23 @@
             Controls.Add(dTPRefil3);
             Controls.Add(dTPRefil2);
             Controls.Add(dTPRefil1);
+            Controls.Add(label13);
             Controls.Add(label6);
+            Controls.Add(txtMesAno);
             Controls.Add(txtCPF);
             Controls.Add(label2);
             Controls.Add(label4);
             Controls.Add(label1);
+            Controls.Add(label16);
+            Controls.Add(label15);
+            Controls.Add(label14);
             Controls.Add(label20);
             Controls.Add(cboPaciente);
             Controls.Add(cboStatus);
             Controls.Add(cboMedicamento);
+            Controls.Add(cboTipoReceita);
+            Controls.Add(cboZona);
+            Controls.Add(cboBairro);
             Controls.Add(cboConvenio);
             Controls.Add(label17);
             Controls.Add(txtMatricula);
@@ -546,5 +661,15 @@
         private DateTimePicker dTPRefil6;
         private DateTimePicker dTPRefilExtra;
         private MaskedTextBox txtId;
+        private CheckBox chkMostrarIds;
+        private MaskedTextBox txtMesAno;
+        private Label label13;
+        private ComboBox cboBairro;
+        private Label label14;
+        private ComboBox cboZona;
+        private Label label15;
+        private ComboBox comboBox1;
+        private Label label16;
+        private ComboBox cboTipoReceita;
     }
 }

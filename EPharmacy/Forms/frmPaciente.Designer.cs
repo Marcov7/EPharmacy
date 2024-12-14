@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             btnPesquisar = new Button();
             btnNovo = new Button();
             btnExcluir = new Button();
@@ -85,6 +84,7 @@
             label24 = new Label();
             cboTipoEntrega = new ComboBox();
             label19 = new Label();
+            chkAtivo = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)dgvLista).BeginInit();
             SuspendLayout();
             // 
@@ -169,14 +169,6 @@
             dgvLista.Location = new Point(22, 222);
             dgvLista.Margin = new Padding(4, 3, 4, 3);
             dgvLista.Name = "dgvLista";
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Control;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgvLista.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvLista.Size = new Size(1116, 300);
             dgvLista.TabIndex = 79;
             dgvLista.CellClick += dgvLista_CellClick;
@@ -522,7 +514,7 @@
             // txtCarteirinha
             // 
             txtCarteirinha.Enabled = false;
-            txtCarteirinha.Location = new Point(528, 193);
+            txtCarteirinha.Location = new Point(472, 193);
             txtCarteirinha.Margin = new Padding(4, 3, 4, 3);
             txtCarteirinha.MaxLength = 255;
             txtCarteirinha.Multiline = true;
@@ -544,18 +536,18 @@
             // txtMatricula
             // 
             txtMatricula.Enabled = false;
-            txtMatricula.Location = new Point(409, 193);
+            txtMatricula.Location = new Point(407, 193);
             txtMatricula.Margin = new Padding(4, 3, 4, 3);
             txtMatricula.Mask = "0000000000";
             txtMatricula.Name = "txtMatricula";
-            txtMatricula.Size = new Size(116, 23);
+            txtMatricula.Size = new Size(64, 23);
             txtMatricula.TabIndex = 63;
             // 
             // label18
             // 
             label18.AutoSize = true;
             label18.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label18.Location = new Point(528, 176);
+            label18.Location = new Point(474, 176);
             label18.Margin = new Padding(4, 0, 4, 0);
             label18.Name = "label18";
             label18.Size = new Size(68, 13);
@@ -586,7 +578,7 @@
             // txtAutorizacao
             // 
             txtAutorizacao.Enabled = false;
-            txtAutorizacao.Location = new Point(678, 193);
+            txtAutorizacao.Location = new Point(616, 193);
             txtAutorizacao.Margin = new Padding(4, 3, 4, 3);
             txtAutorizacao.MaxLength = 255;
             txtAutorizacao.Multiline = true;
@@ -598,7 +590,7 @@
             // 
             label21.AutoSize = true;
             label21.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label21.Location = new Point(678, 176);
+            label21.Location = new Point(620, 176);
             label21.Margin = new Padding(4, 0, 4, 0);
             label21.Name = "label21";
             label21.Size = new Size(74, 13);
@@ -664,7 +656,7 @@
             // 
             cboModalidadeEntrega.Enabled = false;
             cboModalidadeEntrega.FormattingEnabled = true;
-            cboModalidadeEntrega.Location = new Point(838, 193);
+            cboModalidadeEntrega.Location = new Point(775, 193);
             cboModalidadeEntrega.Margin = new Padding(4, 3, 4, 3);
             cboModalidadeEntrega.Name = "cboModalidadeEntrega";
             cboModalidadeEntrega.Size = new Size(152, 23);
@@ -674,7 +666,7 @@
             // 
             label24.AutoSize = true;
             label24.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label24.Location = new Point(836, 176);
+            label24.Location = new Point(775, 176);
             label24.Margin = new Padding(4, 0, 4, 0);
             label24.Name = "label24";
             label24.Size = new Size(138, 13);
@@ -684,7 +676,7 @@
             // cboTipoEntrega
             // 
             cboTipoEntrega.Enabled = false;
-            cboTipoEntrega.Location = new Point(992, 193);
+            cboTipoEntrega.Location = new Point(929, 193);
             cboTipoEntrega.Margin = new Padding(4, 3, 4, 3);
             cboTipoEntrega.MaxLength = 255;
             cboTipoEntrega.Name = "cboTipoEntrega";
@@ -695,18 +687,29 @@
             // 
             label19.AutoSize = true;
             label19.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label19.Location = new Point(993, 176);
+            label19.Location = new Point(928, 176);
             label19.Margin = new Padding(4, 0, 4, 0);
             label19.Name = "label19";
             label19.Size = new Size(80, 13);
             label19.TabIndex = 100;
             label19.Text = "Tipo Entrega";
             // 
+            // chkAtivo
+            // 
+            chkAtivo.AutoSize = true;
+            chkAtivo.Location = new Point(1089, 197);
+            chkAtivo.Name = "chkAtivo";
+            chkAtivo.Size = new Size(56, 19);
+            chkAtivo.TabIndex = 101;
+            chkAtivo.Text = "Ativo";
+            chkAtivo.UseVisualStyleBackColor = true;
+            // 
             // frmPaciente
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1164, 573);
+            Controls.Add(chkAtivo);
             Controls.Add(cboTipoEntrega);
             Controls.Add(label19);
             Controls.Add(btnBuscar);
@@ -763,6 +766,7 @@
             Controls.Add(txtNome);
             Controls.Add(txtCEP);
             Controls.Add(txtId);
+            Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             Name = "frmPaciente";
             Text = "Paciente";
             Load += frmPaciente_Load;
@@ -835,5 +839,6 @@
         private Label label25;
         private ComboBox cboModalidadeEntrega;
         private ComboBox cboTipoEntrega;
+        private CheckBox chkAtivo;
     }
 }

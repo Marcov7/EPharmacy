@@ -35,11 +35,8 @@
             btnLimpar = new Button();
             btnSair = new Button();
             dgvLista = new DataGridView();
-            label4 = new Label();
-            label7 = new Label();
             txtDescricao = new TextBox();
             txtId = new MaskedTextBox();
-            label5 = new Label();
             cboPaciente = new ComboBox();
             label16 = new Label();
             dTPDataReceitaAnterior = new DateTimePicker();
@@ -50,6 +47,10 @@
             cboMedico = new ComboBox();
             label1 = new Label();
             panel1 = new Panel();
+            label5 = new Label();
+            label15 = new Label();
+            label9 = new Label();
+            txtCPF = new MaskedTextBox();
             label14 = new Label();
             label2 = new Label();
             dTPReceita = new DateTimePicker();
@@ -160,28 +161,6 @@
             dgvLista.TabIndex = 90;
             dgvLista.CellClick += dgvLista_CellClick;
             // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(86, 25);
-            label4.Margin = new Padding(4, 0, 4, 0);
-            label4.Name = "label4";
-            label4.Size = new Size(121, 13);
-            label4.TabIndex = 85;
-            label4.Text = "Lembrete (Opcional)";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.Location = new Point(22, 25);
-            label7.Margin = new Padding(4, 0, 4, 0);
-            label7.Name = "label7";
-            label7.Size = new Size(18, 13);
-            label7.TabIndex = 89;
-            label7.Text = "Id";
-            // 
             // txtDescricao
             // 
             txtDescricao.Location = new Point(86, 41);
@@ -200,17 +179,6 @@
             txtId.Name = "txtId";
             txtId.Size = new Size(60, 23);
             txtId.TabIndex = 80;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.Location = new Point(552, 25);
-            label5.Margin = new Padding(4, 0, 4, 0);
-            label5.Name = "label5";
-            label5.Size = new Size(57, 13);
-            label5.TabIndex = 98;
-            label5.Text = "Paciente";
             // 
             // cboPaciente
             // 
@@ -310,6 +278,10 @@
             // 
             panel1.BackColor = Color.FromArgb(192, 255, 255);
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(label5);
+            panel1.Controls.Add(label15);
+            panel1.Controls.Add(label9);
+            panel1.Controls.Add(txtCPF);
             panel1.Controls.Add(label14);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(label1);
@@ -322,6 +294,48 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1268, 603);
             panel1.TabIndex = 101;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.Location = new Point(78, 9);
+            label5.Margin = new Padding(4, 0, 4, 0);
+            label5.Name = "label5";
+            label5.Size = new Size(121, 13);
+            label5.TabIndex = 103;
+            label5.Text = "Lembrete (Opcional)";
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label15.Location = new Point(540, 9);
+            label15.Margin = new Padding(4, 0, 4, 0);
+            label15.Name = "label15";
+            label15.Size = new Size(57, 13);
+            label15.TabIndex = 103;
+            label15.Text = "Paciente";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label9.Location = new Point(13, 9);
+            label9.Margin = new Padding(4, 0, 4, 0);
+            label9.Name = "label9";
+            label9.Size = new Size(18, 13);
+            label9.TabIndex = 103;
+            label9.Text = "Id";
+            // 
+            // txtCPF
+            // 
+            txtCPF.Location = new Point(1016, 25);
+            txtCPF.Margin = new Padding(4, 3, 4, 3);
+            txtCPF.Mask = "000.000.000-00";
+            txtCPF.Name = "txtCPF";
+            txtCPF.Size = new Size(112, 23);
+            txtCPF.TabIndex = 102;
             // 
             // label14
             // 
@@ -508,6 +522,7 @@
             cboMedicamento.Name = "cboMedicamento";
             cboMedicamento.Size = new Size(502, 23);
             cboMedicamento.TabIndex = 97;
+            cboMedicamento.SelectedIndexChanged += cboMedicamento_SelectedIndexChanged;
             // 
             // cboStatus
             // 
@@ -544,7 +559,6 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1291, 623);
-            Controls.Add(label5);
             Controls.Add(cboPaciente);
             Controls.Add(btnPesquisar);
             Controls.Add(btnNovo);
@@ -553,9 +567,7 @@
             Controls.Add(btnLimpar);
             Controls.Add(btnSair);
             Controls.Add(dgvLista);
-            Controls.Add(label4);
             Controls.Add(RECEITA);
-            Controls.Add(label7);
             Controls.Add(txtDescricao);
             Controls.Add(txtId);
             Controls.Add(panel1);
@@ -583,14 +595,11 @@
         private DataGridView dgvLista;
         private Label label3;
         private Label RECEITA;
-        private Label label4;
-        private Label label7;
         private TextBox txtEmail;
         private TextBox txtSenha;
         private TextBox txtLogin;
         private TextBox txtDescricao;
         private MaskedTextBox txtId;
-        private Label label5;
         private ComboBox cboPaciente;
         private Label label16;
         private DateTimePicker dTPUltimaReceita;
@@ -623,5 +632,9 @@
         private Label lblObs;
         private MaskedTextBox txtQtdd;
         private DateTimePicker dTPDataReceitaAnterior;
+        private Label label5;
+        private Label label15;
+        private Label label9;
+        private MaskedTextBox txtCPF;
     }
 }
