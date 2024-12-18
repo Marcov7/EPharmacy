@@ -401,7 +401,14 @@ namespace ControleEntregada.Forms
 
 
             var parametrosList = parametros.ToList();
-            decimal ValorParametros = parametrosList[0].Valor;
+
+            bool sucesso = decimal.TryParse(parametrosList[0].Valor, out decimal Valor);
+            if (!sucesso)
+            {
+                Console.WriteLine("Erro no valor. Verifique a tabela de Parâmentro e tente novamente");
+            }
+
+            decimal ValorParametros =  Valor/100;
 
             if (txtPMCBrasindice.Value != 0 && ValorParametros != 0)
             {

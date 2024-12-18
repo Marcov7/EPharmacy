@@ -49,21 +49,22 @@
             preçoDeMedicamentoToolStripMenuItem = new ToolStripMenuItem();
             pacienteToolStripMenuItem = new ToolStripMenuItem();
             cadastroDePacienteToolStripMenuItem = new ToolStripMenuItem();
-            receitaToolStripMenuItem = new ToolStripMenuItem();
+            receitaToolStripMenuItem2 = new ToolStripMenuItem();
             receitaToolStripMenuItem1 = new ToolStripMenuItem();
-            BaseCadastralToolStripMenuItem = new ToolStripMenuItem();
             pedidoToolStripMenuItem = new ToolStripMenuItem();
             pedidoToolStripMenuItem1 = new ToolStripMenuItem();
+            receitaToolStripMenuItem = new ToolStripMenuItem();
+            BaseCadastralToolStripMenuItem = new ToolStripMenuItem();
+            pedidoToolStripMenuItem2 = new ToolStripMenuItem();
             ajudaToolStripMenuItem = new ToolStripMenuItem();
             sobrceToolStripMenuItem = new ToolStripMenuItem();
             sairToolStripMenuItem = new ToolStripMenuItem();
-            pedidoToolStripMenuItem2 = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { cadastroToolStripMenuItem, mmedicamentoToolStripMenuItem, pacienteToolStripMenuItem, receitaToolStripMenuItem, pedidoToolStripMenuItem, ajudaToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { cadastroToolStripMenuItem, mmedicamentoToolStripMenuItem, pacienteToolStripMenuItem, receitaToolStripMenuItem2, pedidoToolStripMenuItem, receitaToolStripMenuItem, ajudaToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(800, 24);
@@ -206,26 +207,19 @@
             cadastroDePacienteToolStripMenuItem.Text = "Cadastro de Paciente";
             cadastroDePacienteToolStripMenuItem.Click += cadastroDePacienteToolStripMenuItem_Click;
             // 
-            // receitaToolStripMenuItem
+            // receitaToolStripMenuItem2
             // 
-            receitaToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { receitaToolStripMenuItem1, BaseCadastralToolStripMenuItem, pedidoToolStripMenuItem2 });
-            receitaToolStripMenuItem.Name = "receitaToolStripMenuItem";
-            receitaToolStripMenuItem.Size = new Size(59, 20);
-            receitaToolStripMenuItem.Text = "Entrega";
+            receitaToolStripMenuItem2.DropDownItems.AddRange(new ToolStripItem[] { receitaToolStripMenuItem1 });
+            receitaToolStripMenuItem2.Name = "receitaToolStripMenuItem2";
+            receitaToolStripMenuItem2.Size = new Size(57, 20);
+            receitaToolStripMenuItem2.Text = "Receita";
             // 
             // receitaToolStripMenuItem1
             // 
             receitaToolStripMenuItem1.Name = "receitaToolStripMenuItem1";
             receitaToolStripMenuItem1.Size = new Size(180, 22);
-            receitaToolStripMenuItem1.Text = "Receita";
+            receitaToolStripMenuItem1.Text = "Cadastro de Receita";
             receitaToolStripMenuItem1.Click += receitaToolStripMenuItem1_Click;
-            // 
-            // BaseCadastralToolStripMenuItem
-            // 
-            BaseCadastralToolStripMenuItem.Name = "BaseCadastralToolStripMenuItem";
-            BaseCadastralToolStripMenuItem.Size = new Size(180, 22);
-            BaseCadastralToolStripMenuItem.Text = "Base Cadastral";
-            BaseCadastralToolStripMenuItem.Click += baseCadastralToolStripMenuItem_Click;
             // 
             // pedidoToolStripMenuItem
             // 
@@ -241,6 +235,27 @@
             pedidoToolStripMenuItem1.Size = new Size(111, 22);
             pedidoToolStripMenuItem1.Text = "Pedido";
             pedidoToolStripMenuItem1.Click += pedidoToolStripMenuItem1_Click;
+            // 
+            // receitaToolStripMenuItem
+            // 
+            receitaToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { BaseCadastralToolStripMenuItem, pedidoToolStripMenuItem2 });
+            receitaToolStripMenuItem.Name = "receitaToolStripMenuItem";
+            receitaToolStripMenuItem.Size = new Size(59, 20);
+            receitaToolStripMenuItem.Text = "Entrega";
+            // 
+            // BaseCadastralToolStripMenuItem
+            // 
+            BaseCadastralToolStripMenuItem.Name = "BaseCadastralToolStripMenuItem";
+            BaseCadastralToolStripMenuItem.Size = new Size(180, 22);
+            BaseCadastralToolStripMenuItem.Text = "Base Cadastral";
+            BaseCadastralToolStripMenuItem.Click += baseCadastralToolStripMenuItem_Click;
+            // 
+            // pedidoToolStripMenuItem2
+            // 
+            pedidoToolStripMenuItem2.Name = "pedidoToolStripMenuItem2";
+            pedidoToolStripMenuItem2.Size = new Size(180, 22);
+            pedidoToolStripMenuItem2.Text = "Pedido";
+            pedidoToolStripMenuItem2.Click += pedidoToolStripMenuItem2_Click;
             // 
             // ajudaToolStripMenuItem
             // 
@@ -261,13 +276,6 @@
             sairToolStripMenuItem.Size = new Size(220, 22);
             sairToolStripMenuItem.Text = "Sai&r";
             sairToolStripMenuItem.Click += sairToolStripMenuItem_Click;
-            // 
-            // pedidoToolStripMenuItem2
-            // 
-            pedidoToolStripMenuItem2.Name = "pedidoToolStripMenuItem2";
-            pedidoToolStripMenuItem2.Size = new Size(180, 22);
-            pedidoToolStripMenuItem2.Text = "Pedido";
-            pedidoToolStripMenuItem2.Click += pedidoToolStripMenuItem2_Click;
             // 
             // frmPrincipal
             // 
@@ -317,11 +325,12 @@
         private ToolStripMenuItem receitaToolStripMenuItem;
         private ToolStripMenuItem periodicidadeRefilToolStripMenuItem;
         private ToolStripMenuItem medicoToolStripMenuItem;
-        private ToolStripMenuItem receitaToolStripMenuItem1;
         private ToolStripMenuItem BaseCadastralToolStripMenuItem;
         private ToolStripMenuItem parâmetrosToolStripMenuItem;
         private ToolStripMenuItem pedidoToolStripMenuItem;
         private ToolStripMenuItem pedidoToolStripMenuItem1;
         private ToolStripMenuItem pedidoToolStripMenuItem2;
+        private ToolStripMenuItem receitaToolStripMenuItem2;
+        private ToolStripMenuItem receitaToolStripMenuItem1;
     }
 }

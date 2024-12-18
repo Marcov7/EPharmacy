@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace EPharmacy.BLL
 {
@@ -176,14 +177,15 @@ namespace EPharmacy.BLL
             //}
         }
 
-         
-        public  IList<MedicamentoPrecoViewModel> GetMedicamentosParaProximos6Meses(DateTime? dataComparacao, string EAN, int? MedicamentoId, int? ConvenioId, string CPF, string Matricula, int? PacienteId, int? StatusId, string Bairro, string Zona, int? tipoReceitaId)
+
+        public IList<MedicamentoPrecoViewModel> GetMedicamentosParaProximos6Meses(DateTime? dataComparacao, string EAN, int? MedicamentoId, int? ConvenioId, string CPF, string Matricula, int? PacienteId, int? StatusId, string Bairro, string Zona, int? tipoReceitaId)
         {
 
             int Mes = 0;
-            int Ano = 0;        
-            
-            if (dataComparacao != null) {
+            int Ano = 0;
+
+            if (dataComparacao != null)
+            {
                 Mes = dataComparacao.Value.Month;
                 Ano = dataComparacao.Value.Year;
             }
@@ -191,10 +193,10 @@ namespace EPharmacy.BLL
             var dataLimite = DateTime.Now.AddMonths(-6);  // Calculando a data para 6 meses a partir de hoje
 
             // Query para pegar os medicamentos e seus preços, incluindo as tabelas relacionadas
-            IList<MedicamentoPrecoViewModel> medicamentos =  (
+            IList<MedicamentoPrecoViewModel> medicamentos = (
                                       from re in _context.Receita
                                       join ri in _context.ReceitaItens on re.Id equals ri.ReceitaId
-                                      join m  in _context.Medicamento on ri.MedicamentoId equals m.Id
+                                      join m in _context.Medicamento on ri.MedicamentoId equals m.Id
                                       join mp in _context.MedicamentoPreco on m.Id equals mp.MedicamentoId
                                       join ct in _context.ClasseTerapeutica on m.ClasseTerapeuticaId equals ct.Id
                                       join tr in _context.TipoReceita on m.TipoReceitaId equals tr.Id
@@ -209,22 +211,22 @@ namespace EPharmacy.BLL
 
                                       where re.DataReceita >= dataLimite
                                       && ((ri.Refil1.Value.Month == Mes && ri.Refil1.Value.Year == Ano) ||
-                                          (ri.Refil2.Value.Month == Mes && ri.Refil2.Value.Year == Ano) || 
-                                          (ri.Refil3.Value.Month == Mes && ri.Refil3.Value.Year == Ano) || 
-                                          (ri.Refil4.Value.Month == Mes && ri.Refil4.Value.Year == Ano) || 
+                                          (ri.Refil2.Value.Month == Mes && ri.Refil2.Value.Year == Ano) ||
+                                          (ri.Refil3.Value.Month == Mes && ri.Refil3.Value.Year == Ano) ||
+                                          (ri.Refil4.Value.Month == Mes && ri.Refil4.Value.Year == Ano) ||
                                           (ri.Refil5.Value.Month == Mes && ri.Refil5.Value.Year == Ano) ||
                                           (ri.Refil6.Value.Month == Mes && ri.Refil6.Value.Year == Ano) ||
                                           (ri.RefilExtra.Value.Month == Mes && ri.RefilExtra.Value.Year == Ano) || dataComparacao == null)
-                                      &&  (m.EAN == EAN || EAN.IsNullOrEmpty())
-                                      &&  (pc.Matricula == Matricula || Matricula.IsNullOrEmpty())
-                                      &&  (pc.CPF == CPF || CPF.IsNullOrEmpty())
-                                      &&  (pc.ConvenioId == ConvenioId || ConvenioId == null)
-                                      &&  (pc.Id == PacienteId || PacienteId == null)
-                                      &&  (m.Id == MedicamentoId || MedicamentoId == null)
-                                      &&  (ri.StatusId == StatusId || StatusId == null)
-                                      &&  (pc.Bairro == Bairro || Bairro.IsNullOrEmpty())
-                                      &&  (pc.Zona == Zona || Zona.IsNullOrEmpty())
-                                      &&  (m.TipoReceitaId == tipoReceitaId || tipoReceitaId == null)
+                                      && (m.EAN == EAN || EAN.IsNullOrEmpty())
+                                      && (pc.Matricula == Matricula || Matricula.IsNullOrEmpty())
+                                      && (pc.CPF == CPF || CPF.IsNullOrEmpty())
+                                      && (pc.ConvenioId == ConvenioId || ConvenioId == null)
+                                      && (pc.Id == PacienteId || PacienteId == null)
+                                      && (m.Id == MedicamentoId || MedicamentoId == null)
+                                      && (ri.StatusId == StatusId || StatusId == null)
+                                      && (pc.Bairro == Bairro || Bairro.IsNullOrEmpty())
+                                      && (pc.Zona == Zona || Zona.IsNullOrEmpty())
+                                      && (m.TipoReceitaId == tipoReceitaId || tipoReceitaId == null)
 
                                       orderby ri.Id, m.Id
                                       select new MedicamentoPrecoViewModel
@@ -251,7 +253,7 @@ namespace EPharmacy.BLL
                                           PrecoAcordado = mp.PrecoAcordado,
                                           //Total = ri.Qtdd.Value* mp.PrecoAcordado,
                                           //Total = Math.Round(ri.Qtdd.Value * mp.PrecoAcordado, 2),
-                                          Total = $"{ri.Qtdd.Value * mp.PrecoAcordado:F2}"   ,
+                                          Total = $"{ri.Qtdd.Value * mp.PrecoAcordado:F2}",
                                           ReceitaId = re.Id,
                                           ReceitaDescricao = re.Descricao,
                                           DataReceitaAnterior = ri.DataReceitaAnterior,
@@ -278,12 +280,12 @@ namespace EPharmacy.BLL
                                           Bairro = pc.Bairro,
                                           CEP = pc.CEP,
                                           Zona = pc.Zona,
-                                          Modalidade = md.Descricao, 
+                                          Modalidade = md.Descricao,
                                           TipoEntrega = te.Descricao,
                                           Autorizacao = pc.Autorizacao,
                                           // Incluindo as tabelas relacionadas
                                           ClasseTerapeutica = ct.Descricao,
-   
+
                                           Fabricante = fa.Descricao,
                                           Substancia = sb.Descricao
 
@@ -295,6 +297,63 @@ namespace EPharmacy.BLL
 
 
 
+        // Não usado. Usa COM e acho q é antigo.
+        public string ExportaXlsOld(DataGridView dgv)
+        {
+            string Data = DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString();
+            string Tempo = DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString();
+
+            try
+            {
+                Excel.Application app = new Excel.Application();
+                Excel.Workbook pasta = app.Workbooks.Add();
+                Excel.Worksheet plan;
+                plan = pasta.Worksheets.Add();
+                plan.Name = "BC" + DateTime.Now.ToString();
+
+                plan.Range["A1"].Value = "Base Cadastral: " + DateTime.Now.ToString();
+
+                plan.Range["A3"].Value = "Matricula";
+                plan.Range["B3"].Value = "Convênio";
+                plan.Range["C3"].Value = "CPF";
+                plan.Range["D3"].Value = "Nome";
+                plan.Range["E3"].Value = "Status";
+                plan.Range["F3"].Value = "Inclusão Convênio";
+                plan.Range["G3"].Value = "EAN";
+
+                plan.Range["H3"].Value = "Produto";
+                plan.Range["I3"].Value = "Qtdd";
+                plan.Range["J3"].Value = "Preço Acordado";
+                plan.Range["K3"].Value = "Total";
+
+                plan.Range["L3"].Value = "Receita Anterior";
+                plan.Range["M3"].Value = "Data Receita";
+                plan.Range["N3"].Value = "Periocidade";
+                plan.Range["O3"].Value = "Refil1";
+                plan.Range["P3"].Value = "Refil2";
+                plan.Range["Q3"].Value = "Refil3";
+                plan.Range["R3"].Value = "Refil4";
+                plan.Range["S3"].Value = "Refil5";
+                plan.Range["T3"].Value = "Refil6";
+                plan.Range["U3"].Value = "Refil Extra";
+                plan.Range["V3"].Value = "Refil Extra";
+                plan.Range["W3"].Value = "Refil Extra";
+                plan.Range["X3"].Value = "Refil Extra";
+                plan.Range["Y3"].Value = "Refil Extra";
+                plan.Range["Z3"].Value = "Refil Extra";
+
+
+                pasta.SaveAs(@"C:\Users\marcov\OneDrive\Documents\BC" + Data + "-" + Tempo);
+                pasta.Close();
+                app.Quit();
+
+                return "Planilha gerada com sucesso.";
+            }
+            catch
+            {
+                return "Planilha não gerada";
+            }
+        }
 
     }
 

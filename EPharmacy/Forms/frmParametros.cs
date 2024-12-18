@@ -91,7 +91,7 @@ namespace EPharmacy.Forms
         private void btnExcluir_Click(object sender, EventArgs e)
         {
             DialogResult resultado = MessageBox.Show(
-                "Você tem certeza que deseja Excluir o Tipo Entrega Selecionado?",
+                "Você tem certeza que deseja Excluir o Parâmetro Selecionado?",
                 "Confirmação",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question
@@ -103,28 +103,28 @@ namespace EPharmacy.Forms
             }
 
             int Id_ = Convert.ToInt32(txtId.Text);
-            var Delete = _context.TipoEntrega.Find(Id_);
+            var Delete = _context.Parametros.Find(Id_);
 
             if (Delete != null)
             {
-                var paciente = _context.Paciente.FirstOrDefault(b => b.TipoEntregaId == Id_);
+                //var paciente = _context.Paciente.FirstOrDefault(b => b.TipoEntregaId == Id_);
 
-                if (paciente != null)
-                {
-                    MessageBox.Show("Tipo Entrega não pode ser excluído. Tem dados relacionados entre Receita com Tipo Entrega!");
-                    return;
-                }
+                //if (paciente != null)
+                //{
+                //    MessageBox.Show("Parâmetro não pode ser excluído. Tem dados relacionados entre Receita com Parâmetro!");
+                //    return;
+                //}
 
-                _context.TipoEntrega.Remove(Delete);
+                _context.Parametros.Remove(Delete);
                 _context.SaveChangesAsync();
-                MessageBox.Show("Tipo Entrega excluído com sucesso!");
+                MessageBox.Show("Parâmetro excluído com sucesso!");
 
                 Limpar();
                 btnPesquisar_Click(null, null);
             }
             else
             {
-                MessageBox.Show("Tipo Entrega não encontrado.");
+                MessageBox.Show("Parâmetro não encontrado.");
             }
         }
 
@@ -166,7 +166,7 @@ namespace EPharmacy.Forms
             }
 
             string Descricao_ = txtDescricao.Text;
-            Decimal valorParametro_ = txtValorParametro.Value;
+            string valorParametro_ = txtValorParametro.Value.ToString();
             string direcaoMaisMenos_ = txtDirecaoMaisMenos.Text;
 
             var entityNew = new Parametros();

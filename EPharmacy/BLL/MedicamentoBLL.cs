@@ -36,10 +36,16 @@ namespace EPharmacy.BLL
                 // Atualizar todos os registros de MedicamentoPreco
                 var medicamentos = _context.MedicamentoPreco.ToList();
 
+                bool sucesso = decimal.TryParse(parametro.Valor, out decimal Valor);
+                if (!sucesso)
+                {
+                    return " Erro no valor. Verifique a tabela de Parâmentro e tente novamente";
+                }
+
                 string retorno = "";
                 foreach (var medicamento in medicamentos)
                 { 
-                    medicamento.PrecoAcordado = Math.Round(medicamento.PrecoPmcBrasindice * (1 - parametro.Valor), 2);
+                    medicamento.PrecoAcordado = Math.Round(medicamento.PrecoPmcBrasindice * (1 - Valor/100), 2);
                     retorno = "Alterado e";
                 }
 

@@ -323,7 +323,7 @@ namespace EPharmacy
                 MdiParent = this,
             };
             formulario.Show();
-            formulario.Location = new Point(20, 10);
+            formulario.Location = new Point(20, 2);
         }
 
 
@@ -390,8 +390,6 @@ namespace EPharmacy
             formulario.Show();
             formulario.Location = new Point(5, 5);
         }
-
-
 
         private void pedidoToolStripMenuItem2_Click(object sender, EventArgs e)
         {

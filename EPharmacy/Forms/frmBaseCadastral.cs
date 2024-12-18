@@ -120,6 +120,8 @@ namespace EPharmacy.Forms
             dgvLista.Columns["ConvenioId"].Visible = chkMostrarIds.Checked;
 
             HighlightRowsByNameChange();
+
+            btnExportar.Enabled = true;
         }
 
 
@@ -206,6 +208,7 @@ namespace EPharmacy.Forms
             cboTipoReceita.Enabled = true;
             dgvLista.Enabled = true;
 
+            btnExportar.Enabled = false;
             btnNovo.Enabled = false;
             btnPesquisar.Enabled = true;
             btnSalvar.Enabled = false;
@@ -523,6 +526,7 @@ namespace EPharmacy.Forms
                 dTPRefil6.Enabled = true;
                 dTPRefilExtra.Enabled = true;
 
+                btnExportar.Enabled = true;
                 btnNovo.Enabled = false;
                 btnPesquisar.Enabled = true;
                 btnSalvar.Enabled = true;
@@ -629,11 +633,40 @@ namespace EPharmacy.Forms
 
         private void dTPRefilExtra_ValueChanged(object sender, EventArgs e)
         {
-            if (dTPRefilExtra.Value.Date  != new DateTime(1753, 1, 1))
+            if (dTPRefilExtra.Value.Date != new DateTime(1753, 1, 1))
             {
                 //DateTime refilExtra_ = dTPRefilExtra.Value;
                 dTPRefilExtra.CustomFormat = "dd/MM/yyyy";
             }
+        }
+
+
+        private void btnExportar_Click(object sender, EventArgs e)
+        {
+
+            string Data = DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString();
+            string Tempo = DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString();
+            string NomeArquivo = "BC" + Data + Tempo + ".xlsx";
+            string Path = null;
+
+            var parametro = _context.Parametros.FirstOrDefault(p => p.Descricao == "PastaParaArmazenarArquivos");
+
+            if (parametro == null)
+            {
+                MessageBox.Show("Parâmetro com Descrição 'PercentePraCalculo' não encontrado.", "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            Path = parametro.Valor;
+
+            string retorno = ExportExcel.ExportDataGridViewToExcel(dgvLista, NomeArquivo, Path);
+
+            if (!retorno.IsNullOrEmpty())
+            {
+                MessageBox.Show(retorno, "Confirmação", MessageBoxButtons.OK, retorno.Contains("Erro") ? MessageBoxIcon.Error : MessageBoxIcon.Exclamation);
+                return;
+            }
+
         }
     }
 }

@@ -161,7 +161,10 @@ namespace EPharmacy.Forms
             //cboConvenio.SelectedIndex = 0;
             cboClinica.SelectedIndex = 0;
             // cboMedico.SelectedIndex = 0;
-            dTPDataReceitaAnterior.Value = DateTime.Now;
+            //dTPDataReceitaAnterior.Value = dTPDataReceitaAnterior.MaxDate;
+            dTPDataReceitaAnterior.Format = DateTimePickerFormat.Custom;
+            dTPDataReceitaAnterior.CustomFormat = " ";
+
             cboPeriodicidadeRefil.SelectedIndex = 0;
             dgvLista.DataSource = null;
             dGVReceitaItens.DataSource = null;
@@ -584,7 +587,7 @@ namespace EPharmacy.Forms
                 txtReceitaItemId.Enabled = false;
                 txtReceitaId.Enabled = false;
                 cboMedicamento.Enabled = true;
-                dTPDataReceitaAnterior.Enabled = true;
+                dTPDataReceitaAnterior.Enabled = false;
                 cboPeriodicidadeRefil.Enabled = true;
                 cboStatus.Enabled = true;
                 txtObs.Enabled = true;
@@ -608,10 +611,10 @@ namespace EPharmacy.Forms
             }
 
             //sob subspeita de não obrigatoriedade
-            if (dTPDataReceitaAnterior.Value == DateTime.Now.Date)
-            {
-                retorno += "Selecione o campo Data Receita Anterior\n";
-            }
+            //if (dTPDataReceitaAnterior.Value == DateTime.Now.Date)
+            //{
+            //    retorno += "Selecione o campo Data Receita Anterior\n";
+            //}
 
             if (cboPeriodicidadeRefil.SelectedIndex == -1 || cboPeriodicidadeRefil.SelectedValue.ToString() == "0")
             {
@@ -630,7 +633,7 @@ namespace EPharmacy.Forms
 
             string receitaId_ = txtReceitaId.Text;
             int medicamentoId_ = Convert.ToInt32(cboMedicamento.SelectedValue);
-            DateTime? dataReceitaAnterior_ = dTPDataReceitaAnterior.Value.Date;
+            DateTime? dataReceitaAnterior_ = dTPDataReceitaAnterior.Value.Date == dTPDataReceitaAnterior.MaxDate ? null : dTPDataReceitaAnterior.Value;
             int periodicidadeRefilId_ = Convert.ToInt32(cboPeriodicidadeRefil.SelectedValue);
             int statusId_ = Convert.ToInt32(cboStatus.SelectedValue);
             string? obs_ = txtObs.Text;
@@ -643,7 +646,7 @@ namespace EPharmacy.Forms
             {
                 ReceitaId = Convert.ToInt32(receitaId_),
                 MedicamentoId = medicamentoId_,
-                DataReceitaAnterior = dataReceitaAnterior_.Value,
+                DataReceitaAnterior = dataReceitaAnterior_,
                 PeriodicidadeRefilId = periodicidadeRefilId_,
                 StatusId = statusId_,
                 Obs = obs_,
@@ -726,24 +729,38 @@ namespace EPharmacy.Forms
         private void cboMedicamento_SelectedIndexChanged(object sender, EventArgs e)
         {
             int? pacienteId_ = cboPaciente.SelectedIndex > 0 ? Convert.ToInt32(cboPaciente.SelectedValue) : null;
+            int? receitaIdAtual = txtReceitaId.Text.IsNullOrEmpty() ? null : Convert.ToInt32(txtReceitaId.Text)  ;
+
             var lista = _context.Receita.AsQueryable();
 
             if (pacienteId_ > 0) lista = lista.OrderByDescending(p => p.DataReceita).Where(p => p.PacienteId == pacienteId_);
 
-            // ESTOU AQUI
-            //if (pacienteId_ > 0)
-            //{
-            //    lista = from r in lista
-            //            join ri in _context.ReceitaItens on r.Id equals ri.ReceitaId
-            //            where r.PacienteId = pacienteId_
-            //            select r;
-            //}
-
-            var listax = lista.ToList();
-
-            if (listax != null)
+            // amanhã tem ajustar as receitas com medicamento anteriores
+            if (pacienteId_ > 0)
             {
-                //dgvLista.DataSource = listax;
+                lista = from r in lista
+                        join ri in _context.ReceitaItens on r.Id equals ri.ReceitaId
+                        join me in _context.Medicamento on ri.MedicamentoId equals me.Id
+                        where r.PacienteId == pacienteId_ && 
+                        ri.MedicamentoId == Convert.ToInt32(cboMedicamento.SelectedValue) &&
+                        ri.ReceitaId != receitaIdAtual
+                        select r;
+
+
+                var listax = lista.OrderByDescending(p => p.Id).FirstOrDefault();
+
+                if (listax != null)
+                {
+                    DateTime dataReceta = listax.DataReceita;
+                    dTPDataReceitaAnterior.Value = dataReceta;
+                    dTPDataReceitaAnterior.Format = DateTimePickerFormat.Short;
+                }
+                else
+                {
+                    dTPDataReceitaAnterior.Value = dTPDataReceitaAnterior.MaxDate;
+                    dTPDataReceitaAnterior.Format = DateTimePickerFormat.Custom;
+                    dTPDataReceitaAnterior.CustomFormat = " ";
+                }
             }
         }
     }

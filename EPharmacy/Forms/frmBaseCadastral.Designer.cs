@@ -73,13 +73,14 @@
             label15 = new Label();
             cboTipoReceita = new ComboBox();
             label16 = new Label();
+            btnExportar = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvLista).BeginInit();
             SuspendLayout();
             // 
             // btnPesquisar
             // 
             btnPesquisar.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnPesquisar.Location = new Point(838, 597);
+            btnPesquisar.Location = new Point(840, 597);
             btnPesquisar.Margin = new Padding(4, 3, 4, 3);
             btnPesquisar.Name = "btnPesquisar";
             btnPesquisar.Size = new Size(110, 27);
@@ -91,25 +92,27 @@
             // btnNovo
             // 
             btnNovo.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnNovo.Location = new Point(588, 597);
+            btnNovo.Location = new Point(465, 597);
             btnNovo.Margin = new Padding(4, 3, 4, 3);
             btnNovo.Name = "btnNovo";
             btnNovo.Size = new Size(110, 27);
             btnNovo.TabIndex = 79;
             btnNovo.Text = "&Novo";
             btnNovo.UseVisualStyleBackColor = true;
+            btnNovo.Visible = false;
             // 
             // btnExcluir
             // 
             btnExcluir.Enabled = false;
             btnExcluir.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnExcluir.Location = new Point(713, 597);
+            btnExcluir.Location = new Point(590, 597);
             btnExcluir.Margin = new Padding(4, 3, 4, 3);
             btnExcluir.Name = "btnExcluir";
             btnExcluir.Size = new Size(110, 27);
             btnExcluir.TabIndex = 81;
             btnExcluir.Text = "&Excluir";
             btnExcluir.UseVisualStyleBackColor = true;
+            btnExcluir.Visible = false;
             // 
             // btnSalvar
             // 
@@ -565,6 +568,19 @@
             label16.TabIndex = 93;
             label16.Text = "Tipo Receita";
             // 
+            // btnExportar
+            // 
+            btnExportar.Enabled = false;
+            btnExportar.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnExportar.Location = new Point(715, 597);
+            btnExportar.Margin = new Padding(4, 3, 4, 3);
+            btnExportar.Name = "btnExportar";
+            btnExportar.Size = new Size(110, 27);
+            btnExportar.TabIndex = 82;
+            btnExportar.Text = "&Exportar XLS";
+            btnExportar.UseVisualStyleBackColor = true;
+            btnExportar.Click += btnExportar_Click;
+            // 
             // frmBaseCadastral
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -611,6 +627,7 @@
             Controls.Add(btnPesquisar);
             Controls.Add(btnNovo);
             Controls.Add(btnExcluir);
+            Controls.Add(btnExportar);
             Controls.Add(btnSalvar);
             Controls.Add(btnLimpar);
             Controls.Add(btnSair);
@@ -671,5 +688,6 @@
         private ComboBox comboBox1;
         private Label label16;
         private ComboBox cboTipoReceita;
+        private Button btnExportar;
     }
 }
