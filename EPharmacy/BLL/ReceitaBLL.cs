@@ -296,6 +296,146 @@ namespace EPharmacy.BLL
         }
 
 
+        public IList<PedidoViewModel> GetMedicamentosParaProximos6MesesPedido(DateTime? dataComparacao, string EAN, int? MedicamentoId, int? ConvenioId, string CPF, string Matricula, int? PacienteId, int? StatusId, string Bairro, string Zona, int? tipoReceitaId)
+        {
+
+            int Mes = 0;
+            int Ano = 0;
+
+            if (dataComparacao != null)
+            {
+                Mes = dataComparacao.Value.Month;
+                Ano = dataComparacao.Value.Year;
+            }
+
+            var dataLimite = DateTime.Now.AddMonths(-6);  // Calculando a data para 6 meses a partir de hoje
+
+            // Query para pegar os medicamentos e seus preços, incluindo as tabelas relacionadas
+            IList<PedidoViewModel> medicamentos = (
+                                      from re in _context.Receita
+                                      join ri in _context.ReceitaItens on re.Id equals ri.ReceitaId  
+                                      join m in _context.Medicamento on ri.MedicamentoId equals m.Id
+                                      join mp in _context.MedicamentoPreco on m.Id equals mp.MedicamentoId
+                                      join ct in _context.ClasseTerapeutica on m.ClasseTerapeuticaId equals ct.Id
+                                      join tr in _context.TipoReceita on m.TipoReceitaId equals tr.Id
+                                      join fa in _context.Fabricante on m.FabricanteId equals fa.Id
+                                      join sb in _context.Substancia on m.SubstanciaId equals sb.Id
+                                      join pc in _context.Paciente on re.PacienteId equals pc.Id
+                                      join cv in _context.Convenio on pc.ConvenioId equals cv.Id
+                                      join st in _context.Status on ri.StatusId equals st.Id
+                                      join pe in _context.PeriodicidadeRefil on ri.PeriodicidadeRefilId equals pe.Id
+                                      join te in _context.TipoEntrega on pc.TipoEntregaId equals te.Id
+                                      join md in _context.Modalidade on pc.ModalidadeEntregaId equals md.Id
+
+                                      join receitaItemEntrega in _context.ReceitaItensEntrega on ri.Id equals receitaItemEntrega.ReceitaItensId into receitaEntregaGroup
+                                      from receitaItemEntrega in receitaEntregaGroup.DefaultIfEmpty() // Isso faz o LEFT JOIN
+
+                                      join refi in _context.Refil on receitaItemEntrega.RefilId equals refi.Id
+                                      join sen in _context.StatusEntrega on receitaItemEntrega.StatusEntregaId equals sen.Id
+
+                                      where re.DataReceita >= dataLimite
+
+                                      /* && ((receitaItemEntrega.DataRefil.Value.Month == Mes && receitaItemEntrega.DataRefil.Value.Year == Ano) ||
+                                          (receitaItemEntrega.DataRefil.Value.Month == null || receitaItemEntrega.DataRefil.Value.Year == null)) */
+
+
+                                      && ((ri.Refil1.Value.Month == Mes && ri.Refil1.Value.Year == Ano) ||
+                                          (ri.Refil2.Value.Month == Mes && ri.Refil2.Value.Year == Ano) ||
+                                          (ri.Refil3.Value.Month == Mes && ri.Refil3.Value.Year == Ano) ||
+                                          (ri.Refil4.Value.Month == Mes && ri.Refil4.Value.Year == Ano) ||
+                                          (ri.Refil5.Value.Month == Mes && ri.Refil5.Value.Year == Ano) ||
+                                          (ri.Refil6.Value.Month == Mes && ri.Refil6.Value.Year == Ano) ||
+                                          (ri.RefilExtra.Value.Month == Mes && ri.RefilExtra.Value.Year == Ano) || dataComparacao == null)
+                                      && (m.EAN == EAN || EAN.IsNullOrEmpty())
+                                      && (pc.Matricula == Matricula || Matricula.IsNullOrEmpty())
+                                      && (pc.CPF == CPF || CPF.IsNullOrEmpty())
+                                      && (pc.ConvenioId == ConvenioId || ConvenioId == null)
+                                      && (pc.Id == PacienteId || PacienteId == null)
+                                      && (m.Id == MedicamentoId || MedicamentoId == null)
+                                      && (ri.StatusId == StatusId || StatusId == null)
+                                      && (pc.Bairro == Bairro || Bairro.IsNullOrEmpty())
+                                      && (pc.Zona == Zona || Zona.IsNullOrEmpty())
+                                      && (m.TipoReceitaId == tipoReceitaId || tipoReceitaId == null)
+
+                                      orderby ri.Id, m.Id
+                                      select new PedidoViewModel
+                                      {
+                                          ReceitaItensId = ri.Id,
+                                          PacienteId = pc.Id,
+
+                                          ReceitaItensEntregaId = 1, // receitaItemEntrega.Id != null ? receitaItemEntrega.Id : (int?)null,
+                                          DataConsolidada = receitaItemEntrega.DataRefil != null ? receitaItemEntrega.DataRefil : (DateTime?)null,
+                                          Lote = receitaItemEntrega.NumLote,
+                                          NotaFiscal = receitaItemEntrega.NumNotaFiscal,
+                                          RefilId = 1, //refi.Id != null ? refi.Id : (int?)null,
+                                          Refil = refi.Descricao,
+                                          Real = 1.1M, // receitaItemEntrega.PrecoReal.Value != null ? receitaItemEntrega.PrecoReal.Value : (decimal?)null,
+                                          StatusEntregaId = 1 ,//receitaItemEntrega.StatusEntregaId != null ? receitaItemEntrega.StatusEntregaId : (int?)null,
+                                          StatusEntrega = sen.Descricao,
+
+                                          Matricula = pc.Matricula,
+                                          ConvenioId = pc.ConvenioId.Value,
+                                          Convenio = cv.Descricao,
+                                          CPF = pc.CPF,
+                                          Nome = pc.Nome,
+                                          StatusId = ri.StatusId,
+                                          Status = st.Descricao,
+                                          DataInclusaoConvenio = DateTime.Now.Date,
+                                          MedicamentoId = m.Id,
+                                          EAN = m.EAN,
+                                          Produto = m.Produto,
+                                          Qtdd = ri.Qtdd,
+                                          /*ClasseTerapeuticaId = m.ClasseTerapeuticaId,
+                 
+                                          FabricanteId = m.FabricanteId,
+                                          SubstanciaId = m.SubstanciaId,
+                                          MedicamentoPrecoId = mp.Id,*/
+                                          PrecoAcordado = mp.PrecoAcordado,
+                                          //Total = ri.Qtdd.Value* mp.PrecoAcordado,
+                                          //Total = Math.Round(ri.Qtdd.Value * mp.PrecoAcordado, 2),
+                                          Total = $"{ri.Qtdd.Value * mp.PrecoAcordado:F2}",
+                                          ReceitaId = re.Id,
+                                          ReceitaDescricao = re.Descricao,
+                                          DataReceitaAnterior = ri.DataReceitaAnterior,
+                                          DataReceita = re.DataReceita,
+
+                                          PeriodicidadeId = ri.PeriodicidadeRefilId,
+                                          Periodicidade = pe.Descricao,
+                                          Refil1 = ri.Refil1.Value,
+                                          Refil2 = ri.Refil2.Value,
+                                          Refil3 = ri.Refil3.Value,
+                                          Refil4 = ri.Refil4.Value,
+                                          Refil5 = ri.Refil5.Value,
+                                          Refil6 = ri.Refil6.Value,
+                                          RefilExtra = ri.RefilExtra.Value,
+
+                                          TipoReceitaId = m.TipoReceitaId,
+                                          TipoReceita = tr.Descricao,
+                                          Obs = ri.Obs,
+                                          Celular = pc.Celular,
+                                          Telefone = pc.Telefone,
+
+                                          Logradouro = pc.Logradouro,
+                                          Numero = pc.Numero,
+                                          Bairro = pc.Bairro,
+                                          CEP = pc.CEP,
+                                          Zona = pc.Zona,
+                                          Modalidade = md.Descricao,
+                                          TipoEntrega = te.Descricao,
+                                          Autorizacao = pc.Autorizacao,
+                                          // Incluindo as tabelas relacionadas
+                                          ClasseTerapeutica = ct.Descricao,
+
+                                          Fabricante = fa.Descricao,
+                                          Substancia = sb.Descricao
+
+                                      })
+                                      .ToList();
+
+            return medicamentos;
+        }
+
+
 
         // Não usado. Usa COM e acho q é antigo.
         public string ExportaXlsOld(DataGridView dgv)

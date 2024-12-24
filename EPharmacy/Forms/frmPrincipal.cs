@@ -374,6 +374,11 @@ namespace EPharmacy
 
         private void pedidoToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+        
+        }
+
+        private void pedidoToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
             foreach (Form filho in this.MdiChildren)
             {
                 if (filho is frmPedido)
@@ -389,11 +394,6 @@ namespace EPharmacy
             };
             formulario.Show();
             formulario.Location = new Point(5, 5);
-        }
-
-        private void pedidoToolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

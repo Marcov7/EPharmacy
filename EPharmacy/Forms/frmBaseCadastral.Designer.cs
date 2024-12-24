@@ -80,7 +80,7 @@
             // btnPesquisar
             // 
             btnPesquisar.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnPesquisar.Location = new Point(840, 597);
+            btnPesquisar.Location = new Point(840, 642);
             btnPesquisar.Margin = new Padding(4, 3, 4, 3);
             btnPesquisar.Name = "btnPesquisar";
             btnPesquisar.Size = new Size(110, 27);
@@ -92,7 +92,7 @@
             // btnNovo
             // 
             btnNovo.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnNovo.Location = new Point(465, 597);
+            btnNovo.Location = new Point(465, 642);
             btnNovo.Margin = new Padding(4, 3, 4, 3);
             btnNovo.Name = "btnNovo";
             btnNovo.Size = new Size(110, 27);
@@ -105,7 +105,7 @@
             // 
             btnExcluir.Enabled = false;
             btnExcluir.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnExcluir.Location = new Point(590, 597);
+            btnExcluir.Location = new Point(590, 642);
             btnExcluir.Margin = new Padding(4, 3, 4, 3);
             btnExcluir.Name = "btnExcluir";
             btnExcluir.Size = new Size(110, 27);
@@ -118,7 +118,7 @@
             // 
             btnSalvar.Enabled = false;
             btnSalvar.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSalvar.Location = new Point(963, 597);
+            btnSalvar.Location = new Point(963, 642);
             btnSalvar.Margin = new Padding(4, 3, 4, 3);
             btnSalvar.Name = "btnSalvar";
             btnSalvar.Size = new Size(110, 27);
@@ -130,7 +130,7 @@
             // btnLimpar
             // 
             btnLimpar.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnLimpar.Location = new Point(1087, 597);
+            btnLimpar.Location = new Point(1087, 642);
             btnLimpar.Margin = new Padding(4, 3, 4, 3);
             btnLimpar.Name = "btnLimpar";
             btnLimpar.Size = new Size(110, 27);
@@ -143,7 +143,7 @@
             // 
             btnSair.BackColor = SystemColors.Control;
             btnSair.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSair.Location = new Point(1212, 597);
+            btnSair.Location = new Point(1212, 642);
             btnSair.Margin = new Padding(4, 3, 4, 3);
             btnSair.Name = "btnSair";
             btnSair.Size = new Size(110, 27);
@@ -158,7 +158,7 @@
             dgvLista.Location = new Point(13, 95);
             dgvLista.Margin = new Padding(4, 3, 4, 3);
             dgvLista.Name = "dgvLista";
-            dgvLista.Size = new Size(1333, 496);
+            dgvLista.Size = new Size(1333, 541);
             dgvLista.TabIndex = 78;
             dgvLista.CellClick += dgvLista_CellClick;
             dgvLista.CellFormatting += dgvLista_CellFormatting;
@@ -476,7 +476,7 @@
             // chkMostrarIds
             // 
             chkMostrarIds.AutoSize = true;
-            chkMostrarIds.Location = new Point(12, 603);
+            chkMostrarIds.Location = new Point(12, 646);
             chkMostrarIds.Name = "chkMostrarIds";
             chkMostrarIds.Size = new Size(85, 19);
             chkMostrarIds.TabIndex = 100;
@@ -572,7 +572,7 @@
             // 
             btnExportar.Enabled = false;
             btnExportar.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnExportar.Location = new Point(715, 597);
+            btnExportar.Location = new Point(715, 642);
             btnExportar.Margin = new Padding(4, 3, 4, 3);
             btnExportar.Name = "btnExportar";
             btnExportar.Size = new Size(110, 27);
@@ -585,7 +585,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1355, 630);
+            ClientSize = new Size(1355, 667);
             Controls.Add(chkMostrarIds);
             Controls.Add(dTPRefilExtra);
             Controls.Add(dTPRefil6);
@@ -634,6 +634,7 @@
             Controls.Add(dgvLista);
             Name = "frmBaseCadastral";
             Text = "Base Cadastral";
+            WindowState = FormWindowState.Maximized;
             Load += frmBaseCadastral_Load;
             ((System.ComponentModel.ISupportInitialize)dgvLista).EndInit();
             ResumeLayout(false);

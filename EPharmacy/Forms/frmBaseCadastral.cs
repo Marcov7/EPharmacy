@@ -25,6 +25,8 @@ namespace EPharmacy.Forms
         {
             InitializeComponent();
 
+            this.WindowState = FormWindowState.Maximized;
+
             var optionsBuilder = new DbContextOptionsBuilder<EPharmacyContext>();
             optionsBuilder.UseSqlServer(Program.StrConn());
             _context = new EPharmacyContext(optionsBuilder.Options);

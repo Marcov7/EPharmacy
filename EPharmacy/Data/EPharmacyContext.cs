@@ -29,6 +29,9 @@ namespace EPharmacy.Data
         public DbSet<BaseCadastral> BaseCadastral { get; set; }
         public DbSet<BairroZona> BairroZona { get; set; }
         public DbSet<Parametros> Parametros { get; set; }
+        public DbSet<StatusEntrega> StatusEntrega { get; set; }
+        public DbSet<ReceitaItensEntrega> ReceitaItensEntrega { get; set; }
+        public DbSet<Refil> Refil { get; set; }
 
         public EPharmacyContext(DbContextOptions<EPharmacyContext> options) : base(options) { }
 
