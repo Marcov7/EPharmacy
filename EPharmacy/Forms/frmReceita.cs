@@ -112,6 +112,15 @@ namespace EPharmacy.Forms
             // Associando o evento de clique da célula
             dGVReceitaItens.CellContentClick += new DataGridViewCellEventHandler(dGVReceitaItens_CellContentClick);
 
+
+            // alterar a altura da linhas do grid
+            dgvLista.RowTemplate.Height = 17;
+            dGVReceitaItens.RowTemplate.Height = 18;
+
+            // fazendo ficar com as colunas autoajuestadas ao tamanho
+            dgvLista.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dGVReceitaItens.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
             Limpar();
         }
 

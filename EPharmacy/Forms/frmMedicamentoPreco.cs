@@ -24,6 +24,12 @@ namespace ControleEntregada.Forms
             _context = new EPharmacyContext(optionsBuilder.Options);
             var x = 0;
 
+            // alterar a altura da linhas do grid
+            dgvMedicamentos.RowTemplate.Height = 17;
+
+            // fazendo ficar com as colunas autoajuestadas ao tamanho
+            dgvMedicamentos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
             /*
             txtPrecoFabricaOld.Mask = "000000.00"; 
             txtPrecoFabricaOld.ValidatingType = typeof(decimal);

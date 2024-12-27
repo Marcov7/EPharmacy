@@ -304,6 +304,13 @@ namespace EPharmacy.Forms
             cboTipoReceita.DisplayMember = "Descricao";
             cboTipoReceita.ValueMember = "Id";
 
+
+            // alterar a altura da linhas do grid
+            dgvLista.RowTemplate.Height = 17;
+
+            // fazendo ficar com as colunas autoajuestadas ao tamanho
+            dgvLista.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
             Limpar();
 
         }

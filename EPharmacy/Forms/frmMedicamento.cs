@@ -75,6 +75,12 @@ namespace ControleEntregada.Forms
             // Associando o evento de clique da célula
             dgvMedicamentos.CellContentClick += new DataGridViewCellEventHandler(dgvMedicamentos_CellContentClick);*/
 
+            // alterar a altura da linhas do grid
+            dgvMedicamentos.RowTemplate.Height = 17;
+
+            // fazendo ficar com as colunas autoajuestadas ao tamanho
+            dgvMedicamentos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
             Limpar();
         }
 

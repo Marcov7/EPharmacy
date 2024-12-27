@@ -21,6 +21,7 @@ namespace EPharmacy.Forms
     {
 
         private readonly EPharmacyContext _context;
+        private bool ControlaDisparoDeEvento = false;
 
         public frmPedido()
         {
@@ -347,12 +348,74 @@ namespace EPharmacy.Forms
             cboRefil.DisplayMember = "Descricao";
             cboRefil.ValueMember = "Id";
 
+
             // alterar a altura da linhas do grid
             dgvLista.RowTemplate.Height = 17;
-            dGVReceitaItensEntrega.RowTemplate.Height = 17;
+            dGVReceitaItensEntrega.RowTemplate.Height = 18;
+
+            // fazendo ficar com as colunas autoajuestadas ao tamanho
+            dgvLista.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dGVReceitaItensEntrega.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+
+            // Adiciona uma coluna de botões ao DataGridView
+            DataGridViewButtonColumn btnExcluirColumn = new DataGridViewButtonColumn();
+            btnExcluirColumn.Name = "btnExcluirdGVReceitaItensEntrega";
+            btnExcluirColumn.HeaderText = "Excluir";
+            btnExcluirColumn.Text = "<Excluir>";
+            btnExcluirColumn.UseColumnTextForButtonValue = true; // Isso faz com que o texto "Excluir" apareça nos botões
+            dGVReceitaItensEntrega.Columns.Add(btnExcluirColumn);
+            // Associando o evento de clique da célula
+            dGVReceitaItensEntrega.CellContentClick += new DataGridViewCellEventHandler(dGVReceitaItensEntrega_CellContentClick);
 
             Limpar();
 
+        }
+
+
+        private void dGVReceitaItensEntrega_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (ControlaDisparoDeEvento == true)
+            {
+                ControlaDisparoDeEvento = false;
+                return;
+            }
+
+            if (e.ColumnIndex == dGVReceitaItensEntrega.Columns["btnExcluirdGVReceitaItensEntrega"].Index)
+            {
+                var result = MessageBox.Show("Tem certeza de que deseja excluir esta linha?", "Confirmar Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+
+                    int rowIndex = e.RowIndex;
+
+                    Int32 Id_ = Convert.ToInt32(dGVReceitaItensEntrega.Rows[rowIndex].Cells["Id"].Value);
+
+                    var Delete = _context.ReceitaItensEntrega.Find(Id_);
+
+                    if (Delete != null)
+                    {
+                        _context.ReceitaItensEntrega.Remove(Delete);
+                        _context.SaveChangesAsync();
+
+                        EPharmacyContext _contextx;
+                        var optionsBuilderx = new DbContextOptionsBuilder<EPharmacyContext>();
+                        optionsBuilderx.UseSqlServer(Program.StrConn());
+                        _contextx = new EPharmacyContext(optionsBuilderx.Options);
+                        var lista = _contextx.ReceitaItensEntrega.AsQueryable();
+                        lista = lista.Where(p => p.Id == Convert.ToInt32(Id_));
+                        dGVReceitaItensEntrega.DataSource = lista.ToList();
+
+                        ControlaDisparoDeEvento = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Item de Receita não encontrado.");
+                    }
+
+                }
+            }
         }
 
 

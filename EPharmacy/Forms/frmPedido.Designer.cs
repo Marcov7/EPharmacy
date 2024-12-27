@@ -628,6 +628,7 @@
             dGVReceitaItensEntrega.Name = "dGVReceitaItensEntrega";
             dGVReceitaItensEntrega.Size = new Size(1307, 180);
             dGVReceitaItensEntrega.TabIndex = 90;
+            dGVReceitaItensEntrega.CellContentClick += dGVReceitaItensEntrega_CellContentClick;
             // 
             // label18
             // 

@@ -327,11 +327,11 @@ namespace EPharmacy.BLL
                                       join te in _context.TipoEntrega on pc.TipoEntregaId equals te.Id
                                       join md in _context.Modalidade on pc.ModalidadeEntregaId equals md.Id
 
-                                      join receitaItemEntrega in _context.ReceitaItensEntrega on ri.Id equals receitaItemEntrega.ReceitaItensId into receitaEntregaGroup
+                                      /*join receitaItemEntrega in _context.ReceitaItensEntrega on ri.Id equals receitaItemEntrega.ReceitaItensId into receitaEntregaGroup
                                       from receitaItemEntrega in receitaEntregaGroup.DefaultIfEmpty() // Isso faz o LEFT JOIN
 
                                       join refi in _context.Refil on receitaItemEntrega.RefilId equals refi.Id
-                                      join sen in _context.StatusEntrega on receitaItemEntrega.StatusEntregaId equals sen.Id
+                                      join sen in _context.StatusEntrega on receitaItemEntrega.StatusEntregaId equals sen.Id*/
 
                                       where re.DataReceita >= dataLimite
 
@@ -363,6 +363,7 @@ namespace EPharmacy.BLL
                                           ReceitaItensId = ri.Id,
                                           PacienteId = pc.Id,
 
+                                          /*
                                           ReceitaItensEntregaId = 1, // receitaItemEntrega.Id != null ? receitaItemEntrega.Id : (int?)null,
                                           DataConsolidada = receitaItemEntrega.DataRefil != null ? receitaItemEntrega.DataRefil : (DateTime?)null,
                                           Lote = receitaItemEntrega.NumLote,
@@ -371,7 +372,7 @@ namespace EPharmacy.BLL
                                           Refil = refi.Descricao,
                                           Real = 1.1M, // receitaItemEntrega.PrecoReal.Value != null ? receitaItemEntrega.PrecoReal.Value : (decimal?)null,
                                           StatusEntregaId = 1 ,//receitaItemEntrega.StatusEntregaId != null ? receitaItemEntrega.StatusEntregaId : (int?)null,
-                                          StatusEntrega = sen.Descricao,
+                                          StatusEntrega = sen.Descricao, */
 
                                           Matricula = pc.Matricula,
                                           ConvenioId = pc.ConvenioId.Value,
