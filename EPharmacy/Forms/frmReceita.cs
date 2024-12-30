@@ -634,6 +634,11 @@ namespace EPharmacy.Forms
                 retorno += "Selecione o campo Status\n";
             }
 
+            if (UtilitariosBLL.limpaString2(txtQtdd.Text).IsNullOrEmpty())
+            {
+                retorno += "Preencha o campo Qtdd \n";
+            }
+
             if (!retorno.IsNullOrEmpty())
             {
                 MessageBox.Show(retorno, "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -738,19 +743,69 @@ namespace EPharmacy.Forms
         private void cboMedicamento_SelectedIndexChanged(object sender, EventArgs e)
         {
             int? pacienteId_ = cboPaciente.SelectedIndex > 0 ? Convert.ToInt32(cboPaciente.SelectedValue) : null;
-            int? receitaIdAtual = txtReceitaId.Text.IsNullOrEmpty() ? null : Convert.ToInt32(txtReceitaId.Text)  ;
+            int? receitaIdAtual = txtReceitaId.Text.IsNullOrEmpty() ? null : Convert.ToInt32(txtReceitaId.Text);
+
+            var lista = _context.Receita.AsQueryable();
+            var listaR = _context.ReceitaItens.AsQueryable();
+
+            if (pacienteId_ > 0) lista = lista.OrderByDescending(p => p.DataReceita).Where(p => p.PacienteId == pacienteId_);
+
+            if (pacienteId_ > 0)
+            {
+
+                lista = (IQueryable<Receita>)(from r in lista
+                                              join ri in _context.ReceitaItens on r.Id equals ri.ReceitaId
+                                              join me in _context.Medicamento on ri.MedicamentoId equals me.Id
+                                              where r.PacienteId == pacienteId_ &&
+                                                    ri.MedicamentoId == Convert.ToInt32(cboMedicamento.SelectedValue) &&
+                                                    ri.ReceitaId != receitaIdAtual
+                                              select r);
+                var listax = lista.OrderByDescending(p => p.Id).FirstOrDefault();
+
+
+                listaR = (IQueryable<ReceitaItens>)(from r in lista
+                                                    join ri in _context.ReceitaItens on r.Id equals ri.ReceitaId
+                                                    join me in _context.Medicamento on ri.MedicamentoId equals me.Id
+                                                    where r.PacienteId == pacienteId_ &&
+                                                          ri.MedicamentoId == Convert.ToInt32(cboMedicamento.SelectedValue) &&
+                                                          ri.ReceitaId != receitaIdAtual
+                                                    select ri);
+                var listaRx = listaR.OrderByDescending(p => p.Id).FirstOrDefault();
+
+                if (listax != null)
+                {
+                    DateTime dataReceita = listax.DataReceita;
+                    dTPDataReceitaAnterior.Value = dataReceita;
+                    dTPDataReceitaAnterior.Format = DateTimePickerFormat.Short;
+                    txtQtddAnterior.Text = listaRx.Qtdd.ToString();
+                }
+                else
+                {
+                    dTPDataReceitaAnterior.Value = dTPDataReceitaAnterior.MaxDate;
+                    dTPDataReceitaAnterior.Format = DateTimePickerFormat.Custom;
+                    dTPDataReceitaAnterior.CustomFormat = " ";
+
+                    txtQtddAnterior.Text = "";
+                }
+            }
+        }
+
+
+        private void cboMedicamento_SelectedIndexChangedOLD(object sender, EventArgs e)
+        {
+            int? pacienteId_ = cboPaciente.SelectedIndex > 0 ? Convert.ToInt32(cboPaciente.SelectedValue) : null;
+            int? receitaIdAtual = txtReceitaId.Text.IsNullOrEmpty() ? null : Convert.ToInt32(txtReceitaId.Text);
 
             var lista = _context.Receita.AsQueryable();
 
             if (pacienteId_ > 0) lista = lista.OrderByDescending(p => p.DataReceita).Where(p => p.PacienteId == pacienteId_);
 
-            // amanhã tem ajustar as receitas com medicamento anteriores
             if (pacienteId_ > 0)
             {
                 lista = from r in lista
                         join ri in _context.ReceitaItens on r.Id equals ri.ReceitaId
                         join me in _context.Medicamento on ri.MedicamentoId equals me.Id
-                        where r.PacienteId == pacienteId_ && 
+                        where r.PacienteId == pacienteId_ &&
                         ri.MedicamentoId == Convert.ToInt32(cboMedicamento.SelectedValue) &&
                         ri.ReceitaId != receitaIdAtual
                         select r;
@@ -763,6 +818,8 @@ namespace EPharmacy.Forms
                     DateTime dataReceta = listax.DataReceita;
                     dTPDataReceitaAnterior.Value = dataReceta;
                     dTPDataReceitaAnterior.Format = DateTimePickerFormat.Short;
+
+                    // txtQtddAnterior.Text =  <<< AQUI COMO PEGO O CAMPO QTDD QUE ESTÁ EM ReceitaItens >>>
                 }
                 else
                 {
@@ -772,5 +829,11 @@ namespace EPharmacy.Forms
                 }
             }
         }
+
+   
+
     }
+
 }
+
+

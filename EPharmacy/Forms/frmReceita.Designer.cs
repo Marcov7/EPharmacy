@@ -62,14 +62,16 @@
             dGVReceitaItens = new DataGridView();
             txtReceitaItemId = new MaskedTextBox();
             label12 = new Label();
-            label17 = new Label();
+            label4 = new Label();
             label13 = new Label();
             label11 = new Label();
             label3 = new Label();
             cboMedicamento = new ComboBox();
             cboStatus = new ComboBox();
+            txtQtddAnterior = new MaskedTextBox();
             txtQtdd = new MaskedTextBox();
             RECEITA = new Label();
+            label7 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvLista).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -194,7 +196,7 @@
             // 
             label16.AutoSize = true;
             label16.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label16.Location = new Point(612, 16);
+            label16.Location = new Point(606, 16);
             label16.Margin = new Padding(4, 0, 4, 0);
             label16.Name = "label16";
             label16.Size = new Size(130, 13);
@@ -205,17 +207,17 @@
             // 
             dTPDataReceitaAnterior.Enabled = false;
             dTPDataReceitaAnterior.Font = new Font("Segoe UI", 7F);
-            dTPDataReceitaAnterior.Location = new Point(612, 35);
+            dTPDataReceitaAnterior.Location = new Point(608, 35);
             dTPDataReceitaAnterior.Margin = new Padding(4, 3, 4, 3);
             dTPDataReceitaAnterior.Name = "dTPDataReceitaAnterior";
-            dTPDataReceitaAnterior.Size = new Size(180, 20);
+            dTPDataReceitaAnterior.Size = new Size(130, 20);
             dTPDataReceitaAnterior.TabIndex = 99;
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(792, 16);
+            label6.Location = new Point(825, 16);
             label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
             label6.Size = new Size(84, 13);
@@ -225,7 +227,7 @@
             // cboPeriodicidadeRefil
             // 
             cboPeriodicidadeRefil.Enabled = false;
-            cboPeriodicidadeRefil.Location = new Point(793, 32);
+            cboPeriodicidadeRefil.Location = new Point(826, 32);
             cboPeriodicidadeRefil.Margin = new Padding(4, 3, 4, 3);
             cboPeriodicidadeRefil.MaxLength = 255;
             cboPeriodicidadeRefil.Name = "cboPeriodicidadeRefil";
@@ -381,7 +383,8 @@
             panel2.Controls.Add(dGVReceitaItens);
             panel2.Controls.Add(txtReceitaItemId);
             panel2.Controls.Add(label12);
-            panel2.Controls.Add(label17);
+            panel2.Controls.Add(label7);
+            panel2.Controls.Add(label4);
             panel2.Controls.Add(label13);
             panel2.Controls.Add(label6);
             panel2.Controls.Add(label11);
@@ -389,6 +392,7 @@
             panel2.Controls.Add(cboMedicamento);
             panel2.Controls.Add(cboStatus);
             panel2.Controls.Add(cboPeriodicidadeRefil);
+            panel2.Controls.Add(txtQtddAnterior);
             panel2.Controls.Add(txtQtdd);
             panel2.Location = new Point(11, 251);
             panel2.Name = "panel2";
@@ -425,7 +429,7 @@
             txtReceitaId.MaxLength = 255;
             txtReceitaId.Multiline = true;
             txtReceitaId.Name = "txtReceitaId";
-            txtReceitaId.Size = new Size(49, 23);
+            txtReceitaId.Size = new Size(44, 23);
             txtReceitaId.TabIndex = 102;
             // 
             // btnAdicionar
@@ -462,29 +466,28 @@
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label12.Location = new Point(116, 16);
+            label12.Location = new Point(108, 16);
             label12.Margin = new Padding(4, 0, 4, 0);
             label12.Name = "label12";
             label12.Size = new Size(82, 13);
             label12.TabIndex = 98;
             label12.Text = "Medicamento";
             // 
-            // label17
+            // label4
             // 
-            label17.AutoSize = true;
-            label17.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label17.Location = new Point(983, 16);
-            label17.Margin = new Padding(4, 0, 4, 0);
-            label17.Name = "label17";
-            label17.Size = new Size(34, 13);
-            label17.TabIndex = 98;
-            label17.Text = "Qtdd";
+            label4.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.Location = new Point(738, 4);
+            label4.Margin = new Padding(4, 0, 4, 0);
+            label4.Name = "label4";
+            label4.Size = new Size(53, 29);
+            label4.TabIndex = 98;
+            label4.Text = "Qtdd Anterior";
             // 
             // label13
             // 
             label13.AutoSize = true;
             label13.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label13.Location = new Point(881, 16);
+            label13.Location = new Point(914, 16);
             label13.Margin = new Padding(4, 0, 4, 0);
             label13.Name = "label13";
             label13.Size = new Size(43, 13);
@@ -495,7 +498,7 @@
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label11.Location = new Point(59, 16);
+            label11.Location = new Point(56, 16);
             label11.Margin = new Padding(4, 0, 4, 0);
             label11.Name = "label11";
             label11.Size = new Size(51, 13);
@@ -516,27 +519,37 @@
             // cboMedicamento
             // 
             cboMedicamento.Enabled = false;
-            cboMedicamento.Location = new Point(109, 32);
+            cboMedicamento.Location = new Point(104, 32);
             cboMedicamento.Margin = new Padding(4, 3, 4, 3);
             cboMedicamento.MaxLength = 255;
             cboMedicamento.Name = "cboMedicamento";
-            cboMedicamento.Size = new Size(502, 23);
+            cboMedicamento.Size = new Size(503, 23);
             cboMedicamento.TabIndex = 97;
             cboMedicamento.SelectedIndexChanged += cboMedicamento_SelectedIndexChanged;
             // 
             // cboStatus
             // 
             cboStatus.Enabled = false;
-            cboStatus.Location = new Point(877, 32);
+            cboStatus.Location = new Point(911, 32);
             cboStatus.Margin = new Padding(4, 3, 4, 3);
             cboStatus.MaxLength = 255;
             cboStatus.Name = "cboStatus";
             cboStatus.Size = new Size(106, 23);
             cboStatus.TabIndex = 97;
             // 
+            // txtQtddAnterior
+            // 
+            txtQtddAnterior.Enabled = false;
+            txtQtddAnterior.Location = new Point(740, 32);
+            txtQtddAnterior.Margin = new Padding(4, 3, 4, 3);
+            txtQtddAnterior.Mask = "000";
+            txtQtddAnterior.Name = "txtQtddAnterior";
+            txtQtddAnterior.Size = new Size(49, 23);
+            txtQtddAnterior.TabIndex = 80;
+            // 
             // txtQtdd
             // 
-            txtQtdd.Location = new Point(984, 32);
+            txtQtdd.Location = new Point(790, 32);
             txtQtdd.Margin = new Padding(4, 3, 4, 3);
             txtQtdd.Mask = "000";
             txtQtdd.Name = "txtQtdd";
@@ -553,6 +566,16 @@
             RECEITA.Size = new Size(60, 13);
             RECEITA.TabIndex = 89;
             RECEITA.Text = "RECEITA";
+            // 
+            // label7
+            // 
+            label7.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label7.Location = new Point(788, 4);
+            label7.Margin = new Padding(4, 0, 4, 0);
+            label7.Name = "label7";
+            label7.Size = new Size(41, 29);
+            label7.TabIndex = 98;
+            label7.Text = "Nova Qtdd";
             // 
             // frmReceita
             // 
@@ -628,7 +651,6 @@
         private DateTimePicker dTPReceita;
         private Button btnSubtrair;
         private TextBox txtObs;
-        private Label label17;
         private Label lblObs;
         private MaskedTextBox txtQtdd;
         private DateTimePicker dTPDataReceitaAnterior;
@@ -636,5 +658,8 @@
         private Label label15;
         private Label label9;
         private MaskedTextBox txtCPF;
+        private Label label4;
+        private MaskedTextBox txtQtddAnterior;
+        private Label label7;
     }
 }
