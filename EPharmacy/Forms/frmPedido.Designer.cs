@@ -68,7 +68,7 @@
             dgvLista = new DataGridView();
             txtLote = new MaskedTextBox();
             txtNotaFiscal = new MaskedTextBox();
-            txtPrecoReal = new NumericUpDown();
+            txtReal = new NumericUpDown();
             cboRefil = new ComboBox();
             cboStatusEntrega = new ComboBox();
             dTPRefil = new DateTimePicker();
@@ -80,7 +80,7 @@
             label18 = new Label();
             txtReceitaItensId = new MaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)dgvLista).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)txtPrecoReal).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtReal).BeginInit();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dGVReceitaItensEntrega).BeginInit();
             SuspendLayout();
@@ -355,9 +355,9 @@
             label10.Location = new Point(528, 8);
             label10.Margin = new Padding(4, 0, 4, 0);
             label10.Name = "label10";
-            label10.Size = new Size(70, 13);
+            label10.Size = new Size(64, 13);
             label10.TabIndex = 112;
-            label10.Text = "Preço Real";
+            label10.Text = "Qtdd Real";
             // 
             // label9
             // 
@@ -523,12 +523,12 @@
             txtNotaFiscal.Size = new Size(159, 23);
             txtNotaFiscal.TabIndex = 117;
             // 
-            // txtPrecoReal
+            // txtReal
             // 
-            txtPrecoReal.Location = new Point(524, 21);
-            txtPrecoReal.Name = "txtPrecoReal";
-            txtPrecoReal.Size = new Size(217, 23);
-            txtPrecoReal.TabIndex = 147;
+            txtReal.Location = new Point(524, 21);
+            txtReal.Name = "txtReal";
+            txtReal.Size = new Size(217, 23);
+            txtReal.TabIndex = 147;
             // 
             // cboRefil
             // 
@@ -589,7 +589,7 @@
             panel2.Controls.Add(btnAdicionar);
             panel2.Controls.Add(dGVReceitaItensEntrega);
             panel2.Controls.Add(dTPRefil);
-            panel2.Controls.Add(txtPrecoReal);
+            panel2.Controls.Add(txtReal);
             panel2.Controls.Add(label7);
             panel2.Controls.Add(label8);
             panel2.Controls.Add(label9);
@@ -695,7 +695,7 @@
             Text = "Pedido";
             Load += frmPedido_Load;
             ((System.ComponentModel.ISupportInitialize)dgvLista).EndInit();
-            ((System.ComponentModel.ISupportInitialize)txtPrecoReal).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtReal).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dGVReceitaItensEntrega).EndInit();
@@ -745,7 +745,7 @@
         private DataGridView dgvLista;
         private MaskedTextBox txtLote;
         private MaskedTextBox txtNotaFiscal;
-        private NumericUpDown txtPrecoReal;
+        private NumericUpDown txtReal;
         private ComboBox cboRefil;
         private ComboBox cboStatusEntrega;
         private DateTimePicker dTPRefil;

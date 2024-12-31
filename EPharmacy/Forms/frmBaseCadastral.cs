@@ -655,7 +655,7 @@ namespace EPharmacy.Forms
 
             string Data = DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString();
             string Tempo = DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString();
-            string NomeArquivo = "BC" + Data + Tempo + ".xlsx";
+            string NomeArquivo = "BSC" + Data + Tempo + ".xlsx";
             string Path = null;
 
             var parametro = _context.Parametros.FirstOrDefault(p => p.Descricao == "PastaParaArmazenarArquivos");

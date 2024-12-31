@@ -89,7 +89,7 @@ namespace EPharmacy.Models
         public string? NotaFiscal { get; set; }
         public int? RefilId { get; set; }
         public string? Refil { get; set; }
-        public decimal? Real { get; set; }
+        public int? Real { get; set; }
         public int? StatusEntregaId { get; set; }
         public string? StatusEntrega { get; set; }
 

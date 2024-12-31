@@ -33,9 +33,9 @@ namespace EPharmacy.Forms
             optionsBuilder.UseSqlServer(Program.StrConn());
             _context = new EPharmacyContext(optionsBuilder.Options);
 
-            txtPrecoReal.DecimalPlaces = 2;
-            txtPrecoReal.Minimum = 0;
-            txtPrecoReal.Maximum = 1000000;
+            txtReal.DecimalPlaces = 0;
+            txtReal.Minimum = 0.0M;
+            txtReal.Maximum = 999.0M;
         }
 
 
@@ -198,7 +198,7 @@ namespace EPharmacy.Forms
             cboTipoReceita.SelectedIndex = 0;
             txtLote.Clear();
             txtNotaFiscal.Clear();
-            txtPrecoReal.Value = 0.0M;
+            txtReal.Value = 0.0M;
             cboRefil.SelectedIndex = 0;
             dTPRefil.Value = DateTime.Now.Date;
             cboStatusEntrega.SelectedIndex = 0;
@@ -227,7 +227,7 @@ namespace EPharmacy.Forms
 
             txtLote.Enabled = false;
             txtNotaFiscal.Enabled = false;
-            txtPrecoReal.Enabled = false;
+            txtReal.Enabled = false;
             cboRefil.Enabled = false;
             dTPRefil.Enabled = false;
             cboStatusEntrega.Enabled = false;
@@ -612,7 +612,7 @@ namespace EPharmacy.Forms
 
                 txtLote.Enabled = true;
                 txtNotaFiscal.Enabled = true;
-                txtPrecoReal.Enabled = true;
+                txtReal.Enabled = true;
                 cboRefil.Enabled = true;
                 dTPRefil.Enabled = true;
                 cboStatusEntrega.Enabled = true;
@@ -661,7 +661,7 @@ namespace EPharmacy.Forms
                             m.NumNotaFiscal,
                             // StatusEntregaId = mp.Id,
                             StatusEntrega = mp.Id + "-" + mp.Sigla + "-" + mp.Descricao,
-                            m.PrecoReal,
+                            m.Real,
                             // RefilId = pr.Id,
                             Refil = pr.Id + "-" + pr.Descricao,
                             m.DataRefil,
@@ -677,7 +677,7 @@ namespace EPharmacy.Forms
                 txtReceitaItensEntregaId.Enabled = false;
                 txtLote.Enabled = true;
                 txtNotaFiscal.Enabled = true;
-                txtPrecoReal.Enabled = true;   
+                txtReal.Enabled = true;   
                 cboRefil.Enabled = true;
                 dTPRefil.Enabled = true;
                 cboStatusEntrega.Enabled = true;
@@ -701,7 +701,7 @@ namespace EPharmacy.Forms
             //    retorno += "Preencha o campo Nota Fiscal\n";
             //}
 
-            //if (txtPrecoReal.Text == null)
+            //if (txtReal.Text == null)
             //{
             //    retorno += "Preencha o campo Preco Real\n";
             //}
@@ -731,7 +731,7 @@ namespace EPharmacy.Forms
 
             //string? numLote = txtLote.Text;
             //string? numNotaFiscal = txtNotaFiscal.Text;
-            //decimal? precoReal = txtPrecoReal.Value;
+            //decimal? Real = txtReal.Value;
             //int? refilId = Convert.ToInt32(cboRefil.SelectedValue);
             //int? statusEntregaId = Convert.ToInt32(cboStatusEntrega.SelectedValue);
             //DateTime? dataRefil = dTPRefil.Value;
@@ -822,7 +822,7 @@ namespace EPharmacy.Forms
                 retorno += "Preencha o campo Nota Fiscal\n";
             }
 
-            if (UtilitariosBLL.limpaString2(txtPrecoReal.Text).IsNullOrEmpty())
+            if (UtilitariosBLL.limpaString2(txtReal.Text).IsNullOrEmpty())
             {
                 retorno += "Preencha o campo Preço Real\n";
             }
@@ -847,7 +847,7 @@ namespace EPharmacy.Forms
             int receitaItensId = Convert.ToInt32(txtReceitaItensId.Text);
             string? numLote = txtLote.Text;
             string? numNotaFiscal = txtNotaFiscal.Text;
-            decimal? precoReal = txtPrecoReal.Value;
+            int? real = Convert.ToInt32(txtReal.Text);
             int? refilId = Convert.ToInt32(cboRefil.SelectedValue);
             int? statusEntregaId = Convert.ToInt32(cboStatusEntrega.SelectedValue);
             DateTime? dataRefil = dTPRefil.Value;
@@ -860,7 +860,7 @@ namespace EPharmacy.Forms
                 NumLote = numLote,
                 NumNotaFiscal = numNotaFiscal,
                 RefilId = refilId,
-                PrecoReal = precoReal,
+                Real = real,
                 DataRefil = dataRefil,
                 StatusEntregaId = statusEntregaId,
                 DataCadastro = DateTime.Now,
@@ -874,7 +874,7 @@ namespace EPharmacy.Forms
             txtLote.Clear();
             txtNotaFiscal.Clear();
             cboRefil.SelectedIndex = 0;
-            txtPrecoReal.Value = 0.00M;
+            txtReal.Value = 0.00M;
             dTPRefil.Value = DateTime.Now.Date;
             cboStatusEntrega.SelectedIndex = 0;
 

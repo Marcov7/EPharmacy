@@ -12,7 +12,7 @@ namespace EPharmacy.Models
         public int ReceitaItensId { get; set; }
         public string? NumLote { get; set; }
         public string? NumNotaFiscal { get; set; }
-        public Decimal? PrecoReal { get; set; }
+        public int? Real { get; set; }
         public int? RefilId { get; set; }
         public DateTime? DataRefil { get; set; }
         public int? StatusEntregaId { get; set; }

@@ -166,6 +166,7 @@ namespace EPharmacy.Forms
 
             dTPReceita.Value = DateTime.Now;
             cboPaciente.SelectedIndex = 0;
+            txtCPF.Text = "";
             //cboTipoEntrega.SelectedIndex = 0;
             //cboConvenio.SelectedIndex = 0;
             cboClinica.SelectedIndex = 0;
@@ -183,6 +184,7 @@ namespace EPharmacy.Forms
 
             dTPReceita.Enabled = true;
             cboPaciente.Enabled = true;
+            txtCPF.Enabled = true;
             //cboTipoEntrega.Enabled = false;
             //cboPeriodicidadeRefil.Enabled = true;
             //cboConvenio.Enabled = false;
@@ -448,6 +450,7 @@ namespace EPharmacy.Forms
             //dTPDataReceitaAnterior.Value = DateTime.Now;
             dTPReceita.Value = DateTime.Now;
             cboPaciente.SelectedIndex = 0;
+            txtCPF.Text = "";
             //cboTipoEntrega.SelectedIndex = 0;
             cboPeriodicidadeRefil.SelectedIndex = 0;
             //cboConvenio.SelectedIndex = 0;
@@ -459,6 +462,7 @@ namespace EPharmacy.Forms
             txtId.Enabled = false;
             txtDescricao.Enabled = true;
             cboPaciente.Enabled = true;
+            txtCPF.Enabled = false;
             //cboTipoEntrega.Enabled = true;
             //cboConvenio.Enabled = true;
             cboClinica.Enabled = true;
