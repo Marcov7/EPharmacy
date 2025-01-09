@@ -415,13 +415,36 @@ namespace EPharmacy.Forms
 
             if (!string.IsNullOrEmpty(cpf_))
             {
-                lista = from r in lista
-                        join p in _context.Paciente on r.PacienteId equals p.Id
+                lista = from d in lista
+                        join p in _context.Paciente on d.PacienteId equals p.Id
                         where p.CPF.Contains(cpf_)
-                        select r;
+                        select d;
             }
 
-            var listax = lista.ToList();
+            var listaCompleta = from r in lista
+                                join p in _context.Paciente on r.PacienteId equals p.Id into pacienteJoin
+                                from p in pacienteJoin.DefaultIfEmpty()
+                                join m in _context.Medico on r.MedicoId equals m.Id into medicoJoin
+                                from m in medicoJoin.DefaultIfEmpty()
+                                join c in _context.Clinica on r.ClinicaId equals c.Id into clinicaJoin
+                                from c in clinicaJoin.DefaultIfEmpty()
+                                select new
+                                {
+                             
+                                    Id = r.Id,
+                                    Descricao = r.Descricao,
+                                    DataReceita = r.DataReceita,
+                                    PacienteId = p.Id,
+                                    CPF = p.CPF,
+                                    Paciente = p.Nome,
+                                    MedicoId = m.Id,
+                                    Medico = m.Nome,
+                                    clinicaId = c.Id,
+                                    Clinica = c.Descricao
+                                };
+
+            var listax = listaCompleta.ToList();
+            //var listax = lista.ToList();
 
             if (listax != null)
             {

@@ -1,4 +1,5 @@
-﻿using EPharmacy.Data;
+﻿using BLL;
+using EPharmacy.Data;
 using EPharmacy.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -24,68 +25,6 @@ namespace EPharmacy.BLL
             optionsBuilder.UseSqlServer(Program.StrConn());
             _context = new EPharmacyContext(optionsBuilder.Options);
         }
-
-
-        /*
-        public void GetDataNovo()
-        {
-
-            using (var context = new DbContext())
-            {
-                var sixMonthsAgo = DateTime.Now.AddMonths(-6);
-
-                var result = context.Ccc
-                    .Where(c => c.Data >= sixMonthsAgo)
-                    .Join(context.Aaa, c => c.AaaId, a => a.Id, (c, a) => new { c, a })
-                    .Join(context.Bbb, ca => ca.c.BbbId, b => b.Id, (ca, b) => new
-                    {
-                        CccId = ca.c.Id,
-                        CccDescricao = ca.c.Descricao,
-                        CccData = ca.c.Data,
-                        AaaDescricao = ca.a.Descricao,
-                        BbbDescricao = b.Descricao,
-                        BbbValor = b.Valor
-                    })
-                    .ToList();
-
-                foreach (var item in result)
-                {
-                    Console.WriteLine($"CccId: {item.CccId}, CccDescricao: {item.CccDescricao}, CccData: {item.CccData}, " +
-                                      $"AaaDescricao: {item.AaaDescricao}, BbbDescricao: {item.BbbDescricao}, BbbValor: {item.BbbValor}");
-                }
-            }
-        }
-        */
-
-
-        /*
-        public void GetData()
-        {
-
-                var sixMonthsAgo = DateTime.Now.AddMonths(-6);
-
-                var result = _context.Receita
-                    .Where(c => c.DataReceita >= sixMonthsAgo)
-                    .Join(_context.Medicamento, c => c.Id, a => a.Id, (c, a) => new { c, a })
-                    .Join(_context.Paciente, ca => ca.c.Id, b => b.Id, (ca, b) => new
-                    {
-                        CccId = ca.c.Id,
-                        CccDescricao = ca.c.Descricao,
-                        CccData = ca.c.Data,
-                        AaaDescricao = ca.a.Descricao,
-                        BbbDescricao = b.Descricao,
-                        BbbValor = b.Valor
-                    })
-                    .ToList();
-
-                foreach (var item in result)
-                {
-                    Console.WriteLine($"CccId: {item.CccId}, CccDescricao: {item.CccDescricao}, CccData: {item.CccData}, " +
-                                      $"AaaDescricao: {item.AaaDescricao}, BbbDescricao: {item.BbbDescricao}, BbbValor: {item.BbbValor}");
-                }
-        }
-        */
-
 
         /*
         public IQueryable<BaseCadastral> GetReceitasUltimos6Meses()
@@ -209,8 +148,8 @@ namespace EPharmacy.BLL
                                       join te in _context.TipoEntrega on pc.TipoEntregaId equals te.Id
                                       join md in _context.Modalidade on pc.ModalidadeEntregaId equals md.Id
 
-                                      where re.DataReceita >= dataLimite
-                                      && ((ri.Refil1.Value.Month == Mes && ri.Refil1.Value.Year == Ano) ||
+                                      where //re.DataReceita >= dataLimite &&
+                                         ((ri.Refil1.Value.Month == Mes && ri.Refil1.Value.Year == Ano) ||
                                           (ri.Refil2.Value.Month == Mes && ri.Refil2.Value.Year == Ano) ||
                                           (ri.Refil3.Value.Month == Mes && ri.Refil3.Value.Year == Ano) ||
                                           (ri.Refil4.Value.Month == Mes && ri.Refil4.Value.Year == Ano) ||
@@ -327,25 +266,24 @@ namespace EPharmacy.BLL
                                       join te in _context.TipoEntrega on pc.TipoEntregaId equals te.Id
                                       join md in _context.Modalidade on pc.ModalidadeEntregaId equals md.Id
 
-                                      /*join receitaItemEntrega in _context.ReceitaItensEntrega on ri.Id equals receitaItemEntrega.ReceitaItensId into receitaEntregaGroup
-                                      from receitaItemEntrega in receitaEntregaGroup.DefaultIfEmpty() // Isso faz o LEFT JOIN
-
+                                      join receitaItemEntrega in _context.ReceitaItensEntrega on ri.Id equals receitaItemEntrega.ReceitaItensId 
+     
                                       join refi in _context.Refil on receitaItemEntrega.RefilId equals refi.Id
-                                      join sen in _context.StatusEntrega on receitaItemEntrega.StatusEntregaId equals sen.Id*/
+                                      join sen in _context.StatusEntrega on receitaItemEntrega.StatusEntregaId equals sen.Id
 
                                       where re.DataReceita >= dataLimite
 
-                                      /* && ((receitaItemEntrega.DataRefil.Value.Month == Mes && receitaItemEntrega.DataRefil.Value.Year == Ano) ||
-                                          (receitaItemEntrega.DataRefil.Value.Month == null || receitaItemEntrega.DataRefil.Value.Year == null)) */
+                                       && ((receitaItemEntrega.DataRefil.Value.Month == Mes && receitaItemEntrega.DataRefil.Value.Year == Ano) ||
+                                           (receitaItemEntrega.DataRefil.Value.Month == null || receitaItemEntrega.DataRefil.Value.Year == null) || dataComparacao == null)
 
 
-                                      && ((ri.Refil1.Value.Month == Mes && ri.Refil1.Value.Year == Ano) ||
+                                      /*&& ((ri.Refil1.Value.Month == Mes && ri.Refil1.Value.Year == Ano) ||
                                           (ri.Refil2.Value.Month == Mes && ri.Refil2.Value.Year == Ano) ||
                                           (ri.Refil3.Value.Month == Mes && ri.Refil3.Value.Year == Ano) ||
                                           (ri.Refil4.Value.Month == Mes && ri.Refil4.Value.Year == Ano) ||
                                           (ri.Refil5.Value.Month == Mes && ri.Refil5.Value.Year == Ano) ||
                                           (ri.Refil6.Value.Month == Mes && ri.Refil6.Value.Year == Ano) ||
-                                          (ri.RefilExtra.Value.Month == Mes && ri.RefilExtra.Value.Year == Ano) || dataComparacao == null)
+                                          (ri.RefilExtra.Value.Month == Mes && ri.RefilExtra.Value.Year == Ano) || dataComparacao == null)*/
                                       && (m.EAN == EAN || EAN.IsNullOrEmpty())
                                       && (pc.Matricula == Matricula || Matricula.IsNullOrEmpty())
                                       && (pc.CPF == CPF || CPF.IsNullOrEmpty())
@@ -363,16 +301,16 @@ namespace EPharmacy.BLL
                                           ReceitaItensId = ri.Id,
                                           PacienteId = pc.Id,
 
-                                          /*
-                                          ReceitaItensEntregaId = 1, // receitaItemEntrega.Id != null ? receitaItemEntrega.Id : (int?)null,
-                                          DataConsolidada = receitaItemEntrega.DataRefil != null ? receitaItemEntrega.DataRefil : (DateTime?)null,
+                                          
+                                          ReceitaItensEntregaId = receitaItemEntrega.Id != null ? receitaItemEntrega.Id : (int?)null,
+                                          DataEntrega = receitaItemEntrega.DataRefil != null ? receitaItemEntrega.DataRefil : (DateTime?)null,
                                           Lote = receitaItemEntrega.NumLote,
                                           NotaFiscal = receitaItemEntrega.NumNotaFiscal,
-                                          RefilId = 1, //refi.Id != null ? refi.Id : (int?)null,
+                                          RefilId = refi.Id != null ? refi.Id : (int?)null,
                                           Refil = refi.Descricao,
-                                          Real = 1.1M, // receitaItemEntrega.PrecoReal.Value != null ? receitaItemEntrega.PrecoReal.Value : (decimal?)null,
-                                          StatusEntregaId = 1 ,//receitaItemEntrega.StatusEntregaId != null ? receitaItemEntrega.StatusEntregaId : (int?)null,
-                                          StatusEntrega = sen.Descricao, */
+                                          Real = receitaItemEntrega.Real.Value != null ? receitaItemEntrega.Real.Value : (int?)null,
+                                          StatusEntregaId = receitaItemEntrega.StatusEntregaId != null ? receitaItemEntrega.StatusEntregaId : (int?)null,
+                                          StatusEntrega = sen.Descricao, 
 
                                           Matricula = pc.Matricula,
                                           ConvenioId = pc.ConvenioId.Value,
@@ -436,6 +374,184 @@ namespace EPharmacy.BLL
             return medicamentos;
         }
 
+
+        public void AdicionaRegitrosEmPedido(ReceitaItens entityUpdate)
+        {
+            string retorno = "";
+
+            //if (UtilitariosBLL.limpaString2(entityUpdate.Refil1).IsNullOrEmpty())
+            //{
+            //    retorno += "Preencha o campo Id da Receita Itens\n";
+            //}
+
+            //if (UtilitariosBLL.limpaString2(txtNotaFiscal.Text).IsNullOrEmpty())
+            //{
+            //    retorno += "Preencha o campo Nota Fiscal\n";
+            //}
+
+            //if (!retorno.IsNullOrEmpty())
+            //{
+            //    MessageBox.Show(retorno, "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return;
+            //}
+
+            int receitaItensId = Convert.ToInt32(entityUpdate.Id);
+            //string? Refil = "Refil1";
+            DateTime? Refil1 = entityUpdate.Refil1;
+            DateTime? Refil2 = entityUpdate.Refil2;
+            DateTime? Refil3 = entityUpdate.Refil3;
+            DateTime? Refil4 = entityUpdate.Refil4;
+            DateTime? Refil5 = entityUpdate.Refil5;
+            DateTime? Refil6 = entityUpdate.Refil6;
+            DateTime? RefilExtra = null;
+            if (entityUpdate.RefilExtra.HasValue)
+            {
+                RefilExtra = entityUpdate.RefilExtra;
+            }
+
+
+
+
+
+            //var receitaItensEntrega = _context.ReceitaItensEntrega.FirstOrDefault(b => b.ReceitaItensId == receitaItensId);
+            //EPharmacyContext _contextx;
+            //var optionsBuilderx = new DbContextOptionsBuilder<EPharmacyContext>();
+            //optionsBuilderx.UseSqlServer(Program.StrConn());
+            //_contextx = new EPharmacyContext(optionsBuilderx.Options);
+            //_contextx.ReceitaItensEntrega.Remove(receitaItensEntrega);
+            //_contextx.SaveChangesAsync();
+
+
+            //var receitaItensEntrega = _context.ReceitaItensEntrega.FirstOrDefault(b => b.ReceitaItensId == receitaItensId);
+            var entityNew = new ReceitaItensEntrega();
+            entityNew.ReceitaItensId = receitaItensId;
+            EPharmacyContext _contextx;
+            var optionsBuilderx = new DbContextOptionsBuilder<EPharmacyContext>();
+            optionsBuilderx.UseSqlServer(Program.StrConn());
+            _contextx = new EPharmacyContext(optionsBuilderx.Options);
+            var registrosParaRemover = _context.ReceitaItensEntrega.Where(r => r.ReceitaItensId == receitaItensId).ToList();
+            _contextx.ReceitaItensEntrega.RemoveRange(registrosParaRemover);
+            _contextx.SaveChanges();
+
+
+            if (Refil1 != null)
+            {
+                entityNew = new ReceitaItensEntrega
+                {
+                    ReceitaItensId = receitaItensId,
+                    DataRefil = Refil1,
+                    RefilId = 1,
+                    StatusEntregaId = 8,
+                    DataCadastro = DateTime.Now,
+                    Usuario = 1
+
+                };
+                _context.ReceitaItensEntrega.Add(entityNew);
+                _context.SaveChanges();
+            }
+
+
+            if (Refil2 != null)
+            {
+                entityNew = new ReceitaItensEntrega
+                {
+                    ReceitaItensId = receitaItensId,
+                    DataRefil = Refil2,
+                    RefilId = 2,
+                    StatusEntregaId = 8,
+                    DataCadastro = DateTime.Now,
+                    Usuario = 1
+
+                };
+                _context.ReceitaItensEntrega.Add(entityNew);
+                _context.SaveChanges();
+            }
+
+
+            if (Refil3 != null)
+            {
+                entityNew = new ReceitaItensEntrega
+                {
+                    ReceitaItensId = receitaItensId,
+                    DataRefil = Refil3,
+                    RefilId = 3,
+                    StatusEntregaId = 8,
+                    DataCadastro = DateTime.Now,
+                    Usuario = 1
+
+                };
+                _context.ReceitaItensEntrega.Add(entityNew);
+                _context.SaveChanges();
+            }
+
+
+            if (Refil4 != null)
+            {
+                entityNew = new ReceitaItensEntrega
+                {
+                    ReceitaItensId = receitaItensId,
+                    DataRefil = Refil4,
+                    RefilId = 4,
+                    StatusEntregaId = 8,
+                    DataCadastro = DateTime.Now,
+                    Usuario = 1
+
+                };
+                _context.ReceitaItensEntrega.Add(entityNew);
+                _context.SaveChanges();
+            }
+
+
+            if (Refil5 != null)
+            {
+                entityNew = new ReceitaItensEntrega
+                {
+                    ReceitaItensId = receitaItensId,
+                    DataRefil = Refil5,
+                    RefilId = 5,
+                    StatusEntregaId = 8,
+                    DataCadastro = DateTime.Now,
+                    Usuario = 1
+
+                };
+                _context.ReceitaItensEntrega.Add(entityNew);
+                _context.SaveChanges();
+            }
+
+
+            if (Refil6 != null)
+            {
+                entityNew = new ReceitaItensEntrega
+                {
+                    ReceitaItensId = receitaItensId,
+                    DataRefil = Refil6,
+                    RefilId = 6,
+                    StatusEntregaId = 8,
+                    DataCadastro = DateTime.Now,
+                    Usuario = 1
+
+                };
+                _context.ReceitaItensEntrega.Add(entityNew);
+                _context.SaveChanges();
+            }
+
+
+            if (RefilExtra != null)
+            {
+                entityNew = new ReceitaItensEntrega
+                {
+                    ReceitaItensId = receitaItensId,
+                    DataRefil = RefilExtra,
+                    RefilId = 7,
+                    StatusEntregaId = 8,
+                    DataCadastro = DateTime.Now,
+                    Usuario = 1
+
+                };
+                _context.ReceitaItensEntrega.Add(entityNew);
+                _context.SaveChanges();
+            }
+        }
 
 
         // Não usado. Usa COM e acho q é antigo.

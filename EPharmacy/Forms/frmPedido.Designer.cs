@@ -74,15 +74,11 @@
             dTPRefil = new DateTimePicker();
             label5 = new Label();
             txtReceitaItensEntregaId = new MaskedTextBox();
-            panel2 = new Panel();
             btnAdicionar = new Button();
-            dGVReceitaItensEntrega = new DataGridView();
             label18 = new Label();
             txtReceitaItensId = new MaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)dgvLista).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtReal).BeginInit();
-            panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dGVReceitaItensEntrega).BeginInit();
             SuspendLayout();
             // 
             // chkMostrarIds
@@ -307,6 +303,7 @@
             // 
             // txtId
             // 
+            txtId.BackColor = Color.Turquoise;
             txtId.Location = new Point(998, -6);
             txtId.Margin = new Padding(4, 3, 4, 3);
             txtId.Mask = "00000";
@@ -328,7 +325,7 @@
             label12.AutoSize = true;
             label12.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label12.ForeColor = Color.Purple;
-            label12.Location = new Point(286, 8);
+            label12.Location = new Point(283, 54);
             label12.Margin = new Padding(4, 0, 4, 0);
             label12.Name = "label12";
             label12.Size = new Size(32, 13);
@@ -340,7 +337,7 @@
             label11.AutoSize = true;
             label11.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label11.ForeColor = Color.Navy;
-            label11.Location = new Point(365, 8);
+            label11.Location = new Point(362, 54);
             label11.Margin = new Padding(4, 0, 4, 0);
             label11.Name = "label11";
             label11.Size = new Size(71, 13);
@@ -352,7 +349,7 @@
             label10.AutoSize = true;
             label10.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label10.ForeColor = Color.Red;
-            label10.Location = new Point(528, 8);
+            label10.Location = new Point(525, 54);
             label10.Margin = new Padding(4, 0, 4, 0);
             label10.Name = "label10";
             label10.Size = new Size(64, 13);
@@ -364,7 +361,7 @@
             label9.AutoSize = true;
             label9.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label9.ForeColor = Color.Green;
-            label9.Location = new Point(747, 8);
+            label9.Location = new Point(744, 54);
             label9.Margin = new Padding(4, 0, 4, 0);
             label9.Name = "label9";
             label9.Size = new Size(33, 13);
@@ -376,7 +373,7 @@
             label8.AutoSize = true;
             label8.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.Olive;
-            label8.Location = new Point(900, 8);
+            label8.Location = new Point(897, 54);
             label8.Margin = new Padding(4, 0, 4, 0);
             label8.Name = "label8";
             label8.Size = new Size(107, 13);
@@ -388,7 +385,7 @@
             label7.AutoSize = true;
             label7.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.FromArgb(128, 64, 0);
-            label7.Location = new Point(1140, 8);
+            label7.Location = new Point(1137, 54);
             label7.Margin = new Padding(4, 0, 4, 0);
             label7.Name = "label7";
             label7.Size = new Size(91, 13);
@@ -497,17 +494,17 @@
             // dgvLista
             // 
             dgvLista.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvLista.Location = new Point(4, 49);
+            dgvLista.Location = new Point(4, 96);
             dgvLista.Margin = new Padding(4, 3, 4, 3);
             dgvLista.Name = "dgvLista";
-            dgvLista.Size = new Size(1341, 349);
+            dgvLista.Size = new Size(1341, 540);
             dgvLista.TabIndex = 101;
             dgvLista.CellClick += dgvLista_CellClick;
             dgvLista.CellFormatting += dgvLista_CellFormatting;
             // 
             // txtLote
             // 
-            txtLote.Location = new Point(283, 21);
+            txtLote.Location = new Point(280, 67);
             txtLote.Margin = new Padding(4, 3, 4, 3);
             txtLote.Mask = "0000000000000";
             txtLote.Name = "txtLote";
@@ -516,7 +513,7 @@
             // 
             // txtNotaFiscal
             // 
-            txtNotaFiscal.Location = new Point(362, 21);
+            txtNotaFiscal.Location = new Point(359, 67);
             txtNotaFiscal.Margin = new Padding(4, 3, 4, 3);
             txtNotaFiscal.Mask = "0000000000000";
             txtNotaFiscal.Name = "txtNotaFiscal";
@@ -525,7 +522,7 @@
             // 
             // txtReal
             // 
-            txtReal.Location = new Point(524, 21);
+            txtReal.Location = new Point(521, 67);
             txtReal.Name = "txtReal";
             txtReal.Size = new Size(217, 23);
             txtReal.TabIndex = 147;
@@ -534,7 +531,7 @@
             // 
             cboRefil.Enabled = false;
             cboRefil.FormattingEnabled = true;
-            cboRefil.Location = new Point(744, 21);
+            cboRefil.Location = new Point(741, 67);
             cboRefil.Margin = new Padding(4, 3, 4, 3);
             cboRefil.Name = "cboRefil";
             cboRefil.Size = new Size(150, 23);
@@ -544,7 +541,7 @@
             // 
             cboStatusEntrega.Enabled = false;
             cboStatusEntrega.FormattingEnabled = true;
-            cboStatusEntrega.Location = new Point(1137, 21);
+            cboStatusEntrega.Location = new Point(1134, 67);
             cboStatusEntrega.Margin = new Padding(4, 3, 4, 3);
             cboStatusEntrega.Name = "cboStatusEntrega";
             cboStatusEntrega.Size = new Size(138, 23);
@@ -553,7 +550,7 @@
             // dTPRefil
             // 
             dTPRefil.Enabled = false;
-            dTPRefil.Location = new Point(897, 21);
+            dTPRefil.Location = new Point(894, 67);
             dTPRefil.Margin = new Padding(4, 3, 4, 3);
             dTPRefil.Name = "dTPRefil";
             dTPRefil.Size = new Size(237, 23);
@@ -564,7 +561,7 @@
             label5.AutoSize = true;
             label5.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.SeaGreen;
-            label5.Location = new Point(15, 8);
+            label5.Location = new Point(12, 54);
             label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
             label5.Size = new Size(131, 13);
@@ -575,67 +572,31 @@
             // 
             txtReceitaItensEntregaId.BackColor = Color.WhiteSmoke;
             txtReceitaItensEntregaId.Enabled = false;
-            txtReceitaItensEntregaId.Location = new Point(17, 21);
+            txtReceitaItensEntregaId.Location = new Point(14, 67);
             txtReceitaItensEntregaId.Margin = new Padding(4, 3, 4, 3);
             txtReceitaItensEntregaId.Mask = "00000000";
             txtReceitaItensEntregaId.Name = "txtReceitaItensEntregaId";
             txtReceitaItensEntregaId.Size = new Size(129, 23);
             txtReceitaItensEntregaId.TabIndex = 117;
             // 
-            // panel2
-            // 
-            panel2.BackColor = SystemColors.Info;
-            panel2.BorderStyle = BorderStyle.FixedSingle;
-            panel2.Controls.Add(btnAdicionar);
-            panel2.Controls.Add(dGVReceitaItensEntrega);
-            panel2.Controls.Add(dTPRefil);
-            panel2.Controls.Add(txtReal);
-            panel2.Controls.Add(label7);
-            panel2.Controls.Add(label8);
-            panel2.Controls.Add(label9);
-            panel2.Controls.Add(label10);
-            panel2.Controls.Add(label11);
-            panel2.Controls.Add(label12);
-            panel2.Controls.Add(label18);
-            panel2.Controls.Add(label5);
-            panel2.Controls.Add(txtLote);
-            panel2.Controls.Add(txtReceitaItensId);
-            panel2.Controls.Add(txtReceitaItensEntregaId);
-            panel2.Controls.Add(txtNotaFiscal);
-            panel2.Controls.Add(cboRefil);
-            panel2.Controls.Add(cboStatusEntrega);
-            panel2.Location = new Point(4, 404);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(1341, 236);
-            panel2.TabIndex = 149;
-            // 
             // btnAdicionar
             // 
             btnAdicionar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnAdicionar.Location = new Point(1282, 21);
+            btnAdicionar.Location = new Point(1345, 67);
             btnAdicionar.Name = "btnAdicionar";
-            btnAdicionar.Size = new Size(39, 23);
+            btnAdicionar.Size = new Size(14, 23);
             btnAdicionar.TabIndex = 150;
             btnAdicionar.Text = "+";
             btnAdicionar.UseVisualStyleBackColor = true;
+            btnAdicionar.Visible = false;
             btnAdicionar.Click += btnAdicionar_Click;
-            // 
-            // dGVReceitaItensEntrega
-            // 
-            dGVReceitaItensEntrega.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dGVReceitaItensEntrega.Location = new Point(14, 50);
-            dGVReceitaItensEntrega.Margin = new Padding(4, 3, 4, 3);
-            dGVReceitaItensEntrega.Name = "dGVReceitaItensEntrega";
-            dGVReceitaItensEntrega.Size = new Size(1307, 180);
-            dGVReceitaItensEntrega.TabIndex = 90;
-            dGVReceitaItensEntrega.CellContentClick += dGVReceitaItensEntrega_CellContentClick;
             // 
             // label18
             // 
             label18.AutoSize = true;
             label18.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label18.ForeColor = Color.SeaGreen;
-            label18.Location = new Point(150, 8);
+            label18.Location = new Point(147, 54);
             label18.Margin = new Padding(4, 0, 4, 0);
             label18.Name = "label18";
             label18.Size = new Size(83, 13);
@@ -646,7 +607,7 @@
             // 
             txtReceitaItensId.BackColor = Color.WhiteSmoke;
             txtReceitaItensId.Enabled = false;
-            txtReceitaItensId.Location = new Point(151, 21);
+            txtReceitaItensId.Location = new Point(148, 67);
             txtReceitaItensId.Margin = new Padding(4, 3, 4, 3);
             txtReceitaItensId.Mask = "00000000";
             txtReceitaItensId.Name = "txtReceitaItensId";
@@ -657,22 +618,39 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Azure;
             ClientSize = new Size(1360, 669);
-            Controls.Add(panel2);
+            Controls.Add(btnAdicionar);
+            Controls.Add(dTPRefil);
             Controls.Add(chkMostrarIds);
+            Controls.Add(txtReal);
             Controls.Add(label13);
+            Controls.Add(label7);
             Controls.Add(label6);
+            Controls.Add(label8);
             Controls.Add(txtMesAno);
+            Controls.Add(label9);
             Controls.Add(txtCPF);
+            Controls.Add(label10);
             Controls.Add(label2);
+            Controls.Add(label11);
             Controls.Add(label4);
+            Controls.Add(label12);
             Controls.Add(label1);
+            Controls.Add(label18);
             Controls.Add(label16);
+            Controls.Add(label5);
             Controls.Add(label15);
+            Controls.Add(txtLote);
             Controls.Add(label14);
+            Controls.Add(txtReceitaItensId);
             Controls.Add(label20);
+            Controls.Add(txtReceitaItensEntregaId);
             Controls.Add(cboPaciente);
+            Controls.Add(txtNotaFiscal);
+            Controls.Add(cboRefil);
             Controls.Add(cboStatus);
+            Controls.Add(cboStatusEntrega);
             Controls.Add(cboMedicamento);
             Controls.Add(cboTipoReceita);
             Controls.Add(cboZona);
@@ -696,9 +674,6 @@
             Load += frmPedido_Load;
             ((System.ComponentModel.ISupportInitialize)dgvLista).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtReal).EndInit();
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dGVReceitaItensEntrega).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -751,8 +726,6 @@
         private DateTimePicker dTPRefil;
         private Label label5;
         private MaskedTextBox txtReceitaItensEntregaId;
-        private Panel panel2;
-        private DataGridView dGVReceitaItensEntrega;
         private Label label18;
         private MaskedTextBox txtReceitaItensId;
         private Button btnAdicionar;

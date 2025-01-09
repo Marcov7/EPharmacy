@@ -84,7 +84,7 @@ namespace EPharmacy.Models
         public int PacienteId { get; set; }
 
         public int? ReceitaItensEntregaId { get; set; }
-        public DateTime? DataConsolidada { get; set; }
+        public DateTime? DataEntrega { get; set; }
         public string? Lote { get; set; }
         public string? NotaFiscal { get; set; }
         public int? RefilId { get; set; }

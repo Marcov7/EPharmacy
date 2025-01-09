@@ -374,10 +374,50 @@ namespace EPharmacy
 
         private void pedidoToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-        
+
         }
 
+
         private void pedidoToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            //foreach (Form filho in this.MdiChildren)
+            //{
+            //    if (filho is frmPedido)
+            //    {
+            //        filho.Activate();
+            //        return;
+            //    }
+            //}
+
+            //frmPedido formulario = new frmPedido
+            //{
+            //    MdiParent = this,
+            //};
+            //formulario.Show();
+            //formulario.Location = new Point(5, 5);
+        }
+
+
+        private void bairroZonaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (Form filho in this.MdiChildren)
+            {
+                if (filho is frmBairroZona)
+                {
+                    filho.Activate();
+                    return;
+                }
+            }
+
+            frmBairroZona formulario = new frmBairroZona
+            {
+                MdiParent = this,
+            };
+            formulario.Show();
+            formulario.Location = new Point(5, 5);
+        }
+
+        private void pedidoToolStripMenuItem2_Click_1(object sender, EventArgs e)
         {
             foreach (Form filho in this.MdiChildren)
             {

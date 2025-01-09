@@ -116,7 +116,7 @@ namespace EPharmacy.Forms
 
             ReceitaBLL receitaBLL = new ReceitaBLL();
             dgvLista.DataSource = receitaBLL.GetMedicamentosParaProximos6MesesPedido(datafiltro, EAN, MedicamentoId, ConvenioId, CPF, Matricula, PacienteId, StatusId, bairro, zona, tipoReceitaId);
-            dGVReceitaItensEntrega.DataSource = null;
+            //dGVReceitaItensEntrega.DataSource = null;
 
             dgvLista.Columns["ReceitaItensEntregaId"].Visible = chkMostrarIds.Checked;
             dgvLista.Columns["RefilId"].Visible = chkMostrarIds.Checked;
@@ -145,6 +145,8 @@ namespace EPharmacy.Forms
             HighlightRowsByNameChange();
 
             btnExportar.Enabled = true;
+
+            AjustaOutraDataConsolidadaPesquisa(txtMesAno.Text);
         }
 
 
@@ -351,11 +353,11 @@ namespace EPharmacy.Forms
 
             // alterar a altura da linhas do grid
             dgvLista.RowTemplate.Height = 17;
-            dGVReceitaItensEntrega.RowTemplate.Height = 18;
+            //dGVReceitaItensEntrega.RowTemplate.Height = 18;
 
             // fazendo ficar com as colunas autoajuestadas ao tamanho
             dgvLista.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            dGVReceitaItensEntrega.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            //dGVReceitaItensEntrega.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
 
             // Adiciona uma coluna de botões ao DataGridView
@@ -364,11 +366,12 @@ namespace EPharmacy.Forms
             btnExcluirColumn.HeaderText = "Excluir";
             btnExcluirColumn.Text = "<Excluir>";
             btnExcluirColumn.UseColumnTextForButtonValue = true; // Isso faz com que o texto "Excluir" apareça nos botões
-            dGVReceitaItensEntrega.Columns.Add(btnExcluirColumn);
+            //dGVReceitaItensEntrega.Columns.Add(btnExcluirColumn);
             // Associando o evento de clique da célula
-            dGVReceitaItensEntrega.CellContentClick += new DataGridViewCellEventHandler(dGVReceitaItensEntrega_CellContentClick);
+            //dGVReceitaItensEntrega.CellContentClick += new DataGridViewCellEventHandler(dGVReceitaItensEntrega_CellContentClick);
 
             Limpar();
+            AjustaDataHojeConsolidadaPesquisa();
 
         }
 
@@ -381,8 +384,8 @@ namespace EPharmacy.Forms
                 return;
             }
 
-            if (e.ColumnIndex == dGVReceitaItensEntrega.Columns["btnExcluirdGVReceitaItensEntrega"].Index)
-            {
+            //if (e.ColumnIndex == dGVReceitaItensEntrega.Columns["btnExcluirdGVReceitaItensEntrega"].Index)
+            //{
                 var result = MessageBox.Show("Tem certeza de que deseja excluir esta linha?", "Confirmar Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
@@ -390,7 +393,7 @@ namespace EPharmacy.Forms
 
                     int rowIndex = e.RowIndex;
 
-                    Int32 Id_ = Convert.ToInt32(dGVReceitaItensEntrega.Rows[rowIndex].Cells["Id"].Value);
+                Int32 Id_ = 0; // Convert.ToInt32(dGVReceitaItensEntrega.Rows[rowIndex].Cells["Id"].Value);
 
                     var Delete = _context.ReceitaItensEntrega.Find(Id_);
 
@@ -405,7 +408,7 @@ namespace EPharmacy.Forms
                         _contextx = new EPharmacyContext(optionsBuilderx.Options);
                         var lista = _contextx.ReceitaItensEntrega.AsQueryable();
                         lista = lista.Where(p => p.Id == Convert.ToInt32(Id_));
-                        dGVReceitaItensEntrega.DataSource = lista.ToList();
+                        //dGVReceitaItensEntrega.DataSource = lista.ToList();
 
                         ControlaDisparoDeEvento = true;
                     }
@@ -415,7 +418,7 @@ namespace EPharmacy.Forms
                     }
 
                 }
-            }
+            //}
         }
 
 
@@ -573,9 +576,9 @@ namespace EPharmacy.Forms
                 cboZona.SelectedValue = zona;
                 cboTipoReceita.SelectedValue = tipoReceitaId;
 
-                cboBairro.SelectedValue = statusId;
-                cboZona.SelectedValue = statusId;
-                cboTipoReceita.SelectedValue = statusId;
+                /*cboBairro.SelectedValue = bairroId;
+                cboZona.SelectedValue = statusId;*/
+                cboTipoReceita.SelectedValue = tipoReceitaId;
 
                 //dTPRefil1.Format = DateTimePickerFormat.Short;
                 //dTPRefil1.Value = refil1.Date;
@@ -594,6 +597,32 @@ namespace EPharmacy.Forms
                 //}
 
                 //DateTime refilExtra = refilExtraCell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(refilExtraCell.Value);
+
+                // Parte de ReceitaItensEntrada
+                var ReceitaItensEntregaIdCell = row.Cells["ReceitaItensEntregaId"];
+                var NumLoteCell = row.Cells["Lote"];
+                var NumNotaFiscalCell = row.Cells["NotaFiscal"];
+                var RealCell = row.Cells["Real"];
+                var RefilIdCell = row.Cells["RefilId"];
+                var DataRefilCell = row.Cells["DataEntrega"];
+                var StatusEntregaIdCell = row.Cells["StatusEntregaId"];
+
+
+                int? receitaItensEntregaId = Convert.ToInt32(ReceitaItensEntregaIdCell.Value);
+                string? numLote = NumLoteCell.Value != null ? NumLoteCell.Value.ToString() : null;
+                string? numNotaFiscal = NumNotaFiscalCell.Value != null ? NumNotaFiscalCell.Value.ToString() : "";
+                int? real = RealCell.Value != null ? Convert.ToInt32(RealCell.Value) : null;
+                int? refilId = RefilIdCell.Value != null ? Convert.ToInt32(RefilIdCell.Value) : null;
+                DateTime? dataRefil = DataRefilCell.Value != null ? Convert.ToDateTime(DataRefilCell.Value) : null;
+                int? statusEntregaId = StatusEntregaIdCell.Value != null ? Convert.ToInt32(StatusEntregaIdCell.Value) : 0;
+
+                txtReceitaItensEntregaId.Text = receitaItensEntregaId.ToString();
+                txtLote.Text = numLote;
+                txtNotaFiscal.Text = numNotaFiscal;
+                txtReal.Text = real.ToString();
+                cboRefil.SelectedValue = refilId;
+                dTPRefil.Value = dataRefil.Value;
+                cboStatusEntrega.SelectedValue = statusEntregaId;
 
 
                 // dTPReceita.Value = dataReceita.Date;
@@ -671,7 +700,7 @@ namespace EPharmacy.Forms
 
             if (listax != null)
             {
-                dGVReceitaItensEntrega.DataSource = listax;
+               // dGVReceitaItensEntrega.DataSource = listax;
 
                 txtReceitaItensId.Enabled = false;
                 txtReceitaItensEntregaId.Enabled = false;
@@ -682,7 +711,7 @@ namespace EPharmacy.Forms
                 dTPRefil.Enabled = true;
                 cboStatusEntrega.Enabled = true;
                 btnAdicionar.Enabled = true;
-                dGVReceitaItensEntrega.Enabled = true;
+               // dGVReceitaItensEntrega.Enabled = true;
             }
 
         }
@@ -690,70 +719,7 @@ namespace EPharmacy.Forms
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            //string retorno = "";
-            //if (txtLote.Text == null)
-            //{
-            //    retorno += "Preencha o campo Lote\n";
-            //}
-
-            //if (txtNotaFiscal.Text == null)
-            //{
-            //    retorno += "Preencha o campo Nota Fiscal\n";
-            //}
-
-            //if (txtReal.Text == null)
-            //{
-            //    retorno += "Preencha o campo Preco Real\n";
-            //}
-
-            //if (cboRefil.SelectedIndex <= 0)
-            //{
-            //    retorno += "Preencha o campo Refil\n";
-            //}
-
-            //if (cboStatusEntrega.SelectedIndex <= 0)
-            //{
-            //    retorno += "Preencha o campo Status Entrega\n";
-            //}
-
-            ////if (dTPRefil1.Value == null)
-            ////{
-            ////    retorno += "Preencha o campo Refil 1\n";
-            ////}
-
-            //if (!retorno.IsNullOrEmpty())
-            //{
-            //    MessageBox.Show(retorno, "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    return;
-            //}
-
-            ////DateTime refil1_ = dTPRefil1.Value;
-
-            //string? numLote = txtLote.Text;
-            //string? numNotaFiscal = txtNotaFiscal.Text;
-            //decimal? Real = txtReal.Value;
-            //int? refilId = Convert.ToInt32(cboRefil.SelectedValue);
-            //int? statusEntregaId = Convert.ToInt32(cboStatusEntrega.SelectedValue);
-            //DateTime? dataRefil = dTPRefil.Value;
-
-            //var entityUpdate = new ReceitaItensEntrega();
-
-            //int Id_ = Convert.ToInt32(txtReceitaItensEntregaId.Text);
-            //entityUpdate = _context.ReceitaItensEntrega.Find(Id_);
-            //entityUpdate.NumLote = numLote;
-            //entityUpdate.NumNotaFiscal = numNotaFiscal;
-            //entityUpdate.RefilId = refilId;
-            //entityUpdate.DataRefil = dataRefil;
-            //entityUpdate.StatusEntregaId = statusEntregaId;
-            //entityUpdate.DataCadastro = DateTime.Now;
-            //entityUpdate.Usuario = 1;
-
-            //_context.SaveChanges();
-            //Limpar();
-            ///*txtId.Text = Id_.ToString();*/
-            //btnPesquisar_Click(null, null);
-            ///*txtId.Clear();*/
-
+            btnAdicionar_Click(null, null);
         }
 
 
@@ -777,8 +743,8 @@ namespace EPharmacy.Forms
         private void btnExportar_Click(object sender, EventArgs e)
         {
 
-            string Data = DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString();
-            string Tempo = DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString();
+            string Data = DateTime.Now.Year.ToString().PadLeft(4, '0') + DateTime.Now.Month.ToString().PadLeft(2, '0') + DateTime.Now.Day.ToString().PadLeft(2,'0');
+            string Tempo = DateTime.Now.Hour.ToString().PadLeft(2, '0') + DateTime.Now.Minute.ToString().PadLeft(2, '0');
             string NomeArquivo = "PDD" + Data + Tempo + ".xlsx";
             string Path = null;
 
@@ -812,20 +778,20 @@ namespace EPharmacy.Forms
                 retorno += "Preencha o campo Id da Receita Itens\n";
             }
 
-            if (UtilitariosBLL.limpaString2(txtLote.Text).IsNullOrEmpty())
-            {
-                retorno += "Preencha o campo Lote\n";
-            }
+            //if (UtilitariosBLL.limpaString2(txtLote.Text).IsNullOrEmpty())
+            //{
+            //    retorno += "Preencha o campo Lote\n";
+            //}
 
-            if (UtilitariosBLL.limpaString2(txtNotaFiscal.Text).IsNullOrEmpty())
-            {
-                retorno += "Preencha o campo Nota Fiscal\n";
-            }
+            //if (UtilitariosBLL.limpaString2(txtNotaFiscal.Text).IsNullOrEmpty())
+            //{
+            //    retorno += "Preencha o campo Nota Fiscal\n";
+            //}
 
-            if (UtilitariosBLL.limpaString2(txtReal.Text).IsNullOrEmpty())
-            {
-                retorno += "Preencha o campo Preço Real\n";
-            }
+            //if (UtilitariosBLL.limpaString2(txtReal.Text).IsNullOrEmpty())
+            //{
+            //    retorno += "Preencha o campo Qtdd Real\n";
+            //}
 
             if (cboRefil.SelectedIndex == -1 || cboRefil.SelectedValue.ToString() == "0")
                 {
@@ -844,30 +810,29 @@ namespace EPharmacy.Forms
                 return;
             }
 
+            int receitaItensEntregaId = Convert.ToInt32(txtReceitaItensEntregaId.Text);
             int receitaItensId = Convert.ToInt32(txtReceitaItensId.Text);
             string? numLote = txtLote.Text;
             string? numNotaFiscal = txtNotaFiscal.Text;
-            int? real = Convert.ToInt32(txtReal.Text);
+            int? real = !txtReal.Text.IsNullOrEmpty() ? Convert.ToInt32(txtReal.Text) : null;
             int? refilId = Convert.ToInt32(cboRefil.SelectedValue);
             int? statusEntregaId = Convert.ToInt32(cboStatusEntrega.SelectedValue);
             DateTime? dataRefil = dTPRefil.Value;
 
             var entityNew = new ReceitaItensEntrega();
+            entityNew.Id = receitaItensEntregaId;
+            entityNew = _context.ReceitaItensEntrega.Find(receitaItensEntregaId);
 
-            entityNew = new ReceitaItensEntrega
-            {
-                ReceitaItensId = receitaItensId,
-                NumLote = numLote,
-                NumNotaFiscal = numNotaFiscal,
-                RefilId = refilId,
-                Real = real,
-                DataRefil = dataRefil,
-                StatusEntregaId = statusEntregaId,
-                DataCadastro = DateTime.Now,
-                Usuario = 1
+            entityNew.ReceitaItensId = receitaItensId;
+            entityNew.NumLote = numLote;
+            entityNew.NumNotaFiscal = numNotaFiscal;
+            entityNew.RefilId = refilId;
+            entityNew.Real = real;
+            entityNew.DataRefil = dataRefil;
+            entityNew.StatusEntregaId = statusEntregaId;
+            entityNew.DataCadastro = DateTime.Now;
+            entityNew.Usuario = 1;
 
-            };
-            _context.ReceitaItensEntrega.Add(entityNew);
             _context.SaveChanges();
 
             // dGVReceitaItensEntrega_CellClick();
@@ -878,7 +843,27 @@ namespace EPharmacy.Forms
             dTPRefil.Value = DateTime.Now.Date;
             cboStatusEntrega.SelectedIndex = 0;
 
-            preenchedGVReceitaItensEntrega();
+            //preenchedGVReceitaItensEntrega();
+            //string Data = txtMesAno.Text;
+            //Limpar();
+            //AjustaOutraDataConsolidadaPesquisa(Data);
+            btnPesquisar_Click(null, null);
         }
+    
+
+        public void AjustaDataHojeConsolidadaPesquisa()
+        {
+            string Mes = DateTime.Now.Date.Month.ToString();
+            string Ano = DateTime.Now.Date.Year.ToString();
+            var Data = Mes.PadLeft(2, '0') + "/" + Ano.PadLeft(4, '0'); ;
+            txtMesAno.Text = Data;
+        }
+
+
+        public void AjustaOutraDataConsolidadaPesquisa(string Data)
+        {
+            txtMesAno.Text = Data;
+        }
+
     }
 }

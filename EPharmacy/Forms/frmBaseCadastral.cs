@@ -415,6 +415,7 @@ namespace EPharmacy.Forms
             }
         }
 
+
         private string periodicidade;
         private void dgvLista_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -478,9 +479,9 @@ namespace EPharmacy.Forms
                 cboZona.SelectedValue = zona;
                 cboTipoReceita.SelectedValue = tipoReceitaId;
 
-                cboBairro.SelectedValue = statusId;
-                cboZona.SelectedValue = statusId;
-                cboTipoReceita.SelectedValue = statusId;
+                /*cboBairro.SelectedValue = statusId;
+                cboZona.SelectedValue = statusId;*/
+                cboTipoReceita.SelectedValue = tipoReceitaId;
 
                 dTPRefil1.Format = DateTimePickerFormat.Short;
                 dTPRefil1.Value = refil1.Date;
@@ -621,6 +622,11 @@ namespace EPharmacy.Forms
             entityUpdate.Usuario = 1;
 
             _context.SaveChanges();
+
+
+            ReceitaBLL rd = new ReceitaBLL();
+            rd.AdicionaRegitrosEmPedido(entityUpdate);
+
             Limpar();
             /*txtId.Text = Id_.ToString();*/
             btnPesquisar_Click(null, null);
@@ -637,6 +643,7 @@ namespace EPharmacy.Forms
             dTPRefil4.Value = dTPRefil3.Value.AddDays(dblperiodicidade);
             dTPRefil5.Value = dTPRefil4.Value.AddDays(dblperiodicidade);
             dTPRefil6.Value = dTPRefil5.Value.AddDays(dblperiodicidade);
+
         }
 
 
@@ -652,9 +659,8 @@ namespace EPharmacy.Forms
 
         private void btnExportar_Click(object sender, EventArgs e)
         {
-
-            string Data = DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString();
-            string Tempo = DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString();
+            string Data = DateTime.Now.Year.ToString().PadLeft(4, '0') + DateTime.Now.Month.ToString().PadLeft(2, '0') + DateTime.Now.Day.ToString().PadLeft(2, '0');
+            string Tempo = DateTime.Now.Hour.ToString().PadLeft(2, '0') + DateTime.Now.Minute.ToString().PadLeft(2, '0');
             string NomeArquivo = "BSC" + Data + Tempo + ".xlsx";
             string Path = null;
 

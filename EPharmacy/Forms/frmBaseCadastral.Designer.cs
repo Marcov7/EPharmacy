@@ -585,6 +585,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FloralWhite;
             ClientSize = new Size(1355, 667);
             Controls.Add(chkMostrarIds);
             Controls.Add(dTPRefilExtra);

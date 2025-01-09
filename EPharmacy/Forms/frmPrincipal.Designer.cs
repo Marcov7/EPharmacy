@@ -31,6 +31,7 @@
             menuStrip1 = new MenuStrip();
             cadastroToolStripMenuItem = new ToolStripMenuItem();
             toolStripSeparator1 = new ToolStripSeparator();
+            bairroZonaToolStripMenuItem = new ToolStripMenuItem();
             classeTerapeuticaToolStripMenuItem = new ToolStripMenuItem();
             clinicaToolStripMenuItem = new ToolStripMenuItem();
             convenioToolStripMenuItem = new ToolStripMenuItem();
@@ -73,7 +74,7 @@
             // 
             // cadastroToolStripMenuItem
             // 
-            cadastroToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { toolStripSeparator1, classeTerapeuticaToolStripMenuItem, clinicaToolStripMenuItem, convenioToolStripMenuItem, fabricanteToolStripMenuItem, medicoToolStripMenuItem, modalidadeToolStripMenuItem, parâmetrosToolStripMenuItem, periodicidadeRefilToolStripMenuItem, substânciaToolStripMenuItem, tipoEntregaToolStripMenuItem, tipoReceitaToolStripMenuItem, toolStripSeparator2, usuárioToolStripMenuItem });
+            cadastroToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { toolStripSeparator1, bairroZonaToolStripMenuItem, classeTerapeuticaToolStripMenuItem, clinicaToolStripMenuItem, convenioToolStripMenuItem, fabricanteToolStripMenuItem, medicoToolStripMenuItem, modalidadeToolStripMenuItem, parâmetrosToolStripMenuItem, periodicidadeRefilToolStripMenuItem, substânciaToolStripMenuItem, tipoEntregaToolStripMenuItem, tipoReceitaToolStripMenuItem, toolStripSeparator2, usuárioToolStripMenuItem });
             cadastroToolStripMenuItem.Name = "cadastroToolStripMenuItem";
             cadastroToolStripMenuItem.Size = new Size(66, 20);
             cadastroToolStripMenuItem.Text = "Cadastro";
@@ -82,6 +83,13 @@
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
             toolStripSeparator1.Size = new Size(169, 6);
+            // 
+            // bairroZonaToolStripMenuItem
+            // 
+            bairroZonaToolStripMenuItem.Name = "bairroZonaToolStripMenuItem";
+            bairroZonaToolStripMenuItem.Size = new Size(172, 22);
+            bairroZonaToolStripMenuItem.Text = "Bairro Zona";
+            bairroZonaToolStripMenuItem.Click += bairroZonaToolStripMenuItem_Click;
             // 
             // classeTerapeuticaToolStripMenuItem
             // 
@@ -217,7 +225,7 @@
             // receitaToolStripMenuItem1
             // 
             receitaToolStripMenuItem1.Name = "receitaToolStripMenuItem1";
-            receitaToolStripMenuItem1.Size = new Size(180, 22);
+            receitaToolStripMenuItem1.Size = new Size(178, 22);
             receitaToolStripMenuItem1.Text = "Cadastro de Receita";
             receitaToolStripMenuItem1.Click += receitaToolStripMenuItem1_Click;
             // 
@@ -255,7 +263,7 @@
             pedidoToolStripMenuItem2.Name = "pedidoToolStripMenuItem2";
             pedidoToolStripMenuItem2.Size = new Size(180, 22);
             pedidoToolStripMenuItem2.Text = "Pedido";
-            pedidoToolStripMenuItem2.Click += pedidoToolStripMenuItem2_Click;
+            pedidoToolStripMenuItem2.Click += pedidoToolStripMenuItem2_Click_1;
             // 
             // ajudaToolStripMenuItem
             // 
@@ -332,5 +340,6 @@
         private ToolStripMenuItem pedidoToolStripMenuItem2;
         private ToolStripMenuItem receitaToolStripMenuItem2;
         private ToolStripMenuItem receitaToolStripMenuItem1;
+        private ToolStripMenuItem bairroZonaToolStripMenuItem;
     }
 }
