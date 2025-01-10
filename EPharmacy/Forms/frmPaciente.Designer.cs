@@ -85,13 +85,14 @@
             cboTipoEntrega = new ComboBox();
             label19 = new Label();
             chkAtivo = new CheckBox();
+            chkMostrarIds = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)dgvLista).BeginInit();
             SuspendLayout();
             // 
             // btnPesquisar
             // 
             btnPesquisar.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnPesquisar.Location = new Point(363, 534);
+            btnPesquisar.Location = new Point(544, 534);
             btnPesquisar.Margin = new Padding(4, 3, 4, 3);
             btnPesquisar.Name = "btnPesquisar";
             btnPesquisar.Size = new Size(110, 27);
@@ -103,7 +104,7 @@
             // btnNovo
             // 
             btnNovo.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnNovo.Location = new Point(242, 534);
+            btnNovo.Location = new Point(423, 534);
             btnNovo.Margin = new Padding(4, 3, 4, 3);
             btnNovo.Name = "btnNovo";
             btnNovo.Size = new Size(110, 27);
@@ -116,7 +117,7 @@
             // 
             btnExcluir.Enabled = false;
             btnExcluir.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnExcluir.Location = new Point(605, 534);
+            btnExcluir.Location = new Point(786, 534);
             btnExcluir.Margin = new Padding(4, 3, 4, 3);
             btnExcluir.Name = "btnExcluir";
             btnExcluir.Size = new Size(110, 27);
@@ -129,7 +130,7 @@
             // 
             btnSalvar.Enabled = false;
             btnSalvar.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSalvar.Location = new Point(484, 534);
+            btnSalvar.Location = new Point(665, 534);
             btnSalvar.Margin = new Padding(4, 3, 4, 3);
             btnSalvar.Name = "btnSalvar";
             btnSalvar.Size = new Size(110, 27);
@@ -141,7 +142,7 @@
             // btnLimpar
             // 
             btnLimpar.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnLimpar.Location = new Point(726, 534);
+            btnLimpar.Location = new Point(907, 534);
             btnLimpar.Margin = new Padding(4, 3, 4, 3);
             btnLimpar.Name = "btnLimpar";
             btnLimpar.Size = new Size(110, 27);
@@ -154,7 +155,7 @@
             // 
             btnSair.BackColor = SystemColors.Control;
             btnSair.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSair.Location = new Point(847, 534);
+            btnSair.Location = new Point(1028, 534);
             btnSair.Margin = new Padding(4, 3, 4, 3);
             btnSair.Name = "btnSair";
             btnSair.Size = new Size(110, 27);
@@ -704,11 +705,22 @@
             chkAtivo.Text = "Ativo";
             chkAtivo.UseVisualStyleBackColor = true;
             // 
+            // chkMostrarIds
+            // 
+            chkMostrarIds.AutoSize = true;
+            chkMostrarIds.Location = new Point(22, 542);
+            chkMostrarIds.Name = "chkMostrarIds";
+            chkMostrarIds.Size = new Size(89, 19);
+            chkMostrarIds.TabIndex = 147;
+            chkMostrarIds.Text = "Mostrar Ids";
+            chkMostrarIds.UseVisualStyleBackColor = true;
+            // 
             // frmPaciente
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1164, 573);
+            Controls.Add(chkMostrarIds);
             Controls.Add(chkAtivo);
             Controls.Add(cboTipoEntrega);
             Controls.Add(label19);
@@ -840,5 +852,6 @@
         private ComboBox cboModalidadeEntrega;
         private ComboBox cboTipoEntrega;
         private CheckBox chkAtivo;
+        private CheckBox chkMostrarIds;
     }
 }

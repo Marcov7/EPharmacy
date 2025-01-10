@@ -90,7 +90,7 @@ namespace EPharmacy.Forms
         private void btnExcluir_Click(object sender, EventArgs e)
         {
             DialogResult resultado = MessageBox.Show(
-                "Você tem certeza que deseja Excluir o Fabricante Selecionado?",
+                "Você tem certeza que deseja Excluir o Bairro Zona Selecionado?",
                 "Confirmação",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question
@@ -102,28 +102,28 @@ namespace EPharmacy.Forms
             }
 
             int Id_ = Convert.ToInt32(txtId.Text);
-            var Delete = _context.Fabricante.Find(Id_);
+            var Delete = _context.BairroZona.Find(Id_);
 
             if (Delete != null)
             {
-                var medicamento = _context.Medicamento.FirstOrDefault(b => b.FabricanteId == Id_);
+                //var paciente = _context.Paciente.FirstOrDefault(b => b.Bairro == txtBairro.Text);
 
-                if (medicamento != null)
-                {
-                    MessageBox.Show("Fabricante não pode ser excluído. Tem dados relacionados entre Medicamento com Fabricante!");
-                    return;
-                }
+                //if (paciente != null)
+                //{
+                //    MessageBox.Show("Bairro Zona não pode ser excluído. Tem dados relacionados entre Paciente com Bairro Zona!");
+                //    return;
+                //}
 
-                _context.Fabricante.Remove(Delete);
+                _context.BairroZona.Remove(Delete);
                 _context.SaveChangesAsync();
-                MessageBox.Show("Fabricante excluído com sucesso!");
+                MessageBox.Show("Bairro Zona excluído com sucesso!");
 
                 Limpar();
                 btnPesquisar_Click(null, null);
             }
             else
             {
-                MessageBox.Show("Fabricante não encontrado.");
+                MessageBox.Show("Bairro Zona não encontrado.");
             }
         }
 

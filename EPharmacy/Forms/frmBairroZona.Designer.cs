@@ -49,7 +49,7 @@
             // btnPesquisar
             // 
             btnPesquisar.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnPesquisar.Location = new Point(585, 495);
+            btnPesquisar.Location = new Point(585, 519);
             btnPesquisar.Margin = new Padding(4, 3, 4, 3);
             btnPesquisar.Name = "btnPesquisar";
             btnPesquisar.Size = new Size(110, 27);
@@ -61,7 +61,7 @@
             // btnNovo
             // 
             btnNovo.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnNovo.Location = new Point(455, 495);
+            btnNovo.Location = new Point(455, 519);
             btnNovo.Margin = new Padding(4, 3, 4, 3);
             btnNovo.Name = "btnNovo";
             btnNovo.Size = new Size(110, 27);
@@ -74,19 +74,20 @@
             // 
             btnExcluir.Enabled = false;
             btnExcluir.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnExcluir.Location = new Point(837, 495);
+            btnExcluir.Location = new Point(837, 519);
             btnExcluir.Margin = new Padding(4, 3, 4, 3);
             btnExcluir.Name = "btnExcluir";
             btnExcluir.Size = new Size(110, 27);
             btnExcluir.TabIndex = 26;
             btnExcluir.Text = "&Excluir";
             btnExcluir.UseVisualStyleBackColor = true;
+            btnExcluir.Click += btnExcluir_Click;
             // 
             // btnSalvar
             // 
             btnSalvar.Enabled = false;
             btnSalvar.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSalvar.Location = new Point(712, 495);
+            btnSalvar.Location = new Point(712, 519);
             btnSalvar.Margin = new Padding(4, 3, 4, 3);
             btnSalvar.Name = "btnSalvar";
             btnSalvar.Size = new Size(110, 27);
@@ -98,19 +99,20 @@
             // btnLimpar
             // 
             btnLimpar.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnLimpar.Location = new Point(960, 495);
+            btnLimpar.Location = new Point(960, 519);
             btnLimpar.Margin = new Padding(4, 3, 4, 3);
             btnLimpar.Name = "btnLimpar";
             btnLimpar.Size = new Size(110, 27);
             btnLimpar.TabIndex = 28;
             btnLimpar.Text = "&Limpar";
             btnLimpar.UseVisualStyleBackColor = true;
+            btnLimpar.Click += btnLimpar_Click;
             // 
             // btnSair
             // 
             btnSair.BackColor = SystemColors.Control;
             btnSair.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSair.Location = new Point(1081, 495);
+            btnSair.Location = new Point(1081, 519);
             btnSair.Margin = new Padding(4, 3, 4, 3);
             btnSair.Name = "btnSair";
             btnSair.Size = new Size(110, 27);
@@ -125,8 +127,9 @@
             dgvLista.Location = new Point(9, 59);
             dgvLista.Margin = new Padding(4, 3, 4, 3);
             dgvLista.Name = "dgvLista";
-            dgvLista.Size = new Size(1182, 430);
+            dgvLista.Size = new Size(1182, 454);
             dgvLista.TabIndex = 23;
+            dgvLista.CellClick += dgvLista_CellClick;
             // 
             // label4
             // 
@@ -215,7 +218,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1206, 534);
+            ClientSize = new Size(1206, 551);
             Controls.Add(btnPesquisar);
             Controls.Add(btnNovo);
             Controls.Add(btnExcluir);
@@ -232,6 +235,7 @@
             Controls.Add(txtBairro);
             Controls.Add(txtId);
             Name = "frmBairroZona";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Bairro Zona";
             ((System.ComponentModel.ISupportInitialize)dgvLista).EndInit();
             ResumeLayout(false);

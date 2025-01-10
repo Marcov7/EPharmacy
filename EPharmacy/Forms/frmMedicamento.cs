@@ -212,7 +212,7 @@ namespace ControleEntregada.Forms
                     FabricanteId = Fabricante_,
                     TUSS = TUSS_,
                     DataCadastro = DateTime.Now.Date,
-                    Usuario = 1,
+                    Usuario = GlobalVariables.LoginId,
                 };
                 _context.Medicamento.Add(medicamentoNew);
                 _context.SaveChanges();
@@ -239,7 +239,7 @@ namespace ControleEntregada.Forms
                 medicamentoUpdate.FabricanteId = Fabricante_;
                 medicamentoUpdate.TUSS = TUSS_;
                 medicamentoUpdate.DataCadastro = DateTime.Now;
-                medicamentoUpdate.Usuario = 1;
+                medicamentoUpdate.Usuario = GlobalVariables.LoginId;
 
                 //   _context.Medicamento.Add(medicamentoUpdate);
                 _context.SaveChanges();
@@ -348,11 +348,49 @@ namespace ControleEntregada.Forms
             if (Fabricante_ != null)
                 medicamento = medicamento.Where(p => p.FabricanteId == Fabricante_);
 
-            var medicamentox = medicamento.ToList();
+            var medicamentoz = from r in medicamento
+                          join p in _context.Fabricante on r.FabricanteId equals p.Id into fabricanteJoin
+                          from p in fabricanteJoin.DefaultIfEmpty()
+                          join m in _context.Substancia on r.SubstanciaId equals m.Id into SubstanciaJoin
+                          from m in SubstanciaJoin.DefaultIfEmpty()
+                          join t in _context.TipoReceita on r.TipoReceitaId equals t.Id into TipoReceitaJoin
+                          from t in TipoReceitaJoin.DefaultIfEmpty()
+                          join c in _context.ClasseTerapeutica on r.ClasseTerapeuticaId equals c.Id into ClasseTerapeuticaJoin
+                          from c in ClasseTerapeuticaJoin.DefaultIfEmpty()
+                          select new
+                          {
+                                    Id = r.Id,
+                                    EAN = r.EAN,
+                                    Produto = r.Produto,
+                                    ClasseTerapeuticaId = c.Id,
+                                    ClasseTerapeutica = c.Descricao,
+                                    TipoReceitaId = t.Id,
+                                    TipoReceita = t.Descricao,
+                                    SubstanciaId = m.Id,
+                                    Substancia = m.Descricao,
+                                    FabricanteId = p.Id,
+                                    Fabricante = p.Descricao,
+                                    r.TUSS
+                          };
+
+
+            var medicamentox = medicamentoz.ToList();
 
             if (medicamentox != null)
                 dgvMedicamentos.DataSource = medicamentox;
 
+            dgvMedicamentos.Columns["ClasseTerapeuticaId"].HeaderText = "Id Classe Terapeutica";  
+            dgvMedicamentos.Columns["TipoReceitaId"].HeaderText = "Id TipoReceita";
+            dgvMedicamentos.Columns["FabricanteId"].HeaderText = "Id Fabricante";
+            dgvMedicamentos.Columns["SubstanciaId"].HeaderText = "Id Substância";
+            dgvMedicamentos.Columns["ClasseTerapeutica"].HeaderText = "Classe Terapeutica";
+            dgvMedicamentos.Columns["TipoReceita"].HeaderText = "Tp Receita";
+
+            dgvMedicamentos.Columns["Id"].Visible = chkMostrarIds.Checked;
+            dgvMedicamentos.Columns["ClasseTerapeuticaId"].Visible = chkMostrarIds.Checked;
+            dgvMedicamentos.Columns["TipoReceitaId"].Visible = chkMostrarIds.Checked;
+            dgvMedicamentos.Columns["FabricanteId"].Visible = chkMostrarIds.Checked;
+            dgvMedicamentos.Columns["SubstanciaId"].Visible = chkMostrarIds.Checked;
         }
 
 

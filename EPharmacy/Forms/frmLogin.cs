@@ -51,7 +51,7 @@ namespace EPharmacy
             if (!string.IsNullOrEmpty(Login) && !string.IsNullOrEmpty(Senha))
             {
                 entidade = entidade.Where(p => p.Login == Login && p.Senha == Senha);
-                //entidade = entidade.Where(p => p.Senha == Senha);
+
             }
             else
             {
@@ -65,6 +65,8 @@ namespace EPharmacy
                MessageBox.Show("Falha na tentativa login no sistema. Tente novamente.","", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                return;
             }
+
+            GlobalVariables.LoginId = entidadex[0].Id;
 
             frmPrincipal frm = new frmPrincipal();
             frm.ShowDialog(); 

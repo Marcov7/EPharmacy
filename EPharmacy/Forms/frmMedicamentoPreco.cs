@@ -167,7 +167,7 @@ namespace ControleEntregada.Forms
                     PrecoFabrica = precoFabrica_,
                     PrecoPmcBrasindice = precoPMC_,
                     PrecoAcordado = precoAcordado_,
-                    Usuario = 1,
+                    Usuario = GlobalVariables.LoginId,
                     DataCadastro = DateTime.Now.Date,
                 };
                 _context.MedicamentoPreco.Add(entityNew);
@@ -183,7 +183,7 @@ namespace ControleEntregada.Forms
                 entityUpdate.PrecoFabrica = precoFabrica_;
                 entityUpdate.PrecoPmcBrasindice = precoPMC_;
                 entityUpdate.PrecoAcordado = precoAcordado_;
-                entityUpdate.Usuario = 1;
+                entityUpdate.Usuario = GlobalVariables.LoginId;
                 entityUpdate.DataCadastro = DateTime.Now.Date;
                 _context.SaveChanges();
                 Limpar();

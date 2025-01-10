@@ -546,6 +546,17 @@ namespace EPharmacy.Forms
             if (listax != null)
                 dgvLista.DataSource = listax;
 
+
+            dgvLista.Columns["ModalidadeEntregaId"].Visible = chkMostrarIds.Checked;
+            dgvLista.Columns["TipoEntregaId"].Visible = chkMostrarIds.Checked;
+
+            dgvLista.Columns["NomeSocial"].HeaderText = "Nome Social";
+            dgvLista.Columns["DataNascimento"].HeaderText = "Dt Nascimento";
+            dgvLista.Columns["DataPrimeiroAtendimento"].HeaderText = "Dt Primeiro Atendimento";
+            dgvLista.Columns["DataInclusaoConvenio"].HeaderText = "Dt Inclusão Convênio";
+            dgvLista.Columns["ModalidadeEntregaId"].HeaderText = "Id Modalid. Entrega";
+            dgvLista.Columns["TipoEntregaId"].HeaderText = "Id Tp.Entrega";
+
         }
 
 

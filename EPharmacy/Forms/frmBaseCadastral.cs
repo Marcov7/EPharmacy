@@ -117,9 +117,21 @@ namespace EPharmacy.Forms
             dgvLista.Columns["MedicamentoId"].Visible = chkMostrarIds.Checked;
             dgvLista.Columns["PeriodicidadeId"].Visible = chkMostrarIds.Checked;
             dgvLista.Columns["ReceitaId"].Visible = chkMostrarIds.Checked;
-            dgvLista.Columns["ReceitaDescricao"].Visible = chkMostrarIds.Checked;
+            //dgvLista.Columns["ReceitaDescricao"].Visible = chkMostrarIds.Checked;
             dgvLista.Columns["TipoReceitaId"].Visible = chkMostrarIds.Checked;
             dgvLista.Columns["ConvenioId"].Visible = chkMostrarIds.Checked;
+
+
+            dgvLista.Columns["ReceitaItensId"].HeaderText = "Id Rec Itens";
+            dgvLista.Columns["PacienteId"].HeaderText = "Id Paciente";
+            dgvLista.Columns["StatusId"].HeaderText = "Id tatus";
+            dgvLista.Columns["PacienteId"].HeaderText = "Id Paciente";
+            dgvLista.Columns["MedicamentoId"].HeaderText = "Id Medicam.";
+            dgvLista.Columns["PeriodicidadeId"].HeaderText = "Id Periodic.";
+            dgvLista.Columns["ReceitaId"].HeaderText = "Id Receita";
+            dgvLista.Columns["ReceitaDescricao"].HeaderText = "Descricao Receita";
+            dgvLista.Columns["TipoReceitaId"].HeaderText = "Id Tp.Receita";
+            dgvLista.Columns["ConvenioId"].HeaderText = "Id Convenio";
 
             HighlightRowsByNameChange();
 
@@ -619,7 +631,7 @@ namespace EPharmacy.Forms
             entityUpdate.Refil6 = refil6_;
             entityUpdate.RefilExtra = refilExtra_;
             entityUpdate.DataCadastro = DateTime.Now;
-            entityUpdate.Usuario = 1;
+            entityUpdate.Usuario = GlobalVariables.LoginId;
 
             _context.SaveChanges();
 

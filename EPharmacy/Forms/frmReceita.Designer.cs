@@ -62,6 +62,7 @@
             dGVReceitaItens = new DataGridView();
             txtReceitaItemId = new MaskedTextBox();
             label12 = new Label();
+            label7 = new Label();
             label4 = new Label();
             label13 = new Label();
             label11 = new Label();
@@ -71,7 +72,7 @@
             txtQtddAnterior = new MaskedTextBox();
             txtQtdd = new MaskedTextBox();
             RECEITA = new Label();
-            label7 = new Label();
+            chkMostrarIds = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)dgvLista).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -280,6 +281,7 @@
             // 
             panel1.BackColor = Color.FromArgb(192, 255, 255);
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(chkMostrarIds);
             panel1.Controls.Add(label5);
             panel1.Controls.Add(label15);
             panel1.Controls.Add(label9);
@@ -473,6 +475,16 @@
             label12.TabIndex = 98;
             label12.Text = "Medicamento";
             // 
+            // label7
+            // 
+            label7.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label7.Location = new Point(788, 4);
+            label7.Margin = new Padding(4, 0, 4, 0);
+            label7.Name = "label7";
+            label7.Size = new Size(41, 29);
+            label7.TabIndex = 98;
+            label7.Text = "Nova Qtdd";
+            // 
             // label4
             // 
             label4.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -567,15 +579,15 @@
             RECEITA.TabIndex = 89;
             RECEITA.Text = "RECEITA";
             // 
-            // label7
+            // chkMostrarIds
             // 
-            label7.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.Location = new Point(788, 4);
-            label7.Margin = new Padding(4, 0, 4, 0);
-            label7.Name = "label7";
-            label7.Size = new Size(41, 29);
-            label7.TabIndex = 98;
-            label7.Text = "Nova Qtdd";
+            chkMostrarIds.AutoSize = true;
+            chkMostrarIds.Location = new Point(10, 572);
+            chkMostrarIds.Name = "chkMostrarIds";
+            chkMostrarIds.Size = new Size(85, 19);
+            chkMostrarIds.TabIndex = 147;
+            chkMostrarIds.Text = "Mostrar Ids";
+            chkMostrarIds.UseVisualStyleBackColor = true;
             // 
             // frmReceita
             // 
@@ -661,5 +673,6 @@
         private Label label4;
         private MaskedTextBox txtQtddAnterior;
         private Label label7;
+        private CheckBox chkMostrarIds;
     }
 }

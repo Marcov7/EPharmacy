@@ -339,7 +339,7 @@ namespace EPharmacy.Forms
                     ClinicaId = ClinicaId_,
                     MedicoId = MedicoId_,
                     DataCadastro = DateTime.Now,
-                    Usuario = 1,
+                    Usuario = GlobalVariables.LoginId,
                 };
                 _context.Receita.Add(entityNew);
                 _context.SaveChanges();
@@ -363,7 +363,7 @@ namespace EPharmacy.Forms
                 entityUpdate.ClinicaId = ClinicaId_;
                 entityUpdate.MedicoId = MedicoId_;
                 entityUpdate.DataCadastro = DateTime.Now;
-                entityUpdate.Usuario = 1;
+                entityUpdate.Usuario = GlobalVariables.LoginId;
 
 
                 //if (cboPeriodicidadeRefil.SelectedIndex == -1 || cboPeriodicidadeRefil.SelectedValue.ToString() == "0")
@@ -450,6 +450,18 @@ namespace EPharmacy.Forms
             {
                 dgvLista.DataSource = listax;
                 dgvLista.Enabled = true;
+
+                dGVReceitaItens.DataSource = null;    
+
+                dgvLista.Columns["Id"].HeaderText = "Id Receita";
+                dgvLista.Columns["PacienteId"].HeaderText = "Id Paciente";  // Alterar o título da coluna "PacienteId"
+                dgvLista.Columns["ClinicaId"].HeaderText = "Id Clinica";
+                dgvLista.Columns["MedicoId"].HeaderText = "Id Medico";
+
+                dgvLista.Columns["Id"].Visible = chkMostrarIds.Checked;
+                dgvLista.Columns["PacienteId"].Visible = chkMostrarIds.Checked;
+                dgvLista.Columns["ClinicaId"].Visible = chkMostrarIds.Checked;
+                dgvLista.Columns["MedicoId"].Visible = chkMostrarIds.Checked;
             }
         }
 
@@ -600,11 +612,12 @@ namespace EPharmacy.Forms
                         select new
                         {
                             m.Id,
-                            Receita = m.ReceitaId,
+                            ReceitaId = m.ReceitaId,
                             MedicamentoId = mp.Id,
                             mp.Produto,
                             mp.EAN,
                             m.DataReceitaAnterior,
+                            PeriodicidadeId = pr.Id,
                             Periodicidade = pr.Descricao,
                             Status = st.Descricao,
                             m.Qtdd,
@@ -619,6 +632,17 @@ namespace EPharmacy.Forms
             if (listax != null)
             {
                 dGVReceitaItens.DataSource = listax;
+
+                dGVReceitaItens.Columns["Id"].HeaderText = "Id Rec.Itens";
+                dGVReceitaItens.Columns["ReceitaId"].HeaderText = "Id Receita";  // Alterar o título da coluna "PacienteId"
+                dGVReceitaItens.Columns["MedicamentoId"].HeaderText = "Id Medicam.";
+                dGVReceitaItens.Columns["PeriodicidadeId"].HeaderText = "Id Periodic.";
+                dGVReceitaItens.Columns["DataReceitaAnterior"].HeaderText = "Dt Rec.Anterior";
+
+                dGVReceitaItens.Columns["Id"].Visible = chkMostrarIds.Checked;
+                dGVReceitaItens.Columns["ReceitaId"].Visible = chkMostrarIds.Checked;
+                dGVReceitaItens.Columns["MedicamentoId"].Visible = chkMostrarIds.Checked;
+                dGVReceitaItens.Columns["PeriodicidadeId"].Visible = chkMostrarIds.Checked;
 
                 txtReceitaItemId.Enabled = false;
                 txtReceitaId.Enabled = false;
@@ -693,7 +717,7 @@ namespace EPharmacy.Forms
                 Obs = obs_,
                 Qtdd = qtdd_,
                 DataCadastro = DateTime.Now,
-                Usuario = 1,
+                Usuario = GlobalVariables.LoginId,
             };
             _context.ReceitaItens.Add(entityNew);
             _context.SaveChanges();

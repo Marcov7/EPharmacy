@@ -51,6 +51,7 @@
             btnExcluir = new Button();
             label8 = new Label();
             txtTUSS = new MaskedTextBox();
+            chkMostrarIds = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)dgvMedicamentos).BeginInit();
             SuspendLayout();
             // 
@@ -298,12 +299,23 @@
             txtTUSS.Size = new Size(145, 23);
             txtTUSS.TabIndex = 13;
             // 
+            // chkMostrarIds
+            // 
+            chkMostrarIds.AutoSize = true;
+            chkMostrarIds.Location = new Point(24, 612);
+            chkMostrarIds.Name = "chkMostrarIds";
+            chkMostrarIds.Size = new Size(85, 19);
+            chkMostrarIds.TabIndex = 148;
+            chkMostrarIds.Text = "Mostrar Ids";
+            chkMostrarIds.UseVisualStyleBackColor = true;
+            // 
             // frmMedicamento
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(224, 224, 224);
             ClientSize = new Size(1309, 635);
+            Controls.Add(chkMostrarIds);
             Controls.Add(label8);
             Controls.Add(txtTUSS);
             Controls.Add(btnPesquisar);
@@ -364,5 +376,6 @@
         private Button btnExcluir;
         private Label label8;
         private MaskedTextBox txtTUSS;
+        private CheckBox chkMostrarIds;
     }
 }
