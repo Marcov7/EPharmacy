@@ -73,6 +73,10 @@ namespace EPharmacy.Forms
             cboTipoEntrega.ValueMember = "Id";
 
             // FIM
+
+            dgvLista.RowTemplate.Height = 18;
+            // fazendo ficar com as colunas autoajuestadas ao tamanho
+            dgvLista.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
 
 
@@ -427,7 +431,7 @@ namespace EPharmacy.Forms
                     TipoEntregaId = TipoEntregaId_,
                     Ativo = ativo,
                     DataCadastro = DateTime.Now.Date,
-                    Usuario = 1,
+                    Usuario = GlobalVariables.LoginId,
                 };
 
                 /*    */
@@ -484,7 +488,7 @@ namespace EPharmacy.Forms
                 update.Ativo = ativo;   
 
                 update.DataCadastro = DateTime.Now;
-                update.Usuario = 1;
+                update.Usuario = GlobalVariables.LoginId;
 
                 _context.SaveChanges();
 
@@ -549,6 +553,7 @@ namespace EPharmacy.Forms
 
             dgvLista.Columns["ModalidadeEntregaId"].Visible = chkMostrarIds.Checked;
             dgvLista.Columns["TipoEntregaId"].Visible = chkMostrarIds.Checked;
+            dgvLista.Columns["ConvenioId"].Visible = chkMostrarIds.Checked;
 
             dgvLista.Columns["NomeSocial"].HeaderText = "Nome Social";
             dgvLista.Columns["DataNascimento"].HeaderText = "Dt Nascimento";
@@ -556,7 +561,8 @@ namespace EPharmacy.Forms
             dgvLista.Columns["DataInclusaoConvenio"].HeaderText = "Dt Inclusão Convênio";
             dgvLista.Columns["ModalidadeEntregaId"].HeaderText = "Id Modalid. Entrega";
             dgvLista.Columns["TipoEntregaId"].HeaderText = "Id Tp.Entrega";
-
+            dgvLista.Columns["ConvenioId"].HeaderText = "Id Convênio";
+            dgvLista.Columns["DataCadastro"].HeaderText = "Dt Cadastro";
         }
 
 

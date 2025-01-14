@@ -131,7 +131,15 @@ namespace EPharmacy.Forms
             dgvLista.Columns["ReceitaId"].HeaderText = "Id Receita";
             dgvLista.Columns["ReceitaDescricao"].HeaderText = "Descricao Receita";
             dgvLista.Columns["TipoReceitaId"].HeaderText = "Id Tp.Receita";
+            dgvLista.Columns["TipoReceita"].HeaderText = "Tp.Receita";
             dgvLista.Columns["ConvenioId"].HeaderText = "Id Convenio";
+            dgvLista.Columns["PrecoAcordado"].HeaderText = "Preço Acordado";
+            dgvLista.Columns["DataReceitaAnterior"].HeaderText = "Dt Rec.Anterior";
+            dgvLista.Columns["DataInclusaoConvenio"].HeaderText = "Dt Inclusão Convênio";
+            dgvLista.Columns["DataReceita"].HeaderText = "Dt Receita";
+            //dgvLista.Columns["DataReceita"].HeaderText = "Dt Receita";
+            dgvLista.Columns["ClasseTerapeutica"].HeaderText = "Classe Terapeutica";
+            dgvLista.Columns["TipoEntrega"].HeaderText = "Tp.Entrega";
 
             HighlightRowsByNameChange();
 
@@ -639,9 +647,11 @@ namespace EPharmacy.Forms
             ReceitaBLL rd = new ReceitaBLL();
             rd.AdicionaRegitrosEmPedido(entityUpdate);
 
-            Limpar();
+            //Limpar();
             /*txtId.Text = Id_.ToString();*/
+
             btnPesquisar_Click(null, null);
+
             /*txtId.Clear();*/
 
         }

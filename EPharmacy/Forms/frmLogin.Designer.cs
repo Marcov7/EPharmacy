@@ -43,9 +43,9 @@
             btnSair.BackColor = Color.Red;
             btnSair.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnSair.ForeColor = Color.White;
-            btnSair.Location = new Point(173, 196);
+            btnSair.Location = new Point(173, 191);
             btnSair.Name = "btnSair";
-            btnSair.Size = new Size(126, 34);
+            btnSair.Size = new Size(140, 34);
             btnSair.TabIndex = 0;
             btnSair.Text = "Sai&r";
             btnSair.UseVisualStyleBackColor = false;
@@ -56,9 +56,9 @@
             btnLogar.BackColor = Color.Green;
             btnLogar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnLogar.ForeColor = Color.Transparent;
-            btnLogar.Location = new Point(38, 196);
+            btnLogar.Location = new Point(34, 191);
             btnLogar.Name = "btnLogar";
-            btnLogar.Size = new Size(125, 34);
+            btnLogar.Size = new Size(139, 34);
             btnLogar.TabIndex = 1;
             btnLogar.Text = "&Entrar";
             btnLogar.UseVisualStyleBackColor = false;
@@ -116,7 +116,7 @@
             lblVersao.AutoSize = true;
             lblVersao.Font = new Font("Segoe UI", 7F, FontStyle.Bold);
             lblVersao.ForeColor = Color.Purple;
-            lblVersao.Location = new Point(266, 233);
+            lblVersao.Location = new Point(117, 237);
             lblVersao.Name = "lblVersao";
             lblVersao.Size = new Size(41, 12);
             lblVersao.TabIndex = 4;
@@ -127,7 +127,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientInactiveCaption;
-            ClientSize = new Size(349, 249);
+            ClientSize = new Size(349, 253);
             Controls.Add(lblVersao);
             Controls.Add(lblSenha);
             Controls.Add(lblMsgInicial);

@@ -17,7 +17,7 @@ namespace EPharmacy
             this.MaximizeBox = false;
             this.MinimizeBox = false;
 
-            lblVersao.Text += "1.000b";
+            lblVersao.Text += "1.00b " + DateTime.Now.Date.ToString("dd/MM/yyyy");
         }
 
 

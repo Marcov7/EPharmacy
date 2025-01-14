@@ -166,7 +166,7 @@ namespace EPharmacy.Forms
                     Senha = Senha_,
                     Email = Email_,
                     DataCadastro = DateTime.Now,
-                    Usuario = 1,
+                    Usuario = GlobalVariables.LoginId,
                 };
                 _context.UsuarioSistema.Add(entityNew);
                 _context.SaveChanges();
@@ -186,7 +186,7 @@ namespace EPharmacy.Forms
                 entityUpdate.Senha = Senha_;
                 entityUpdate.Email = Email_;
                 entityUpdate.DataCadastro = DateTime.Now;
-                entityUpdate.Usuario = 1;
+                entityUpdate.Usuario = GlobalVariables.LoginId;
 
                 _context.SaveChanges();
                 Limpar();
@@ -196,7 +196,7 @@ namespace EPharmacy.Forms
             }
 
             MessageBox.Show(
-                "Tipo Receita Gravado com sucesso",
+                "Usuário Gravado com sucesso",
                 "",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Exclamation

@@ -457,6 +457,8 @@ namespace EPharmacy.Forms
                 dgvLista.Columns["PacienteId"].HeaderText = "Id Paciente";  // Alterar o título da coluna "PacienteId"
                 dgvLista.Columns["ClinicaId"].HeaderText = "Id Clinica";
                 dgvLista.Columns["MedicoId"].HeaderText = "Id Medico";
+                dgvLista.Columns["DataReceita"].HeaderText = "Dt Receita";
+
 
                 dgvLista.Columns["Id"].Visible = chkMostrarIds.Checked;
                 dgvLista.Columns["PacienteId"].Visible = chkMostrarIds.Checked;
@@ -633,11 +635,12 @@ namespace EPharmacy.Forms
             {
                 dGVReceitaItens.DataSource = listax;
 
-                dGVReceitaItens.Columns["Id"].HeaderText = "Id Rec.Itens";
+                dGVReceitaItens.Columns["Id"].HeaderText = "Id Rec. Itens";
                 dGVReceitaItens.Columns["ReceitaId"].HeaderText = "Id Receita";  // Alterar o título da coluna "PacienteId"
                 dGVReceitaItens.Columns["MedicamentoId"].HeaderText = "Id Medicam.";
                 dGVReceitaItens.Columns["PeriodicidadeId"].HeaderText = "Id Periodic.";
-                dGVReceitaItens.Columns["DataReceitaAnterior"].HeaderText = "Dt Rec.Anterior";
+                dGVReceitaItens.Columns["DataReceitaAnterior"].HeaderText = "Dt Rec. Anterior";
+
 
                 dGVReceitaItens.Columns["Id"].Visible = chkMostrarIds.Checked;
                 dGVReceitaItens.Columns["ReceitaId"].Visible = chkMostrarIds.Checked;

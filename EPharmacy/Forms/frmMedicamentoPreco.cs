@@ -93,7 +93,8 @@ namespace ControleEntregada.Forms
             txtPMCBrasindice.Value = 0;
             txtPrecoFabrica.Value = 0;
             txtPrecoAcordo.Value = 0;
-
+            txtUnidadesCaixa.Clear();
+            txtPrecoUnitario.Value = 0;
 
             txtId.Enabled = false;
             txtMedicamentoId.Enabled = true;
@@ -102,7 +103,8 @@ namespace ControleEntregada.Forms
             txtPMCBrasindice.Enabled = true;
             txtPrecoFabrica.Enabled = true;
             txtPrecoAcordo.Enabled = false;
-
+            txtUnidadesCaixa.Enabled = true;
+            txtPrecoUnitario.Enabled = false; 
 
             btnNovo.Enabled = false;
             btnPesquisar.Enabled = false;
@@ -110,6 +112,8 @@ namespace ControleEntregada.Forms
             btnLimpar.Enabled = true;
             btnSair.Enabled = true;
             btnExcluir.Enabled = false;
+            btnCalcular.Enabled = true;
+            btnCalcularPrecounitario.Enabled = true;
         }
 
 
@@ -156,6 +160,20 @@ namespace ControleEntregada.Forms
             decimal precoPMC_ = Convert.ToDecimal(txtPMCBrasindice.Text);
             decimal precoAcordado_ = Convert.ToDecimal(txtPrecoAcordo.Text);
 
+            int? unidadesCaixa_;
+            decimal? precoUnitario_;
+            if (txtUnidadesCaixa.Text.IsNullOrEmpty() || txtPrecoUnitario.Value == 0) 
+            {
+                unidadesCaixa_ = null;
+                precoUnitario_ = null;
+            }
+            else
+            {
+                unidadesCaixa_ = Convert.ToInt32(txtUnidadesCaixa.Text);
+                precoUnitario_ = Convert.ToDecimal(txtPrecoUnitario.Value);
+            }
+
+
             var entityNew = new MedicamentoPreco();
             var entityUpdate = new MedicamentoPreco();
 
@@ -167,6 +185,8 @@ namespace ControleEntregada.Forms
                     PrecoFabrica = precoFabrica_,
                     PrecoPmcBrasindice = precoPMC_,
                     PrecoAcordado = precoAcordado_,
+                    UnidadesCaixa = unidadesCaixa_,
+                    PrecoUnitario = precoUnitario_,
                     Usuario = GlobalVariables.LoginId,
                     DataCadastro = DateTime.Now.Date,
                 };
@@ -183,6 +203,8 @@ namespace ControleEntregada.Forms
                 entityUpdate.PrecoFabrica = precoFabrica_;
                 entityUpdate.PrecoPmcBrasindice = precoPMC_;
                 entityUpdate.PrecoAcordado = precoAcordado_;
+                entityUpdate.PrecoUnitario = precoUnitario_;
+                entityUpdate.UnidadesCaixa = unidadesCaixa_;
                 entityUpdate.Usuario = GlobalVariables.LoginId;
                 entityUpdate.DataCadastro = DateTime.Now.Date;
                 _context.SaveChanges();
@@ -223,10 +245,13 @@ namespace ControleEntregada.Forms
             txtMedicamentoId.Clear();
             txtEAN.Clear();
             txtProduto.Clear();
+            txtPrecoFabrica.Value = 0;
             txtPMCBrasindice.Value = 0;
             txtPrecoAcordo.Value = 0;
-            txtPrecoFabrica.Value = 0;
+            txtUnidadesCaixa.Clear();
+            txtPrecoUnitario.Value = 0;
             dgvMedicamentos.DataSource = null;
+
 
             txtId.Enabled = true;
             txtMedicamentoId.Enabled = true;
@@ -234,6 +259,8 @@ namespace ControleEntregada.Forms
             txtProduto.Enabled = true;
             txtPMCBrasindice.Enabled = false;
             txtPrecoAcordo.Enabled = false;
+            txtUnidadesCaixa.Enabled = false;
+            txtPrecoUnitario.Enabled = false;   
             txtPrecoFabrica.Enabled = false;
             dgvMedicamentos.Enabled = true;
 
@@ -243,6 +270,8 @@ namespace ControleEntregada.Forms
             btnLimpar.Enabled = true;
             btnSair.Enabled = true;
             btnExcluir.Enabled = false;
+            btnCalcular.Enabled = false;
+            btnCalcularPrecounitario.Enabled = false;    
         }
 
 
@@ -340,7 +369,9 @@ namespace ControleEntregada.Forms
                             m.EAN,
                             mp.PrecoFabrica,
                             mp.PrecoPmcBrasindice,
-                            mp.PrecoAcordado
+                            mp.PrecoAcordado,
+                            mp.UnidadesCaixa,
+                            mp.PrecoUnitario
                         };
 
             // Executa a consulta e converte em lista
@@ -365,6 +396,8 @@ namespace ControleEntregada.Forms
                 var precoAcordadoCell = row.Cells["precoAcordado"];
                 var precoPMCCell = row.Cells["PrecoPmcBrasindice"];
                 var precoFabricaCell = row.Cells["PrecoFabrica"];
+                var unidadesCaixaCell = row.Cells["UnidadesCaixa"];
+                var precoUnitarioCell = row.Cells["PrecoUnitario"];
 
                 if (idCell.Value != null && medicamentoIdCell.Value != null)
                 {
@@ -373,18 +406,24 @@ namespace ControleEntregada.Forms
                     string precoFabrica = precoFabricaCell.Value.ToString();
                     string precoPMC = precoPMCCell.Value.ToString();
                     string precoAcordado = precoAcordadoCell.Value.ToString();
+                    int? unidadesCaixa = unidadesCaixaCell != null ? Convert.ToInt32(unidadesCaixaCell.Value) : null;
+                    decimal? precoUnitario = precoUnitarioCell.Value != null ? Convert.ToDecimal(precoUnitarioCell.Value) : null;
 
                     txtId.Text = id.ToString();
                     txtMedicamentoId.Text = medicamentoId.ToString();
                     txtPrecoFabrica.Text = precoFabrica.ToString();
                     txtPMCBrasindice.Text = precoPMC.ToString();
                     txtPrecoAcordo.Text = precoAcordado.ToString();
+                    txtUnidadesCaixa.Text = unidadesCaixa.ToString();
+                    txtPrecoUnitario.Text = precoUnitario.ToString();
 
                     txtId.Enabled = false;
                     txtMedicamentoId.Enabled = true;
                     txtPrecoFabrica.Enabled = true;
                     txtPMCBrasindice.Enabled = true;
                     txtPrecoAcordo.Enabled = false;
+                    txtUnidadesCaixa.Enabled = true;
+                    txtPrecoUnitario.Enabled = false;
                     dgvMedicamentos.Enabled = true;
 
                     btnNovo.Enabled = true;
@@ -393,6 +432,8 @@ namespace ControleEntregada.Forms
                     btnLimpar.Enabled = true;
                     btnSair.Enabled = true;
                     btnExcluir.Enabled = true;
+                    btnCalcular.Enabled = true;
+                    btnCalcularPrecounitario.Enabled = true;
                 }
             }
         }
@@ -414,7 +455,7 @@ namespace ControleEntregada.Forms
                 Console.WriteLine("Erro no valor. Verifique a tabela de Parâmentro e tente novamente");
             }
 
-            decimal ValorParametros =  Valor/100;
+            decimal ValorParametros = Valor / 100;
 
             if (txtPMCBrasindice.Value != 0 && ValorParametros != 0)
             {
@@ -422,6 +463,28 @@ namespace ControleEntregada.Forms
                 txtPrecoAcordo.Show();
 
             }
+        }
+
+
+        private void bntCalcularPrecounitario_Click(object sender, EventArgs e)
+        {
+            if (UtilitariosBLL.limpaString2(txtUnidadesCaixa.Text).IsNullOrEmpty() || txtPrecoAcordo.Value <= 0)
+            {
+                MessageBox.Show("Preecnha os campos Qtdd Cx e Preço Unitário", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (txtUnidadesCaixa.Text.Trim() == "0" || txtUnidadesCaixa.Text.IsNullOrEmpty())
+            {
+                txtUnidadesCaixa.Text = "";
+                txtPrecoUnitario.Value = 0;
+                txtPrecoUnitario.Show();
+                return;
+            }
+                  
+            txtPrecoUnitario.Value = txtPrecoAcordo.Value / Convert.ToDecimal(txtUnidadesCaixa.Text);
+            txtPrecoUnitario.Show();
+
         }
 
 

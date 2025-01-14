@@ -50,10 +50,20 @@
             txtPMCBrasindice = new NumericUpDown();
             txtPrecoAcordo = new NumericUpDown();
             btnCalcular = new Button();
+            txtUnidadesCaixa = new MaskedTextBox();
+            label8 = new Label();
+            txtPrecoUnitario = new NumericUpDown();
+            label9 = new Label();
+            numericUpDown2 = new NumericUpDown();
+            btnCalcularPrecounitario = new Button();
+            maskedTextBox1 = new MaskedTextBox();
+            label10 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvMedicamentos).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtPrecoFabrica).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtPMCBrasindice).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtPrecoAcordo).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtPrecoUnitario).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
             SuspendLayout();
             // 
             // btnNovo
@@ -152,7 +162,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(253, 100);
+            label2.Location = new Point(216, 100);
             label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
             label2.Size = new Size(96, 13);
@@ -163,12 +173,12 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.Location = new Point(479, 100);
+            label5.Location = new Point(402, 100);
             label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
-            label5.Size = new Size(82, 13);
+            label5.Size = new Size(119, 13);
             label5.TabIndex = 15;
-            label5.Text = "Acordo (15%)";
+            label5.Text = "Preço Acordo (15%)";
             // 
             // btnPesquisar
             // 
@@ -257,43 +267,129 @@
             // 
             txtPrecoFabrica.Location = new Point(26, 115);
             txtPrecoFabrica.Name = "txtPrecoFabrica";
-            txtPrecoFabrica.Size = new Size(217, 23);
+            txtPrecoFabrica.Size = new Size(182, 23);
             txtPrecoFabrica.TabIndex = 30;
             // 
             // txtPMCBrasindice
             // 
-            txtPMCBrasindice.Location = new Point(250, 115);
+            txtPMCBrasindice.Location = new Point(212, 115);
             txtPMCBrasindice.Name = "txtPMCBrasindice";
-            txtPMCBrasindice.Size = new Size(217, 23);
+            txtPMCBrasindice.Size = new Size(182, 23);
             txtPMCBrasindice.TabIndex = 30;
             // 
             // txtPrecoAcordo
             // 
             txtPrecoAcordo.DecimalPlaces = 2;
             txtPrecoAcordo.Enabled = false;
-            txtPrecoAcordo.Location = new Point(473, 115);
+            txtPrecoAcordo.Location = new Point(398, 115);
             txtPrecoAcordo.Name = "txtPrecoAcordo";
-            txtPrecoAcordo.Size = new Size(217, 23);
+            txtPrecoAcordo.Size = new Size(182, 23);
             txtPrecoAcordo.TabIndex = 30;
             // 
             // btnCalcular
             // 
             btnCalcular.Font = new Font("Segoe UI", 7F, FontStyle.Bold);
             btnCalcular.ForeColor = Color.DarkGreen;
-            btnCalcular.Location = new Point(696, 115);
+            btnCalcular.Location = new Point(588, 115);
             btnCalcular.Name = "btnCalcular";
-            btnCalcular.Size = new Size(136, 23);
+            btnCalcular.Size = new Size(128, 23);
             btnCalcular.TabIndex = 100;
             btnCalcular.Text = "Calcular Preço Acordado";
             btnCalcular.UseVisualStyleBackColor = true;
             btnCalcular.Click += btnCalcular_Click;
+            // 
+            // txtUnidadesCaixa
+            // 
+            txtUnidadesCaixa.Location = new Point(790, 115);
+            txtUnidadesCaixa.Margin = new Padding(4, 3, 4, 3);
+            txtUnidadesCaixa.Mask = "000";
+            txtUnidadesCaixa.Name = "txtUnidadesCaixa";
+            txtUnidadesCaixa.Size = new Size(52, 23);
+            txtUnidadesCaixa.TabIndex = 101;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.Location = new Point(849, 101);
+            label8.Margin = new Padding(4, 0, 4, 0);
+            label8.Name = "label8";
+            label8.Size = new Size(88, 13);
+            label8.TabIndex = 15;
+            label8.Text = "Preço Unitário";
+            // 
+            // txtPrecoUnitario
+            // 
+            txtPrecoUnitario.DecimalPlaces = 2;
+            txtPrecoUnitario.Enabled = false;
+            txtPrecoUnitario.Location = new Point(846, 116);
+            txtPrecoUnitario.Name = "txtPrecoUnitario";
+            txtPrecoUnitario.Size = new Size(217, 23);
+            txtPrecoUnitario.TabIndex = 30;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label9.Location = new Point(1315, 100);
+            label9.Margin = new Padding(4, 0, 4, 0);
+            label9.Name = "label9";
+            label9.Size = new Size(82, 13);
+            label9.TabIndex = 15;
+            label9.Text = "Acordo (15%)";
+            // 
+            // numericUpDown2
+            // 
+            numericUpDown2.DecimalPlaces = 2;
+            numericUpDown2.Enabled = false;
+            numericUpDown2.Location = new Point(1312, 115);
+            numericUpDown2.Name = "numericUpDown2";
+            numericUpDown2.Size = new Size(217, 23);
+            numericUpDown2.TabIndex = 30;
+            // 
+            // btnCalcularPrecounitario
+            // 
+            btnCalcularPrecounitario.Font = new Font("Segoe UI", 7F, FontStyle.Bold);
+            btnCalcularPrecounitario.ForeColor = Color.DarkGreen;
+            btnCalcularPrecounitario.Location = new Point(1066, 114);
+            btnCalcularPrecounitario.Name = "btnCalcularPrecounitario";
+            btnCalcularPrecounitario.Size = new Size(128, 23);
+            btnCalcularPrecounitario.TabIndex = 100;
+            btnCalcularPrecounitario.Text = "Calcular Preço Unitário";
+            btnCalcularPrecounitario.UseVisualStyleBackColor = true;
+            btnCalcularPrecounitario.Click += bntCalcularPrecounitario_Click;
+            // 
+            // maskedTextBox1
+            // 
+            maskedTextBox1.Location = new Point(1267, 114);
+            maskedTextBox1.Margin = new Padding(4, 3, 4, 3);
+            maskedTextBox1.Mask = "000";
+            maskedTextBox1.Name = "maskedTextBox1";
+            maskedTextBox1.Size = new Size(41, 23);
+            maskedTextBox1.TabIndex = 101;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label10.Location = new Point(790, 101);
+            label10.Margin = new Padding(4, 0, 4, 0);
+            label10.Name = "label10";
+            label10.Size = new Size(52, 13);
+            label10.TabIndex = 15;
+            label10.Text = "Qtdd Cx";
             // 
             // frmMedicamentoPreco
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1217, 600);
+            Controls.Add(maskedTextBox1);
+            Controls.Add(btnCalcularPrecounitario);
+            Controls.Add(txtUnidadesCaixa);
+            Controls.Add(numericUpDown2);
             Controls.Add(btnCalcular);
+            Controls.Add(txtPrecoUnitario);
             Controls.Add(txtPrecoAcordo);
             Controls.Add(txtPMCBrasindice);
             Controls.Add(txtPrecoFabrica);
@@ -309,7 +405,10 @@
             Controls.Add(btnSalvar);
             Controls.Add(btnLimpar);
             Controls.Add(btnSair);
+            Controls.Add(label9);
             Controls.Add(dgvMedicamentos);
+            Controls.Add(label10);
+            Controls.Add(label8);
             Controls.Add(label4);
             Controls.Add(label5);
             Controls.Add(label2);
@@ -323,6 +422,8 @@
             ((System.ComponentModel.ISupportInitialize)txtPrecoFabrica).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtPMCBrasindice).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtPrecoAcordo).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtPrecoUnitario).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -357,5 +458,13 @@
         private NumericUpDown txtPMCBrasindice;
         private NumericUpDown txtPrecoAcordo;
         private Button btnCalcular;
+        private MaskedTextBox txtUnidadesCaixa;
+        private Label label8;
+        private NumericUpDown txtPrecoUnitario;
+        private Label label9;
+        private NumericUpDown numericUpDown2;
+        private Button btnCalcularPrecounitario;
+        private MaskedTextBox maskedTextBox1;
+        private Label label10;
     }
 }

@@ -4,6 +4,7 @@ using EPharmacy.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Data;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace EPharmacy.Forms
 {
@@ -185,7 +186,7 @@ namespace EPharmacy.Forms
                     CRM = CRM,  
                     EspecialidadeId = Especialidade,
                     DataCadastro = DateTime.Now,
-                    Usuario = 1
+                    Usuario = GlobalVariables.LoginId
                 };
                 _context.Medico.Add(entityNew);
                 _context.SaveChanges();
@@ -227,6 +228,7 @@ namespace EPharmacy.Forms
             int? Especialidade_ = cboEspecialidade.SelectedIndex > 0 ? Convert.ToInt32(cboEspecialidade.SelectedValue) : null;
 
             var entidade = _context.Medico.AsQueryable();
+            var especialidade = _context.Especialidade.AsQueryable();
 
             if (Id_ != null)
                 entidade = entidade.Where(p => p.Id == Id_);
@@ -241,10 +243,30 @@ namespace EPharmacy.Forms
                 entidade = entidade.Where(p => p.EspecialidadeId == Especialidade_);*/
 
 
-            var entidadex = entidade.ToList();
+            var query = from m in entidade
+                        join es in especialidade on m.EspecialidadeId equals es.Id
+                        select new
+                        {
+                            m.Id,
+                            m.Nome,
+                            m.CRM,
+                            EspecialidadeId = es.Id,
+                            Especialidade = es.Descricao,
+                            m.DataCadastro,
+                            m.Usuario
+                        };
+
+            var entidadex = query.ToList();
 
             if (entidadex != null)
                 dgvLista.DataSource = entidadex;
+
+            dgvLista.Columns["EspecialidadeId"].HeaderText = "Id Especialidade.";
+            dgvLista.Columns["DataCadastro"].HeaderText = "Dt Cadastro";
+
+            dgvLista.Columns["Id"].Visible = chkMostrarIds.Checked;
+            dgvLista.Columns["EspecialidadeId"].Visible = chkMostrarIds.Checked;
+
         }
 
 

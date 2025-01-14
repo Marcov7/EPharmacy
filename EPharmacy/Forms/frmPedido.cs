@@ -22,6 +22,7 @@ namespace EPharmacy.Forms
 
         private readonly EPharmacyContext _context;
         private bool ControlaDisparoDeEvento = false;
+        private EntidadeApoio entidadeApoio;
 
         public frmPedido()
         {
@@ -147,7 +148,16 @@ namespace EPharmacy.Forms
             dgvLista.Columns["ReceitaDescricao"].HeaderText = "Descrição Receita"; 
             dgvLista.Columns["TipoReceitaId"].HeaderText = "Id Tp.Receita"; 
             dgvLista.Columns["ConvenioId"].HeaderText = "Id Convênio";
-
+            dgvLista.Columns["StatusEntrega"].HeaderText = "Status Entrega";
+            dgvLista.Columns["DataInclusaoConvenio"].HeaderText = "Dt Inclusão Convênio";
+            dgvLista.Columns["DataEntrega"].HeaderText = "Dt Entrega";
+            dgvLista.Columns["PrecoAcordado"].HeaderText = "Preço Acordado";
+            dgvLista.Columns["DataReceitaAnterior"].HeaderText = "Dt Rec.Anterior";
+            dgvLista.Columns["DataReceita"].HeaderText = "Dt Receita";
+            dgvLista.Columns["TipoReceita"].HeaderText = "Tp.Receita";
+            dgvLista.Columns["TipoEntrega"].HeaderText = "Tp.Entrega";
+            dgvLista.Columns["ClasseTerapeutica"].HeaderText = "Classe Terapeutica";
+            dgvLista.Columns["NotaFiscal"].HeaderText = "Nota Fiscal";
 
             dgvLista.Columns["Refil1"].Visible = chkMostrarIds.Checked;
             dgvLista.Columns["Refil2"].Visible = chkMostrarIds.Checked;
@@ -579,6 +589,20 @@ namespace EPharmacy.Forms
                 //DateTime refil1 = refil1Cell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(refil1Cell.Value);
                 periodicidade = periodicidadeCell.Value.ToString();
 
+                entidadeApoio = new EntidadeApoio();
+
+                //entidadeApoio.Id = Convert.ToInt32(txtId.Text); 
+                entidadeApoio.EAN = txtEAN.Text;
+                entidadeApoio.Matricula = txtMatricula.Text;
+                entidadeApoio.CPF = txtCPF.Text;
+                entidadeApoio.MedicamentoId = Convert.ToInt32(cboMedicamento.SelectedValue) > 0 ? Convert.ToInt32(cboMedicamento.SelectedValue) : null;
+                entidadeApoio.PacienteId = Convert.ToInt32(cboPaciente.SelectedValue) > 0 ? Convert.ToInt32(cboPaciente.SelectedValue) : null;
+                entidadeApoio.ConvenioId = Convert.ToInt32(cboConvenio.SelectedValue) > 0 ? Convert.ToInt32(cboConvenio.SelectedValue) : null;
+                entidadeApoio.StatusId = Convert.ToInt32(cboStatus.SelectedValue) > 0 ? Convert.ToInt32(cboStatus.SelectedValue) : null;
+                entidadeApoio.Bairro = cboBairro.SelectedIndex > 0 ? cboBairro.SelectedValue.ToString() : null;
+                entidadeApoio.Zona = cboZona.SelectedIndex > 0 ? cboZona.SelectedValue.ToString() : null;
+                entidadeApoio.TipoReceitaId = Convert.ToInt32(cboTipoReceita.SelectedValue) > 0 ? Convert.ToInt32(cboTipoReceita.SelectedValue) : null;
+
 
                 txtId.Text = Id.ToString();
                 txtEAN.Text = EAN;
@@ -863,6 +887,19 @@ namespace EPharmacy.Forms
             //string Data = txtMesAno.Text;
             //Limpar();
             //AjustaOutraDataConsolidadaPesquisa(Data);
+           
+            /* RECARREGANDO OS FILTROS QUE ESTAVAM ANTES DE ALTERAR. PONDO A RECEITA DE VOLTA NA TELA */
+            txtEAN.Text = entidadeApoio.EAN;
+            txtMatricula.Text = entidadeApoio.Matricula;
+            txtCPF.Text = entidadeApoio.CPF;
+            cboMedicamento.SelectedValue = entidadeApoio.MedicamentoId == null ? "0" : entidadeApoio.MedicamentoId;
+            cboPaciente.SelectedValue = entidadeApoio.PacienteId;
+            cboConvenio.SelectedValue = entidadeApoio.ConvenioId == null ? "0" : entidadeApoio.ConvenioId;
+            cboStatus.SelectedValue =  entidadeApoio.StatusId == null ? "0" : entidadeApoio.StatusId;
+            cboBairro.SelectedValue = entidadeApoio.Bairro == null ? "0" : entidadeApoio.Bairro;
+            cboZona.SelectedValue = entidadeApoio.Zona == null ? "0" : entidadeApoio.Zona;
+            cboTipoReceita.SelectedValue = entidadeApoio.TipoReceitaId == null ? "0" : entidadeApoio.TipoReceitaId;
+
             btnPesquisar_Click(null, null);
         }
     
