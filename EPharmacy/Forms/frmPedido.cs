@@ -592,9 +592,10 @@ namespace EPharmacy.Forms
                 entidadeApoio = new EntidadeApoio();
 
                 //entidadeApoio.Id = Convert.ToInt32(txtId.Text); 
-                entidadeApoio.EAN = txtEAN.Text;
-                entidadeApoio.Matricula = txtMatricula.Text;
-                entidadeApoio.CPF = txtCPF.Text;
+                entidadeApoio.Data = UtilitariosBLL.limpaString2(txtMesAno.Text).IsNullOrEmpty() ? null : Convert.ToDateTime("01/" + txtMesAno.Text);
+                entidadeApoio.EAN = UtilitariosBLL.limpaString2(txtEAN.Text);
+                entidadeApoio.Matricula = UtilitariosBLL.limpaString2(txtMatricula.Text);
+                entidadeApoio.CPF = UtilitariosBLL.limpaString2(txtCPF.Text);
                 entidadeApoio.MedicamentoId = Convert.ToInt32(cboMedicamento.SelectedValue) > 0 ? Convert.ToInt32(cboMedicamento.SelectedValue) : null;
                 entidadeApoio.PacienteId = Convert.ToInt32(cboPaciente.SelectedValue) > 0 ? Convert.ToInt32(cboPaciente.SelectedValue) : null;
                 entidadeApoio.ConvenioId = Convert.ToInt32(cboConvenio.SelectedValue) > 0 ? Convert.ToInt32(cboConvenio.SelectedValue) : null;
@@ -887,13 +888,14 @@ namespace EPharmacy.Forms
             //string Data = txtMesAno.Text;
             //Limpar();
             //AjustaOutraDataConsolidadaPesquisa(Data);
-           
+
             /* RECARREGANDO OS FILTROS QUE ESTAVAM ANTES DE ALTERAR. PONDO A RECEITA DE VOLTA NA TELA */
+            txtMesAno.Text = entidadeApoio.Data == null || entidadeApoio.Data.ToString().Trim().Length < 5 ? "" : entidadeApoio.Data.Value.Month.ToString().PadLeft(2, '0') + "/" + entidadeApoio.Data.Value.Year.ToString();
             txtEAN.Text = entidadeApoio.EAN;
             txtMatricula.Text = entidadeApoio.Matricula;
             txtCPF.Text = entidadeApoio.CPF;
             cboMedicamento.SelectedValue = entidadeApoio.MedicamentoId == null ? "0" : entidadeApoio.MedicamentoId;
-            cboPaciente.SelectedValue = entidadeApoio.PacienteId;
+            cboPaciente.SelectedValue = entidadeApoio.PacienteId == null ? "0" : entidadeApoio.PacienteId;
             cboConvenio.SelectedValue = entidadeApoio.ConvenioId == null ? "0" : entidadeApoio.ConvenioId;
             cboStatus.SelectedValue =  entidadeApoio.StatusId == null ? "0" : entidadeApoio.StatusId;
             cboBairro.SelectedValue = entidadeApoio.Bairro == null ? "0" : entidadeApoio.Bairro;

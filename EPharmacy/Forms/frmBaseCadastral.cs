@@ -20,6 +20,8 @@ namespace EPharmacy.Forms
     public partial class frmBaseCadastral : Form
     {
         private readonly EPharmacyContext _context;
+        private EntidadeApoio entidadeApoio;
+
 
         public frmBaseCadastral()
         {
@@ -486,6 +488,19 @@ namespace EPharmacy.Forms
                 DateTime? refilExtra = refilExtraCell.Value == null ? null : Convert.ToDateTime(refilExtraCell.Value);
                 periodicidade = periodicidadeCell.Value.ToString();
 
+                entidadeApoio = new EntidadeApoio();
+                entidadeApoio.Data = UtilitariosBLL.limpaString2(txtMesAno.Text).IsNullOrEmpty() ? null : Convert.ToDateTime("01/" + txtMesAno.Text);
+                entidadeApoio.EAN = UtilitariosBLL.limpaString2(txtEAN.Text);
+                entidadeApoio.Matricula = UtilitariosBLL.limpaString2(txtMatricula.Text);
+                entidadeApoio.CPF = UtilitariosBLL.limpaString2(txtCPF.Text);
+                entidadeApoio.MedicamentoId = Convert.ToInt32(cboMedicamento.SelectedValue) > 0 ? Convert.ToInt32(cboMedicamento.SelectedValue) : null;
+                entidadeApoio.PacienteId = Convert.ToInt32(cboPaciente.SelectedValue) > 0 ? Convert.ToInt32(cboPaciente.SelectedValue) : null;
+                entidadeApoio.ConvenioId = Convert.ToInt32(cboConvenio.SelectedValue) > 0 ? Convert.ToInt32(cboConvenio.SelectedValue) : null;
+                entidadeApoio.StatusId = Convert.ToInt32(cboStatus.SelectedValue) > 0 ? Convert.ToInt32(cboStatus.SelectedValue) : null;
+                entidadeApoio.Bairro = cboBairro.SelectedIndex > 0 ? cboBairro.SelectedValue.ToString() : null;
+                entidadeApoio.Zona = cboZona.SelectedIndex > 0 ? cboZona.SelectedValue.ToString() : null;
+                entidadeApoio.TipoReceitaId = Convert.ToInt32(cboTipoReceita.SelectedValue) > 0 ? Convert.ToInt32(cboTipoReceita.SelectedValue) : null;
+
 
                 txtId.Text = Id.ToString();
                 txtEAN.Text = EAN;
@@ -649,6 +664,20 @@ namespace EPharmacy.Forms
 
             //Limpar();
             /*txtId.Text = Id_.ToString();*/
+
+
+            /* RECARREGANDO OS FILTROS QUE ESTAVAM ANTES DE ALTERAR. PONDO A RECEITA DE VOLTA NA TELA */
+            txtMesAno.Text = entidadeApoio.Data == null || entidadeApoio.Data.ToString().Trim().Length < 5 ? "" : entidadeApoio.Data.Value.Month.ToString().PadLeft(2, '0') + "/" + entidadeApoio.Data.Value.Year.ToString();
+            txtEAN.Text = entidadeApoio.EAN;
+            txtMatricula.Text = entidadeApoio.Matricula;
+            txtCPF.Text = entidadeApoio.CPF;
+            cboMedicamento.SelectedValue = entidadeApoio.MedicamentoId == null ? "0" : entidadeApoio.MedicamentoId;
+            cboPaciente.SelectedValue = entidadeApoio.PacienteId == null ? "0" : entidadeApoio.PacienteId;
+            cboConvenio.SelectedValue = entidadeApoio.ConvenioId == null ? "0" : entidadeApoio.ConvenioId;
+            cboStatus.SelectedValue = entidadeApoio.StatusId == null ? "0" : entidadeApoio.StatusId;
+            cboBairro.SelectedValue = entidadeApoio.Bairro == null ? "0" : entidadeApoio.Bairro;
+            cboZona.SelectedValue = entidadeApoio.Zona == null ? "0" : entidadeApoio.Zona;
+            cboTipoReceita.SelectedValue = entidadeApoio.TipoReceitaId == null ? "0" : entidadeApoio.TipoReceitaId;
 
             btnPesquisar_Click(null, null);
 

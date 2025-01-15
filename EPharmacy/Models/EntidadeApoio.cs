@@ -9,6 +9,7 @@ namespace EPharmacy.Models
     public class EntidadeApoio
     {
         public int Id { get; set; }
+        public DateTime? Data { get; set; }
         public string? EAN { get; set; }
         public string? Matricula { get; set; }
         public string? CPF { get; set; }
