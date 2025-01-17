@@ -54,18 +54,18 @@
             receitaToolStripMenuItem1 = new ToolStripMenuItem();
             pedidoToolStripMenuItem = new ToolStripMenuItem();
             pedidoToolStripMenuItem1 = new ToolStripMenuItem();
-            receitaToolStripMenuItem = new ToolStripMenuItem();
-            BaseCadastralToolStripMenuItem = new ToolStripMenuItem();
-            pedidoToolStripMenuItem2 = new ToolStripMenuItem();
             ajudaToolStripMenuItem = new ToolStripMenuItem();
             sobrceToolStripMenuItem = new ToolStripMenuItem();
             sairToolStripMenuItem = new ToolStripMenuItem();
+            receitaToolStripMenuItem = new ToolStripMenuItem();
+            BaseCadastralToolStripMenuItem = new ToolStripMenuItem();
+            pedidoToolStripMenuItem2 = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { cadastroToolStripMenuItem, mmedicamentoToolStripMenuItem, pacienteToolStripMenuItem, receitaToolStripMenuItem2, pedidoToolStripMenuItem, receitaToolStripMenuItem, ajudaToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { cadastroToolStripMenuItem, mmedicamentoToolStripMenuItem, pacienteToolStripMenuItem, receitaToolStripMenuItem2, receitaToolStripMenuItem, pedidoToolStripMenuItem, ajudaToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(800, 24);
@@ -244,6 +244,27 @@
             pedidoToolStripMenuItem1.Text = "Pedido";
             pedidoToolStripMenuItem1.Click += pedidoToolStripMenuItem1_Click;
             // 
+            // ajudaToolStripMenuItem
+            // 
+            ajudaToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { sobrceToolStripMenuItem, sairToolStripMenuItem });
+            ajudaToolStripMenuItem.Name = "ajudaToolStripMenuItem";
+            ajudaToolStripMenuItem.Size = new Size(50, 20);
+            ajudaToolStripMenuItem.Text = "Ajuda";
+            // 
+            // sobrceToolStripMenuItem
+            // 
+            sobrceToolStripMenuItem.Name = "sobrceToolStripMenuItem";
+            sobrceToolStripMenuItem.Size = new Size(220, 22);
+            sobrceToolStripMenuItem.Text = "Sobre Controle de Entregas ";
+            sobrceToolStripMenuItem.Click += sobrceToolStripMenuItem_Click;
+            // 
+            // sairToolStripMenuItem
+            // 
+            sairToolStripMenuItem.Name = "sairToolStripMenuItem";
+            sairToolStripMenuItem.Size = new Size(220, 22);
+            sairToolStripMenuItem.Text = "Sai&r";
+            sairToolStripMenuItem.Click += sairToolStripMenuItem_Click;
+            // 
             // receitaToolStripMenuItem
             // 
             receitaToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { BaseCadastralToolStripMenuItem, pedidoToolStripMenuItem2 });
@@ -264,26 +285,6 @@
             pedidoToolStripMenuItem2.Size = new Size(180, 22);
             pedidoToolStripMenuItem2.Text = "Pedido";
             pedidoToolStripMenuItem2.Click += pedidoToolStripMenuItem2_Click_1;
-            // 
-            // ajudaToolStripMenuItem
-            // 
-            ajudaToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { sobrceToolStripMenuItem, sairToolStripMenuItem });
-            ajudaToolStripMenuItem.Name = "ajudaToolStripMenuItem";
-            ajudaToolStripMenuItem.Size = new Size(50, 20);
-            ajudaToolStripMenuItem.Text = "Ajuda";
-            // 
-            // sobrceToolStripMenuItem
-            // 
-            sobrceToolStripMenuItem.Name = "sobrceToolStripMenuItem";
-            sobrceToolStripMenuItem.Size = new Size(220, 22);
-            sobrceToolStripMenuItem.Text = "Sobre Controle de Entregas ";
-            // 
-            // sairToolStripMenuItem
-            // 
-            sairToolStripMenuItem.Name = "sairToolStripMenuItem";
-            sairToolStripMenuItem.Size = new Size(220, 22);
-            sairToolStripMenuItem.Text = "Sai&r";
-            sairToolStripMenuItem.Click += sairToolStripMenuItem_Click;
             // 
             // frmPrincipal
             // 

@@ -58,6 +58,7 @@
             btnCalcularPrecounitario = new Button();
             maskedTextBox1 = new MaskedTextBox();
             label10 = new Label();
+            chkAumentaLarguraColunasGrid = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)dgvMedicamentos).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtPrecoFabrica).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtPMCBrasindice).BeginInit();
@@ -379,11 +380,25 @@
             label10.TabIndex = 15;
             label10.Text = "Qtdd Cx";
             // 
+            // chkAumentaLarguraColunasGrid
+            // 
+            chkAumentaLarguraColunasGrid.AutoSize = true;
+            chkAumentaLarguraColunasGrid.Checked = true;
+            chkAumentaLarguraColunasGrid.CheckState = CheckState.Checked;
+            chkAumentaLarguraColunasGrid.Location = new Point(25, 574);
+            chkAumentaLarguraColunasGrid.Name = "chkAumentaLarguraColunasGrid";
+            chkAumentaLarguraColunasGrid.Size = new Size(183, 19);
+            chkAumentaLarguraColunasGrid.TabIndex = 154;
+            chkAumentaLarguraColunasGrid.Text = "Largura do Tamanho do Dado";
+            chkAumentaLarguraColunasGrid.UseVisualStyleBackColor = true;
+            chkAumentaLarguraColunasGrid.CheckedChanged += chkAumentaLarguraColunasGrid_CheckedChanged;
+            // 
             // frmMedicamentoPreco
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1217, 600);
+            Controls.Add(chkAumentaLarguraColunasGrid);
             Controls.Add(maskedTextBox1);
             Controls.Add(btnCalcularPrecounitario);
             Controls.Add(txtUnidadesCaixa);
@@ -466,5 +481,6 @@
         private Button btnCalcularPrecounitario;
         private MaskedTextBox maskedTextBox1;
         private Label label10;
+        private CheckBox chkAumentaLarguraColunasGrid;
     }
 }

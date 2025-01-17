@@ -104,7 +104,7 @@ namespace ControleEntregada.Forms
             txtPrecoFabrica.Enabled = true;
             txtPrecoAcordo.Enabled = false;
             txtUnidadesCaixa.Enabled = true;
-            txtPrecoUnitario.Enabled = false; 
+            txtPrecoUnitario.Enabled = false;
 
             btnNovo.Enabled = false;
             btnPesquisar.Enabled = false;
@@ -162,7 +162,7 @@ namespace ControleEntregada.Forms
 
             int? unidadesCaixa_;
             decimal? precoUnitario_;
-            if (txtUnidadesCaixa.Text.IsNullOrEmpty() || txtPrecoUnitario.Value == 0) 
+            if (txtUnidadesCaixa.Text.IsNullOrEmpty() || txtPrecoUnitario.Value == 0)
             {
                 unidadesCaixa_ = null;
                 precoUnitario_ = null;
@@ -260,7 +260,7 @@ namespace ControleEntregada.Forms
             txtPMCBrasindice.Enabled = false;
             txtPrecoAcordo.Enabled = false;
             txtUnidadesCaixa.Enabled = false;
-            txtPrecoUnitario.Enabled = false;   
+            txtPrecoUnitario.Enabled = false;
             txtPrecoFabrica.Enabled = false;
             dgvMedicamentos.Enabled = true;
 
@@ -271,7 +271,7 @@ namespace ControleEntregada.Forms
             btnSair.Enabled = true;
             btnExcluir.Enabled = false;
             btnCalcular.Enabled = false;
-            btnCalcularPrecounitario.Enabled = false;    
+            btnCalcularPrecounitario.Enabled = false;
         }
 
 
@@ -481,10 +481,23 @@ namespace ControleEntregada.Forms
                 txtPrecoUnitario.Show();
                 return;
             }
-                  
+
             txtPrecoUnitario.Value = txtPrecoAcordo.Value / Convert.ToDecimal(txtUnidadesCaixa.Text);
             txtPrecoUnitario.Show();
 
+        }
+
+        private void chkAumentaLarguraColunasGrid_CheckedChanged(object sender, EventArgs e)
+        {
+            // fazendo ficar com as colunas autoajuestadas ao tamanho
+            if (chkAumentaLarguraColunasGrid.Checked)
+            {
+                dgvMedicamentos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            }
+            else
+            {
+                dgvMedicamentos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+            }
         }
 
 

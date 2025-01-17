@@ -17,7 +17,9 @@ namespace EPharmacy
             this.MaximizeBox = false;
             this.MinimizeBox = false;
 
-            lblVersao.Text += "1.00b " + DateTime.Now.Date.ToString("dd/MM/yyyy");
+            GlobalVariables.Versao = "1.02b - 16/01/2025";
+
+            lblVersao.Text += GlobalVariables.Versao;
         }
 
 

@@ -19,6 +19,9 @@ namespace EPharmacy.Forms
             var optionsBuilder = new DbContextOptionsBuilder<EPharmacyContext>();
             optionsBuilder.UseSqlServer(Program.StrConn());
             _context = new EPharmacyContext(optionsBuilder.Options);
+
+            // fazendo ficar com as colunas autoajuestadas ao tamanho
+            dgvLista.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
 
 

@@ -47,6 +47,8 @@
             cboMedico = new ComboBox();
             label1 = new Label();
             panel1 = new Panel();
+            chkAumentaLarguraColunasGrid = new CheckBox();
+            chkMostrarIds = new CheckBox();
             label5 = new Label();
             label15 = new Label();
             label9 = new Label();
@@ -72,7 +74,6 @@
             txtQtddAnterior = new MaskedTextBox();
             txtQtdd = new MaskedTextBox();
             RECEITA = new Label();
-            chkMostrarIds = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)dgvLista).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -281,6 +282,7 @@
             // 
             panel1.BackColor = Color.FromArgb(192, 255, 255);
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(chkAumentaLarguraColunasGrid);
             panel1.Controls.Add(chkMostrarIds);
             panel1.Controls.Add(label5);
             panel1.Controls.Add(label15);
@@ -298,6 +300,29 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1268, 603);
             panel1.TabIndex = 101;
+            // 
+            // chkAumentaLarguraColunasGrid
+            // 
+            chkAumentaLarguraColunasGrid.AutoSize = true;
+            chkAumentaLarguraColunasGrid.Checked = true;
+            chkAumentaLarguraColunasGrid.CheckState = CheckState.Checked;
+            chkAumentaLarguraColunasGrid.Location = new Point(141, 572);
+            chkAumentaLarguraColunasGrid.Name = "chkAumentaLarguraColunasGrid";
+            chkAumentaLarguraColunasGrid.Size = new Size(183, 19);
+            chkAumentaLarguraColunasGrid.TabIndex = 148;
+            chkAumentaLarguraColunasGrid.Text = "Largura do Tamanho do Dado";
+            chkAumentaLarguraColunasGrid.UseVisualStyleBackColor = true;
+            chkAumentaLarguraColunasGrid.CheckedChanged += chkAumentaLarguraColunasGrid_CheckedChanged_1;
+            // 
+            // chkMostrarIds
+            // 
+            chkMostrarIds.AutoSize = true;
+            chkMostrarIds.Location = new Point(10, 572);
+            chkMostrarIds.Name = "chkMostrarIds";
+            chkMostrarIds.Size = new Size(85, 19);
+            chkMostrarIds.TabIndex = 147;
+            chkMostrarIds.Text = "Mostrar Ids";
+            chkMostrarIds.UseVisualStyleBackColor = true;
             // 
             // label5
             // 
@@ -579,16 +604,6 @@
             RECEITA.TabIndex = 89;
             RECEITA.Text = "RECEITA";
             // 
-            // chkMostrarIds
-            // 
-            chkMostrarIds.AutoSize = true;
-            chkMostrarIds.Location = new Point(10, 572);
-            chkMostrarIds.Name = "chkMostrarIds";
-            chkMostrarIds.Size = new Size(85, 19);
-            chkMostrarIds.TabIndex = 147;
-            chkMostrarIds.Text = "Mostrar Ids";
-            chkMostrarIds.UseVisualStyleBackColor = true;
-            // 
             // frmReceita
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -674,5 +689,6 @@
         private MaskedTextBox txtQtddAnterior;
         private Label label7;
         private CheckBox chkMostrarIds;
+        private CheckBox chkAumentaLarguraColunasGrid;
     }
 }

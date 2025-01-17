@@ -349,29 +349,29 @@ namespace ControleEntregada.Forms
                 medicamento = medicamento.Where(p => p.FabricanteId == Fabricante_);
 
             var medicamentoz = from r in medicamento
-                          join p in _context.Fabricante on r.FabricanteId equals p.Id into fabricanteJoin
-                          from p in fabricanteJoin.DefaultIfEmpty()
-                          join m in _context.Substancia on r.SubstanciaId equals m.Id into SubstanciaJoin
-                          from m in SubstanciaJoin.DefaultIfEmpty()
-                          join t in _context.TipoReceita on r.TipoReceitaId equals t.Id into TipoReceitaJoin
-                          from t in TipoReceitaJoin.DefaultIfEmpty()
-                          join c in _context.ClasseTerapeutica on r.ClasseTerapeuticaId equals c.Id into ClasseTerapeuticaJoin
-                          from c in ClasseTerapeuticaJoin.DefaultIfEmpty()
-                          select new
-                          {
-                                    Id = r.Id,
-                                    EAN = r.EAN,
-                                    Produto = r.Produto,
-                                    ClasseTerapeuticaId = c.Id,
-                                    ClasseTerapeutica = c.Descricao,
-                                    TipoReceitaId = t.Id,
-                                    TipoReceita = t.Descricao,
-                                    SubstanciaId = m.Id,
-                                    Substancia = m.Descricao,
-                                    FabricanteId = p.Id,
-                                    Fabricante = p.Descricao,
-                                    r.TUSS
-                          };
+                               join p in _context.Fabricante on r.FabricanteId equals p.Id into fabricanteJoin
+                               from p in fabricanteJoin.DefaultIfEmpty()
+                               join m in _context.Substancia on r.SubstanciaId equals m.Id into SubstanciaJoin
+                               from m in SubstanciaJoin.DefaultIfEmpty()
+                               join t in _context.TipoReceita on r.TipoReceitaId equals t.Id into TipoReceitaJoin
+                               from t in TipoReceitaJoin.DefaultIfEmpty()
+                               join c in _context.ClasseTerapeutica on r.ClasseTerapeuticaId equals c.Id into ClasseTerapeuticaJoin
+                               from c in ClasseTerapeuticaJoin.DefaultIfEmpty()
+                               select new
+                               {
+                                   Id = r.Id,
+                                   EAN = r.EAN,
+                                   Produto = r.Produto,
+                                   ClasseTerapeuticaId = c.Id,
+                                   ClasseTerapeutica = c.Descricao,
+                                   TipoReceitaId = t.Id,
+                                   TipoReceita = t.Descricao,
+                                   SubstanciaId = m.Id,
+                                   Substancia = m.Descricao,
+                                   FabricanteId = p.Id,
+                                   Fabricante = p.Descricao,
+                                   r.TUSS
+                               };
 
 
             var medicamentox = medicamentoz.ToList();
@@ -379,7 +379,7 @@ namespace ControleEntregada.Forms
             if (medicamentox != null)
                 dgvMedicamentos.DataSource = medicamentox;
 
-            dgvMedicamentos.Columns["ClasseTerapeuticaId"].HeaderText = "Id Classe Terapeutica";  
+            dgvMedicamentos.Columns["ClasseTerapeuticaId"].HeaderText = "Id Classe Terapeutica";
             dgvMedicamentos.Columns["TipoReceitaId"].HeaderText = "Id TipoReceita";
             dgvMedicamentos.Columns["FabricanteId"].HeaderText = "Id Fabricante";
             dgvMedicamentos.Columns["SubstanciaId"].HeaderText = "Id Substância";
@@ -418,7 +418,7 @@ namespace ControleEntregada.Forms
                     int tipoReceita = Convert.ToInt32(tipoReceitaCell.Value);
                     int fabricante = Convert.ToInt32(fabricanteCell.Value);
                     int substancia = Convert.ToInt32(substanciaCell.Value);
-                    string TUSS = TUSSCell.Value == null ? null : TUSSCell.Value.ToString();    
+                    string TUSS = TUSSCell.Value == null ? null : TUSSCell.Value.ToString();
 
                     txtId.Enabled = false;
                     txtId.Text = id.ToString();
@@ -428,7 +428,7 @@ namespace ControleEntregada.Forms
                     cboTipoReceita.SelectedValue = tipoReceita;
                     cboFabricante.SelectedValue = fabricante;
                     cboSubstancia.SelectedValue = substancia;
-                    txtTUSS.Text = TUSS;    
+                    txtTUSS.Text = TUSS;
 
                     txtId.Enabled = false;
                     txtEAN.Enabled = true;
@@ -495,6 +495,20 @@ namespace ControleEntregada.Forms
             else
             {
                 MessageBox.Show("Medicamento não encontrado.");
+            }
+        }
+
+
+        private void chkAumentaLarguraColunasGrid_CheckedChanged(object sender, EventArgs e)
+        {
+            // fazendo ficar com as colunas autoajuestadas ao tamanho
+            if (chkAumentaLarguraColunasGrid.Checked)
+            {
+                dgvMedicamentos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            }
+            else
+            {
+                dgvMedicamentos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
             }
         }
 

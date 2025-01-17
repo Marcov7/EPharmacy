@@ -77,6 +77,7 @@
             btnAdicionar = new Button();
             label18 = new Label();
             txtReceitaItensId = new MaskedTextBox();
+            chkAumentaLarguraColunasGrid = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)dgvLista).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtReal).BeginInit();
             SuspendLayout();
@@ -614,12 +615,26 @@
             txtReceitaItensId.Size = new Size(95, 23);
             txtReceitaItensId.TabIndex = 117;
             // 
+            // chkAumentaLarguraColunasGrid
+            // 
+            chkAumentaLarguraColunasGrid.AutoSize = true;
+            chkAumentaLarguraColunasGrid.Checked = true;
+            chkAumentaLarguraColunasGrid.CheckState = CheckState.Checked;
+            chkAumentaLarguraColunasGrid.Location = new Point(128, 646);
+            chkAumentaLarguraColunasGrid.Name = "chkAumentaLarguraColunasGrid";
+            chkAumentaLarguraColunasGrid.Size = new Size(183, 19);
+            chkAumentaLarguraColunasGrid.TabIndex = 151;
+            chkAumentaLarguraColunasGrid.Text = "Largura do Tamanho do Dado";
+            chkAumentaLarguraColunasGrid.UseVisualStyleBackColor = true;
+            chkAumentaLarguraColunasGrid.CheckedChanged += chkAumentaLarguraColunasGrid_CheckedChanged_1;
+            // 
             // frmPedido
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
             ClientSize = new Size(1360, 669);
+            Controls.Add(chkAumentaLarguraColunasGrid);
             Controls.Add(btnAdicionar);
             Controls.Add(dTPRefil);
             Controls.Add(chkMostrarIds);
@@ -729,5 +744,6 @@
         private Label label18;
         private MaskedTextBox txtReceitaItensId;
         private Button btnAdicionar;
+        private CheckBox chkAumentaLarguraColunasGrid;
     }
 }

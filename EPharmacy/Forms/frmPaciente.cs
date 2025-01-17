@@ -75,8 +75,7 @@ namespace EPharmacy.Forms
             // FIM
 
             dgvLista.RowTemplate.Height = 18;
-            // fazendo ficar com as colunas autoajuestadas ao tamanho
-            dgvLista.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
         }
 
 
@@ -309,10 +308,10 @@ namespace EPharmacy.Forms
             }*/
             if (!txtEmail.Text.IsNullOrEmpty())
             {
-            //    retorno += "Preencha o campo Email\n";
-            //}
-            //else
-            //{
+                //    retorno += "Preencha o campo Email\n";
+                //}
+                //else
+                //{
                 bool isValid = UtilitariosBLL.IsValidEmail(txtEmail.Text);
 
                 if (!isValid)
@@ -485,7 +484,7 @@ namespace EPharmacy.Forms
                 //update.Validade = validade;
                 update.Autorizacao = autorizacao;
                 update.TipoEntregaId = TipoEntregaId_;
-                update.Ativo = ativo;   
+                update.Ativo = ativo;
 
                 update.DataCadastro = DateTime.Now;
                 update.Usuario = GlobalVariables.LoginId;
@@ -618,7 +617,7 @@ namespace EPharmacy.Forms
             txtCelular.Enabled = true;
             txtTelefone.Enabled = true;
             txtEmail.Enabled = true;
-            txtMatricula.Enabled    = true;
+            txtMatricula.Enabled = true;
             txtCarteirinha.Enabled = true;
             dTPDataPrimeiroAtendimento.Enabled = true;
             //dTPDataInclusaoConvenio.Enabled = true;
@@ -721,42 +720,42 @@ namespace EPharmacy.Forms
                     string uf = ufCell.Value.ToString();
 
                     string? complemento = null;
-                    if(complementoCell.Value != null)
-                       complemento = complementoCell.Value.ToString();
+                    if (complementoCell.Value != null)
+                        complemento = complementoCell.Value.ToString();
 
                     string? zona = null;
-                    if(zonaCell.Value != null)
-                       zona = zonaCell.Value.ToString();
-                    
+                    if (zonaCell.Value != null)
+                        zona = zonaCell.Value.ToString();
+
                     string? telefone = null;
-                    if(telefoneCell.Value != null)
-                       telefone = telefoneCell.Value.ToString();
+                    if (telefoneCell.Value != null)
+                        telefone = telefoneCell.Value.ToString();
 
                     string? celular = null;
-                    if(celularCell.Value != null)
-                       celular = celularCell.Value.ToString();
+                    if (celularCell.Value != null)
+                        celular = celularCell.Value.ToString();
 
                     string email = emailCell.Value.ToString();
 
-                    string ? matricula = null;
-                    if(matriculaCell.Value != null)
-                       matricula = matriculaCell.Value.ToString();
+                    string? matricula = null;
+                    if (matriculaCell.Value != null)
+                        matricula = matriculaCell.Value.ToString();
 
-                    string ? carteirinha = null;
-                    if(carteirinhaCell.Value != null)
-                       carteirinha = carteirinhaCell.Value.ToString();
+                    string? carteirinha = null;
+                    if (carteirinhaCell.Value != null)
+                        carteirinha = carteirinhaCell.Value.ToString();
 
                     DateTime nascimento = nascimentoCell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(nascimentoCell.Value);
                     //DateTime nascimento = Convert.ToDateTime(nascimentoCell.Value);
                     DateTime dataPrimeiroAtendimento = dataPrimeiroAtendimentoCell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(dataPrimeiroAtendimentoCell.Value);
                     // Convert.ToDateTime(dataPrimeiroAtendimentoCell.Value);
-                    DateTime validade = validadeCell.Value == null ? DateTime.Now.Date :  Convert.ToDateTime(validadeCell.Value);
+                    DateTime validade = validadeCell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(validadeCell.Value);
 
                     DateTime dataInclusaoConvenio = dataInclusaoConvenioCell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(dataInclusaoConvenioCell.Value);
                     int? modalidadeEntregaId = Convert.ToInt32(modalidadeEntregaIdCell.Value);
 
                     string sexo = sexoCell.Value.ToString();
-                    int ? convenio = Convert.ToInt32(convenioCell.Value);
+                    int? convenio = Convert.ToInt32(convenioCell.Value);
                     string? autorizacao = autorizacaoCell.Value != null ? autorizacaoCell.Value.ToString() : "";
                     int? tipoEntrega = Convert.ToInt32(tipoEntregaCell.Value);
                     bool ativo = Convert.ToBoolean(ativoCell.Value);
@@ -805,12 +804,12 @@ namespace EPharmacy.Forms
                     txtTelefone.Enabled = true;
                     txtCelular.Enabled = true;
                     txtEmail.Enabled = true;
-                    txtMatricula.Enabled    = true;
-                    txtCarteirinha.Enabled  = true;
+                    txtMatricula.Enabled = true;
+                    txtCarteirinha.Enabled = true;
                     dTPNascimento.Enabled = true;
                     dTPDataPrimeiroAtendimento.Enabled = true;
                     //dTPValidade.Enabled = true;
-   
+
                     //dTPDataInclusaoConvenio.Enabled = true;                    
                     cboModalidadeEntrega.Enabled = true;
 
@@ -818,7 +817,7 @@ namespace EPharmacy.Forms
                     cboConvenio.Enabled = true;
                     txtAutorizacao.Enabled = true;
                     cboTipoEntrega.Enabled = true;
-                    chkAtivo.Enabled = true;    
+                    chkAtivo.Enabled = true;
 
                     dgvLista.Enabled = true;
 
@@ -833,5 +832,14 @@ namespace EPharmacy.Forms
             }
         }
 
+
+        private void chkAumentaLarguraColunasGrid_CheckedChanged(object sender, EventArgs e)
+        {
+            // fazendo ficar com as colunas autoajuestadas ao tamanho
+            if (chkAumentaLarguraColunasGrid.Checked)
+              dgvLista.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+           else
+              dgvLista.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+        }
     }
 }

@@ -74,6 +74,7 @@
             cboTipoReceita = new ComboBox();
             label16 = new Label();
             btnExportar = new Button();
+            chkAumentaLarguraColunasGrid = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)dgvLista).BeginInit();
             SuspendLayout();
             // 
@@ -581,12 +582,26 @@
             btnExportar.UseVisualStyleBackColor = true;
             btnExportar.Click += btnExportar_Click;
             // 
+            // chkAumentaLarguraColunasGrid
+            // 
+            chkAumentaLarguraColunasGrid.AutoSize = true;
+            chkAumentaLarguraColunasGrid.Checked = true;
+            chkAumentaLarguraColunasGrid.CheckState = CheckState.Checked;
+            chkAumentaLarguraColunasGrid.Location = new Point(123, 646);
+            chkAumentaLarguraColunasGrid.Name = "chkAumentaLarguraColunasGrid";
+            chkAumentaLarguraColunasGrid.Size = new Size(183, 19);
+            chkAumentaLarguraColunasGrid.TabIndex = 152;
+            chkAumentaLarguraColunasGrid.Text = "Largura do Tamanho do Dado";
+            chkAumentaLarguraColunasGrid.UseVisualStyleBackColor = true;
+            chkAumentaLarguraColunasGrid.CheckedChanged += chkAumentaLarguraColunasGrid_CheckedChanged_1;
+            // 
             // frmBaseCadastral
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FloralWhite;
             ClientSize = new Size(1355, 667);
+            Controls.Add(chkAumentaLarguraColunasGrid);
             Controls.Add(chkMostrarIds);
             Controls.Add(dTPRefilExtra);
             Controls.Add(dTPRefil6);
@@ -691,5 +706,6 @@
         private Label label16;
         private ComboBox cboTipoReceita;
         private Button btnExportar;
+        private CheckBox chkAumentaLarguraColunasGrid;
     }
 }

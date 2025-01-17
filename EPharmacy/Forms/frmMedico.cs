@@ -35,6 +35,11 @@ namespace EPharmacy.Forms
             cboEspecialidade.DataSource = especialidade.ToList();
             cboEspecialidade.DisplayMember = "Descricao";
             cboEspecialidade.ValueMember = "Id";
+
+
+            // fazendo ficar com as colunas autoajuestadas ao tamanho
+            dgvLista.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
         }
 
 
@@ -183,7 +188,7 @@ namespace EPharmacy.Forms
                 entityNew = new Medico
                 {
                     Nome = Nome,
-                    CRM = CRM,  
+                    CRM = CRM,
                     EspecialidadeId = Especialidade,
                     DataCadastro = DateTime.Now,
                     Usuario = GlobalVariables.LoginId
@@ -321,7 +326,7 @@ namespace EPharmacy.Forms
                     int id = Convert.ToInt32(idCell.Value);
                     string Nome = NomeCell.Value.ToString();
                     string CRM = CRMCell.Value.ToString();
-                    int? Especialidade = Convert.ToInt32(EspecialidadeCell.Value); 
+                    int? Especialidade = Convert.ToInt32(EspecialidadeCell.Value);
 
                     txtId.Enabled = false;
                     txtId.Text = id.ToString();
@@ -346,6 +351,17 @@ namespace EPharmacy.Forms
         }
 
 
-
+        private void chkAumentaLarguraColunasGrid_CheckedChanged(object sender, EventArgs e)
+        {
+            // fazendo ficar com as colunas autoajuestadas ao tamanho
+            if (chkAumentaLarguraColunasGrid.Checked)
+            {
+                dgvLista.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            }
+            else
+            {
+                dgvLista.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+            }
+        }
     }
 }

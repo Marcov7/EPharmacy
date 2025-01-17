@@ -430,7 +430,7 @@ namespace EPharmacy.Forms
                                 from c in clinicaJoin.DefaultIfEmpty()
                                 select new
                                 {
-                             
+
                                     Id = r.Id,
                                     Descricao = r.Descricao,
                                     DataReceita = r.DataReceita,
@@ -451,7 +451,7 @@ namespace EPharmacy.Forms
                 dgvLista.DataSource = listax;
                 dgvLista.Enabled = true;
 
-                dGVReceitaItens.DataSource = null;    
+                dGVReceitaItens.DataSource = null;
 
                 dgvLista.Columns["Id"].HeaderText = "Id Receita";
                 dgvLista.Columns["PacienteId"].HeaderText = "Id Paciente";  // Alterar o título da coluna "PacienteId"
@@ -884,8 +884,21 @@ namespace EPharmacy.Forms
             }
         }
 
-   
 
+        private void chkAumentaLarguraColunasGrid_CheckedChanged_1(object sender, EventArgs e)
+        {
+            // fazendo ficar com as colunas autoajuestadas ao tamanho
+            if (chkAumentaLarguraColunasGrid.Checked)
+            {
+                dgvLista.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                dGVReceitaItens.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            }
+            else
+            {
+                dgvLista.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+                dGVReceitaItens.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+            }
+        }
     }
 
 }

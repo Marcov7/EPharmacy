@@ -8,4 +8,5 @@ using System.Threading.Tasks;
 public static class GlobalVariables
 {
     public static int LoginId { get; set; }
+    public static string Versao { get; set; }
 }

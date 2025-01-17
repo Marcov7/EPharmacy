@@ -52,6 +52,7 @@
             label8 = new Label();
             txtTUSS = new MaskedTextBox();
             chkMostrarIds = new CheckBox();
+            chkAumentaLarguraColunasGrid = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)dgvMedicamentos).BeginInit();
             SuspendLayout();
             // 
@@ -309,12 +310,26 @@
             chkMostrarIds.Text = "Mostrar Ids";
             chkMostrarIds.UseVisualStyleBackColor = true;
             // 
+            // chkAumentaLarguraColunasGrid
+            // 
+            chkAumentaLarguraColunasGrid.AutoSize = true;
+            chkAumentaLarguraColunasGrid.Checked = true;
+            chkAumentaLarguraColunasGrid.CheckState = CheckState.Checked;
+            chkAumentaLarguraColunasGrid.Location = new Point(142, 612);
+            chkAumentaLarguraColunasGrid.Name = "chkAumentaLarguraColunasGrid";
+            chkAumentaLarguraColunasGrid.Size = new Size(183, 19);
+            chkAumentaLarguraColunasGrid.TabIndex = 153;
+            chkAumentaLarguraColunasGrid.Text = "Largura do Tamanho do Dado";
+            chkAumentaLarguraColunasGrid.UseVisualStyleBackColor = true;
+            chkAumentaLarguraColunasGrid.CheckedChanged += chkAumentaLarguraColunasGrid_CheckedChanged;
+            // 
             // frmMedicamento
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(224, 224, 224);
             ClientSize = new Size(1309, 635);
+            Controls.Add(chkAumentaLarguraColunasGrid);
             Controls.Add(chkMostrarIds);
             Controls.Add(label8);
             Controls.Add(txtTUSS);
@@ -377,5 +392,6 @@
         private Label label8;
         private MaskedTextBox txtTUSS;
         private CheckBox chkMostrarIds;
+        private CheckBox chkAumentaLarguraColunasGrid;
     }
 }

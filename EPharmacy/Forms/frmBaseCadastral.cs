@@ -338,6 +338,20 @@ namespace EPharmacy.Forms
         }
 
 
+        private void chkAumentaLarguraColunasGrid_CheckedChanged_1(object sender, EventArgs e)
+        {
+            // fazendo ficar com as colunas autoajuestadas ao tamanho
+            if (chkAumentaLarguraColunasGrid.Checked)
+            {
+                dgvLista.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            }
+            else
+            {
+                dgvLista.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+            }
+        }
+
+
         private void HighlightRowsByNameChange()
         {
             // Defina as cores para alternar
@@ -502,21 +516,19 @@ namespace EPharmacy.Forms
                 entidadeApoio.TipoReceitaId = Convert.ToInt32(cboTipoReceita.SelectedValue) > 0 ? Convert.ToInt32(cboTipoReceita.SelectedValue) : null;
 
 
+                /* //--> comentados para mater a receita na tela. afeta o salvar.  */
                 txtId.Text = Id.ToString();
-                txtEAN.Text = EAN;
+                //-->txtEAN.Text = EAN;
                 txtMatricula.Text = matricula;
                 txtCPF.Text = CPF;
-                cboMedicamento.SelectedValue = medicamentoId;
+                //-->cboMedicamento.SelectedValue = medicamentoId;
                 cboPaciente.SelectedValue = pacienteId;
                 cboConvenio.SelectedValue = convenioId;
-                cboStatus.SelectedValue = statusId;
+                //-->cboStatus.SelectedValue = statusId;
                 cboBairro.SelectedValue = bairro;
                 cboZona.SelectedValue = zona;
-                cboTipoReceita.SelectedValue = tipoReceitaId;
+                //-->cboTipoReceita.SelectedValue = tipoReceitaId;
 
-                /*cboBairro.SelectedValue = statusId;
-                cboZona.SelectedValue = statusId;*/
-                cboTipoReceita.SelectedValue = tipoReceitaId;
 
                 dTPRefil1.Format = DateTimePickerFormat.Short;
                 dTPRefil1.Value = refil1.Date;

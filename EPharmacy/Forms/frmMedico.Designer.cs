@@ -44,13 +44,14 @@
             label2 = new Label();
             cboEspecialidade = new ComboBox();
             chkMostrarIds = new CheckBox();
+            chkAumentaLarguraColunasGrid = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)dgvLista).BeginInit();
             SuspendLayout();
             // 
             // btnPesquisar
             // 
             btnPesquisar.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnPesquisar.Location = new Point(312, 460);
+            btnPesquisar.Location = new Point(434, 460);
             btnPesquisar.Margin = new Padding(4, 3, 4, 3);
             btnPesquisar.Name = "btnPesquisar";
             btnPesquisar.Size = new Size(110, 27);
@@ -62,7 +63,7 @@
             // btnNovo
             // 
             btnNovo.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnNovo.Location = new Point(196, 460);
+            btnNovo.Location = new Point(324, 460);
             btnNovo.Margin = new Padding(4, 3, 4, 3);
             btnNovo.Name = "btnNovo";
             btnNovo.Size = new Size(110, 27);
@@ -75,7 +76,7 @@
             // 
             btnExcluir.Enabled = false;
             btnExcluir.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnExcluir.Location = new Point(544, 460);
+            btnExcluir.Location = new Point(655, 460);
             btnExcluir.Margin = new Padding(4, 3, 4, 3);
             btnExcluir.Name = "btnExcluir";
             btnExcluir.Size = new Size(110, 27);
@@ -88,7 +89,7 @@
             // 
             btnSalvar.Enabled = false;
             btnSalvar.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSalvar.Location = new Point(428, 460);
+            btnSalvar.Location = new Point(544, 460);
             btnSalvar.Margin = new Padding(4, 3, 4, 3);
             btnSalvar.Name = "btnSalvar";
             btnSalvar.Size = new Size(110, 27);
@@ -100,7 +101,7 @@
             // btnLimpar
             // 
             btnLimpar.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnLimpar.Location = new Point(660, 460);
+            btnLimpar.Location = new Point(766, 460);
             btnLimpar.Margin = new Padding(4, 3, 4, 3);
             btnLimpar.Name = "btnLimpar";
             btnLimpar.Size = new Size(110, 27);
@@ -113,7 +114,7 @@
             // 
             btnSair.BackColor = SystemColors.Control;
             btnSair.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSair.Location = new Point(776, 460);
+            btnSair.Location = new Point(876, 460);
             btnSair.Margin = new Padding(4, 3, 4, 3);
             btnSair.Name = "btnSair";
             btnSair.Size = new Size(110, 27);
@@ -125,17 +126,17 @@
             // dgvLista
             // 
             dgvLista.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvLista.Location = new Point(43, 112);
+            dgvLista.Location = new Point(13, 112);
             dgvLista.Margin = new Padding(4, 3, 4, 3);
             dgvLista.Name = "dgvLista";
-            dgvLista.Size = new Size(842, 339);
+            dgvLista.Size = new Size(975, 339);
             dgvLista.TabIndex = 100;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(111, 15);
+            label4.Location = new Point(83, 15);
             label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
             label4.Size = new Size(39, 13);
@@ -146,7 +147,7 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.Location = new Point(43, 15);
+            label7.Location = new Point(15, 15);
             label7.Margin = new Padding(4, 0, 4, 0);
             label7.Name = "label7";
             label7.Size = new Size(18, 13);
@@ -155,17 +156,17 @@
             // 
             // txtNome
             // 
-            txtNome.Location = new Point(111, 31);
+            txtNome.Location = new Point(83, 31);
             txtNome.Margin = new Padding(4, 3, 4, 3);
             txtNome.MaxLength = 255;
             txtNome.Multiline = true;
             txtNome.Name = "txtNome";
-            txtNome.Size = new Size(774, 23);
+            txtNome.Size = new Size(903, 23);
             txtNome.TabIndex = 97;
             // 
             // txtId
             // 
-            txtId.Location = new Point(43, 31);
+            txtId.Location = new Point(15, 31);
             txtId.Margin = new Padding(4, 3, 4, 3);
             txtId.Mask = "00000";
             txtId.Name = "txtId";
@@ -174,7 +175,7 @@
             // 
             // txtCRM
             // 
-            txtCRM.Location = new Point(43, 83);
+            txtCRM.Location = new Point(15, 83);
             txtCRM.Margin = new Padding(4, 3, 4, 3);
             txtCRM.MaxLength = 255;
             txtCRM.Multiline = true;
@@ -186,7 +187,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(43, 67);
+            label1.Location = new Point(15, 67);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
             label1.Size = new Size(34, 13);
@@ -197,7 +198,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(245, 67);
+            label2.Location = new Point(217, 67);
             label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
             label2.Size = new Size(86, 13);
@@ -207,27 +208,41 @@
             // cboEspecialidade
             // 
             cboEspecialidade.FormattingEnabled = true;
-            cboEspecialidade.Location = new Point(243, 83);
+            cboEspecialidade.Location = new Point(215, 83);
             cboEspecialidade.Margin = new Padding(4, 3, 4, 3);
             cboEspecialidade.Name = "cboEspecialidade";
-            cboEspecialidade.Size = new Size(642, 23);
+            cboEspecialidade.Size = new Size(771, 23);
             cboEspecialidade.TabIndex = 107;
             // 
             // chkMostrarIds
             // 
             chkMostrarIds.AutoSize = true;
-            chkMostrarIds.Location = new Point(43, 463);
+            chkMostrarIds.Location = new Point(13, 463);
             chkMostrarIds.Name = "chkMostrarIds";
             chkMostrarIds.Size = new Size(85, 19);
             chkMostrarIds.TabIndex = 148;
             chkMostrarIds.Text = "Mostrar Ids";
             chkMostrarIds.UseVisualStyleBackColor = true;
             // 
+            // chkAumentaLarguraColunasGrid
+            // 
+            chkAumentaLarguraColunasGrid.AutoSize = true;
+            chkAumentaLarguraColunasGrid.Checked = true;
+            chkAumentaLarguraColunasGrid.CheckState = CheckState.Checked;
+            chkAumentaLarguraColunasGrid.Location = new Point(116, 465);
+            chkAumentaLarguraColunasGrid.Name = "chkAumentaLarguraColunasGrid";
+            chkAumentaLarguraColunasGrid.Size = new Size(183, 19);
+            chkAumentaLarguraColunasGrid.TabIndex = 152;
+            chkAumentaLarguraColunasGrid.Text = "Largura do Tamanho do Dado";
+            chkAumentaLarguraColunasGrid.UseVisualStyleBackColor = true;
+            chkAumentaLarguraColunasGrid.CheckedChanged += chkAumentaLarguraColunasGrid_CheckedChanged;
+            // 
             // frmMedico
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(929, 505);
+            ClientSize = new Size(1001, 505);
+            Controls.Add(chkAumentaLarguraColunasGrid);
             Controls.Add(chkMostrarIds);
             Controls.Add(cboEspecialidade);
             Controls.Add(btnPesquisar);
@@ -270,5 +285,6 @@
         private Label label2;
         private ComboBox cboEspecialidade;
         private CheckBox chkMostrarIds;
+        private CheckBox chkAumentaLarguraColunasGrid;
     }
 }
