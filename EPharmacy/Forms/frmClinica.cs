@@ -28,7 +28,7 @@ namespace EPharmacy.Forms
         private void btnSair_Click(object sender, EventArgs e)
         {
             DialogResult resultado = MessageBox.Show(
-                "Você tem certeza que deseja fechar o formulário?",
+                "Você tem certeza que deseja fechar o formulário de Clínica?",
                 "Confirmação",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question
@@ -44,7 +44,7 @@ namespace EPharmacy.Forms
         private void btnLimpar_Click(object sender, EventArgs e)
         {
             DialogResult resultado = MessageBox.Show(
-              "Você tem certeza que deseja Limpar?",
+              "Você tem certeza que deseja Limpar a tela de Clínica?",
               "Confirmação",
               MessageBoxButtons.YesNo,
               MessageBoxIcon.Question
@@ -114,7 +114,7 @@ namespace EPharmacy.Forms
             }
             else
             {
-                MessageBox.Show("Periodicidade não encontrado.");
+                MessageBox.Show("Clínica não encontrado.");
             }
         }
 
@@ -134,7 +134,7 @@ namespace EPharmacy.Forms
             }
 
             DialogResult resultado = MessageBox.Show(
-                "Você tem certeza que deseja Salvar?",
+                "Você tem certeza que deseja Salvar a Clínica?",
                 "Confirmação",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question
@@ -209,7 +209,7 @@ namespace EPharmacy.Forms
         private void btnNovo_Click(object sender, EventArgs e)
         {
             DialogResult resultado = MessageBox.Show(
-                "Você tem certeza que deseja Criar um Novo?",
+                "Você tem certeza que deseja Criar uma Nova Clínica?",
                 "Confirmação",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question

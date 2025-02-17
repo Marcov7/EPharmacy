@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
             btnSair = new Button();
             btnLogar = new Button();
             txtLogin = new TextBox();
@@ -84,6 +85,7 @@
             // lblLogin
             // 
             lblLogin.AutoSize = true;
+            lblLogin.BackColor = Color.White;
             lblLogin.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lblLogin.Location = new Point(94, 58);
             lblLogin.Name = "lblLogin";
@@ -94,6 +96,7 @@
             // lblSenha
             // 
             lblSenha.AutoSize = true;
+            lblSenha.BackColor = Color.White;
             lblSenha.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lblSenha.Location = new Point(94, 113);
             lblSenha.Name = "lblSenha";
@@ -104,6 +107,7 @@
             // lblMsgInicial
             // 
             lblMsgInicial.AutoSize = true;
+            lblMsgInicial.BackColor = Color.White;
             lblMsgInicial.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblMsgInicial.Location = new Point(80, 15);
             lblMsgInicial.Name = "lblMsgInicial";
@@ -114,6 +118,7 @@
             // lblVersao
             // 
             lblVersao.AutoSize = true;
+            lblVersao.BackColor = Color.White;
             lblVersao.Font = new Font("Segoe UI", 7F, FontStyle.Bold);
             lblVersao.ForeColor = Color.Purple;
             lblVersao.Location = new Point(117, 237);
@@ -127,6 +132,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientInactiveCaption;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(349, 253);
             Controls.Add(lblVersao);
             Controls.Add(lblSenha);
@@ -140,7 +146,7 @@
             MinimizeBox = false;
             Name = "frmLogin";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Controle de Entregas - Login de Usuário.";
+            Text = "EPharmacy - Login de Usuário.";
             ResumeLayout(false);
             PerformLayout();
         }

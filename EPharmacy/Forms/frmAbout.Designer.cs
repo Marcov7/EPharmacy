@@ -28,35 +28,47 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAbout));
             lblMsgInicial = new Label();
             lblVersao = new Label();
+            imageList1 = new ImageList(components);
             SuspendLayout();
             // 
             // lblMsgInicial
             // 
             lblMsgInicial.AutoSize = true;
-            lblMsgInicial.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblMsgInicial.Location = new Point(12, 18);
+            lblMsgInicial.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
+            lblMsgInicial.Location = new Point(177, 2);
             lblMsgInicial.Name = "lblMsgInicial";
-            lblMsgInicial.Size = new Size(298, 19);
+            lblMsgInicial.Size = new Size(443, 28);
             lblMsgInicial.TabIndex = 5;
-            lblMsgInicial.Text = "SiContEn - Sistema de Controle de Entregas";
+            lblMsgInicial.Text = "EPharmacy - Sistema de Controle de Entregas";
             // 
             // lblVersao
             // 
             lblVersao.AutoSize = true;
             lblVersao.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblVersao.Location = new Point(12, 48);
+            lblVersao.Location = new Point(581, 457);
             lblVersao.Name = "lblVersao";
             lblVersao.Size = new Size(58, 19);
             lblVersao.TabIndex = 6;
             lblVersao.Text = "Versão ";
             // 
+            // imageList1
+            // 
+            imageList1.ColorDepth = ColorDepth.Depth32Bit;
+            imageList1.ImageSize = new Size(16, 16);
+            imageList1.TransparentColor = Color.Transparent;
+            // 
             // frmAbout
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            BackColor = Color.White;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Zoom;
+            ClientSize = new Size(800, 490);
             Controls.Add(lblVersao);
             Controls.Add(lblMsgInicial);
             Name = "frmAbout";
@@ -71,5 +83,6 @@
 
         private Label lblMsgInicial;
         private Label lblVersao;
+        private ImageList imageList1;
     }
 }

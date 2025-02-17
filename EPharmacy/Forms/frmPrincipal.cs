@@ -454,6 +454,31 @@ namespace EPharmacy
             formulario.Show();
             formulario.Location = new Point(255, 80);
         }
+
+        private void especialidadeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (Form filho in this.MdiChildren)
+            {
+                if (filho is frmEspecialidade)
+                {
+                    filho.Activate();
+                    return;
+                }
+            }
+
+            frmEspecialidade formulario = new frmEspecialidade
+            {
+                MdiParent = this,
+            };
+            formulario.Show();
+            formulario.Location = new Point(180, 30);
+
+        }
+
+        private void saírToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            sairToolStripMenuItem_Click(null, null);
+        }
     }
 }
 

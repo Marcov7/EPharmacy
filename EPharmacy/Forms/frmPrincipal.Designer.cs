@@ -35,6 +35,7 @@
             classeTerapeuticaToolStripMenuItem = new ToolStripMenuItem();
             clinicaToolStripMenuItem = new ToolStripMenuItem();
             convenioToolStripMenuItem = new ToolStripMenuItem();
+            especialidadeToolStripMenuItem = new ToolStripMenuItem();
             fabricanteToolStripMenuItem = new ToolStripMenuItem();
             medicoToolStripMenuItem = new ToolStripMenuItem();
             modalidadeToolStripMenuItem = new ToolStripMenuItem();
@@ -52,14 +53,16 @@
             cadastroDePacienteToolStripMenuItem = new ToolStripMenuItem();
             receitaToolStripMenuItem2 = new ToolStripMenuItem();
             receitaToolStripMenuItem1 = new ToolStripMenuItem();
+            receitaToolStripMenuItem = new ToolStripMenuItem();
+            BaseCadastralToolStripMenuItem = new ToolStripMenuItem();
+            pedidoToolStripMenuItem2 = new ToolStripMenuItem();
             pedidoToolStripMenuItem = new ToolStripMenuItem();
             pedidoToolStripMenuItem1 = new ToolStripMenuItem();
             ajudaToolStripMenuItem = new ToolStripMenuItem();
             sobrceToolStripMenuItem = new ToolStripMenuItem();
             sairToolStripMenuItem = new ToolStripMenuItem();
-            receitaToolStripMenuItem = new ToolStripMenuItem();
-            BaseCadastralToolStripMenuItem = new ToolStripMenuItem();
-            pedidoToolStripMenuItem2 = new ToolStripMenuItem();
+            saírToolStripMenuItem = new ToolStripMenuItem();
+            toolStripSeparator3 = new ToolStripSeparator();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -74,7 +77,7 @@
             // 
             // cadastroToolStripMenuItem
             // 
-            cadastroToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { toolStripSeparator1, bairroZonaToolStripMenuItem, classeTerapeuticaToolStripMenuItem, clinicaToolStripMenuItem, convenioToolStripMenuItem, fabricanteToolStripMenuItem, medicoToolStripMenuItem, modalidadeToolStripMenuItem, parâmetrosToolStripMenuItem, periodicidadeRefilToolStripMenuItem, substânciaToolStripMenuItem, tipoEntregaToolStripMenuItem, tipoReceitaToolStripMenuItem, toolStripSeparator2, usuárioToolStripMenuItem });
+            cadastroToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { toolStripSeparator1, bairroZonaToolStripMenuItem, classeTerapeuticaToolStripMenuItem, clinicaToolStripMenuItem, convenioToolStripMenuItem, especialidadeToolStripMenuItem, fabricanteToolStripMenuItem, medicoToolStripMenuItem, modalidadeToolStripMenuItem, parâmetrosToolStripMenuItem, periodicidadeRefilToolStripMenuItem, substânciaToolStripMenuItem, tipoEntregaToolStripMenuItem, tipoReceitaToolStripMenuItem, toolStripSeparator2, usuárioToolStripMenuItem, toolStripSeparator3, saírToolStripMenuItem });
             cadastroToolStripMenuItem.Name = "cadastroToolStripMenuItem";
             cadastroToolStripMenuItem.Size = new Size(66, 20);
             cadastroToolStripMenuItem.Text = "Cadastro";
@@ -82,101 +85,108 @@
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(169, 6);
+            toolStripSeparator1.Size = new Size(177, 6);
             // 
             // bairroZonaToolStripMenuItem
             // 
             bairroZonaToolStripMenuItem.Name = "bairroZonaToolStripMenuItem";
-            bairroZonaToolStripMenuItem.Size = new Size(172, 22);
+            bairroZonaToolStripMenuItem.Size = new Size(180, 22);
             bairroZonaToolStripMenuItem.Text = "Bairro Zona";
             bairroZonaToolStripMenuItem.Click += bairroZonaToolStripMenuItem_Click;
             // 
             // classeTerapeuticaToolStripMenuItem
             // 
             classeTerapeuticaToolStripMenuItem.Name = "classeTerapeuticaToolStripMenuItem";
-            classeTerapeuticaToolStripMenuItem.Size = new Size(172, 22);
+            classeTerapeuticaToolStripMenuItem.Size = new Size(180, 22);
             classeTerapeuticaToolStripMenuItem.Text = "Classe Terapeutica";
             classeTerapeuticaToolStripMenuItem.Click += classeTerapeuticaToolStripMenuItem_Click;
             // 
             // clinicaToolStripMenuItem
             // 
             clinicaToolStripMenuItem.Name = "clinicaToolStripMenuItem";
-            clinicaToolStripMenuItem.Size = new Size(172, 22);
+            clinicaToolStripMenuItem.Size = new Size(180, 22);
             clinicaToolStripMenuItem.Text = "Clinica";
             clinicaToolStripMenuItem.Click += clinicaToolStripMenuItem_Click;
             // 
             // convenioToolStripMenuItem
             // 
             convenioToolStripMenuItem.Name = "convenioToolStripMenuItem";
-            convenioToolStripMenuItem.Size = new Size(172, 22);
+            convenioToolStripMenuItem.Size = new Size(180, 22);
             convenioToolStripMenuItem.Text = "Convênio";
             convenioToolStripMenuItem.Click += convenioToolStripMenuItem_Click;
+            // 
+            // especialidadeToolStripMenuItem
+            // 
+            especialidadeToolStripMenuItem.Name = "especialidadeToolStripMenuItem";
+            especialidadeToolStripMenuItem.Size = new Size(180, 22);
+            especialidadeToolStripMenuItem.Text = "Especialidade";
+            especialidadeToolStripMenuItem.Click += especialidadeToolStripMenuItem_Click;
             // 
             // fabricanteToolStripMenuItem
             // 
             fabricanteToolStripMenuItem.Name = "fabricanteToolStripMenuItem";
-            fabricanteToolStripMenuItem.Size = new Size(172, 22);
+            fabricanteToolStripMenuItem.Size = new Size(180, 22);
             fabricanteToolStripMenuItem.Text = "Fabricante";
             fabricanteToolStripMenuItem.Click += fabricanteToolStripMenuItem_Click;
             // 
             // medicoToolStripMenuItem
             // 
             medicoToolStripMenuItem.Name = "medicoToolStripMenuItem";
-            medicoToolStripMenuItem.Size = new Size(172, 22);
+            medicoToolStripMenuItem.Size = new Size(180, 22);
             medicoToolStripMenuItem.Text = "Medico";
             medicoToolStripMenuItem.Click += medicoToolStripMenuItem_Click;
             // 
             // modalidadeToolStripMenuItem
             // 
             modalidadeToolStripMenuItem.Name = "modalidadeToolStripMenuItem";
-            modalidadeToolStripMenuItem.Size = new Size(172, 22);
+            modalidadeToolStripMenuItem.Size = new Size(180, 22);
             modalidadeToolStripMenuItem.Text = "Modalidade";
             modalidadeToolStripMenuItem.Click += modalidadeToolStripMenuItem_Click;
             // 
             // parâmetrosToolStripMenuItem
             // 
             parâmetrosToolStripMenuItem.Name = "parâmetrosToolStripMenuItem";
-            parâmetrosToolStripMenuItem.Size = new Size(172, 22);
+            parâmetrosToolStripMenuItem.Size = new Size(180, 22);
             parâmetrosToolStripMenuItem.Text = "Parâmetros";
             parâmetrosToolStripMenuItem.Click += parâmetrosToolStripMenuItem_Click;
             // 
             // periodicidadeRefilToolStripMenuItem
             // 
             periodicidadeRefilToolStripMenuItem.Name = "periodicidadeRefilToolStripMenuItem";
-            periodicidadeRefilToolStripMenuItem.Size = new Size(172, 22);
+            periodicidadeRefilToolStripMenuItem.Size = new Size(180, 22);
             periodicidadeRefilToolStripMenuItem.Text = "Periodicidade Refil";
             periodicidadeRefilToolStripMenuItem.Click += periodicidadeRefilToolStripMenuItem_Click;
             // 
             // substânciaToolStripMenuItem
             // 
             substânciaToolStripMenuItem.Name = "substânciaToolStripMenuItem";
-            substânciaToolStripMenuItem.Size = new Size(172, 22);
+            substânciaToolStripMenuItem.Size = new Size(180, 22);
             substânciaToolStripMenuItem.Text = "Substância";
             substânciaToolStripMenuItem.Click += substanciaToolStripMenuItem_Click;
             // 
             // tipoEntregaToolStripMenuItem
             // 
             tipoEntregaToolStripMenuItem.Name = "tipoEntregaToolStripMenuItem";
-            tipoEntregaToolStripMenuItem.Size = new Size(172, 22);
+            tipoEntregaToolStripMenuItem.Size = new Size(180, 22);
             tipoEntregaToolStripMenuItem.Text = "Tipo Entrega";
             tipoEntregaToolStripMenuItem.Click += tipoEntregaToolStripMenuItem_Click;
             // 
             // tipoReceitaToolStripMenuItem
             // 
             tipoReceitaToolStripMenuItem.Name = "tipoReceitaToolStripMenuItem";
-            tipoReceitaToolStripMenuItem.Size = new Size(172, 22);
+            tipoReceitaToolStripMenuItem.Size = new Size(180, 22);
             tipoReceitaToolStripMenuItem.Text = "Tipo Receita";
             tipoReceitaToolStripMenuItem.Click += tipoReceitaToolStripMenuItem_Click;
             // 
             // toolStripSeparator2
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(169, 6);
+            toolStripSeparator2.Size = new Size(177, 6);
             // 
             // usuárioToolStripMenuItem
             // 
             usuárioToolStripMenuItem.Name = "usuárioToolStripMenuItem";
-            usuárioToolStripMenuItem.Size = new Size(172, 22);
+            usuárioToolStripMenuItem.Size = new Size(180, 22);
             usuárioToolStripMenuItem.Text = "Usuário";
             usuárioToolStripMenuItem.Click += usuárioToolStripMenuItem_Click;
             // 
@@ -229,6 +239,27 @@
             receitaToolStripMenuItem1.Text = "Cadastro de Receita";
             receitaToolStripMenuItem1.Click += receitaToolStripMenuItem1_Click;
             // 
+            // receitaToolStripMenuItem
+            // 
+            receitaToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { BaseCadastralToolStripMenuItem, pedidoToolStripMenuItem2 });
+            receitaToolStripMenuItem.Name = "receitaToolStripMenuItem";
+            receitaToolStripMenuItem.Size = new Size(59, 20);
+            receitaToolStripMenuItem.Text = "Entrega";
+            // 
+            // BaseCadastralToolStripMenuItem
+            // 
+            BaseCadastralToolStripMenuItem.Name = "BaseCadastralToolStripMenuItem";
+            BaseCadastralToolStripMenuItem.Size = new Size(150, 22);
+            BaseCadastralToolStripMenuItem.Text = "Base Cadastral";
+            BaseCadastralToolStripMenuItem.Click += baseCadastralToolStripMenuItem_Click;
+            // 
+            // pedidoToolStripMenuItem2
+            // 
+            pedidoToolStripMenuItem2.Name = "pedidoToolStripMenuItem2";
+            pedidoToolStripMenuItem2.Size = new Size(150, 22);
+            pedidoToolStripMenuItem2.Text = "Pedido";
+            pedidoToolStripMenuItem2.Click += pedidoToolStripMenuItem2_Click_1;
+            // 
             // pedidoToolStripMenuItem
             // 
             pedidoToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { pedidoToolStripMenuItem1 });
@@ -265,26 +296,17 @@
             sairToolStripMenuItem.Text = "Sai&r";
             sairToolStripMenuItem.Click += sairToolStripMenuItem_Click;
             // 
-            // receitaToolStripMenuItem
+            // saírToolStripMenuItem
             // 
-            receitaToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { BaseCadastralToolStripMenuItem, pedidoToolStripMenuItem2 });
-            receitaToolStripMenuItem.Name = "receitaToolStripMenuItem";
-            receitaToolStripMenuItem.Size = new Size(59, 20);
-            receitaToolStripMenuItem.Text = "Entrega";
+            saírToolStripMenuItem.Name = "saírToolStripMenuItem";
+            saírToolStripMenuItem.Size = new Size(180, 22);
+            saírToolStripMenuItem.Text = "Saí&r";
+            saírToolStripMenuItem.Click += saírToolStripMenuItem_Click;
             // 
-            // BaseCadastralToolStripMenuItem
+            // toolStripSeparator3
             // 
-            BaseCadastralToolStripMenuItem.Name = "BaseCadastralToolStripMenuItem";
-            BaseCadastralToolStripMenuItem.Size = new Size(180, 22);
-            BaseCadastralToolStripMenuItem.Text = "Base Cadastral";
-            BaseCadastralToolStripMenuItem.Click += baseCadastralToolStripMenuItem_Click;
-            // 
-            // pedidoToolStripMenuItem2
-            // 
-            pedidoToolStripMenuItem2.Name = "pedidoToolStripMenuItem2";
-            pedidoToolStripMenuItem2.Size = new Size(180, 22);
-            pedidoToolStripMenuItem2.Text = "Pedido";
-            pedidoToolStripMenuItem2.Click += pedidoToolStripMenuItem2_Click_1;
+            toolStripSeparator3.Name = "toolStripSeparator3";
+            toolStripSeparator3.Size = new Size(177, 6);
             // 
             // frmPrincipal
             // 
@@ -296,7 +318,7 @@
             MainMenuStrip = menuStrip1;
             MaximizeBox = false;
             Name = "frmPrincipal";
-            Text = "Controle de Entregas";
+            Text = "EPharmacy - Sistema de  Controle de Entregas";
             WindowState = FormWindowState.Maximized;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
@@ -342,5 +364,8 @@
         private ToolStripMenuItem receitaToolStripMenuItem2;
         private ToolStripMenuItem receitaToolStripMenuItem1;
         private ToolStripMenuItem bairroZonaToolStripMenuItem;
+        private ToolStripMenuItem especialidadeToolStripMenuItem;
+        private ToolStripSeparator toolStripSeparator3;
+        private ToolStripMenuItem saírToolStripMenuItem;
     }
 }
