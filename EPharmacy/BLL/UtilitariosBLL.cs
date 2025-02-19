@@ -88,8 +88,22 @@ namespace BLL
             // Valida se a string corresponde à expressão regular
             return Regex.IsMatch(email, pattern);
         }
-    
-    
-    
+
+
+        public static bool ContemNumeroLetraCaractereEspecialRegex(string input)
+        {
+            return Regex.IsMatch(input, @"\d") &&
+                   Regex.IsMatch(input, @"[a-zA-Z]") &&
+                   Regex.IsMatch(input, @"[^a-zA-Z0-9]");
+        }
+
+
+        public static bool Contem6Caracteres(string input)
+        {   Boolean retorna = false;
+            if(input.Length == 6 ) 
+                retorna = true;
+            return retorna;
+        }
+
     }
 }

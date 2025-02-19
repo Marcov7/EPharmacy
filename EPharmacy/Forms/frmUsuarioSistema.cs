@@ -1,4 +1,5 @@
-﻿using EPharmacy.Data;
+﻿using BLL;
+using EPharmacy.Data;
 using EPharmacy.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -104,13 +105,13 @@ namespace EPharmacy.Forms
 
             if (Delete != null)
             {
-                var medicamento = _context.Medicamento.FirstOrDefault(b => b.Usuario == Id_);
+            //    var medicamento = _context.Medicamento.FirstOrDefault(b => b.Usuario == Id_);
 
-                if (medicamento != null)
-                {
-                    MessageBox.Show("Usuário não pode ser excluído. Tem dados relacionados entre Medicamento com Usuário!");
-                    return;
-                }
+            //    if (medicamento != null)
+            //    {
+            //        MessageBox.Show("Usuário não pode ser excluído. Tem dados relacionados entre Medicamento com Usuário!");
+            //        return;
+            //    }
 
                 _context.UsuarioSistema.Remove(Delete);
                 _context.SaveChangesAsync();
@@ -133,10 +134,26 @@ namespace EPharmacy.Forms
             {
                 retorno += "Preencha o campo Nome \n";
             }
+            if (txtLogin.Text.IsNullOrEmpty())
+            {
+                retorno += "Preencha o campo Login \n";
+            }
+            if (txtSenha.Text.IsNullOrEmpty())
+            {
+                retorno += "Preencha o campo Senha \n";
+            }
+            if (txtEmail.Text.IsNullOrEmpty())
+            {
+                retorno += "Preencha o campo Email \n";
+            }
+            if (!UtilitariosBLL.IsValidEmail( txtEmail.Text))
+            {
+                retorno += "Preencha o campo Email com uma Email válido \n";
+            }
 
             if (!retorno.IsNullOrEmpty())
             {
-                MessageBox.Show(retorno, "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(retorno, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -162,6 +179,32 @@ namespace EPharmacy.Forms
 
             if (txtId.Text.IsNullOrEmpty())
             {
+                retorno = "";
+                var LoginExistente = _context.UsuarioSistema.FirstOrDefault(b => b.Login == Login_);
+                if (LoginExistente != null)
+                {
+                    retorno += "Preencha o campo Login com um Login novo \n";
+                }
+                if (!UtilitariosBLL.ContemNumeroLetraCaractereEspecialRegex(Senha_))
+                {
+                    retorno += "Preencha o campo Senha com Número, Caracater Especial e Letra \n";
+                }
+                if (!UtilitariosBLL.Contem6Caracteres(Senha_))
+                {
+                    retorno += "Preencha o campo Senha com 6 caracteres \n";
+                }
+                var EmailExistente = _context.UsuarioSistema.FirstOrDefault(b => b.Email == Email_);
+                if (EmailExistente != null)
+                {
+                    retorno += "Preencha o campo Email com um Email novo \n";
+                }
+
+                if (!retorno.IsNullOrEmpty())
+                {
+                    MessageBox.Show(retorno, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 entityNew = new UsuarioSistema
                 {
                     Nome = Nome_,
@@ -183,6 +226,33 @@ namespace EPharmacy.Forms
             else
             {
                 int Id_ = Convert.ToInt32(txtId.Text);
+
+                retorno = "";
+                var LoginExistente = _context.UsuarioSistema.FirstOrDefault(b => b.Login == Login_ && b.Id != Id_);
+                if (LoginExistente != null)
+                {
+                    retorno += "Preencha o campo Login com um Login novo \n";
+                }
+                if (!UtilitariosBLL.ContemNumeroLetraCaractereEspecialRegex(Senha_))
+                {
+                    retorno += "Preencha o campo Senha com Número, Caracater Especial e Letra \n";
+                }
+                if (!UtilitariosBLL.Contem6Caracteres(Senha_))
+                {
+                    retorno += "Preencha o campo Senha com 6 caracteres \n";
+                }
+                var EmailExistente = _context.UsuarioSistema.FirstOrDefault(b => b.Email == Email_ && b.Id != Id_);
+                if (EmailExistente != null)
+                {
+                    retorno += "Preencha o campo Email com um Email novo \n";
+                }
+
+                if (!retorno.IsNullOrEmpty())
+                {
+                    MessageBox.Show(retorno, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 entityUpdate = _context.UsuarioSistema.Find(Id_);
                 entityUpdate.Nome = Nome_;
                 entityUpdate.Login = Login_;
@@ -274,7 +344,7 @@ namespace EPharmacy.Forms
 
         private void dgvLista_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dgvLista.Rows[e.RowIndex];
 

@@ -109,7 +109,6 @@
             btnLimpar.Text = "&Limpar";
             btnLimpar.UseVisualStyleBackColor = true;
             btnLimpar.Click += btnLimpar_Click;
-            
             // 
             // btnSair
             // 
@@ -132,6 +131,7 @@
             dgvLista.Name = "dgvLista";
             dgvLista.Size = new Size(842, 342);
             dgvLista.TabIndex = 107;
+            dgvLista.CellClick += dgvLista_CellClick;
             // 
             // label3
             // 
