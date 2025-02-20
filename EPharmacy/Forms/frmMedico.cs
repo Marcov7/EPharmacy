@@ -103,7 +103,7 @@ namespace EPharmacy.Forms
         private void btnExcluir_Click(object sender, EventArgs e)
         {
             DialogResult resultado = MessageBox.Show(
-                "Você tem certeza que deseja Excluir o Tipo Entrega Selecionado?",
+                "Você tem certeza que deseja Excluir o Médico Selecionado?",
                 "Confirmação",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question
@@ -115,28 +115,20 @@ namespace EPharmacy.Forms
             }
 
             int Id_ = Convert.ToInt32(txtId.Text);
-            var Delete = _context.TipoEntrega.Find(Id_);
+            var Delete = _context.Medico.Find(Id_);
 
             if (Delete != null)
             {
-                //var receita = _context.Receita.FirstOrDefault(b => b.TipoEntregaId == Id_);
-
-                //if (receita != null)
-                //{
-                //    MessageBox.Show("Tipo Entrega não pode ser excluído. Tem dados relacionados entre Receita com Tipo Entrega!");
-                //    return;
-                //}
-
-                _context.TipoEntrega.Remove(Delete);
+                _context.Medico.Remove(Delete);
                 _context.SaveChangesAsync();
-                MessageBox.Show("Tipo Entrega excluído com sucesso!");
+                MessageBox.Show("Médico excluído com sucesso!");
 
                 Limpar();
                 btnPesquisar_Click(null, null);
             }
             else
             {
-                MessageBox.Show("Tipo Entrega não encontrado.");
+                MessageBox.Show("Médico não encontrado.");
             }
         }
 
@@ -238,14 +230,14 @@ namespace EPharmacy.Forms
             if (Id_ != null)
                 entidade = entidade.Where(p => p.Id == Id_);
 
-            /*if (!string.IsNullOrEmpty(Nome_))
+            if (!string.IsNullOrEmpty(Nome_))
                 entidade = entidade.Where(p => p.Nome.Contains(Nome_));
 
             if (!string.IsNullOrEmpty(CRM_))
                 entidade = entidade.Where(p => p.CRM.Contains(CRM_));
 
             if (Especialidade_ != null)
-                entidade = entidade.Where(p => p.EspecialidadeId == Especialidade_);*/
+                entidade = entidade.Where(p => p.EspecialidadeId == Especialidade_);
 
 
             var query = from m in entidade
@@ -337,7 +329,7 @@ namespace EPharmacy.Forms
                     txtId.Enabled = false;
                     txtNome.Enabled = true;
                     txtCRM.Enabled = true;
-                    cboEspecialidade.SelectedValue = 0;
+                    cboEspecialidade.Enabled = true;
                     dgvLista.Enabled = true;
 
                     btnNovo.Enabled = true;

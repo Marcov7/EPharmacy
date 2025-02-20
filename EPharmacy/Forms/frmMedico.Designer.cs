@@ -131,6 +131,7 @@
             dgvLista.Name = "dgvLista";
             dgvLista.Size = new Size(975, 339);
             dgvLista.TabIndex = 100;
+            dgvLista.CellClick += dgvLista_CellClick;
             // 
             // label4
             // 
@@ -231,7 +232,7 @@
             chkAumentaLarguraColunasGrid.CheckState = CheckState.Checked;
             chkAumentaLarguraColunasGrid.Location = new Point(116, 465);
             chkAumentaLarguraColunasGrid.Name = "chkAumentaLarguraColunasGrid";
-            chkAumentaLarguraColunasGrid.Size = new Size(183, 19);
+            chkAumentaLarguraColunasGrid.Size = new Size(184, 19);
             chkAumentaLarguraColunasGrid.TabIndex = 152;
             chkAumentaLarguraColunasGrid.Text = "Largura do Tamanho do Dado";
             chkAumentaLarguraColunasGrid.UseVisualStyleBackColor = true;
