@@ -1,4 +1,6 @@
-﻿using System.Text.RegularExpressions;
+﻿using OfficeOpenXml.Style;
+using System.Text.RegularExpressions;
+using static System.Windows.Forms.LinkLabel;
 
 namespace BLL
 {
@@ -105,5 +107,26 @@ namespace BLL
             return retorna;
         }
 
+
+        public static string CarregarStrConn()
+        {
+            string caminhoArquivo = "C:\\Projetos\\ProjetoControleEntrega\\Publish\\arquivoSCB.ini"; 
+
+            if (File.Exists(caminhoArquivo))
+            {
+                try
+                { 
+                    string linha = "";
+                    StreamReader reader = new StreamReader(caminhoArquivo);
+                    linha = reader.ReadLine();           
+                    return linha;
+                }
+                catch (Exception ex)
+                {
+                    return $"Erro - ao ler o arquivo: {ex.Message}";
+                }
+            }
+            return $"Erro - ao ler o arquivo.";
+        }
     }
 }

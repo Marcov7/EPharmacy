@@ -51,7 +51,7 @@ public class ExportExcel
         }
         catch (Exception ex)
         {
-            return "Erro na geraçã do Arquivo Excel. Não exportado!";
+            return "Erro na geração do Arquivo Excel. Não exportado!";
         }
     }
 }

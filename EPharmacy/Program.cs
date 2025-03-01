@@ -1,17 +1,20 @@
 using Microsoft.EntityFrameworkCore;
 using EPharmacy.Data;
 using System.Runtime.ConstrainedExecution;
+using BLL;
 
 namespace EPharmacy
 {
     internal static class Program
     {
+        public static string stringConn = "";
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main()
         {
+            stringConn = UtilitariosBLL.CarregarStrConn();
             var optionsBuilder = new DbContextOptionsBuilder<EPharmacyContext>();
             //optionsBuilder.UseSqlServer(@"Server=LAPTOP-5CRV3IV2\SQLEXPRESS;Database=CONTROLE_ENTREGA;Trusted_Connection=True;Encrypt=False;");
             optionsBuilder.UseSqlServer(StrConn());
@@ -28,7 +31,10 @@ namespace EPharmacy
 
         public static string StrConn()
         {
-            return @"Server=LAPTOP-5CRV3IV2\SQLEXPRESS;Database=CONTROLE_ENTREGA;Trusted_Connection=True;Encrypt=False;";
+            // return @"Server=LAPTOP-5CRV3IV2\SQLEXPRESS;Database=CONTROLE_ENTREGA;Trusted_Connection=True;Encrypt=False;";
+            return @stringConn;
+            //return @"Server=NB-VME-JPA-0002; Database=CONTROLE_ENTREGA; User Id=sa; Password=Deusmeajude102031+-;";
+
         }
 
 
