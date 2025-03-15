@@ -273,10 +273,10 @@ namespace EPharmacy.BLL
 
                                       where re.DataReceita >= dataLimite
 
-                                       && ((receitaItemEntrega.DataRefil.Value.Month == Mes && receitaItemEntrega.DataRefil.Value.Year == Ano) ||
+                                      && ((receitaItemEntrega.DataRefil.Value.Month == Mes && receitaItemEntrega.DataRefil.Value.Year == Ano) ||
                                            (receitaItemEntrega.DataRefil.Value.Month == null || receitaItemEntrega.DataRefil.Value.Year == null) || dataComparacao == null)
 
-
+                                      && (ri.StatusId == 2)
                                       /*&& ((ri.Refil1.Value.Month == Mes && ri.Refil1.Value.Year == Ano) ||
                                           (ri.Refil2.Value.Month == Mes && ri.Refil2.Value.Year == Ano) ||
                                           (ri.Refil3.Value.Month == Mes && ri.Refil3.Value.Year == Ano) ||
@@ -443,7 +443,7 @@ namespace EPharmacy.BLL
                     RefilId = 1,
                     StatusEntregaId = 8,
                     DataCadastro = DateTime.Now,
-                    Usuario = 1
+                    Usuario = GlobalVariables.LoginId
 
                 };
                 _context.ReceitaItensEntrega.Add(entityNew);
@@ -460,7 +460,7 @@ namespace EPharmacy.BLL
                     RefilId = 2,
                     StatusEntregaId = 8,
                     DataCadastro = DateTime.Now,
-                    Usuario = 1
+                    Usuario = GlobalVariables.LoginId
 
                 };
                 _context.ReceitaItensEntrega.Add(entityNew);
@@ -477,7 +477,7 @@ namespace EPharmacy.BLL
                     RefilId = 3,
                     StatusEntregaId = 8,
                     DataCadastro = DateTime.Now,
-                    Usuario = 1
+                    Usuario = GlobalVariables.LoginId
 
                 };
                 _context.ReceitaItensEntrega.Add(entityNew);
@@ -494,7 +494,7 @@ namespace EPharmacy.BLL
                     RefilId = 4,
                     StatusEntregaId = 8,
                     DataCadastro = DateTime.Now,
-                    Usuario = 1
+                    Usuario = GlobalVariables.LoginId
 
                 };
                 _context.ReceitaItensEntrega.Add(entityNew);
@@ -511,7 +511,7 @@ namespace EPharmacy.BLL
                     RefilId = 5,
                     StatusEntregaId = 8,
                     DataCadastro = DateTime.Now,
-                    Usuario = 1
+                    Usuario = GlobalVariables.LoginId
 
                 };
                 _context.ReceitaItensEntrega.Add(entityNew);
@@ -528,7 +528,7 @@ namespace EPharmacy.BLL
                     RefilId = 6,
                     StatusEntregaId = 8,
                     DataCadastro = DateTime.Now,
-                    Usuario = 1
+                    Usuario = GlobalVariables.LoginId
 
                 };
                 _context.ReceitaItensEntrega.Add(entityNew);
@@ -545,7 +545,7 @@ namespace EPharmacy.BLL
                     RefilId = 7,
                     StatusEntregaId = 8,
                     DataCadastro = DateTime.Now,
-                    Usuario = 1
+                    Usuario = GlobalVariables.LoginId
 
                 };
                 _context.ReceitaItensEntrega.Add(entityNew);

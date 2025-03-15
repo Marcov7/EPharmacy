@@ -75,6 +75,8 @@
             label16 = new Label();
             btnExportar = new Button();
             chkAumentaLarguraColunasGrid = new CheckBox();
+            cboStatusParaGravar = new ComboBox();
+            label18 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvLista).BeginInit();
             SuspendLayout();
             // 
@@ -241,17 +243,17 @@
             // 
             cboStatus.Enabled = false;
             cboStatus.FormattingEnabled = true;
-            cboStatus.Location = new Point(946, 23);
+            cboStatus.Location = new Point(1260, 23);
             cboStatus.Margin = new Padding(4, 3, 4, 3);
             cboStatus.Name = "cboStatus";
-            cboStatus.Size = new Size(90, 23);
+            cboStatus.Size = new Size(86, 23);
             cboStatus.TabIndex = 94;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(948, 9);
+            label1.Location = new Point(1262, 9);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
             label1.Size = new Size(43, 13);
@@ -326,7 +328,7 @@
             label7.AutoSize = true;
             label7.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.FromArgb(128, 64, 0);
-            label7.Location = new Point(204, 56);
+            label7.Location = new Point(151, 56);
             label7.Margin = new Padding(4, 0, 4, 0);
             label7.Name = "label7";
             label7.Size = new Size(44, 13);
@@ -338,7 +340,7 @@
             label8.AutoSize = true;
             label8.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.Olive;
-            label8.Location = new Point(394, 56);
+            label8.Location = new Point(290, 56);
             label8.Margin = new Padding(4, 0, 4, 0);
             label8.Name = "label8";
             label8.Size = new Size(44, 13);
@@ -350,7 +352,7 @@
             label9.AutoSize = true;
             label9.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label9.ForeColor = Color.Green;
-            label9.Location = new Point(584, 56);
+            label9.Location = new Point(429, 56);
             label9.Margin = new Padding(4, 0, 4, 0);
             label9.Name = "label9";
             label9.Size = new Size(44, 13);
@@ -362,7 +364,7 @@
             label10.AutoSize = true;
             label10.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label10.ForeColor = Color.Teal;
-            label10.Location = new Point(774, 56);
+            label10.Location = new Point(569, 56);
             label10.Margin = new Padding(4, 0, 4, 0);
             label10.Name = "label10";
             label10.Size = new Size(44, 13);
@@ -374,7 +376,7 @@
             label11.AutoSize = true;
             label11.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label11.ForeColor = Color.Navy;
-            label11.Location = new Point(968, 56);
+            label11.Location = new Point(713, 56);
             label11.Margin = new Padding(4, 0, 4, 0);
             label11.Name = "label11";
             label11.Size = new Size(44, 13);
@@ -386,7 +388,7 @@
             label12.AutoSize = true;
             label12.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label12.ForeColor = Color.Purple;
-            label12.Location = new Point(1162, 56);
+            label12.Location = new Point(858, 56);
             label12.Margin = new Padding(4, 0, 4, 0);
             label12.Name = "label12";
             label12.Size = new Size(66, 13);
@@ -400,7 +402,7 @@
             dTPRefil1.Location = new Point(13, 69);
             dTPRefil1.Margin = new Padding(4, 3, 4, 3);
             dTPRefil1.Name = "dTPRefil1";
-            dTPRefil1.Size = new Size(187, 22);
+            dTPRefil1.Size = new Size(126, 22);
             dTPRefil1.TabIndex = 99;
             dTPRefil1.ValueChanged += dTPRefil1_ValueChanged;
             // 
@@ -408,60 +410,60 @@
             // 
             dTPRefil2.Enabled = false;
             dTPRefil2.Font = new Font("Segoe UI", 8F);
-            dTPRefil2.Location = new Point(204, 69);
+            dTPRefil2.Location = new Point(151, 69);
             dTPRefil2.Margin = new Padding(4, 3, 4, 3);
             dTPRefil2.Name = "dTPRefil2";
-            dTPRefil2.Size = new Size(187, 22);
+            dTPRefil2.Size = new Size(126, 22);
             dTPRefil2.TabIndex = 99;
             // 
             // dTPRefil3
             // 
             dTPRefil3.Enabled = false;
             dTPRefil3.Font = new Font("Segoe UI", 8F);
-            dTPRefil3.Location = new Point(395, 69);
+            dTPRefil3.Location = new Point(291, 69);
             dTPRefil3.Margin = new Padding(4, 3, 4, 3);
             dTPRefil3.Name = "dTPRefil3";
-            dTPRefil3.Size = new Size(187, 22);
+            dTPRefil3.Size = new Size(126, 22);
             dTPRefil3.TabIndex = 99;
             // 
             // dTPRefil4
             // 
             dTPRefil4.Enabled = false;
             dTPRefil4.Font = new Font("Segoe UI", 8F);
-            dTPRefil4.Location = new Point(586, 69);
+            dTPRefil4.Location = new Point(431, 69);
             dTPRefil4.Margin = new Padding(4, 3, 4, 3);
             dTPRefil4.Name = "dTPRefil4";
-            dTPRefil4.Size = new Size(187, 22);
+            dTPRefil4.Size = new Size(126, 22);
             dTPRefil4.TabIndex = 99;
             // 
             // dTPRefil5
             // 
             dTPRefil5.Enabled = false;
             dTPRefil5.Font = new Font("Segoe UI", 8F);
-            dTPRefil5.Location = new Point(777, 69);
+            dTPRefil5.Location = new Point(572, 69);
             dTPRefil5.Margin = new Padding(4, 3, 4, 3);
             dTPRefil5.Name = "dTPRefil5";
-            dTPRefil5.Size = new Size(187, 22);
+            dTPRefil5.Size = new Size(126, 22);
             dTPRefil5.TabIndex = 99;
             // 
             // dTPRefil6
             // 
             dTPRefil6.Enabled = false;
             dTPRefil6.Font = new Font("Segoe UI", 8F);
-            dTPRefil6.Location = new Point(968, 69);
+            dTPRefil6.Location = new Point(713, 69);
             dTPRefil6.Margin = new Padding(4, 3, 4, 3);
             dTPRefil6.Name = "dTPRefil6";
-            dTPRefil6.Size = new Size(187, 22);
+            dTPRefil6.Size = new Size(126, 22);
             dTPRefil6.TabIndex = 99;
             // 
             // dTPRefilExtra
             // 
             dTPRefilExtra.Enabled = false;
             dTPRefilExtra.Font = new Font("Segoe UI", 8F);
-            dTPRefilExtra.Location = new Point(1159, 69);
+            dTPRefilExtra.Location = new Point(855, 69);
             dTPRefilExtra.Margin = new Padding(4, 3, 4, 3);
             dTPRefilExtra.Name = "dTPRefilExtra";
-            dTPRefilExtra.Size = new Size(187, 22);
+            dTPRefilExtra.Size = new Size(126, 22);
             dTPRefilExtra.TabIndex = 99;
             dTPRefilExtra.ValueChanged += dTPRefilExtra_ValueChanged;
             // 
@@ -510,7 +512,7 @@
             // 
             cboBairro.Enabled = false;
             cboBairro.FormattingEnabled = true;
-            cboBairro.Location = new Point(1037, 23);
+            cboBairro.Location = new Point(949, 23);
             cboBairro.Margin = new Padding(4, 3, 4, 3);
             cboBairro.Name = "cboBairro";
             cboBairro.Size = new Size(115, 23);
@@ -520,7 +522,7 @@
             // 
             label14.AutoSize = true;
             label14.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label14.Location = new Point(1040, 9);
+            label14.Location = new Point(952, 9);
             label14.Margin = new Padding(4, 0, 4, 0);
             label14.Name = "label14";
             label14.Size = new Size(40, 13);
@@ -531,7 +533,7 @@
             // 
             cboZona.Enabled = false;
             cboZona.FormattingEnabled = true;
-            cboZona.Location = new Point(1153, 23);
+            cboZona.Location = new Point(1065, 23);
             cboZona.Margin = new Padding(4, 3, 4, 3);
             cboZona.Name = "cboZona";
             cboZona.Size = new Size(96, 23);
@@ -541,7 +543,7 @@
             // 
             label15.AutoSize = true;
             label15.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label15.Location = new Point(1151, 9);
+            label15.Location = new Point(1063, 9);
             label15.Margin = new Padding(4, 0, 4, 0);
             label15.Name = "label15";
             label15.Size = new Size(36, 13);
@@ -552,7 +554,7 @@
             // 
             cboTipoReceita.Enabled = false;
             cboTipoReceita.FormattingEnabled = true;
-            cboTipoReceita.Location = new Point(1250, 23);
+            cboTipoReceita.Location = new Point(1162, 23);
             cboTipoReceita.Margin = new Padding(4, 3, 4, 3);
             cboTipoReceita.Name = "cboTipoReceita";
             cboTipoReceita.Size = new Size(96, 23);
@@ -562,7 +564,7 @@
             // 
             label16.AutoSize = true;
             label16.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label16.Location = new Point(1247, 9);
+            label16.Location = new Point(1159, 9);
             label16.Margin = new Padding(4, 0, 4, 0);
             label16.Name = "label16";
             label16.Size = new Size(80, 13);
@@ -589,11 +591,32 @@
             chkAumentaLarguraColunasGrid.CheckState = CheckState.Checked;
             chkAumentaLarguraColunasGrid.Location = new Point(123, 646);
             chkAumentaLarguraColunasGrid.Name = "chkAumentaLarguraColunasGrid";
-            chkAumentaLarguraColunasGrid.Size = new Size(183, 19);
+            chkAumentaLarguraColunasGrid.Size = new Size(184, 19);
             chkAumentaLarguraColunasGrid.TabIndex = 152;
             chkAumentaLarguraColunasGrid.Text = "Largura do Tamanho do Dado";
             chkAumentaLarguraColunasGrid.UseVisualStyleBackColor = true;
             chkAumentaLarguraColunasGrid.CheckedChanged += chkAumentaLarguraColunasGrid_CheckedChanged_1;
+            // 
+            // cboStatusParaGravar
+            // 
+            cboStatusParaGravar.Enabled = false;
+            cboStatusParaGravar.FormattingEnabled = true;
+            cboStatusParaGravar.Location = new Point(999, 68);
+            cboStatusParaGravar.Margin = new Padding(4, 3, 4, 3);
+            cboStatusParaGravar.Name = "cboStatusParaGravar";
+            cboStatusParaGravar.Size = new Size(100, 23);
+            cboStatusParaGravar.TabIndex = 94;
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label18.Location = new Point(1001, 54);
+            label18.Margin = new Padding(4, 0, 4, 0);
+            label18.Name = "label18";
+            label18.Size = new Size(43, 13);
+            label18.TabIndex = 93;
+            label18.Text = "Status";
             // 
             // frmBaseCadastral
             // 
@@ -616,12 +639,14 @@
             Controls.Add(txtCPF);
             Controls.Add(label2);
             Controls.Add(label4);
+            Controls.Add(label18);
             Controls.Add(label1);
             Controls.Add(label16);
             Controls.Add(label15);
             Controls.Add(label14);
             Controls.Add(label20);
             Controls.Add(cboPaciente);
+            Controls.Add(cboStatusParaGravar);
             Controls.Add(cboStatus);
             Controls.Add(cboMedicamento);
             Controls.Add(cboTipoReceita);
@@ -702,10 +727,11 @@
         private Label label14;
         private ComboBox cboZona;
         private Label label15;
-        private ComboBox comboBox1;
+        private ComboBox cboStatusParaGravar;
         private Label label16;
         private ComboBox cboTipoReceita;
         private Button btnExportar;
         private CheckBox chkAumentaLarguraColunasGrid;
+        private Label label18;
     }
 }

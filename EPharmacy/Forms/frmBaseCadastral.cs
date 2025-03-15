@@ -213,6 +213,7 @@ namespace EPharmacy.Forms
             dTPRefil6.CustomFormat = " ";
             dTPRefilExtra.Format = DateTimePickerFormat.Custom;
             dTPRefilExtra.CustomFormat = " ";
+            cboStatusParaGravar.SelectedIndex = 0;
 
             dgvLista.DataSource = null;
 
@@ -271,6 +272,15 @@ namespace EPharmacy.Forms
             cboStatus.DataSource = status.ToList();
             cboStatus.DisplayMember = "Descricao";
             cboStatus.ValueMember = "Id";
+
+            var statusParaGravar = _context.Status.OrderBy(p => p.Descricao).ToList();
+            Status stpg = new Status();
+            stpg.Id = 0;
+            stpg.Descricao = "<Selecione uma opção>";
+            statusParaGravar.Insert(0, stpg);
+            cboStatusParaGravar.DataSource = statusParaGravar.ToList();
+            cboStatusParaGravar.DisplayMember = "Descricao";
+            cboStatusParaGravar.ValueMember = "Id";
 
             var medicamento = _context.Medicamento.OrderBy(p => p.Produto).ToList();
             Medicamento md = new Medicamento();
@@ -356,17 +366,17 @@ namespace EPharmacy.Forms
         {
             // Defina as cores para alternar
             Color[] cor = new Color[11]; // Cria um vetor de inteiros com 11 posições
-            cor[0] = Color.LightGoldenrodYellow;
-            cor[1] = Color.LightBlue;
-            cor[2] = Color.LightGreen;
-            cor[3] = Color.LightCoral;
-            cor[4] = Color.LightCyan;
-            cor[5] = Color.LightPink;
-            cor[6] = Color.LightSeaGreen;
-            cor[7] = Color.LightSkyBlue;
-            cor[8] = Color.LightYellow;
-            cor[9] = Color.LightSteelBlue;
-            cor[10] = Color.LightSlateGray;
+            cor[0] = ColorTranslator.FromHtml("#ffffff");
+            cor[1] = ColorTranslator.FromHtml("#ececec");
+            cor[2] = ColorTranslator.FromHtml("#d9d9d9");
+            cor[3] = ColorTranslator.FromHtml("#c7c7c6");
+            cor[4] = ColorTranslator.FromHtml("#b4b4b3");
+            cor[5] = ColorTranslator.FromHtml("#a1a1a0");
+            cor[6] = ColorTranslator.FromHtml("#8e8e8d");
+            cor[7] = ColorTranslator.FromHtml("#7b7b7a");
+            cor[8] = ColorTranslator.FromHtml("#686867");
+            cor[9] = ColorTranslator.FromHtml("#565654");
+            cor[10] = ColorTranslator.FromHtml("#434341");
 
             Random random = new Random();
             // Gerar um número aleatório entre 0 e 11
@@ -478,6 +488,7 @@ namespace EPharmacy.Forms
                 var refil5Cell = row.Cells["Refil5"];
                 var refil6Cell = row.Cells["Refil6"];
                 var refilExtraCell = row.Cells["RefilExtra"];
+                var statusParaGravarIdCell = row.Cells["StatusId"];
                 var periodicidadeCell = (row.Cells["Periodicidade"]);
 
                 int? Id = Convert.ToInt32(IdCell.Value);
@@ -494,12 +505,13 @@ namespace EPharmacy.Forms
                 int? tipoReceitaId = Convert.ToInt32(tipoReceitaIdCell.Value);
 
                 DateTime refil1 = refil1Cell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(refil1Cell.Value);
-                DateTime refil2 = refil2Cell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(refil2Cell.Value);
-                DateTime refil3 = refil3Cell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(refil3Cell.Value);
-                DateTime refil4 = refil4Cell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(refil4Cell.Value);
-                DateTime refil5 = refil5Cell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(refil5Cell.Value);
-                DateTime refil6 = refil6Cell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(refil6Cell.Value);
+                DateTime? refil2 = refil2Cell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(refil2Cell.Value);
+                DateTime? refil3 = refil3Cell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(refil3Cell.Value);
+                DateTime? refil4 = refil4Cell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(refil4Cell.Value);
+                DateTime? refil5 = refil5Cell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(refil5Cell.Value);
+                DateTime? refil6 = refil6Cell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(refil6Cell.Value);
                 DateTime? refilExtra = refilExtraCell.Value == null ? null : Convert.ToDateTime(refilExtraCell.Value);
+                int? statusParaGravar = Convert.ToInt32(statusParaGravarIdCell.Value);
                 periodicidade = periodicidadeCell.Value.ToString();
 
                 entidadeApoio = new EntidadeApoio();
@@ -533,17 +545,72 @@ namespace EPharmacy.Forms
                 dTPRefil1.Format = DateTimePickerFormat.Short;
                 dTPRefil1.Value = refil1.Date;
                 dTPRefil2.Format = DateTimePickerFormat.Short;
-                dTPRefil2.Value = refil2.Date;
+                //dTPRefil2.Value = refil2.Date;
                 dTPRefil3.Format = DateTimePickerFormat.Short;
-                dTPRefil3.Value = refil3.Date;
+                //dTPRefil3.Value = refil3.Date;
                 dTPRefil4.Format = DateTimePickerFormat.Short;
-                dTPRefil4.Value = refil4.Date;
+                //dTPRefil4.Value = refil4.Date;
                 dTPRefil5.Format = DateTimePickerFormat.Short;
-                dTPRefil5.Value = refil5.Date;
+                //dTPRefil5.Value = refil5.Date;
                 dTPRefil6.Format = DateTimePickerFormat.Short;
-                dTPRefil6.Value = refil6.Date;
+                //dTPRefil6.Value = refil6.Date;
                 dTPRefilExtra.Format = DateTimePickerFormat.Short;
-                //dTPRefilExtra.Value = refilExtra.Date;
+                cboStatusParaGravar.SelectedValue = statusParaGravar;
+
+                if (refil2 != null)
+                {
+                    dTPRefil2.Value = refil2.Value;
+                }
+                else
+                {
+                    dTPRefil2.Value = dTPRefil2.MinDate;
+                    dTPRefil2.Format = DateTimePickerFormat.Custom;
+                    dTPRefil2.CustomFormat = " ";
+                }
+
+                if (refil3 != null)
+                {
+                    dTPRefil3.Value = refil3.Value;
+                }
+                else
+                {
+                    dTPRefil3.Value = dTPRefil3.MinDate;
+                    dTPRefil3.Format = DateTimePickerFormat.Custom;
+                    dTPRefil3.CustomFormat = " ";
+                }
+
+                if (refil4 != null)
+                {
+                    dTPRefil4.Value = refil4.Value;
+                }
+                else
+                {
+                    dTPRefil4.Value = dTPRefil4.MinDate;
+                    dTPRefil4.Format = DateTimePickerFormat.Custom;
+                    dTPRefil4.CustomFormat = " ";
+                }
+
+                if (refil5 != null)
+                {
+                    dTPRefil5.Value = refil5.Value;
+                }
+                else
+                {
+                    dTPRefil5.Value = dTPRefil5.MinDate;
+                    dTPRefil5.Format = DateTimePickerFormat.Custom;
+                    dTPRefil5.CustomFormat = " ";
+                }
+
+                if (refil6 != null)
+                {
+                    dTPRefil6.Value = refil6.Value;
+                }
+                else
+                {
+                    dTPRefil6.Value = dTPRefil6.MinDate;
+                    dTPRefil6.Format = DateTimePickerFormat.Custom;
+                    dTPRefil6.CustomFormat = " ";
+                }
 
                 if (refilExtra != null)
                 {
@@ -582,6 +649,7 @@ namespace EPharmacy.Forms
                 dTPRefil5.Enabled = true;
                 dTPRefil6.Enabled = true;
                 dTPRefilExtra.Enabled = true;
+                cboStatusParaGravar.Enabled = true;
 
                 btnExportar.Enabled = true;
                 btnNovo.Enabled = false;
@@ -605,6 +673,7 @@ namespace EPharmacy.Forms
                 retorno += "Preencha o campo Refil 1\n";
             }
 
+            /*
             if (dTPRefil2.Value == null)
             {
                 retorno += "Preencha o campo Refil 2\n";
@@ -634,6 +703,12 @@ namespace EPharmacy.Forms
             {
                 retorno += "Preencha o campo Refil Extra\n";
             }
+            */
+
+            if (cboStatusParaGravar.SelectedIndex == 0)
+            {
+                retorno += "Preencha o campo Status\n";
+            }
 
             if (!retorno.IsNullOrEmpty())
             {
@@ -641,17 +716,27 @@ namespace EPharmacy.Forms
                 return;
             }
 
+
             DateTime refil1_ = dTPRefil1.Value;
-            DateTime refil2_ = dTPRefil2.Value;
-            DateTime refil3_ = dTPRefil3.Value;
-            DateTime refil4_ = dTPRefil4.Value;
-            DateTime refil5_ = dTPRefil5.Value;
-            DateTime refil6_ = dTPRefil6.Value;
+            /* DateTime refil2_ = dTPRefil2.Value;
+             DateTime refil3_ = dTPRefil3.Value;
+             DateTime refil4_ = dTPRefil4.Value;
+             DateTime refil5_ = dTPRefil5.Value;
+             DateTime refil6_ = dTPRefil6.Value;*/
+            DateTime? refil2_ = null;
+            DateTime? refil3_ = null;
+            DateTime? refil4_ = null;
+            DateTime? refil5_ = null; 
+            DateTime? refil6_ = null;
             DateTime? refilExtra_ = null;
-            if (dTPRefilExtra.Value.Date != new DateTime(1753, 1, 1))
-            {
-                refilExtra_ = dTPRefilExtra.Value;
-            }
+
+            if (dTPRefil2.Value.Date != new DateTime(1753, 1, 1)) refil2_ = dTPRefil2.Value;
+            if (dTPRefil3.Value.Date != new DateTime(1753, 1, 1)) refil3_ = dTPRefil3.Value;
+            if (dTPRefil4.Value.Date != new DateTime(1753, 1, 1)) refil4_ = dTPRefil4.Value;
+            if (dTPRefil5.Value.Date != new DateTime(1753, 1, 1)) refil5_ = dTPRefil5.Value;
+            if (dTPRefil6.Value.Date != new DateTime(1753, 1, 1)) refil6_ = dTPRefil6.Value;
+            if (dTPRefilExtra.Value.Date != new DateTime(1753, 1, 1)) refilExtra_ = dTPRefilExtra.Value;
+            int statatusParaGravar_ = Convert.ToInt32 (cboStatusParaGravar.SelectedValue);
 
             var entityUpdate = new ReceitaItens();
 
@@ -665,6 +750,7 @@ namespace EPharmacy.Forms
             entityUpdate.Refil5 = refil5_;
             entityUpdate.Refil6 = refil6_;
             entityUpdate.RefilExtra = refilExtra_;
+            entityUpdate.StatusId = statatusParaGravar_;
             entityUpdate.DataCadastro = DateTime.Now;
             entityUpdate.Usuario = GlobalVariables.LoginId;
 

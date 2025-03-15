@@ -466,17 +466,18 @@ namespace EPharmacy.Forms
         {
             // Defina as cores para alternar
             Color[] cor = new Color[11]; // Cria um vetor de inteiros com 11 posições
-            cor[0] = Color.LightGoldenrodYellow;
-            cor[1] = Color.LightBlue;
-            cor[2] = Color.LightGreen;
-            cor[3] = Color.LightCoral;
-            cor[4] = Color.LightCyan;
-            cor[5] = Color.LightPink;
-            cor[6] = Color.LightSeaGreen;
-            cor[7] = Color.LightSkyBlue;
-            cor[8] = Color.LightYellow;
-            cor[9] = Color.LightSteelBlue;
-            cor[10] = Color.LightSlateGray;
+            cor[0] = ColorTranslator.FromHtml("#ffffff");
+            cor[1] = ColorTranslator.FromHtml("#ececec");
+            cor[2] = ColorTranslator.FromHtml("#d9d9d9");
+            cor[3] = ColorTranslator.FromHtml("#c7c7c6");
+            cor[4] = ColorTranslator.FromHtml("#b4b4b3");
+            cor[5] = ColorTranslator.FromHtml("#a1a1a0");
+            cor[6] = ColorTranslator.FromHtml("#8e8e8d");
+            cor[7] = ColorTranslator.FromHtml("#7b7b7a");
+            cor[8] = ColorTranslator.FromHtml("#686867");
+            cor[9] = ColorTranslator.FromHtml("#565654");
+            cor[10] = ColorTranslator.FromHtml("#434341");
+
 
             Random random = new Random();
             // Gerar um número aleatório entre 0 e 11
@@ -517,6 +518,14 @@ namespace EPharmacy.Forms
                     // Aplique a cor atual na linha
                     row.DefaultCellStyle.BackColor = corAtual;
                 }
+
+                if (row.Cells["StatusEntregaId"].Value.ToString() == "3") row.DefaultCellStyle.BackColor = Color.Red; // 3 FALTA
+                if (row.Cells["StatusEntregaId"].Value.ToString() == "1") row.DefaultCellStyle.BackColor = Color.LightGreen; // 1 ENVIADO
+                if (row.Cells["StatusEntregaId"].Value.ToString() == "4") row.DefaultCellStyle.BackColor = Color.LightPink; // 4 PENDENTE
+                if (row.Cells["StatusEntregaId"].Value.ToString() == "7") row.DefaultCellStyle.BackColor = Color.BlueViolet; // 7 RECOLHER
+                if (row.Cells["StatusEntregaId"].Value.ToString() == "6") row.DefaultCellStyle.BackColor = Color.Yellow; // 6 SEPARADO
+                if (row.Cells["StatusEntregaId"].Value.ToString() == "5") row.DefaultCellStyle.BackColor = Color.LightSkyBlue; // 5 COMPRA SOLICITADA
+
             }
         }
 
