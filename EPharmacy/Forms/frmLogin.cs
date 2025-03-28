@@ -69,6 +69,8 @@ namespace EPharmacy
             }
 
             GlobalVariables.LoginId = entidadex[0].Id;
+            GlobalVariables.Login = entidadex[0].Id.ToString() + "-" + entidadex[0].Login + " - " + entidadex[0].Nome;
+            GlobalVariables.PerfilId = entidadex[0].PerfilId;
 
             frmPrincipal frm = new frmPrincipal();
             frm.ShowDialog(); 

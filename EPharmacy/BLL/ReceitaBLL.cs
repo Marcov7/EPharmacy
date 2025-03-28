@@ -298,32 +298,48 @@ namespace EPharmacy.BLL
                                       orderby ri.Id, m.Id
                                       select new PedidoViewModel
                                       {
+
+                                          ReceitaId = re.Id,
                                           ReceitaItensId = ri.Id,
-                                          PacienteId = pc.Id,
-
-                                          
                                           ReceitaItensEntregaId = receitaItemEntrega.Id != null ? receitaItemEntrega.Id : (int?)null,
+                                                                             
                                           DataEntrega = receitaItemEntrega.DataRefil != null ? receitaItemEntrega.DataRefil : (DateTime?)null,
-                                          Lote = receitaItemEntrega.NumLote,
-                                          NotaFiscal = receitaItemEntrega.NumNotaFiscal,
-                                          RefilId = refi.Id != null ? refi.Id : (int?)null,
-                                          Refil = refi.Descricao,
-                                          Real = receitaItemEntrega.Real.Value != null ? receitaItemEntrega.Real.Value : (int?)null,
-                                          StatusEntregaId = receitaItemEntrega.StatusEntregaId != null ? receitaItemEntrega.StatusEntregaId : (int?)null,
-                                          StatusEntrega = sen.Descricao, 
-
+                                          Zona = pc.Zona,
+                                          PacienteId = pc.Id,
                                           Matricula = pc.Matricula,
                                           ConvenioId = pc.ConvenioId.Value,
                                           Convenio = cv.Descricao,
                                           CPF = pc.CPF,
                                           Nome = pc.Nome,
-                                          StatusId = ri.StatusId,
-                                          Status = st.Descricao,
-                                          DataInclusaoConvenio = DateTime.Now.Date,
                                           MedicamentoId = m.Id,
                                           EAN = m.EAN,
                                           Produto = m.Produto,
                                           Qtdd = ri.Qtdd,
+                                          Real = receitaItemEntrega.Real.Value != null ? receitaItemEntrega.Real.Value : (int?)null,
+    
+                                          NotaFiscal = receitaItemEntrega.NumNotaFiscal,             
+                                          StatusEntregaId = receitaItemEntrega.StatusEntregaId != null ? receitaItemEntrega.StatusEntregaId : (int?)null,
+                                          StatusEntrega = sen.Descricao,     
+                                          Lote = receitaItemEntrega.NumLote,
+                                          Obs = ri.Obs,
+                                          PeriodicidadeId = ri.PeriodicidadeRefilId,
+                                          Periodicidade = pe.Descricao,
+                                          TipoReceitaId = m.TipoReceitaId,
+                                          TipoReceita = tr.Descricao,
+                                          Celular = pc.Celular,
+                                          Telefone = pc.Telefone,
+                                          Logradouro = pc.Logradouro,
+                                          Numero = pc.Numero,
+                                          Bairro = pc.Bairro,
+                                          CEP = pc.CEP,
+
+                                          RefilId = refi.Id != null ? refi.Id : (int?)null,
+                                          Refil = refi.Descricao,
+     
+                                          StatusId = ri.StatusId,
+                                          Status = st.Descricao,
+                                          DataInclusaoConvenio = DateTime.Now.Date,
+
                                           /*ClasseTerapeuticaId = m.ClasseTerapeuticaId,
                  
                                           FabricanteId = m.FabricanteId,
@@ -333,13 +349,12 @@ namespace EPharmacy.BLL
                                           //Total = ri.Qtdd.Value* mp.PrecoAcordado,
                                           //Total = Math.Round(ri.Qtdd.Value * mp.PrecoAcordado, 2),
                                           Total = $"{ri.Qtdd.Value * mp.PrecoAcordado:F2}",
-                                          ReceitaId = re.Id,
+                                   
                                           ReceitaDescricao = re.Descricao,
                                           DataReceitaAnterior = ri.DataReceitaAnterior,
                                           DataReceita = re.DataReceita,
 
-                                          PeriodicidadeId = ri.PeriodicidadeRefilId,
-                                          Periodicidade = pe.Descricao,
+
                                           Refil1 = ri.Refil1.Value,
                                           Refil2 = ri.Refil2.Value,
                                           Refil3 = ri.Refil3.Value,
@@ -347,18 +362,7 @@ namespace EPharmacy.BLL
                                           Refil5 = ri.Refil5.Value,
                                           Refil6 = ri.Refil6.Value,
                                           RefilExtra = ri.RefilExtra.Value,
-
-                                          TipoReceitaId = m.TipoReceitaId,
-                                          TipoReceita = tr.Descricao,
-                                          Obs = ri.Obs,
-                                          Celular = pc.Celular,
-                                          Telefone = pc.Telefone,
-
-                                          Logradouro = pc.Logradouro,
-                                          Numero = pc.Numero,
-                                          Bairro = pc.Bairro,
-                                          CEP = pc.CEP,
-                                          Zona = pc.Zona,
+     
                                           Modalidade = md.Descricao,
                                           TipoEntrega = te.Descricao,
                                           Autorizacao = pc.Autorizacao,

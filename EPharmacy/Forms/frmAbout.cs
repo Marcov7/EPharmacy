@@ -19,7 +19,7 @@ namespace EPharmacy.Forms
 
         private void frmAbout_Load(object sender, EventArgs e)
         {
-            lblVersao.Text += GlobalVariables.Versao;
+            lblVersao.Text += GlobalVariables.Versao + "   Usuário : " + GlobalVariables.Login;
         }
     }
 }

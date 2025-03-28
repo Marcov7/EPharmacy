@@ -108,6 +108,14 @@ namespace BLL
         }
 
 
+        public static bool Contem4Caracteres(string input)
+        {
+            Boolean retorna = false;
+            if (input.Length == 4)
+                retorna = true;
+            return retorna;
+        }
+
         public static string CarregarStrConn()
         {
             string caminhoArquivo = "C:\\Projetos\\ProjetoControleEntrega\\Publish\\arquivoSCB.ini"; 
@@ -128,5 +136,20 @@ namespace BLL
             }
             return $"Erro - ao ler o arquivo.";
         }
+
+
+        public static DateTime? ConverterParaData(string data)
+        {
+            DateTime? dataConvertida = null;
+            string userInput = data;
+            if (DateTime.TryParse(userInput, out DateTime parsedDate))
+            {
+                dataConvertida = parsedDate;
+            }
+
+            return dataConvertida;
+        }
+
+
     }
 }

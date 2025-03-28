@@ -47,6 +47,7 @@
             cboMedico = new ComboBox();
             label1 = new Label();
             panel1 = new Panel();
+            dTPReceita = new MaskedTextBox();
             chkAumentaLarguraColunasGrid = new CheckBox();
             chkMostrarIds = new CheckBox();
             label5 = new Label();
@@ -55,7 +56,6 @@
             txtCPF = new MaskedTextBox();
             label14 = new Label();
             label2 = new Label();
-            dTPReceita = new DateTimePicker();
             panel2 = new Panel();
             lblObs = new Label();
             txtObs = new TextBox();
@@ -239,18 +239,18 @@
             // cboClinica
             // 
             cboClinica.Enabled = false;
-            cboClinica.Location = new Point(250, 68);
+            cboClinica.Location = new Point(99, 68);
             cboClinica.Margin = new Padding(4, 3, 4, 3);
             cboClinica.MaxLength = 255;
             cboClinica.Name = "cboClinica";
-            cboClinica.Size = new Size(518, 23);
+            cboClinica.Size = new Size(433, 23);
             cboClinica.TabIndex = 97;
             // 
             // label10
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label10.Location = new Point(250, 52);
+            label10.Location = new Point(99, 52);
             label10.Margin = new Padding(4, 0, 4, 0);
             label10.Name = "label10";
             label10.Size = new Size(47, 13);
@@ -260,18 +260,18 @@
             // cboMedico
             // 
             cboMedico.Enabled = false;
-            cboMedico.Location = new Point(770, 68);
+            cboMedico.Location = new Point(536, 68);
             cboMedico.Margin = new Padding(4, 3, 4, 3);
             cboMedico.MaxLength = 255;
             cboMedico.Name = "cboMedico";
-            cboMedico.Size = new Size(483, 23);
+            cboMedico.Size = new Size(477, 23);
             cboMedico.TabIndex = 97;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(770, 52);
+            label1.Location = new Point(534, 52);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
             label1.Size = new Size(48, 13);
@@ -282,6 +282,7 @@
             // 
             panel1.BackColor = Color.FromArgb(192, 255, 255);
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(dTPReceita);
             panel1.Controls.Add(chkAumentaLarguraColunasGrid);
             panel1.Controls.Add(chkMostrarIds);
             panel1.Controls.Add(label5);
@@ -291,7 +292,6 @@
             panel1.Controls.Add(label14);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(label1);
-            panel1.Controls.Add(dTPReceita);
             panel1.Controls.Add(label10);
             panel1.Controls.Add(panel2);
             panel1.Controls.Add(cboClinica);
@@ -301,6 +301,16 @@
             panel1.Size = new Size(1268, 603);
             panel1.TabIndex = 101;
             // 
+            // dTPReceita
+            // 
+            dTPReceita.Location = new Point(14, 68);
+            dTPReceita.Mask = "00/00/0000";
+            dTPReceita.Name = "dTPReceita";
+            dTPReceita.Size = new Size(80, 23);
+            dTPReceita.TabIndex = 149;
+            dTPReceita.ValidatingType = typeof(DateTime);
+            dTPReceita.Leave += dTPReceita_Leave;
+            // 
             // chkAumentaLarguraColunasGrid
             // 
             chkAumentaLarguraColunasGrid.AutoSize = true;
@@ -308,7 +318,7 @@
             chkAumentaLarguraColunasGrid.CheckState = CheckState.Checked;
             chkAumentaLarguraColunasGrid.Location = new Point(141, 572);
             chkAumentaLarguraColunasGrid.Name = "chkAumentaLarguraColunasGrid";
-            chkAumentaLarguraColunasGrid.Size = new Size(183, 19);
+            chkAumentaLarguraColunasGrid.Size = new Size(184, 19);
             chkAumentaLarguraColunasGrid.TabIndex = 148;
             chkAumentaLarguraColunasGrid.Text = "Largura do Tamanho do Dado";
             chkAumentaLarguraColunasGrid.UseVisualStyleBackColor = true;
@@ -370,7 +380,7 @@
             // 
             label14.AutoSize = true;
             label14.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label14.Location = new Point(14, 52);
+            label14.Location = new Point(12, 52);
             label14.Margin = new Padding(4, 0, 4, 0);
             label14.Name = "label14";
             label14.Size = new Size(82, 13);
@@ -387,15 +397,6 @@
             label2.Size = new Size(101, 13);
             label2.TabIndex = 89;
             label2.Text = "RECEITA ITENS";
-            // 
-            // dTPReceita
-            // 
-            dTPReceita.Enabled = false;
-            dTPReceita.Location = new Point(11, 68);
-            dTPReceita.Margin = new Padding(4, 3, 4, 3);
-            dTPReceita.Name = "dTPReceita";
-            dTPReceita.Size = new Size(237, 23);
-            dTPReceita.TabIndex = 99;
             // 
             // panel2
             // 
@@ -675,7 +676,6 @@
         private Label label13;
         private ComboBox cboStatus;
         private Label label14;
-        private DateTimePicker dTPReceita;
         private Button btnSubtrair;
         private TextBox txtObs;
         private Label lblObs;
@@ -690,5 +690,6 @@
         private Label label7;
         private CheckBox chkMostrarIds;
         private CheckBox chkAumentaLarguraColunasGrid;
+        private MaskedTextBox dTPReceita;
     }
 }

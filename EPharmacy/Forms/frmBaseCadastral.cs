@@ -199,20 +199,13 @@ namespace EPharmacy.Forms
             cboZona.SelectedIndex = 0;
             cboTipoReceita.SelectedIndex = 0;
 
-            dTPRefil1.Format = DateTimePickerFormat.Custom;
-            dTPRefil1.CustomFormat = " ";
-            dTPRefil2.Format = DateTimePickerFormat.Custom;
-            dTPRefil2.CustomFormat = " ";
-            dTPRefil3.Format = DateTimePickerFormat.Custom;
-            dTPRefil3.CustomFormat = " ";
-            dTPRefil4.Format = DateTimePickerFormat.Custom;
-            dTPRefil4.CustomFormat = " ";
-            dTPRefil5.Format = DateTimePickerFormat.Custom;
-            dTPRefil5.CustomFormat = " ";
-            dTPRefil6.Format = DateTimePickerFormat.Custom;
-            dTPRefil6.CustomFormat = " ";
-            dTPRefilExtra.Format = DateTimePickerFormat.Custom;
-            dTPRefilExtra.CustomFormat = " ";
+            dTPRefil1.Clear();
+            dTPRefil2.Clear();
+            dTPRefil3.Clear();
+            dTPRefil4.Clear();
+            dTPRefil5.Clear();
+            dTPRefil6.Clear();
+            dTPRefilExtra.Clear();
             cboStatusParaGravar.SelectedIndex = 0;
 
             dgvLista.DataSource = null;
@@ -504,12 +497,12 @@ namespace EPharmacy.Forms
                 string? zona = zonaCell.Value.ToString();
                 int? tipoReceitaId = Convert.ToInt32(tipoReceitaIdCell.Value);
 
-                DateTime refil1 = refil1Cell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(refil1Cell.Value);
-                DateTime? refil2 = refil2Cell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(refil2Cell.Value);
-                DateTime? refil3 = refil3Cell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(refil3Cell.Value);
-                DateTime? refil4 = refil4Cell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(refil4Cell.Value);
-                DateTime? refil5 = refil5Cell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(refil5Cell.Value);
-                DateTime? refil6 = refil6Cell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(refil6Cell.Value);
+                DateTime? refil1 = refil1Cell.Value == null ? null : Convert.ToDateTime(refil1Cell.Value); // DateTime.Now.Date
+                DateTime? refil2 = refil2Cell.Value == null ? null : Convert.ToDateTime(refil2Cell.Value);
+                DateTime? refil3 = refil3Cell.Value == null ? null : Convert.ToDateTime(refil3Cell.Value);
+                DateTime? refil4 = refil4Cell.Value == null ? null : Convert.ToDateTime(refil4Cell.Value);
+                DateTime? refil5 = refil5Cell.Value == null ? null : Convert.ToDateTime(refil5Cell.Value);
+                DateTime? refil6 = refil6Cell.Value == null ? null : Convert.ToDateTime(refil6Cell.Value);
                 DateTime? refilExtra = refilExtraCell.Value == null ? null : Convert.ToDateTime(refilExtraCell.Value);
                 int? statusParaGravar = Convert.ToInt32(statusParaGravarIdCell.Value);
                 periodicidade = periodicidadeCell.Value.ToString();
@@ -542,85 +535,57 @@ namespace EPharmacy.Forms
                 //-->cboTipoReceita.SelectedValue = tipoReceitaId;
 
 
-                dTPRefil1.Format = DateTimePickerFormat.Short;
-                dTPRefil1.Value = refil1.Date;
-                dTPRefil2.Format = DateTimePickerFormat.Short;
-                //dTPRefil2.Value = refil2.Date;
-                dTPRefil3.Format = DateTimePickerFormat.Short;
-                //dTPRefil3.Value = refil3.Date;
-                dTPRefil4.Format = DateTimePickerFormat.Short;
-                //dTPRefil4.Value = refil4.Date;
-                dTPRefil5.Format = DateTimePickerFormat.Short;
-                //dTPRefil5.Value = refil5.Date;
-                dTPRefil6.Format = DateTimePickerFormat.Short;
-                //dTPRefil6.Value = refil6.Date;
-                dTPRefilExtra.Format = DateTimePickerFormat.Short;
+                //dTPRefil1.Format = DateTimePickerFormat.Short;
+                ////dTPRefil1.Value = refil1.Date;
+                //dTPRefil2.Format = DateTimePickerFormat.Short;
+                ////dTPRefil2.Value = refil2.Date;
+                //dTPRefil3.Format = DateTimePickerFormat.Short;
+                ////dTPRefil3.Value = refil3.Date;
+                //dTPRefil4.Format = DateTimePickerFormat.Short;
+                ////dTPRefil4.Value = refil4.Date;
+                //dTPRefil5.Format = DateTimePickerFormat.Short;
+                ////dTPRefil5.Value = refil5.Date;
+                //dTPRefil6.Format = DateTimePickerFormat.Short;
+                ////dTPRefil6.Value = refil6.Date;
+                //dTPRefilExtra.Format = DateTimePickerFormat.Short;
+
+                dTPRefil1.Clear();
+                dTPRefil2.Clear();
+                dTPRefil3.Clear();
+                dTPRefil4.Clear();
+                dTPRefil5.Clear();
+                dTPRefil6.Clear();
+                dTPRefilExtra.Clear();
                 cboStatusParaGravar.SelectedValue = statusParaGravar;
 
                 if (refil2 != null)
                 {
-                    dTPRefil2.Value = refil2.Value;
-                }
-                else
-                {
-                    dTPRefil2.Value = dTPRefil2.MinDate;
-                    dTPRefil2.Format = DateTimePickerFormat.Custom;
-                    dTPRefil2.CustomFormat = " ";
+                    dTPRefil2.Text = refil2.ToString();
                 }
 
                 if (refil3 != null)
                 {
-                    dTPRefil3.Value = refil3.Value;
-                }
-                else
-                {
-                    dTPRefil3.Value = dTPRefil3.MinDate;
-                    dTPRefil3.Format = DateTimePickerFormat.Custom;
-                    dTPRefil3.CustomFormat = " ";
+                    dTPRefil3.Text = refil3.ToString();
                 }
 
                 if (refil4 != null)
                 {
-                    dTPRefil4.Value = refil4.Value;
-                }
-                else
-                {
-                    dTPRefil4.Value = dTPRefil4.MinDate;
-                    dTPRefil4.Format = DateTimePickerFormat.Custom;
-                    dTPRefil4.CustomFormat = " ";
+                    dTPRefil4.Text = refil4.ToString();
                 }
 
                 if (refil5 != null)
                 {
-                    dTPRefil5.Value = refil5.Value;
-                }
-                else
-                {
-                    dTPRefil5.Value = dTPRefil5.MinDate;
-                    dTPRefil5.Format = DateTimePickerFormat.Custom;
-                    dTPRefil5.CustomFormat = " ";
+                    dTPRefil5.Text = refil5.ToString();
                 }
 
                 if (refil6 != null)
                 {
-                    dTPRefil6.Value = refil6.Value;
-                }
-                else
-                {
-                    dTPRefil6.Value = dTPRefil6.MinDate;
-                    dTPRefil6.Format = DateTimePickerFormat.Custom;
-                    dTPRefil6.CustomFormat = " ";
+                    dTPRefil6.Text = refil6.ToString();
                 }
 
                 if (refilExtra != null)
                 {
-                    dTPRefilExtra.Value = refilExtra.Value;
-                }
-                else
-                {
-                    dTPRefilExtra.Value = dTPRefilExtra.MinDate;
-                    dTPRefilExtra.Format = DateTimePickerFormat.Custom;
-                    dTPRefilExtra.CustomFormat = " ";
+                    dTPRefilExtra.Text = refilExtra.ToString();
                 }
 
                 //DateTime refilExtra = refilExtraCell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(refilExtraCell.Value);
@@ -668,7 +633,7 @@ namespace EPharmacy.Forms
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             string retorno = "";
-            if (dTPRefil1.Value == null)
+            if (UtilitariosBLL.limpaString2(dTPRefil1.Text).IsNullOrEmpty())
             {
                 retorno += "Preencha o campo Refil 1\n";
             }
@@ -717,26 +682,21 @@ namespace EPharmacy.Forms
             }
 
 
-            DateTime refil1_ = dTPRefil1.Value;
-            /* DateTime refil2_ = dTPRefil2.Value;
-             DateTime refil3_ = dTPRefil3.Value;
-             DateTime refil4_ = dTPRefil4.Value;
-             DateTime refil5_ = dTPRefil5.Value;
-             DateTime refil6_ = dTPRefil6.Value;*/
+            DateTime? refil1_ = UtilitariosBLL.ConverterParaData(dTPRefil1.Text);
             DateTime? refil2_ = null;
             DateTime? refil3_ = null;
             DateTime? refil4_ = null;
-            DateTime? refil5_ = null; 
+            DateTime? refil5_ = null;
             DateTime? refil6_ = null;
             DateTime? refilExtra_ = null;
-
-            if (dTPRefil2.Value.Date != new DateTime(1753, 1, 1)) refil2_ = dTPRefil2.Value;
-            if (dTPRefil3.Value.Date != new DateTime(1753, 1, 1)) refil3_ = dTPRefil3.Value;
-            if (dTPRefil4.Value.Date != new DateTime(1753, 1, 1)) refil4_ = dTPRefil4.Value;
-            if (dTPRefil5.Value.Date != new DateTime(1753, 1, 1)) refil5_ = dTPRefil5.Value;
-            if (dTPRefil6.Value.Date != new DateTime(1753, 1, 1)) refil6_ = dTPRefil6.Value;
-            if (dTPRefilExtra.Value.Date != new DateTime(1753, 1, 1)) refilExtra_ = dTPRefilExtra.Value;
-            int statatusParaGravar_ = Convert.ToInt32 (cboStatusParaGravar.SelectedValue);
+ 
+            if (!UtilitariosBLL.limpaString2(dTPRefil2.Text).IsNullOrEmpty()) refil2_ = UtilitariosBLL.ConverterParaData(dTPRefil2.Text);
+            if (!UtilitariosBLL.limpaString2(dTPRefil3.Text).IsNullOrEmpty()) refil3_ = UtilitariosBLL.ConverterParaData(dTPRefil3.Text);
+            if (!UtilitariosBLL.limpaString2(dTPRefil4.Text).IsNullOrEmpty()) refil4_ = UtilitariosBLL.ConverterParaData(dTPRefil4.Text);
+            if (!UtilitariosBLL.limpaString2(dTPRefil5.Text).IsNullOrEmpty()) refil5_ = UtilitariosBLL.ConverterParaData(dTPRefil5.Text);
+            if (!UtilitariosBLL.limpaString2(dTPRefil6.Text).IsNullOrEmpty()) refil6_ = UtilitariosBLL.ConverterParaData(dTPRefil6.Text);
+            if (!UtilitariosBLL.limpaString2(dTPRefilExtra.Text).IsNullOrEmpty()) refilExtra_ = UtilitariosBLL.ConverterParaData(dTPRefilExtra.Text);
+            int statatusParaGravar_ = Convert.ToInt32(cboStatusParaGravar.SelectedValue);
 
             var entityUpdate = new ReceitaItens();
 
@@ -784,24 +744,234 @@ namespace EPharmacy.Forms
         }
 
 
-        private void dTPRefil1_ValueChanged(object sender, EventArgs e)
-        {
-            double dblperiodicidade = Convert.ToDouble(periodicidade);
-            dTPRefil2.Value = dTPRefil1.Value.AddDays(dblperiodicidade);
-            dTPRefil3.Value = dTPRefil2.Value.AddDays(dblperiodicidade);
-            dTPRefil4.Value = dTPRefil3.Value.AddDays(dblperiodicidade);
-            dTPRefil5.Value = dTPRefil4.Value.AddDays(dblperiodicidade);
-            dTPRefil6.Value = dTPRefil5.Value.AddDays(dblperiodicidade);
+        //private void dTPRefil1_ValueChanged(object sender, EventArgs e)
+        //{
+        //    double dblperiodicidade = Convert.ToDouble(periodicidade);
 
+        //    if ("25,27,28,30,56,60,90,120".Contains(dblperiodicidade.ToString()))
+        //    {
+        //       // dTPRefil2.Value = dTPRefil1.Value.AddDays(dblperiodicidade);
+        //    }
+        //    //if ("25,27,28,30,56,60".Contains(dblperiodicidade.ToString()))
+        //    //{
+        //    //    dTPRefil3.Value = dTPRefil2.Value.AddDays(dblperiodicidade);
+        //    //}
+        //    //if ("25,27,28,30".Contains(dblperiodicidade.ToString()))
+        //    //{
+        //    //    dTPRefil4.Value = dTPRefil3.Value.AddDays(dblperiodicidade);
+        //    //}
+        //    //if ("25,27,28,30".Contains(dblperiodicidade.ToString()))
+        //    //{
+        //    //    dTPRefil5.Value = dTPRefil4.Value.AddDays(dblperiodicidade);
+        //    //}
+        //    //if ("25,27,28,30".Contains(dblperiodicidade.ToString()))
+        //    //{
+        //    //    dTPRefil6.Value = dTPRefil5.Value.AddDays(dblperiodicidade);
+        //    //}
+        //}
+
+        private void dTPRefil1_Leave(object sender, EventArgs e)
+        {
+            if (UtilitariosBLL.limpaString2(dTPRefil1.Text.Trim()).IsNullOrEmpty()) return;
+            string userInput = dTPRefil1.Text;
+            if (DateTime.TryParse(userInput, out DateTime parsedDate) && (parsedDate.Year > 2023 && parsedDate.Year < 2040)) {}
+            else
+            {
+                MessageBox.Show("Digite uma Data dTPRefil1 válida.", "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                dTPRefil1.Text = "";
+                return;
+            }
+
+            double dblperiodicidade = Convert.ToDouble(periodicidade);
+            if ("25,27,28,30,56,60,90,120".Contains(dblperiodicidade.ToString()))
+            {
+               dTPRefil2.Text = UtilitariosBLL.ConverterParaData(dTPRefil1.Text).Value.AddDays(dblperiodicidade).ToString();
+               dTPRefil2_Leave(null, null);
+            }
         }
 
 
-        private void dTPRefilExtra_ValueChanged(object sender, EventArgs e)
+        //private void dTPRefil2_ValueChanged(object sender, EventArgs e)
+        //{
+        //    double dblperiodicidade = Convert.ToDouble(periodicidade);
+
+        //    if ("25,27,28,30,56,60".Contains(dblperiodicidade.ToString()))
+        //    {
+        //      //  dTPRefil3.Value = dTPRefil2.Value.AddDays(dblperiodicidade);
+        //    }
+        //    //if ("25,27,28,30".Contains(dblperiodicidade.ToString()))
+        //    //{
+        //    //    dTPRefil4.Value = dTPRefil3.Value.AddDays(dblperiodicidade);
+        //    //}
+        //    //if ("25,27,28,30".Contains(dblperiodicidade.ToString()))
+        //    //{
+        //    //    dTPRefil5.Value = dTPRefil4.Value.AddDays(dblperiodicidade);
+        //    //}
+        //    //if ("25,27,28,30".Contains(dblperiodicidade.ToString()))
+        //    //{
+        //    //    dTPRefil6.Value = dTPRefil5.Value.AddDays(dblperiodicidade);
+        //    //}
+        //}
+        private void dTPRefil2_Leave(object sender, EventArgs e)
         {
-            if (dTPRefilExtra.Value.Date != new DateTime(1753, 1, 1))
+            if (UtilitariosBLL.limpaString2(dTPRefil2.Text.Trim()).IsNullOrEmpty()) return;
+            string userInput = dTPRefil2.Text;
+            if (DateTime.TryParse(userInput, out DateTime parsedDate) && (parsedDate.Year > 2023 && parsedDate.Year < 2040)) {}
+            else
             {
-                //DateTime refilExtra_ = dTPRefilExtra.Value;
-                dTPRefilExtra.CustomFormat = "dd/MM/yyyy";
+                MessageBox.Show("Digite uma Data dTPRefil2 válida.", "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                dTPRefil2.Text = "";
+                return;
+            }
+
+            double dblperiodicidade = Convert.ToDouble(periodicidade);
+            if ("25,27,28,30,56,60".Contains(dblperiodicidade.ToString()))
+            {
+                dTPRefil3.Text = UtilitariosBLL.ConverterParaData(dTPRefil2.Text).Value.AddDays(dblperiodicidade).ToString();
+                dTPRefil3_Leave(null, null);
+            }
+        }
+
+
+        //private void dTPRefil3_ValueChanged(object sender, EventArgs e)
+        //{
+        //    double dblperiodicidade = Convert.ToDouble(periodicidade);
+
+        //    if ("25,27,28,30".Contains(dblperiodicidade.ToString()))
+        //    {
+        //    //    dTPRefil4.Value = dTPRefil3.Value.AddDays(dblperiodicidade);
+        //    }
+        //    //if ("25,27,28,30".Contains(dblperiodicidade.ToString()))
+        //    //{
+        //    //    dTPRefil5.Value = dTPRefil4.Value.AddDays(dblperiodicidade);
+        //    //}
+        //    //if ("25,27,28,30".Contains(dblperiodicidade.ToString()))
+        //    //{
+        //    //    dTPRefil6.Value = dTPRefil5.Value.AddDays(dblperiodicidade);
+        //    //}
+        //}
+
+        private void dTPRefil3_Leave(object sender, EventArgs e)
+        {
+            if (UtilitariosBLL.limpaString2(dTPRefil3.Text.Trim()).IsNullOrEmpty()) return;
+            string userInput = dTPRefil3.Text;
+            if (DateTime.TryParse(userInput, out DateTime parsedDate) && (parsedDate.Year > 2023 && parsedDate.Year < 2040)) {}
+            else
+            {
+                MessageBox.Show("Digite uma Data dTPRefil3 válida.", "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                dTPRefil3.Text = "";
+                return;
+            }
+
+            double dblperiodicidade = Convert.ToDouble(periodicidade);
+            if ("25,27,28,30".Contains(dblperiodicidade.ToString()))
+            {
+                dTPRefil4.Text = UtilitariosBLL.ConverterParaData(dTPRefil3.Text).Value.AddDays(dblperiodicidade).ToString();
+                dTPRefil4_Leave(null, null);
+            }
+        }
+
+
+
+        //private void dTPRefil4_ValueChanged(object sender, EventArgs e)
+        //{
+        //    double dblperiodicidade = Convert.ToDouble(periodicidade);
+
+        //    if ("25,27,28,30".Contains(dblperiodicidade.ToString()))
+        //    {
+        //      //  dTPRefil5.Value = dTPRefil4.Value.AddDays(dblperiodicidade);
+        //    }
+        //    //if ("25,27,28,30".Contains(dblperiodicidade.ToString()))
+        //    //{
+        //    //    dTPRefil6.Value = dTPRefil5.Value.AddDays(dblperiodicidade);
+        //    //}
+        //}
+
+        private void dTPRefil4_Leave(object sender, EventArgs e)
+        {
+            if (UtilitariosBLL.limpaString2(dTPRefil4.Text.Trim()).IsNullOrEmpty()) return;
+            string userInput = dTPRefil4.Text;
+            if (DateTime.TryParse(userInput, out DateTime parsedDate) && (parsedDate.Year > 2023 && parsedDate.Year < 2040)) {}
+            else
+            {
+                MessageBox.Show("Digite uma Data dTPRefil4 válida.", "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                dTPRefil4.Text = "";
+                return;
+            }
+
+            double dblperiodicidade = Convert.ToDouble(periodicidade);
+            if ("25,27,28,30".Contains(dblperiodicidade.ToString()))
+            {
+                dTPRefil5.Text = UtilitariosBLL.ConverterParaData(dTPRefil4.Text).Value.AddDays(dblperiodicidade).ToString();
+                dTPRefil5_Leave(null, null);
+            }
+        }
+
+
+
+        //private void dTPRefil5_ValueChanged(object sender, EventArgs e)
+        //{
+        //    double dblperiodicidade = Convert.ToDouble(periodicidade);
+
+        //    if ("25,27,28,30".Contains(dblperiodicidade.ToString()))
+        //    {
+        //    //    dTPRefil6.Value = dTPRefil5.Value.AddDays(dblperiodicidade);
+        //    }
+        //}
+
+
+        private void dTPRefil5_Leave(object sender, EventArgs e)
+        {
+            if (UtilitariosBLL.limpaString2(dTPRefil5.Text.Trim()).IsNullOrEmpty()) return;
+            string userInput = dTPRefil5.Text;
+            if (DateTime.TryParse(userInput, out DateTime parsedDate) && (parsedDate.Year > 2023 && parsedDate.Year < 2040)) {}
+            else
+            {
+                MessageBox.Show("Digite uma Data dTPRefil5 válida.", "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                dTPRefil5.Text = "";
+                return;
+            }
+
+            double dblperiodicidade = Convert.ToDouble(periodicidade);
+            if ("25,27,28,30".Contains(dblperiodicidade.ToString()))
+            {
+                dTPRefil6.Text = UtilitariosBLL.ConverterParaData(dTPRefil5.Text).Value.AddDays(dblperiodicidade).ToString();
+            }
+        }
+
+
+        private void dTPRefil6_Leave(object sender, EventArgs e)
+        {
+            if (UtilitariosBLL.limpaString2(dTPRefil6.Text.Trim()).IsNullOrEmpty()) return;
+            string userInput = dTPRefil6.Text;
+            if (DateTime.TryParse(userInput, out DateTime parsedDate) && (parsedDate.Year > 2023 && parsedDate.Year < 2040)) {}
+            else
+            {
+                MessageBox.Show("Digite uma Data dTPRefil6 válida.", "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                dTPRefil6.Text = "";
+                return;
+            }
+        }
+
+        //private void dTPRefilExtra_ValueChanged(object sender, EventArgs e)
+        //{
+        //    //if (dTPRefilExtra.Value.Date != new DateTime(1753, 1, 1))
+        //    //{
+        //    //    //DateTime refilExtra_ = dTPRefilExtra.Value;
+        //    //    dTPRefilExtra.CustomFormat = "dd/MM/yyyy";
+        //    //}
+        //}
+
+        private void dTPRefilExtra_Leave(object sender, EventArgs e)
+        {
+            if (UtilitariosBLL.limpaString2(dTPRefilExtra.Text.Trim()).IsNullOrEmpty()) return;
+            string userInput = dTPRefilExtra.Text;
+            if (DateTime.TryParse(userInput, out DateTime parsedDate) && (parsedDate.Year > 2023 && parsedDate.Year < 2040)) {}
+            else
+            {
+                MessageBox.Show("Digite uma Data dTPRefilExtra válida.", "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                dTPRefilExtra.Text = "";
+                return;
             }
         }
 
@@ -832,5 +1002,7 @@ namespace EPharmacy.Forms
             }
 
         }
+
+
     }
 }

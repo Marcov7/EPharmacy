@@ -93,6 +93,7 @@
             bairroZonaToolStripMenuItem.Size = new Size(180, 22);
             bairroZonaToolStripMenuItem.Text = "Bairro Zona";
             bairroZonaToolStripMenuItem.Click += bairroZonaToolStripMenuItem_Click;
+            bairroZonaToolStripMenuItem.Enabled = "124".Contains(GlobalVariables.PerfilId.ToString()) ? true : false;
             // 
             // classeTerapeuticaToolStripMenuItem
             // 
@@ -100,6 +101,7 @@
             classeTerapeuticaToolStripMenuItem.Size = new Size(180, 22);
             classeTerapeuticaToolStripMenuItem.Text = "Classe Terapeutica";
             classeTerapeuticaToolStripMenuItem.Click += classeTerapeuticaToolStripMenuItem_Click;
+            classeTerapeuticaToolStripMenuItem.Enabled = "124".Contains(GlobalVariables.PerfilId.ToString()) ? true : false;
             // 
             // clinicaToolStripMenuItem
             // 
@@ -107,6 +109,7 @@
             clinicaToolStripMenuItem.Size = new Size(180, 22);
             clinicaToolStripMenuItem.Text = "Clinica";
             clinicaToolStripMenuItem.Click += clinicaToolStripMenuItem_Click;
+            clinicaToolStripMenuItem.Enabled = "124".Contains(GlobalVariables.PerfilId.ToString()) ? true : false;
             // 
             // convenioToolStripMenuItem
             // 
@@ -114,6 +117,7 @@
             convenioToolStripMenuItem.Size = new Size(180, 22);
             convenioToolStripMenuItem.Text = "Convênio";
             convenioToolStripMenuItem.Click += convenioToolStripMenuItem_Click;
+            convenioToolStripMenuItem.Enabled = "124".Contains(GlobalVariables.PerfilId.ToString()) ? true : false;
             // 
             // especialidadeToolStripMenuItem
             // 
@@ -121,6 +125,7 @@
             especialidadeToolStripMenuItem.Size = new Size(180, 22);
             especialidadeToolStripMenuItem.Text = "Especialidade";
             especialidadeToolStripMenuItem.Click += especialidadeToolStripMenuItem_Click;
+            especialidadeToolStripMenuItem.Enabled = "124".Contains(GlobalVariables.PerfilId.ToString()) ? true : false;
             // 
             // fabricanteToolStripMenuItem
             // 
@@ -128,6 +133,7 @@
             fabricanteToolStripMenuItem.Size = new Size(180, 22);
             fabricanteToolStripMenuItem.Text = "Fabricante";
             fabricanteToolStripMenuItem.Click += fabricanteToolStripMenuItem_Click;
+            fabricanteToolStripMenuItem.Enabled = "124".Contains(GlobalVariables.PerfilId.ToString()) ? true : false;
             // 
             // medicoToolStripMenuItem
             // 
@@ -135,6 +141,7 @@
             medicoToolStripMenuItem.Size = new Size(180, 22);
             medicoToolStripMenuItem.Text = "Medico";
             medicoToolStripMenuItem.Click += medicoToolStripMenuItem_Click;
+            medicoToolStripMenuItem.Enabled = "124".Contains(GlobalVariables.PerfilId.ToString()) ? true : false;
             // 
             // modalidadeToolStripMenuItem
             // 
@@ -142,6 +149,7 @@
             modalidadeToolStripMenuItem.Size = new Size(180, 22);
             modalidadeToolStripMenuItem.Text = "Modalidade";
             modalidadeToolStripMenuItem.Click += modalidadeToolStripMenuItem_Click;
+            modalidadeToolStripMenuItem.Enabled = "124".Contains(GlobalVariables.PerfilId.ToString()) ? true : false;
             // 
             // parâmetrosToolStripMenuItem
             // 
@@ -149,6 +157,7 @@
             parâmetrosToolStripMenuItem.Size = new Size(180, 22);
             parâmetrosToolStripMenuItem.Text = "Parâmetros";
             parâmetrosToolStripMenuItem.Click += parâmetrosToolStripMenuItem_Click;
+            parâmetrosToolStripMenuItem.Enabled = "124".Contains(GlobalVariables.PerfilId.ToString()) ? true : false;
             // 
             // periodicidadeRefilToolStripMenuItem
             // 
@@ -156,6 +165,7 @@
             periodicidadeRefilToolStripMenuItem.Size = new Size(180, 22);
             periodicidadeRefilToolStripMenuItem.Text = "Periodicidade Refil";
             periodicidadeRefilToolStripMenuItem.Click += periodicidadeRefilToolStripMenuItem_Click;
+            periodicidadeRefilToolStripMenuItem.Enabled = "124".Contains(GlobalVariables.PerfilId.ToString()) ? true : false;
             // 
             // substânciaToolStripMenuItem
             // 
@@ -163,6 +173,7 @@
             substânciaToolStripMenuItem.Size = new Size(180, 22);
             substânciaToolStripMenuItem.Text = "Substância";
             substânciaToolStripMenuItem.Click += substanciaToolStripMenuItem_Click;
+            substânciaToolStripMenuItem.Enabled = "124".Contains(GlobalVariables.PerfilId.ToString()) ? true : false;
             // 
             // tipoEntregaToolStripMenuItem
             // 
@@ -170,6 +181,7 @@
             tipoEntregaToolStripMenuItem.Size = new Size(180, 22);
             tipoEntregaToolStripMenuItem.Text = "Tipo Entrega";
             tipoEntregaToolStripMenuItem.Click += tipoEntregaToolStripMenuItem_Click;
+            tipoEntregaToolStripMenuItem.Enabled = "124".Contains(GlobalVariables.PerfilId.ToString()) ? true : false;
             // 
             // tipoReceitaToolStripMenuItem
             // 
@@ -177,6 +189,7 @@
             tipoReceitaToolStripMenuItem.Size = new Size(180, 22);
             tipoReceitaToolStripMenuItem.Text = "Tipo Receita";
             tipoReceitaToolStripMenuItem.Click += tipoReceitaToolStripMenuItem_Click;
+            tipoReceitaToolStripMenuItem.Enabled = "124".Contains(GlobalVariables.PerfilId.ToString()) ? true : false;
             // 
             // toolStripSeparator2
             // 
@@ -189,6 +202,8 @@
             usuárioToolStripMenuItem.Size = new Size(180, 22);
             usuárioToolStripMenuItem.Text = "Usuário";
             usuárioToolStripMenuItem.Click += usuárioToolStripMenuItem_Click;
+            usuárioToolStripMenuItem.Enabled = GlobalVariables.PerfilId == 1 ? true : false;
+
             // 
             // mmedicamentoToolStripMenuItem
             // 
@@ -196,6 +211,7 @@
             mmedicamentoToolStripMenuItem.Name = "mmedicamentoToolStripMenuItem";
             mmedicamentoToolStripMenuItem.Size = new Size(93, 20);
             mmedicamentoToolStripMenuItem.Text = "Medicamento";
+            mmedicamentoToolStripMenuItem.Enabled = "1234".Contains(GlobalVariables.PerfilId.ToString()) ? true : false;
             // 
             // medicamentoToolStripMenuItem
             // 
@@ -203,6 +219,7 @@
             medicamentoToolStripMenuItem.Size = new Size(197, 22);
             medicamentoToolStripMenuItem.Text = "Medicamento";
             medicamentoToolStripMenuItem.Click += medicamentoToolStripMenuItem_Click;
+            medicamentoToolStripMenuItem.Enabled = "124".Contains(GlobalVariables.PerfilId.ToString()) ? true : false;
             // 
             // preçoDeMedicamentoToolStripMenuItem
             // 
@@ -210,6 +227,7 @@
             preçoDeMedicamentoToolStripMenuItem.Size = new Size(197, 22);
             preçoDeMedicamentoToolStripMenuItem.Text = "Preço de Medicamento";
             preçoDeMedicamentoToolStripMenuItem.Click += preçoDeMedicamentoToolStripMenuItem_Click;
+            preçoDeMedicamentoToolStripMenuItem.Enabled = "124".Contains(GlobalVariables.PerfilId.ToString()) ? true : false;
             // 
             // pacienteToolStripMenuItem
             // 
@@ -217,6 +235,7 @@
             pacienteToolStripMenuItem.Name = "pacienteToolStripMenuItem";
             pacienteToolStripMenuItem.Size = new Size(64, 20);
             pacienteToolStripMenuItem.Text = "Paciente";
+            pacienteToolStripMenuItem.Enabled = "1234".Contains(GlobalVariables.PerfilId.ToString()) ? true : false;
             // 
             // cadastroDePacienteToolStripMenuItem
             // 
@@ -224,6 +243,7 @@
             cadastroDePacienteToolStripMenuItem.Size = new Size(185, 22);
             cadastroDePacienteToolStripMenuItem.Text = "Cadastro de Paciente";
             cadastroDePacienteToolStripMenuItem.Click += cadastroDePacienteToolStripMenuItem_Click;
+            cadastroDePacienteToolStripMenuItem.Enabled = "124".Contains(GlobalVariables.PerfilId.ToString()) ? true : false;
             // 
             // receitaToolStripMenuItem2
             // 
@@ -231,6 +251,7 @@
             receitaToolStripMenuItem2.Name = "receitaToolStripMenuItem2";
             receitaToolStripMenuItem2.Size = new Size(57, 20);
             receitaToolStripMenuItem2.Text = "Receita";
+            receitaToolStripMenuItem2.Enabled = "1234".Contains(GlobalVariables.PerfilId.ToString()) ? true : false;
             // 
             // receitaToolStripMenuItem1
             // 
@@ -238,6 +259,7 @@
             receitaToolStripMenuItem1.Size = new Size(178, 22);
             receitaToolStripMenuItem1.Text = "Cadastro de Receita";
             receitaToolStripMenuItem1.Click += receitaToolStripMenuItem1_Click;
+            receitaToolStripMenuItem1.Enabled = "124".Contains(GlobalVariables.PerfilId.ToString()) ? true : false;
             // 
             // receitaToolStripMenuItem
             // 
@@ -245,6 +267,7 @@
             receitaToolStripMenuItem.Name = "receitaToolStripMenuItem";
             receitaToolStripMenuItem.Size = new Size(59, 20);
             receitaToolStripMenuItem.Text = "Entrega";
+            receitaToolStripMenuItem.Enabled = "1234".Contains(GlobalVariables.PerfilId.ToString()) ? true : false;
             // 
             // BaseCadastralToolStripMenuItem
             // 
@@ -252,6 +275,8 @@
             BaseCadastralToolStripMenuItem.Size = new Size(150, 22);
             BaseCadastralToolStripMenuItem.Text = "Base Cadastral";
             BaseCadastralToolStripMenuItem.Click += baseCadastralToolStripMenuItem_Click;
+            BaseCadastralToolStripMenuItem.Enabled = "124".Contains(GlobalVariables.PerfilId.ToString()) ? true : false;
+
             // 
             // pedidoToolStripMenuItem2
             // 
@@ -259,6 +284,7 @@
             pedidoToolStripMenuItem2.Size = new Size(150, 22);
             pedidoToolStripMenuItem2.Text = "Pedido";
             pedidoToolStripMenuItem2.Click += pedidoToolStripMenuItem2_Click_1;
+            pedidoToolStripMenuItem2.Enabled = "1234".Contains(GlobalVariables.PerfilId.ToString()) ? true : false;
             // 
             // pedidoToolStripMenuItem
             // 
@@ -267,6 +293,7 @@
             pedidoToolStripMenuItem.Size = new Size(56, 20);
             pedidoToolStripMenuItem.Text = "Pedido";
             pedidoToolStripMenuItem.Visible = false;
+            pedidoToolStripMenuItem.Enabled = "1234".Contains(GlobalVariables.PerfilId.ToString()) ? true : false;
             // 
             // pedidoToolStripMenuItem1
             // 
@@ -274,6 +301,7 @@
             pedidoToolStripMenuItem1.Size = new Size(111, 22);
             pedidoToolStripMenuItem1.Text = "Pedido";
             pedidoToolStripMenuItem1.Click += pedidoToolStripMenuItem1_Click;
+            pedidoToolStripMenuItem1.Enabled = "1234".Contains(GlobalVariables.PerfilId.ToString()) ? true : false;
             // 
             // ajudaToolStripMenuItem
             // 
@@ -281,6 +309,7 @@
             ajudaToolStripMenuItem.Name = "ajudaToolStripMenuItem";
             ajudaToolStripMenuItem.Size = new Size(50, 20);
             ajudaToolStripMenuItem.Text = "Ajuda";
+            ajudaToolStripMenuItem.Enabled = "1234".Contains(GlobalVariables.PerfilId.ToString()) ? true : false;
             // 
             // sobrceToolStripMenuItem
             // 
@@ -288,20 +317,23 @@
             sobrceToolStripMenuItem.Size = new Size(220, 22);
             sobrceToolStripMenuItem.Text = "Sobre Controle de Entregas ";
             sobrceToolStripMenuItem.Click += sobrceToolStripMenuItem_Click;
+            sobrceToolStripMenuItem.Enabled = "1234".Contains(GlobalVariables.PerfilId.ToString()) ? true : false;
             // 
             // sairToolStripMenuItem
             // 
             sairToolStripMenuItem.Name = "sairToolStripMenuItem";
-            sairToolStripMenuItem.Size = new Size(220, 22);
+            sairToolStripMenuItem.Size = new Size(220, 12);
             sairToolStripMenuItem.Text = "Sai&r";
             sairToolStripMenuItem.Click += sairToolStripMenuItem_Click;
+            sairToolStripMenuItem.Enabled = "1234".Contains(GlobalVariables.PerfilId.ToString()) ? true : false;
             // 
             // saírToolStripMenuItem
             // 
             saírToolStripMenuItem.Name = "saírToolStripMenuItem";
-            saírToolStripMenuItem.Size = new Size(180, 22);
+            saírToolStripMenuItem.Size = new Size(180, 12);
             saírToolStripMenuItem.Text = "Saí&r";
             saírToolStripMenuItem.Click += saírToolStripMenuItem_Click;
+            saírToolStripMenuItem.Enabled = "1234".Contains(GlobalVariables.PerfilId.ToString()) ? true : false;
             // 
             // toolStripSeparator3
             // 
@@ -316,7 +348,7 @@
             Controls.Add(menuStrip1);
             IsMdiContainer = true;
             MainMenuStrip = menuStrip1;
-            MaximizeBox = false;
+            MaximizeBox = true;
             Name = "frmPrincipal";
             Text = "EPharmacy - Sistema de  Controle de Entregas";
             WindowState = FormWindowState.Maximized;

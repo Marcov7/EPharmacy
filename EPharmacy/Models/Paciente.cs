@@ -23,7 +23,7 @@
         public string? Celular { get; set; }
         public string Email { get; set; }
 
-        public DateTime DataPrimeiroAtendimento { get; set; }
+        public DateTime? DataPrimeiroAtendimento { get; set; }
 
         public DateTime? DataInclusaoConvenio { get; set; }
         public int? ModalidadeEntregaId { get; set; }

@@ -49,7 +49,7 @@
             // 
             lblVersao.AutoSize = true;
             lblVersao.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblVersao.Location = new Point(581, 457);
+            lblVersao.Location = new Point(177, 482);
             lblVersao.Name = "lblVersao";
             lblVersao.Size = new Size(58, 19);
             lblVersao.TabIndex = 6;
@@ -68,7 +68,7 @@
             BackColor = Color.White;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Zoom;
-            ClientSize = new Size(800, 490);
+            ClientSize = new Size(800, 517);
             Controls.Add(lblVersao);
             Controls.Add(lblMsgInicial);
             Name = "frmAbout";

@@ -45,6 +45,8 @@
             txtLogin = new TextBox();
             txtNome = new TextBox();
             txtId = new MaskedTextBox();
+            label5 = new Label();
+            cboPerfil = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)dgvLista).BeginInit();
             SuspendLayout();
             // 
@@ -137,7 +139,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(559, 66);
+            label3.Location = new Point(399, 66);
             label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
             label3.Size = new Size(37, 13);
@@ -148,7 +150,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(280, 66);
+            label2.Location = new Point(188, 66);
             label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
             label2.Size = new Size(43, 13);
@@ -190,23 +192,23 @@
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(559, 82);
+            txtEmail.Location = new Point(398, 82);
             txtEmail.Margin = new Padding(4, 3, 4, 3);
             txtEmail.MaxLength = 255;
             txtEmail.Multiline = true;
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(311, 23);
+            txtEmail.Size = new Size(249, 23);
             txtEmail.TabIndex = 100;
             // 
             // txtSenha
             // 
             txtSenha.Enabled = false;
-            txtSenha.Location = new Point(280, 82);
+            txtSenha.Location = new Point(187, 82);
             txtSenha.Margin = new Padding(4, 3, 4, 3);
             txtSenha.MaxLength = 255;
             txtSenha.Multiline = true;
             txtSenha.Name = "txtSenha";
-            txtSenha.Size = new Size(271, 23);
+            txtSenha.Size = new Size(209, 23);
             txtSenha.TabIndex = 99;
             // 
             // txtLogin
@@ -216,7 +218,7 @@
             txtLogin.MaxLength = 255;
             txtLogin.Multiline = true;
             txtLogin.Name = "txtLogin";
-            txtLogin.Size = new Size(244, 23);
+            txtLogin.Size = new Size(157, 23);
             txtLogin.TabIndex = 98;
             // 
             // txtNome
@@ -238,11 +240,34 @@
             txtId.Size = new Size(60, 23);
             txtId.TabIndex = 97;
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.Location = new Point(652, 68);
+            label5.Margin = new Padding(4, 0, 4, 0);
+            label5.Name = "label5";
+            label5.Size = new Size(36, 13);
+            label5.TabIndex = 135;
+            label5.Text = "Perfil";
+            // 
+            // cboPerfil
+            // 
+            cboPerfil.Enabled = false;
+            cboPerfil.FormattingEnabled = true;
+            cboPerfil.Location = new Point(649, 82);
+            cboPerfil.Margin = new Padding(4, 3, 4, 3);
+            cboPerfil.Name = "cboPerfil";
+            cboPerfil.Size = new Size(221, 23);
+            cboPerfil.TabIndex = 134;
+            // 
             // frmUsuarioSistema
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(899, 517);
+            Controls.Add(label5);
+            Controls.Add(cboPerfil);
             Controls.Add(btnPesquisar);
             Controls.Add(btnNovo);
             Controls.Add(btnExcluir);
@@ -262,6 +287,7 @@
             Controls.Add(txtId);
             Name = "frmUsuarioSistema";
             Text = "Cadastro de Usuário";
+            Load += frmUsuarioSistema_Load;
             ((System.ComponentModel.ISupportInitialize)dgvLista).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -286,5 +312,7 @@
         private TextBox txtLogin;
         private TextBox txtNome;
         private MaskedTextBox txtId;
+        private Label label5;
+        private ComboBox cboPerfil;
     }
 }

@@ -56,13 +56,6 @@
             label10 = new Label();
             label11 = new Label();
             label12 = new Label();
-            dTPRefil1 = new DateTimePicker();
-            dTPRefil2 = new DateTimePicker();
-            dTPRefil3 = new DateTimePicker();
-            dTPRefil4 = new DateTimePicker();
-            dTPRefil5 = new DateTimePicker();
-            dTPRefil6 = new DateTimePicker();
-            dTPRefilExtra = new DateTimePicker();
             txtId = new MaskedTextBox();
             chkMostrarIds = new CheckBox();
             txtMesAno = new MaskedTextBox();
@@ -77,6 +70,13 @@
             chkAumentaLarguraColunasGrid = new CheckBox();
             cboStatusParaGravar = new ComboBox();
             label18 = new Label();
+            dTPRefil1 = new MaskedTextBox();
+            dTPRefil2 = new MaskedTextBox();
+            dTPRefil3 = new MaskedTextBox();
+            dTPRefil4 = new MaskedTextBox();
+            dTPRefil5 = new MaskedTextBox();
+            dTPRefil6 = new MaskedTextBox();
+            dTPRefilExtra = new MaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)dgvLista).BeginInit();
             SuspendLayout();
             // 
@@ -395,78 +395,6 @@
             label12.TabIndex = 85;
             label12.Text = "Refil Extra";
             // 
-            // dTPRefil1
-            // 
-            dTPRefil1.Enabled = false;
-            dTPRefil1.Font = new Font("Segoe UI", 8F);
-            dTPRefil1.Location = new Point(13, 69);
-            dTPRefil1.Margin = new Padding(4, 3, 4, 3);
-            dTPRefil1.Name = "dTPRefil1";
-            dTPRefil1.Size = new Size(126, 22);
-            dTPRefil1.TabIndex = 99;
-            dTPRefil1.ValueChanged += dTPRefil1_ValueChanged;
-            // 
-            // dTPRefil2
-            // 
-            dTPRefil2.Enabled = false;
-            dTPRefil2.Font = new Font("Segoe UI", 8F);
-            dTPRefil2.Location = new Point(151, 69);
-            dTPRefil2.Margin = new Padding(4, 3, 4, 3);
-            dTPRefil2.Name = "dTPRefil2";
-            dTPRefil2.Size = new Size(126, 22);
-            dTPRefil2.TabIndex = 99;
-            // 
-            // dTPRefil3
-            // 
-            dTPRefil3.Enabled = false;
-            dTPRefil3.Font = new Font("Segoe UI", 8F);
-            dTPRefil3.Location = new Point(291, 69);
-            dTPRefil3.Margin = new Padding(4, 3, 4, 3);
-            dTPRefil3.Name = "dTPRefil3";
-            dTPRefil3.Size = new Size(126, 22);
-            dTPRefil3.TabIndex = 99;
-            // 
-            // dTPRefil4
-            // 
-            dTPRefil4.Enabled = false;
-            dTPRefil4.Font = new Font("Segoe UI", 8F);
-            dTPRefil4.Location = new Point(431, 69);
-            dTPRefil4.Margin = new Padding(4, 3, 4, 3);
-            dTPRefil4.Name = "dTPRefil4";
-            dTPRefil4.Size = new Size(126, 22);
-            dTPRefil4.TabIndex = 99;
-            // 
-            // dTPRefil5
-            // 
-            dTPRefil5.Enabled = false;
-            dTPRefil5.Font = new Font("Segoe UI", 8F);
-            dTPRefil5.Location = new Point(572, 69);
-            dTPRefil5.Margin = new Padding(4, 3, 4, 3);
-            dTPRefil5.Name = "dTPRefil5";
-            dTPRefil5.Size = new Size(126, 22);
-            dTPRefil5.TabIndex = 99;
-            // 
-            // dTPRefil6
-            // 
-            dTPRefil6.Enabled = false;
-            dTPRefil6.Font = new Font("Segoe UI", 8F);
-            dTPRefil6.Location = new Point(713, 69);
-            dTPRefil6.Margin = new Padding(4, 3, 4, 3);
-            dTPRefil6.Name = "dTPRefil6";
-            dTPRefil6.Size = new Size(126, 22);
-            dTPRefil6.TabIndex = 99;
-            // 
-            // dTPRefilExtra
-            // 
-            dTPRefilExtra.Enabled = false;
-            dTPRefilExtra.Font = new Font("Segoe UI", 8F);
-            dTPRefilExtra.Location = new Point(855, 69);
-            dTPRefilExtra.Margin = new Padding(4, 3, 4, 3);
-            dTPRefilExtra.Name = "dTPRefilExtra";
-            dTPRefilExtra.Size = new Size(126, 22);
-            dTPRefilExtra.TabIndex = 99;
-            dTPRefilExtra.ValueChanged += dTPRefilExtra_ValueChanged;
-            // 
             // txtId
             // 
             txtId.Location = new Point(999, -6);
@@ -618,14 +546,81 @@
             label18.TabIndex = 93;
             label18.Text = "Status";
             // 
+            // dTPRefil1
+            // 
+            dTPRefil1.Location = new Point(15, 68);
+            dTPRefil1.Mask = "00/00/0000";
+            dTPRefil1.Name = "dTPRefil1";
+            dTPRefil1.Size = new Size(106, 23);
+            dTPRefil1.TabIndex = 153;
+            dTPRefil1.ValidatingType = typeof(DateTime);
+            dTPRefil1.Leave += dTPRefil1_Leave;
+            // 
+            // dTPRefil2
+            // 
+            dTPRefil2.Location = new Point(151, 68);
+            dTPRefil2.Mask = "00/00/0000";
+            dTPRefil2.Name = "dTPRefil2";
+            dTPRefil2.Size = new Size(106, 23);
+            dTPRefil2.TabIndex = 153;
+            dTPRefil2.ValidatingType = typeof(DateTime);
+            dTPRefil2.Leave += dTPRefil2_Leave;
+            // 
+            // dTPRefil3
+            // 
+            dTPRefil3.Location = new Point(290, 69);
+            dTPRefil3.Mask = "00/00/0000";
+            dTPRefil3.Name = "dTPRefil3";
+            dTPRefil3.Size = new Size(106, 23);
+            dTPRefil3.TabIndex = 153;
+            dTPRefil3.ValidatingType = typeof(DateTime);
+            dTPRefil3.Leave += dTPRefil3_Leave;
+            // 
+            // dTPRefil4
+            // 
+            dTPRefil4.Location = new Point(429, 69);
+            dTPRefil4.Mask = "00/00/0000";
+            dTPRefil4.Name = "dTPRefil4";
+            dTPRefil4.Size = new Size(106, 23);
+            dTPRefil4.TabIndex = 153;
+            dTPRefil4.ValidatingType = typeof(DateTime);
+            dTPRefil4.Leave += dTPRefil4_Leave;
+            // 
+            // dTPRefil5
+            // 
+            dTPRefil5.Location = new Point(569, 69);
+            dTPRefil5.Mask = "00/00/0000";
+            dTPRefil5.Name = "dTPRefil5";
+            dTPRefil5.Size = new Size(106, 23);
+            dTPRefil5.TabIndex = 153;
+            dTPRefil5.ValidatingType = typeof(DateTime);
+            dTPRefil5.Leave += dTPRefil5_Leave;
+            // 
+            // dTPRefil6
+            // 
+            dTPRefil6.Location = new Point(718, 69);
+            dTPRefil6.Mask = "00/00/0000";
+            dTPRefil6.Name = "dTPRefil6";
+            dTPRefil6.Size = new Size(106, 23);
+            dTPRefil6.TabIndex = 153;
+            dTPRefil6.ValidatingType = typeof(DateTime);
+            // 
+            // dTPRefilExtra
+            // 
+            dTPRefilExtra.Location = new Point(858, 69);
+            dTPRefilExtra.Mask = "00/00/0000";
+            dTPRefilExtra.Name = "dTPRefilExtra";
+            dTPRefilExtra.Size = new Size(106, 23);
+            dTPRefilExtra.TabIndex = 153;
+            dTPRefilExtra.ValidatingType = typeof(DateTime);
+            dTPRefilExtra.Leave += dTPRefilExtra_Leave;
+            // 
             // frmBaseCadastral
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FloralWhite;
             ClientSize = new Size(1355, 667);
-            Controls.Add(chkAumentaLarguraColunasGrid);
-            Controls.Add(chkMostrarIds);
             Controls.Add(dTPRefilExtra);
             Controls.Add(dTPRefil6);
             Controls.Add(dTPRefil5);
@@ -633,6 +628,8 @@
             Controls.Add(dTPRefil3);
             Controls.Add(dTPRefil2);
             Controls.Add(dTPRefil1);
+            Controls.Add(chkAumentaLarguraColunasGrid);
+            Controls.Add(chkMostrarIds);
             Controls.Add(label13);
             Controls.Add(label6);
             Controls.Add(txtMesAno);
@@ -712,13 +709,10 @@
         private Label label10;
         private Label label11;
         private Label label12;
-        private DateTimePicker dTPRefil1;
-        private DateTimePicker dTPRefil2;
-        private DateTimePicker dTPRefil3;
-        private DateTimePicker dTPRefil4;
-        private DateTimePicker dTPRefil5;
-        private DateTimePicker dTPRefil6;
-        private DateTimePicker dTPRefilExtra;
+       // private MaskedTextBox dTPRefil4;
+       // private MaskedTextBox dTPRefil5;
+       // private MaskedTextBox dTPRefil6;
+       // private MaskedTextBox dTPRefilExtra;
         private MaskedTextBox txtId;
         private CheckBox chkMostrarIds;
         private MaskedTextBox txtMesAno;
@@ -733,5 +727,12 @@
         private Button btnExportar;
         private CheckBox chkAumentaLarguraColunasGrid;
         private Label label18;
+        private MaskedTextBox dTPRefil1;
+        private MaskedTextBox dTPRefil2;
+        private MaskedTextBox dTPRefil3;
+        private MaskedTextBox dTPRefil4;
+        private MaskedTextBox dTPRefil5;
+        private MaskedTextBox dTPRefil6;
+        private MaskedTextBox dTPRefilExtra;
     }
 }

@@ -6,6 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Data;
 using System.Runtime.ConstrainedExecution;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace EPharmacy.Forms
@@ -119,7 +120,7 @@ namespace EPharmacy.Forms
             txtNome.Clear();
             txtNomeSocial.Clear();
             txtCPF.Clear();
-            dTPNascimento.Value = DateTime.Now;
+            dTPNascimento.Clear();
             cboSexo.SelectedIndex = 0;
             txtLogradouro.Clear();
             txtNumero.Clear();
@@ -132,7 +133,7 @@ namespace EPharmacy.Forms
             txtCelular.Clear();
             txtTelefone.Clear();
             txtEmail.Clear();
-            dTPDataPrimeiroAtendimento.Value = DateTime.Now;
+            dTPDataPrimeiroAtendimento.Clear();
             //dTPDataInclusaoConvenio.Value = DateTime.Now;   
             cboModalidadeEntrega.SelectedIndex = 0;
             cboTipoEntrega.SelectedIndex = 0;
@@ -250,10 +251,21 @@ namespace EPharmacy.Forms
             {
                 retorno += "Preencha o campo Nome Social\n";
             }*/
-            if (dTPNascimento.Value.Date == DateTime.Now.Date)
+            //if (dTPNascimento.Value.Date == DateTime.Now.Date)
+            //{
+            //    retorno += "Selecione o campo Data de Nascimento\n";
+            //}
+
+            if (UtilitariosBLL.limpaString2(dTPNascimento.Text.Trim()).IsNullOrEmpty())
             {
-                retorno += "Selecione o campo Data de Nascimento\n";
+                retorno += "Digite a Data de Nascimento\n";
             }
+
+            if (UtilitariosBLL.ConverterParaData(dTPNascimento.Text.Trim()) >= DateTime.Now.Date)
+            {
+                retorno += "Digite a Data de Nascimento menor que hoje\n";
+            }
+
             if (UtilitariosBLL.limpaString(txtCPF.Text).Trim().IsNullOrEmpty())
             {
                 retorno += "Preencha o campo CPF\n";
@@ -282,10 +294,10 @@ namespace EPharmacy.Forms
             {
                 retorno += "Preencha o campo Municipio\n";
             }
-            if (txtComplemento.Text.IsNullOrEmpty())
-            {
-                retorno += "Preencha o campo Complemento\n";
-            }
+            //if (txtComplemento.Text.IsNullOrEmpty())
+            //{
+            //    retorno += "Preencha o campo Complemento\n";
+            //}
             if (txtUF.Text.IsNullOrEmpty())
             {
                 retorno += "Preencha o campo Uf\n";
@@ -297,6 +309,11 @@ namespace EPharmacy.Forms
             if (txtZona.Text.IsNullOrEmpty())
             {
                 retorno += "Preencha o campo Zona\n";
+            }
+            DateTime? dataTemp = UtilitariosBLL.ConverterParaData(dTPDataPrimeiroAtendimento.Text.Trim());
+            if(dataTemp != null &&  dataTemp.Value.Year < 2023)
+            {
+                retorno += "Digite a Data Primeiro Atendimento maior que 2023\n";
             }
             /*if (Utilitarios.limpaString(txtCelular.Text).Trim().IsNullOrEmpty())
             {
@@ -366,7 +383,8 @@ namespace EPharmacy.Forms
             string nome = txtNome.Text;
             string nomeSocial = txtNomeSocial.Text;
             string cpf = UtilitariosBLL.limpaString(txtCPF.Text).Trim();
-            DateTime dataNascimento = dTPNascimento.Value;
+            //DateTime dataNascimento = dTPNascimento.Value;
+            DateTime? dataNascimento = UtilitariosBLL.ConverterParaData(dTPNascimento.Text);
             string sexo = cboSexo.Text;
 
             string logradouro = txtLogradouro.Text;
@@ -381,7 +399,8 @@ namespace EPharmacy.Forms
             string telefone = UtilitariosBLL.limpaString(txtTelefone.Text).Trim();
             string celular = UtilitariosBLL.limpaString(txtCelular.Text).Trim();
             string email = txtEmail.Text;
-            DateTime dataPrimeiroAtendimento = dTPDataPrimeiroAtendimento.Value;
+            //DateTime dataPrimeiroAtendimento = dTPDataPrimeiroAtendimento.Value;
+            DateTime? dataPrimeiroAtendimento = UtilitariosBLL.ConverterParaData(dTPDataPrimeiroAtendimento.Text);
 
             //DateTime? dataInclusaoConvenio = dTPDataInclusaoConvenio.Value.Date == DateTime.Now.Date ? null : dTPDataInclusaoConvenio.Value.Date;
             int? modalidadeId = Convert.ToInt32(cboModalidadeEntrega.SelectedValue) == 0 ? null : Convert.ToInt32(cboModalidadeEntrega.SelectedValue);
@@ -399,39 +418,43 @@ namespace EPharmacy.Forms
 
             if (txtId.Text.IsNullOrEmpty())
             {
-                insert = new Paciente
-                {
-                    Nome = nome,
-                    NomeSocial = nomeSocial,
-                    CPF = cpf,
-                    DataNascimento = dataNascimento,
-                    Sexo = sexo,
-                    Logradouro = logradouro,
-                    Numero = numero,
-                    Bairro = bairro,
-                    Municipio = municipio,
-                    Uf = uf,
-                    Complemento = complemento,
-                    CEP = cep,
-                    Zona = zona,
-                    Celular = celular,
-                    Telefone = telefone,
-                    Email = email,
-                    DataPrimeiroAtendimento = dataPrimeiroAtendimento,
-                    //DataInclusaoConvenio = dataInclusaoConvenio,
-                    ModalidadeEntregaId = modalidadeId,
+                DateTime? dataPrimeiroAtendimento_ = null; ;
+                if (dataPrimeiroAtendimento != null)
+                    dataPrimeiroAtendimento_ = dataPrimeiroAtendimento.Value; 
+
+            insert = new Paciente
+            {
+                Nome = nome,
+                NomeSocial = nomeSocial,
+                CPF = cpf,
+                DataNascimento = dataNascimento.Value,
+                Sexo = sexo,
+                Logradouro = logradouro,
+                Numero = numero,
+                Bairro = bairro,
+                Municipio = municipio,
+                Uf = uf,
+                Complemento = complemento,
+                CEP = cep,
+                Zona = zona,
+                Celular = celular,
+                Telefone = telefone,
+                Email = email,
+                DataPrimeiroAtendimento = dataPrimeiroAtendimento_,//.Value,
+                //DataInclusaoConvenio = dataInclusaoConvenio,
+                ModalidadeEntregaId = modalidadeId,
 
 
-                    ConvenioId = convenioId,
-                    Matricula = matricula,
-                    Carteirinha = carteirinha,
-                    //Validade = validade,
-                    Autorizacao = autorizacao,
-                    TipoEntregaId = TipoEntregaId_,
-                    Ativo = ativo,
-                    DataCadastro = DateTime.Now.Date,
-                    Usuario = GlobalVariables.LoginId,
-                };
+                ConvenioId = convenioId,
+                Matricula = matricula,
+                Carteirinha = carteirinha,
+                //Validade = validade,
+                Autorizacao = autorizacao,
+                TipoEntregaId = TipoEntregaId_,
+                Ativo = ativo,
+                DataCadastro = DateTime.Now.Date,
+                Usuario = GlobalVariables.LoginId,
+            };
 
                 /*    */
 
@@ -458,7 +481,7 @@ namespace EPharmacy.Forms
                 update.Nome = nome;
                 update.NomeSocial = nomeSocial;
                 update.CPF = cpf;
-                update.DataNascimento = dataNascimento;
+                update.DataNascimento = dataNascimento.Value;
                 update.Sexo = sexo;
 
                 update.Logradouro = logradouro;
@@ -473,7 +496,12 @@ namespace EPharmacy.Forms
                 update.Celular = celular;
                 update.Telefone = telefone;
                 update.Email = email;
-                update.DataPrimeiroAtendimento = dataPrimeiroAtendimento;
+
+               
+                if (UtilitariosBLL.ConverterParaData(dataPrimeiroAtendimento.ToString()) != null)
+                    update.DataPrimeiroAtendimento = UtilitariosBLL.ConverterParaData(dataPrimeiroAtendimento.ToString()).Value;
+                else 
+                    update.DataPrimeiroAtendimento = null;
 
                 //update.DataInclusaoConvenio = dataInclusaoConvenio;
                 update.ModalidadeEntregaId = modalidadeId;
@@ -513,8 +541,8 @@ namespace EPharmacy.Forms
             string nome = txtNome.Text;
             string nomeSocial = txtNomeSocial.Text;
             string cpf = UtilitariosBLL.limpaString(txtCPF.Text).Trim();
-            DateTime dataNascimento = dTPNascimento.Value.Date;
-
+            //DateTime dataNascimento = dTPNascimento.Value.Date;
+            DateTime? dataNascimento = UtilitariosBLL.ConverterParaData(dTPNascimento.Text);
 
             var lista = _context.Paciente.AsQueryable();
 
@@ -536,8 +564,8 @@ namespace EPharmacy.Forms
             if (!string.IsNullOrEmpty(cpf))
                 lista = lista.Where(p => p.CPF.Contains(cpf));
 
-            if (dTPNascimento.Value.Date < DateTime.Now.Date)
-                lista = lista.Where(p => p.DataNascimento.Date == dataNascimento.Date);
+            if (UtilitariosBLL.ConverterParaData(dTPNascimento.Text) < DateTime.Now.Date)
+                lista = lista.Where(p => p.DataNascimento.Date == dataNascimento.Value);
             /*if (dTPNascimento.Value.Date < DateTime.Now.Date) 
                 lista = lista.Where(p => 
                 p.DataNascimento.Day == dataNascimento.Day &&
@@ -571,7 +599,7 @@ namespace EPharmacy.Forms
             txtNome.Clear();
             txtNomeSocial.Clear();
             txtCPF.Clear();
-            dTPNascimento.Value = DateTime.Now;
+            dTPNascimento.Clear();
             cboSexo.SelectedIndex = 0;
             txtLogradouro.Clear();
             txtNumero.Clear();
@@ -586,7 +614,7 @@ namespace EPharmacy.Forms
             txtEmail.Clear();
             txtMatricula.Clear();
             txtCarteirinha.Clear();
-            dTPDataPrimeiroAtendimento.Value = DateTime.Now;
+            dTPDataPrimeiroAtendimento.Clear();
             //dTPDataInclusaoConvenio.Value = DateTime.Now;   
             cboModalidadeEntrega.SelectedIndex = 0;
 
@@ -745,9 +773,18 @@ namespace EPharmacy.Forms
                     if (carteirinhaCell.Value != null)
                         carteirinha = carteirinhaCell.Value.ToString();
 
-                    DateTime nascimento = nascimentoCell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(nascimentoCell.Value);
+                    //DateTime nascimento = nascimentoCell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(nascimentoCell.Value);
+                    DateTime? nascimento = UtilitariosBLL.ConverterParaData(nascimentoCell.Value.ToString());
                     //DateTime nascimento = Convert.ToDateTime(nascimentoCell.Value);
-                    DateTime dataPrimeiroAtendimento = dataPrimeiroAtendimentoCell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(dataPrimeiroAtendimentoCell.Value);
+                    //DateTime dataPrimeiroAtendimento = dataPrimeiroAtendimentoCell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(dataPrimeiroAtendimentoCell.Value);
+                    //DateTime? dataPrimeiroAtendimento = UtilitariosBLL.ConverterParaData(dataPrimeiroAtendimentoCell.ToString());
+                    DateTime? dataPrimeiroAtendimento;
+                    if (dataPrimeiroAtendimentoCell.Value != null && UtilitariosBLL.ConverterParaData(dataPrimeiroAtendimentoCell.Value.ToString()) != null)
+                        dataPrimeiroAtendimento = UtilitariosBLL.ConverterParaData(dataPrimeiroAtendimentoCell.Value.ToString());
+                    else
+                        dataPrimeiroAtendimento = null;
+
+
                     // Convert.ToDateTime(dataPrimeiroAtendimentoCell.Value);
                     DateTime validade = validadeCell.Value == null ? DateTime.Now.Date : Convert.ToDateTime(validadeCell.Value);
 
@@ -765,7 +802,7 @@ namespace EPharmacy.Forms
                     txtNome.Text = nome;
                     txtNomeSocial.Text = nomeSocial;
                     txtCPF.Text = cpf;
-                    dTPNascimento.Value = nascimento;
+                    dTPNascimento.Text = nascimento.Value.ToString();
                     txtCEP.Text = cep;
                     txtLogradouro.Text = logradouro;
                     txtNumero.Text = numero;
@@ -779,7 +816,7 @@ namespace EPharmacy.Forms
                     txtEmail.Text = email;
                     txtMatricula.Text = matricula;
                     txtCarteirinha.Text = carteirinha;
-                    dTPDataPrimeiroAtendimento.Value = dataPrimeiroAtendimento;
+                    dTPDataPrimeiroAtendimento.Text = dataPrimeiroAtendimento.ToString();
                     //dTPValidade.Value = validade;
                     cboSexo.SelectedValue = sexo;
                     cboConvenio.SelectedValue = convenio;
@@ -840,6 +877,31 @@ namespace EPharmacy.Forms
               dgvLista.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
            else
               dgvLista.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+        }
+
+        private void dTPNascimento_Leave(object sender, EventArgs e)
+        {
+            if (UtilitariosBLL.limpaString2(dTPNascimento.Text.Trim()).IsNullOrEmpty()) return;
+            string userInput = dTPNascimento.Text;
+            if (DateTime.TryParse(userInput, out DateTime parsedDate)){}
+            else
+            {
+                dTPNascimento.Text = "";
+                MessageBox.Show("Digite uma Data de Nascimento válida.", "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void dTPDataPrimeiroAtendimento_Leave(object sender, EventArgs e)
+        {
+            if (UtilitariosBLL.limpaString2(dTPDataPrimeiroAtendimento.Text.Trim()).IsNullOrEmpty()) return;
+            string userInput = dTPDataPrimeiroAtendimento.Text;
+            if (DateTime.TryParse(userInput, out DateTime parsedDate)){}
+            else
+            {
+                dTPDataPrimeiroAtendimento.Text = "";
+                MessageBox.Show("Digite uma Data do Primeiro Atendimento válida.", "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

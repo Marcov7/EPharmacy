@@ -71,13 +71,14 @@
             txtReal = new NumericUpDown();
             cboRefil = new ComboBox();
             cboStatusEntrega = new ComboBox();
-            dTPRefil = new DateTimePicker();
             label5 = new Label();
             txtReceitaItensEntregaId = new MaskedTextBox();
             btnAdicionar = new Button();
             label18 = new Label();
             txtReceitaItensId = new MaskedTextBox();
             chkAumentaLarguraColunasGrid = new CheckBox();
+            dTPRefil = new MaskedTextBox();
+            btnSalvar2 = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvLista).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtReal).BeginInit();
             SuspendLayout();
@@ -374,19 +375,19 @@
             label8.AutoSize = true;
             label8.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.Olive;
-            label8.Location = new Point(897, 54);
+            label8.Location = new Point(895, 54);
             label8.Margin = new Padding(4, 0, 4, 0);
             label8.Name = "label8";
-            label8.Size = new Size(107, 13);
+            label8.Size = new Size(159, 13);
             label8.TabIndex = 116;
-            label8.Text = "Data Consolidade";
+            label8.Text = "Data Entrega(Consolidada)";
             // 
             // label7
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.FromArgb(128, 64, 0);
-            label7.Location = new Point(1137, 54);
+            label7.Location = new Point(1060, 54);
             label7.Margin = new Padding(4, 0, 4, 0);
             label7.Name = "label7";
             label7.Size = new Size(91, 13);
@@ -542,20 +543,11 @@
             // 
             cboStatusEntrega.Enabled = false;
             cboStatusEntrega.FormattingEnabled = true;
-            cboStatusEntrega.Location = new Point(1134, 67);
+            cboStatusEntrega.Location = new Point(1057, 67);
             cboStatusEntrega.Margin = new Padding(4, 3, 4, 3);
             cboStatusEntrega.Name = "cboStatusEntrega";
             cboStatusEntrega.Size = new Size(138, 23);
             cboStatusEntrega.TabIndex = 130;
-            // 
-            // dTPRefil
-            // 
-            dTPRefil.Enabled = false;
-            dTPRefil.Location = new Point(894, 67);
-            dTPRefil.Margin = new Padding(4, 3, 4, 3);
-            dTPRefil.Name = "dTPRefil";
-            dTPRefil.Size = new Size(237, 23);
-            dTPRefil.TabIndex = 148;
             // 
             // label5
             // 
@@ -622,11 +614,34 @@
             chkAumentaLarguraColunasGrid.CheckState = CheckState.Checked;
             chkAumentaLarguraColunasGrid.Location = new Point(128, 646);
             chkAumentaLarguraColunasGrid.Name = "chkAumentaLarguraColunasGrid";
-            chkAumentaLarguraColunasGrid.Size = new Size(183, 19);
+            chkAumentaLarguraColunasGrid.Size = new Size(184, 19);
             chkAumentaLarguraColunasGrid.TabIndex = 151;
             chkAumentaLarguraColunasGrid.Text = "Largura do Tamanho do Dado";
             chkAumentaLarguraColunasGrid.UseVisualStyleBackColor = true;
             chkAumentaLarguraColunasGrid.CheckedChanged += chkAumentaLarguraColunasGrid_CheckedChanged_1;
+            // 
+            // dTPRefil
+            // 
+            dTPRefil.Location = new Point(895, 67);
+            dTPRefil.Mask = "00/00/0000";
+            dTPRefil.Name = "dTPRefil";
+            dTPRefil.Size = new Size(159, 23);
+            dTPRefil.TabIndex = 152;
+            dTPRefil.ValidatingType = typeof(DateTime);
+            dTPRefil.Leave += dTPRefil_Leave;
+            // 
+            // btnSalvar2
+            // 
+            btnSalvar2.Enabled = false;
+            btnSalvar2.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSalvar2.Location = new Point(1234, 65);
+            btnSalvar2.Margin = new Padding(4, 3, 4, 3);
+            btnSalvar2.Name = "btnSalvar2";
+            btnSalvar2.Size = new Size(110, 27);
+            btnSalvar2.TabIndex = 153;
+            btnSalvar2.Text = "&Salvar";
+            btnSalvar2.UseVisualStyleBackColor = true;
+            btnSalvar2.Click += btnSalvar_Click;
             // 
             // frmPedido
             // 
@@ -634,9 +649,10 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
             ClientSize = new Size(1360, 669);
+            Controls.Add(btnSalvar2);
+            Controls.Add(dTPRefil);
             Controls.Add(chkAumentaLarguraColunasGrid);
             Controls.Add(btnAdicionar);
-            Controls.Add(dTPRefil);
             Controls.Add(chkMostrarIds);
             Controls.Add(txtReal);
             Controls.Add(label13);
@@ -738,12 +754,13 @@
         private NumericUpDown txtReal;
         private ComboBox cboRefil;
         private ComboBox cboStatusEntrega;
-        private DateTimePicker dTPRefil;
         private Label label5;
         private MaskedTextBox txtReceitaItensEntregaId;
         private Label label18;
         private MaskedTextBox txtReceitaItensId;
         private Button btnAdicionar;
         private CheckBox chkAumentaLarguraColunasGrid;
+        private MaskedTextBox dTPRefil;
+        private Button btnSalvar2;
     }
 }

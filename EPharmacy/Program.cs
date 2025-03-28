@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using EPharmacy.Data;
 using System.Runtime.ConstrainedExecution;
 using BLL;
+using System.Globalization;
 
 namespace EPharmacy
 {
@@ -22,6 +23,10 @@ namespace EPharmacy
             {
                 context.Database.Migrate(); 
             }
+
+            // Define a cultura para o Brasil (pt-BR)
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("pt-BR");
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("pt-BR");
 
             ApplicationConfiguration.Initialize();
             Application.Run(new frmLogin());

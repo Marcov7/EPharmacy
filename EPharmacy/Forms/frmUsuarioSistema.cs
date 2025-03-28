@@ -24,6 +24,22 @@ namespace EPharmacy.Forms
 
             // fazendo ficar com as colunas autoajuestadas ao tamanho
             dgvLista.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+        }
+
+
+        private void frmUsuarioSistema_Load(object sender, EventArgs e)
+        {
+            var perfil = _context.Perfil.OrderBy(p => p.Descricao).ToList();
+            Perfil c = new Perfil();
+            c.Id = 0;
+            c.Descricao = "<Selecione>";
+            perfil.Insert(0, c);
+            cboPerfil.DataSource = perfil.ToList();
+            cboPerfil.DisplayMember = "Descricao";
+            cboPerfil.ValueMember = "Id";
+
+            Limpar();
         }
 
 
@@ -68,6 +84,7 @@ namespace EPharmacy.Forms
             txtLogin.Clear();
             txtSenha.Clear();
             txtEmail.Clear();
+            cboPerfil.SelectedIndex = 0;
             dgvLista.DataSource = null;
 
             txtId.Enabled = true;
@@ -75,6 +92,7 @@ namespace EPharmacy.Forms
             txtLogin.Enabled = true;
             txtSenha.Enabled = false;
             txtEmail.Enabled = true;
+            cboPerfil.Enabled = true;
             dgvLista.Enabled = true;
 
             btnNovo.Enabled = true;
@@ -146,6 +164,10 @@ namespace EPharmacy.Forms
             {
                 retorno += "Preencha o campo Email \n";
             }
+            if (cboPerfil.SelectedIndex == -1 || cboPerfil.SelectedValue.ToString() == "0")
+            {
+                retorno += "Preencha o campo Perfil \n";
+            }
             if (!UtilitariosBLL.IsValidEmail( txtEmail.Text))
             {
                 retorno += "Preencha o campo Email com uma Email válido \n";
@@ -173,6 +195,7 @@ namespace EPharmacy.Forms
             string Login_ = txtLogin.Text;
             string Senha_ = txtSenha.Text;
             string Email_ = txtEmail.Text;
+            int PerfilId_ = Convert.ToInt32(cboPerfil.SelectedValue);
 
             var entityNew = new UsuarioSistema();
             var entityUpdate = new UsuarioSistema();
@@ -185,13 +208,13 @@ namespace EPharmacy.Forms
                 {
                     retorno += "Preencha o campo Login com um Login novo \n";
                 }
-                if (!UtilitariosBLL.ContemNumeroLetraCaractereEspecialRegex(Senha_))
+                //if (!UtilitariosBLL.ContemNumeroLetraCaractereEspecialRegex(Senha_))
+                //{
+                //    retorno += "Preencha o campo Senha com Número, Caracater Especial e Letra \n";
+                //}
+                if (!UtilitariosBLL.Contem4Caracteres(Senha_))
                 {
-                    retorno += "Preencha o campo Senha com Número, Caracater Especial e Letra \n";
-                }
-                if (!UtilitariosBLL.Contem6Caracteres(Senha_))
-                {
-                    retorno += "Preencha o campo Senha com 6 caracteres \n";
+                    retorno += "Preencha o campo Senha com 4 caracteres \n";
                 }
                 var EmailExistente = _context.UsuarioSistema.FirstOrDefault(b => b.Email == Email_);
                 if (EmailExistente != null)
@@ -211,6 +234,7 @@ namespace EPharmacy.Forms
                     Login = Login_,
                     Senha = Senha_,
                     Email = Email_,
+                    PerfilId = PerfilId_,
                     DataCadastro = DateTime.Now,
                     Usuario = GlobalVariables.LoginId,
                 };
@@ -233,13 +257,13 @@ namespace EPharmacy.Forms
                 {
                     retorno += "Preencha o campo Login com um Login novo \n";
                 }
-                if (!UtilitariosBLL.ContemNumeroLetraCaractereEspecialRegex(Senha_))
+                //if (!UtilitariosBLL.ContemNumeroLetraCaractereEspecialRegex(Senha_))
+                //{
+                //    retorno += "Preencha o campo Senha com Número, Caracater Especial e Letra \n";
+                //}
+                if (!UtilitariosBLL.Contem4Caracteres(Senha_))
                 {
-                    retorno += "Preencha o campo Senha com Número, Caracater Especial e Letra \n";
-                }
-                if (!UtilitariosBLL.Contem6Caracteres(Senha_))
-                {
-                    retorno += "Preencha o campo Senha com 6 caracteres \n";
+                    retorno += "Preencha o campo Senha com 4 caracteres \n";
                 }
                 var EmailExistente = _context.UsuarioSistema.FirstOrDefault(b => b.Email == Email_ && b.Id != Id_);
                 if (EmailExistente != null)
@@ -258,6 +282,7 @@ namespace EPharmacy.Forms
                 entityUpdate.Login = Login_;
                 entityUpdate.Senha = Senha_;
                 entityUpdate.Email = Email_;
+                entityUpdate.PerfilId = PerfilId_;
                 entityUpdate.DataCadastro = DateTime.Now;
                 entityUpdate.Usuario = GlobalVariables.LoginId;
 
@@ -277,12 +302,13 @@ namespace EPharmacy.Forms
         }
 
 
-        private void btnPesquisar_Click(object sender, EventArgs e)
+        private void btnPesquisarOld_Click(object sender, EventArgs e)
         {
             int? Id_ = txtId.Text.IsNullOrEmpty() ? null : Convert.ToInt32(txtId.Text);
             string Nome_ = txtNome.Text;
             string Login_ = txtLogin.Text;
             string Email_ = txtEmail.Text;
+            int? PerfilId_ = cboPerfil.SelectedIndex > 0 ? Convert.ToInt32(cboPerfil.SelectedValue) : null;
 
             var entidade = _context.UsuarioSistema.AsQueryable();
 
@@ -298,10 +324,66 @@ namespace EPharmacy.Forms
             if (!string.IsNullOrEmpty(Email_))
                 entidade = entidade.Where(p => p.Email.Contains(Email_));
 
+            if (PerfilId_ > 0)
+                entidade = entidade.Where(p => p.PerfilId == PerfilId_);
+
             var entidadex = entidade.ToList();
 
             if (entidadex != null)
                 dgvLista.DataSource = entidadex;
+        }
+
+
+        private void btnPesquisar_Click(object sender, EventArgs e)
+        {
+            int? Id_ = txtId.Text.IsNullOrEmpty() ? null : Convert.ToInt32(txtId.Text);
+            string Nome_ = txtNome.Text;
+            string Login_ = txtLogin.Text;
+            string Email_ = txtEmail.Text;
+            int? PerfilId_ = cboPerfil.SelectedIndex > 0 ? Convert.ToInt32(cboPerfil.SelectedValue) : null;
+
+            // Inicia a consulta para a entidade UsuarioSistema
+            var entidade = _context.UsuarioSistema.AsQueryable();
+
+            // Filtra pelos parâmetros informados
+            if (Id_ != null)
+                entidade = entidade.Where(p => p.Id == Id_);
+
+            if (!string.IsNullOrEmpty(Nome_))
+                entidade = entidade.Where(p => p.Nome.Contains(Nome_));
+
+            if (!string.IsNullOrEmpty(Login_))
+                entidade = entidade.Where(p => p.Login.Contains(Login_));
+
+            if (!string.IsNullOrEmpty(Email_))
+                entidade = entidade.Where(p => p.Email.Contains(Email_));
+
+            if (PerfilId_ > 0)
+                entidade = entidade.Where(p => p.PerfilId == PerfilId_);
+
+            // Realiza o join entre UsuarioSistema e Perfil, trazendo a Descricao de Perfil
+            var query = from UsuarioSistema in entidade
+                        join Perfil in _context.Perfil on UsuarioSistema.PerfilId equals Perfil.Id into perfilJoin
+                        from Perfil in perfilJoin.DefaultIfEmpty() // DefaultIfEmpty permite que traga os registros de UsuarioSistema mesmo se não houver correspondência no Perfil
+                        select new
+                        {
+                            UsuarioSistema.Id,
+                            UsuarioSistema.Nome,
+                            UsuarioSistema.Login,
+                            UsuarioSistema.Senha,
+                            UsuarioSistema.Email,
+                            UsuarioSistema.PerfilId,
+                            PerfilDescricao = Perfil.Descricao, // Aqui você traz a Descricao do Perfil
+                            UsuarioSistema.DataCadastro,
+                            UsuarioSistema.Usuario
+                        };
+
+            // Executa a consulta e converte o resultado para uma lista
+            var resultados = query.ToList();
+
+            // Atribui o resultado à DataGridView
+            if (resultados != null)
+                dgvLista.DataSource = resultados;
         }
 
 
@@ -324,6 +406,7 @@ namespace EPharmacy.Forms
             txtLogin.Clear();
             txtSenha.Clear();
             txtEmail.Clear();
+            cboPerfil.SelectedIndex = 0;
             dgvLista.DataSource = null;
 
             txtId.Enabled = false;
@@ -331,6 +414,7 @@ namespace EPharmacy.Forms
             txtLogin.Enabled = true;
             txtSenha.Enabled = true;
             txtEmail.Enabled = true;
+            cboPerfil.Enabled = true;
             dgvLista.Enabled = false;
 
             btnNovo.Enabled = false;
@@ -353,6 +437,7 @@ namespace EPharmacy.Forms
                 var loginCell = row.Cells["Login"];
                 var senhaCell = row.Cells["Senha"];
                 var emailCell = row.Cells["Email"];
+                var perfilIdCell = row.Cells["PerfilId"];
 
                 if (idCell.Value != null && nomeCell.Value != null)
                 {
@@ -361,18 +446,21 @@ namespace EPharmacy.Forms
                     string login = loginCell.Value.ToString();
                     string senha = senhaCell.Value.ToString();
                     string email = emailCell.Value.ToString();
+                    int? perfilId = Convert.ToInt32(perfilIdCell.Value);
 
                     txtId.Text = id.ToString();
                     txtNome.Text = nome;
                     txtLogin.Text = login;
                     txtSenha.Text = senha;
                     txtEmail.Text = email;
+                    cboPerfil.SelectedValue = perfilId;
 
                     txtId.Enabled = false;
                     txtNome.Enabled = true;
                     txtLogin.Enabled = true;
                     txtSenha.Enabled = true;
                     txtEmail.Enabled = true;
+                    cboPerfil.Enabled = true;
                     dgvLista.Enabled = true;
 
                     btnNovo.Enabled = true;

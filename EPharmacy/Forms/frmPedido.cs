@@ -119,32 +119,16 @@ namespace EPharmacy.Forms
             dgvLista.DataSource = receitaBLL.GetMedicamentosParaProximos6MesesPedido(datafiltro, EAN, MedicamentoId, ConvenioId, CPF, Matricula, PacienteId, StatusId, bairro, zona, tipoReceitaId);
             //dGVReceitaItensEntrega.DataSource = null;
 
-            dgvLista.Columns["ReceitaItensEntregaId"].Visible = chkMostrarIds.Checked;
-            dgvLista.Columns["RefilId"].Visible = chkMostrarIds.Checked;
-            dgvLista.Columns["StatusEntregaId"].Visible = chkMostrarIds.Checked;
-       
-            dgvLista.Columns["ReceitaItensId"].Visible = chkMostrarIds.Checked;
-            dgvLista.Columns["PacienteId"].Visible = chkMostrarIds.Checked;
-            dgvLista.Columns["StatusId"].Visible = chkMostrarIds.Checked;
-            dgvLista.Columns["PacienteId"].Visible = chkMostrarIds.Checked;
-            dgvLista.Columns["MedicamentoId"].Visible = chkMostrarIds.Checked;
-            dgvLista.Columns["PeriodicidadeId"].Visible = chkMostrarIds.Checked;
-            dgvLista.Columns["ReceitaId"].Visible = chkMostrarIds.Checked;
-            dgvLista.Columns["ReceitaDescricao"].Visible = chkMostrarIds.Checked;
-            dgvLista.Columns["TipoReceitaId"].Visible = chkMostrarIds.Checked;
-            dgvLista.Columns["ConvenioId"].Visible = chkMostrarIds.Checked;
-
+            dgvLista.Columns["ReceitaId"].HeaderText = "Id Receita"; 
+            dgvLista.Columns["ReceitaItensId"].HeaderText = "Id Rec.Itens";
             dgvLista.Columns["ReceitaItensEntregaId"].HeaderText = "Id Rec.Itens Entrega";
             dgvLista.Columns["RefilId"].HeaderText = "Id Refil";
             dgvLista.Columns["StatusEntregaId"].HeaderText = "Id Status Entrega";
-
-            dgvLista.Columns["ReceitaItensId"].HeaderText = "Id Rec.Itens";
             dgvLista.Columns["PacienteId"].HeaderText = "Id Paciente"; 
             dgvLista.Columns["StatusId"].HeaderText = "Id Status"; 
             dgvLista.Columns["PacienteId"].HeaderText = "Id Paciente"; 
             dgvLista.Columns["MedicamentoId"].HeaderText = "Id Medicam."; 
             dgvLista.Columns["PeriodicidadeId"].HeaderText = "Id Periodic."; 
-            dgvLista.Columns["ReceitaId"].HeaderText = "Id Receita"; 
             dgvLista.Columns["ReceitaDescricao"].HeaderText = "Descrição Receita"; 
             dgvLista.Columns["TipoReceitaId"].HeaderText = "Id Tp.Receita"; 
             dgvLista.Columns["ConvenioId"].HeaderText = "Id Convênio";
@@ -159,6 +143,23 @@ namespace EPharmacy.Forms
             dgvLista.Columns["ClasseTerapeutica"].HeaderText = "Classe Terapeutica";
             dgvLista.Columns["NotaFiscal"].HeaderText = "Nota Fiscal";
 
+
+
+            dgvLista.Columns["ReceitaItensId"].Visible = chkMostrarIds.Checked;
+            dgvLista.Columns["ReceitaItensEntregaId"].Visible = chkMostrarIds.Checked;
+            dgvLista.Columns["RefilId"].Visible = chkMostrarIds.Checked;
+            dgvLista.Columns["StatusEntregaId"].Visible = chkMostrarIds.Checked;
+
+            dgvLista.Columns["PacienteId"].Visible = chkMostrarIds.Checked;
+            dgvLista.Columns["StatusId"].Visible = chkMostrarIds.Checked;
+            dgvLista.Columns["PacienteId"].Visible = chkMostrarIds.Checked;
+            dgvLista.Columns["MedicamentoId"].Visible = chkMostrarIds.Checked;
+            dgvLista.Columns["PeriodicidadeId"].Visible = chkMostrarIds.Checked;
+            dgvLista.Columns["ReceitaId"].Visible = chkMostrarIds.Checked;
+            dgvLista.Columns["ReceitaDescricao"].Visible = chkMostrarIds.Checked;
+            dgvLista.Columns["TipoReceitaId"].Visible = chkMostrarIds.Checked;
+            dgvLista.Columns["ConvenioId"].Visible = chkMostrarIds.Checked;
+
             dgvLista.Columns["Refil1"].Visible = chkMostrarIds.Checked;
             dgvLista.Columns["Refil2"].Visible = chkMostrarIds.Checked;
             dgvLista.Columns["Refil3"].Visible = chkMostrarIds.Checked;
@@ -166,6 +167,16 @@ namespace EPharmacy.Forms
             dgvLista.Columns["Refil5"].Visible = chkMostrarIds.Checked;
             dgvLista.Columns["Refil6"].Visible = chkMostrarIds.Checked;
             dgvLista.Columns["RefilExtra"].Visible = chkMostrarIds.Checked;
+
+            dgvLista.Columns["Telefone"].Visible = chkMostrarIds.Checked;
+            dgvLista.Columns["ClasseTerapeutica"].Visible = chkMostrarIds.Checked;
+            dgvLista.Columns["Substancia"].Visible = chkMostrarIds.Checked;
+            dgvLista.Columns["Fabricante"].Visible = chkMostrarIds.Checked;
+            dgvLista.Columns["Telefone"].Visible = chkMostrarIds.Checked;
+            dgvLista.Columns["Telefone"].Visible = chkMostrarIds.Checked;
+            dgvLista.Columns["Telefone"].Visible = chkMostrarIds.Checked;
+            dgvLista.Columns["Telefone"].Visible = chkMostrarIds.Checked;
+            dgvLista.Columns["Telefone"].Visible = chkMostrarIds.Checked;
 
 
             HighlightRowsByNameChange();
@@ -228,7 +239,7 @@ namespace EPharmacy.Forms
             txtNotaFiscal.Clear();
             txtReal.Value = 0.0M;
             cboRefil.SelectedIndex = 0;
-            dTPRefil.Value = DateTime.Now.Date;
+            dTPRefil.Clear();
             cboStatusEntrega.SelectedIndex = 0;
 
 
@@ -266,6 +277,7 @@ namespace EPharmacy.Forms
             btnNovo.Enabled = false;
             btnPesquisar.Enabled = true;
             btnSalvar.Enabled = false;
+            btnSalvar2.Enabled = false;
             btnLimpar.Enabled = true;
             btnSair.Enabled = true;
             btnExcluir.Enabled = false;
@@ -684,7 +696,7 @@ namespace EPharmacy.Forms
                 txtNotaFiscal.Text = numNotaFiscal;
                 txtReal.Text = real.ToString();
                 cboRefil.SelectedValue = refilId;
-                dTPRefil.Value = dataRefil.Value;
+                dTPRefil.Text = dataRefil.ToString();
                 cboStatusEntrega.SelectedValue = statusEntregaId;
 
 
@@ -714,6 +726,7 @@ namespace EPharmacy.Forms
                 btnNovo.Enabled = false;
                 btnPesquisar.Enabled = true;
                 btnSalvar.Enabled = true;
+                btnSalvar2.Enabled = true;
                 btnLimpar.Enabled = true;
                 btnSair.Enabled = true;
                 btnExcluir.Enabled = false;
@@ -783,6 +796,8 @@ namespace EPharmacy.Forms
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             btnAdicionar_Click(null, null);
+
+            btnProximaLinha_Click();
         }
 
 
@@ -880,7 +895,7 @@ namespace EPharmacy.Forms
             int? real = !txtReal.Text.IsNullOrEmpty() ? Convert.ToInt32(txtReal.Text) : null;
             int? refilId = Convert.ToInt32(cboRefil.SelectedValue);
             int? statusEntregaId = Convert.ToInt32(cboStatusEntrega.SelectedValue);
-            DateTime? dataRefil = dTPRefil.Value;
+            DateTime? dataRefil = UtilitariosBLL.ConverterParaData(dTPRefil.Text);
 
             var entityNew = new ReceitaItensEntrega();
             entityNew.Id = receitaItensEntregaId;
@@ -903,7 +918,7 @@ namespace EPharmacy.Forms
             txtNotaFiscal.Clear();
             cboRefil.SelectedIndex = 0;
             txtReal.Value = 0.00M;
-            dTPRefil.Value = DateTime.Now.Date;
+            dTPRefil.Clear();
             cboStatusEntrega.SelectedIndex = 0;
 
             //preenchedGVReceitaItensEntrega();
@@ -941,6 +956,48 @@ namespace EPharmacy.Forms
         {
             txtMesAno.Text = Data;
         }
+
+
+        // teste para ver se consigo ir para a proxima linha no grid na tela de pedidos
+        private void btnProximaLinha_Click()
+        {
+            // Verifica se há alguma linha selecionada
+            if (dgvLista.SelectedRows.Count > 0)
+            {
+                // Obtém o índice da linha atualmente selecionada
+                int indiceAtual = dgvLista.SelectedRows[0].Index;
+
+                // Verifica se não é a última linha, para evitar erro de índice fora dos limites
+                if (indiceAtual < dgvLista.Rows.Count - 1)
+                {
+                    // Seleciona a próxima linha
+                    dgvLista.Rows[indiceAtual + 1].Selected = true;
+                }
+                else
+                {
+                    // Se estiver na última linha, talvez você queira fazer algo específico ou desmarcar a seleção
+                    MessageBox.Show("Você já está na última linha.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Nenhuma linha está selecionada.");
+            }
+        }
+
+
+        private void dTPRefil_Leave(object sender, EventArgs e)
+        {
+            if (UtilitariosBLL.limpaString2(dTPRefil.Text.Trim()).IsNullOrEmpty()) return;
+            string userInput = dTPRefil.Text;
+            if (DateTime.TryParse(userInput, out DateTime parsedDate)) { }
+            else
+            {
+                dTPRefil.Text = "";
+                MessageBox.Show("Digite uma Data Entrega(Consolidada) válida.", "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
 
     }
 }

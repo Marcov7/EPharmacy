@@ -7,6 +7,7 @@
         public string Login { get; set; }
         public string Senha { get; set; }
         public string Email { get; set; }
+        public int PerfilId { get; set; }
         public DateTime DataCadastro { get; set; }
         public int Usuario { get; set; }
     }
