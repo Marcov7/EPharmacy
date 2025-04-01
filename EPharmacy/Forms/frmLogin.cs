@@ -17,7 +17,7 @@ namespace EPharmacy
             this.MaximizeBox = false;
             this.MinimizeBox = false;
 
-            GlobalVariables.Versao = "1.00b - 28/02/2025";
+            GlobalVariables.Versao = "1.00b - 31/03/2025";
 
             lblVersao.Text += GlobalVariables.Versao;
         }
@@ -69,12 +69,15 @@ namespace EPharmacy
             }
 
             GlobalVariables.LoginId = entidadex[0].Id;
-            GlobalVariables.Login = entidadex[0].Id.ToString() + "-" + entidadex[0].Login + " - " + entidadex[0].Nome;
             GlobalVariables.PerfilId = entidadex[0].PerfilId;
+
+            GlobalVariables.Login = entidadex[0].Id.ToString() + "-" + entidadex[0].Login + " - " + entidadex[0].Nome + " - Perfil:" + entidadex[0].PerfilId.ToString();
 
             frmPrincipal frm = new frmPrincipal();
             frm.ShowDialog(); 
             this.Close();
         }
+
+
     }
 }

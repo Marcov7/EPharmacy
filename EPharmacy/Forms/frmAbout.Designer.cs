@@ -49,7 +49,7 @@
             // 
             lblVersao.AutoSize = true;
             lblVersao.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblVersao.Location = new Point(177, 482);
+            lblVersao.Location = new Point(119, 482);
             lblVersao.Name = "lblVersao";
             lblVersao.Size = new Size(58, 19);
             lblVersao.TabIndex = 6;

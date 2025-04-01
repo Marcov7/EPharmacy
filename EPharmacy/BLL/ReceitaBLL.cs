@@ -295,7 +295,7 @@ namespace EPharmacy.BLL
                                       && (pc.Zona == Zona || Zona.IsNullOrEmpty())
                                       && (m.TipoReceitaId == tipoReceitaId || tipoReceitaId == null)
 
-                                      orderby ri.Id, m.Id
+                                      orderby receitaItemEntrega.DataRefil, ri.Id, m.Id
                                       select new PedidoViewModel
                                       {
 

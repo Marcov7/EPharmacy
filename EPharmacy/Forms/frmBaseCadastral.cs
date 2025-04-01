@@ -558,6 +558,11 @@ namespace EPharmacy.Forms
                 dTPRefilExtra.Clear();
                 cboStatusParaGravar.SelectedValue = statusParaGravar;
 
+                if (refil1 != null)
+                {
+                    dTPRefil1.Text = refil1.ToString();
+                }
+
                 if (refil2 != null)
                 {
                     dTPRefil2.Text = refil2.ToString();
@@ -736,6 +741,15 @@ namespace EPharmacy.Forms
             cboBairro.SelectedValue = entidadeApoio.Bairro == null ? "0" : entidadeApoio.Bairro;
             cboZona.SelectedValue = entidadeApoio.Zona == null ? "0" : entidadeApoio.Zona;
             cboTipoReceita.SelectedValue = entidadeApoio.TipoReceitaId == null ? "0" : entidadeApoio.TipoReceitaId;
+
+            dTPRefil1.Clear();
+            dTPRefil2.Clear();
+            dTPRefil3.Clear();
+            dTPRefil4.Clear();
+            dTPRefil5.Clear();
+            dTPRefil6.Clear();
+            dTPRefilExtra.Clear();
+            cboStatusParaGravar.SelectedIndex = 0;
 
             btnPesquisar_Click(null, null);
 

@@ -71,7 +71,6 @@
             txtLogin.Name = "txtLogin";
             txtLogin.Size = new Size(152, 23);
             txtLogin.TabIndex = 2;
-            txtLogin.Text = "Adm";
             // 
             // txtSenha
             // 
@@ -79,7 +78,6 @@
             txtSenha.Name = "txtSenha";
             txtSenha.Size = new Size(152, 23);
             txtSenha.TabIndex = 3;
-            txtSenha.Text = "123";
             txtSenha.UseSystemPasswordChar = true;
             // 
             // lblLogin
