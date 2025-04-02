@@ -77,6 +77,7 @@
             dTPRefil5 = new MaskedTextBox();
             dTPRefil6 = new MaskedTextBox();
             dTPRefilExtra = new MaskedTextBox();
+            btnSalvar2 = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvLista).BeginInit();
             SuspendLayout();
             // 
@@ -121,6 +122,7 @@
             // 
             btnSalvar.Enabled = false;
             btnSalvar.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSalvar.ForeColor = Color.Red;
             btnSalvar.Location = new Point(963, 642);
             btnSalvar.Margin = new Padding(4, 3, 4, 3);
             btnSalvar.Name = "btnSalvar";
@@ -328,7 +330,7 @@
             label7.AutoSize = true;
             label7.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.FromArgb(128, 64, 0);
-            label7.Location = new Point(151, 56);
+            label7.Location = new Point(125, 56);
             label7.Margin = new Padding(4, 0, 4, 0);
             label7.Name = "label7";
             label7.Size = new Size(44, 13);
@@ -340,7 +342,7 @@
             label8.AutoSize = true;
             label8.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.Olive;
-            label8.Location = new Point(290, 56);
+            label8.Location = new Point(236, 56);
             label8.Margin = new Padding(4, 0, 4, 0);
             label8.Name = "label8";
             label8.Size = new Size(44, 13);
@@ -352,7 +354,7 @@
             label9.AutoSize = true;
             label9.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label9.ForeColor = Color.Green;
-            label9.Location = new Point(429, 56);
+            label9.Location = new Point(347, 56);
             label9.Margin = new Padding(4, 0, 4, 0);
             label9.Name = "label9";
             label9.Size = new Size(44, 13);
@@ -364,7 +366,7 @@
             label10.AutoSize = true;
             label10.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label10.ForeColor = Color.Teal;
-            label10.Location = new Point(569, 56);
+            label10.Location = new Point(457, 56);
             label10.Margin = new Padding(4, 0, 4, 0);
             label10.Name = "label10";
             label10.Size = new Size(44, 13);
@@ -376,7 +378,7 @@
             label11.AutoSize = true;
             label11.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label11.ForeColor = Color.Navy;
-            label11.Location = new Point(713, 56);
+            label11.Location = new Point(562, 56);
             label11.Margin = new Padding(4, 0, 4, 0);
             label11.Name = "label11";
             label11.Size = new Size(44, 13);
@@ -388,7 +390,7 @@
             label12.AutoSize = true;
             label12.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label12.ForeColor = Color.Purple;
-            label12.Location = new Point(858, 56);
+            label12.Location = new Point(679, 56);
             label12.Margin = new Padding(4, 0, 4, 0);
             label12.Name = "label12";
             label12.Size = new Size(66, 13);
@@ -403,6 +405,7 @@
             txtId.Name = "txtId";
             txtId.Size = new Size(38, 23);
             txtId.TabIndex = 87;
+            txtId.Visible = false;
             // 
             // chkMostrarIds
             // 
@@ -529,7 +532,7 @@
             // 
             cboStatusParaGravar.Enabled = false;
             cboStatusParaGravar.FormattingEnabled = true;
-            cboStatusParaGravar.Location = new Point(999, 68);
+            cboStatusParaGravar.Location = new Point(790, 69);
             cboStatusParaGravar.Margin = new Padding(4, 3, 4, 3);
             cboStatusParaGravar.Name = "cboStatusParaGravar";
             cboStatusParaGravar.Size = new Size(100, 23);
@@ -539,7 +542,7 @@
             // 
             label18.AutoSize = true;
             label18.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label18.Location = new Point(1001, 54);
+            label18.Location = new Point(792, 56);
             label18.Margin = new Padding(4, 0, 4, 0);
             label18.Name = "label18";
             label18.Size = new Size(43, 13);
@@ -558,7 +561,7 @@
             // 
             // dTPRefil2
             // 
-            dTPRefil2.Location = new Point(151, 68);
+            dTPRefil2.Location = new Point(125, 68);
             dTPRefil2.Mask = "00/00/0000";
             dTPRefil2.Name = "dTPRefil2";
             dTPRefil2.Size = new Size(106, 23);
@@ -568,7 +571,7 @@
             // 
             // dTPRefil3
             // 
-            dTPRefil3.Location = new Point(290, 69);
+            dTPRefil3.Location = new Point(236, 69);
             dTPRefil3.Mask = "00/00/0000";
             dTPRefil3.Name = "dTPRefil3";
             dTPRefil3.Size = new Size(106, 23);
@@ -578,7 +581,7 @@
             // 
             // dTPRefil4
             // 
-            dTPRefil4.Location = new Point(429, 69);
+            dTPRefil4.Location = new Point(347, 69);
             dTPRefil4.Mask = "00/00/0000";
             dTPRefil4.Name = "dTPRefil4";
             dTPRefil4.Size = new Size(106, 23);
@@ -588,7 +591,7 @@
             // 
             // dTPRefil5
             // 
-            dTPRefil5.Location = new Point(569, 69);
+            dTPRefil5.Location = new Point(457, 69);
             dTPRefil5.Mask = "00/00/0000";
             dTPRefil5.Name = "dTPRefil5";
             dTPRefil5.Size = new Size(106, 23);
@@ -598,7 +601,7 @@
             // 
             // dTPRefil6
             // 
-            dTPRefil6.Location = new Point(718, 69);
+            dTPRefil6.Location = new Point(567, 69);
             dTPRefil6.Mask = "00/00/0000";
             dTPRefil6.Name = "dTPRefil6";
             dTPRefil6.Size = new Size(106, 23);
@@ -607,7 +610,7 @@
             // 
             // dTPRefilExtra
             // 
-            dTPRefilExtra.Location = new Point(858, 69);
+            dTPRefilExtra.Location = new Point(679, 69);
             dTPRefilExtra.Mask = "00/00/0000";
             dTPRefilExtra.Name = "dTPRefilExtra";
             dTPRefilExtra.Size = new Size(106, 23);
@@ -615,12 +618,27 @@
             dTPRefilExtra.ValidatingType = typeof(DateTime);
             dTPRefilExtra.Leave += dTPRefilExtra_Leave;
             // 
+            // btnSalvar2
+            // 
+            btnSalvar2.Enabled = false;
+            btnSalvar2.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSalvar2.ForeColor = Color.Red;
+            btnSalvar2.Location = new Point(949, 65);
+            btnSalvar2.Margin = new Padding(4, 3, 4, 3);
+            btnSalvar2.Name = "btnSalvar2";
+            btnSalvar2.Size = new Size(110, 27);
+            btnSalvar2.TabIndex = 154;
+            btnSalvar2.Text = "Salvar";
+            btnSalvar2.UseVisualStyleBackColor = true;
+            btnSalvar2.Click += btnSalvar_Click;
+            // 
             // frmBaseCadastral
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FloralWhite;
             ClientSize = new Size(1355, 667);
+            Controls.Add(btnSalvar2);
             Controls.Add(dTPRefilExtra);
             Controls.Add(dTPRefil6);
             Controls.Add(dTPRefil5);
@@ -734,5 +752,6 @@
         private MaskedTextBox dTPRefil5;
         private MaskedTextBox dTPRefil6;
         private MaskedTextBox dTPRefilExtra;
+        private Button btnSalvar2;
     }
 }

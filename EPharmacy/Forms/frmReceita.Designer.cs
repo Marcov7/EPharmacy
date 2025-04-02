@@ -158,10 +158,10 @@
             // dgvLista
             // 
             dgvLista.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvLista.Location = new Point(22, 115);
+            dgvLista.Location = new Point(22, 75);
             dgvLista.Margin = new Padding(4, 3, 4, 3);
             dgvLista.Name = "dgvLista";
-            dgvLista.Size = new Size(1245, 137);
+            dgvLista.Size = new Size(1245, 152);
             dgvLista.TabIndex = 90;
             dgvLista.CellClick += dgvLista_CellClick;
             // 
@@ -193,6 +193,7 @@
             cboPaciente.Name = "cboPaciente";
             cboPaciente.Size = new Size(476, 23);
             cboPaciente.TabIndex = 97;
+            cboPaciente.SelectedIndexChanged += cboPaciente_SelectedIndexChanged;
             // 
             // label16
             // 
@@ -239,33 +240,36 @@
             // cboClinica
             // 
             cboClinica.Enabled = false;
-            cboClinica.Location = new Point(99, 68);
+            cboClinica.Location = new Point(87, 47);
             cboClinica.Margin = new Padding(4, 3, 4, 3);
             cboClinica.MaxLength = 255;
             cboClinica.Name = "cboClinica";
             cboClinica.Size = new Size(433, 23);
             cboClinica.TabIndex = 97;
+            cboClinica.Visible = false;
             // 
             // label10
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label10.Location = new Point(99, 52);
+            label10.Location = new Point(32, 51);
             label10.Margin = new Padding(4, 0, 4, 0);
             label10.Name = "label10";
             label10.Size = new Size(47, 13);
             label10.TabIndex = 98;
             label10.Text = "Clínica";
+            label10.Visible = false;
             // 
             // cboMedico
             // 
             cboMedico.Enabled = false;
-            cboMedico.Location = new Point(536, 68);
+            cboMedico.Location = new Point(587, 47);
             cboMedico.Margin = new Padding(4, 3, 4, 3);
             cboMedico.MaxLength = 255;
             cboMedico.Name = "cboMedico";
             cboMedico.Size = new Size(477, 23);
             cboMedico.TabIndex = 97;
+            cboMedico.Visible = false;
             // 
             // label1
             // 
@@ -277,6 +281,7 @@
             label1.Size = new Size(48, 13);
             label1.TabIndex = 98;
             label1.Text = "Médico";
+            label1.Visible = false;
             // 
             // panel1
             // 
@@ -303,7 +308,7 @@
             // 
             // dTPReceita
             // 
-            dTPReceita.Location = new Point(14, 68);
+            dTPReceita.Location = new Point(1131, 25);
             dTPReceita.Mask = "00/00/0000";
             dTPReceita.Name = "dTPReceita";
             dTPReceita.Size = new Size(80, 23);
@@ -380,7 +385,7 @@
             // 
             label14.AutoSize = true;
             label14.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label14.Location = new Point(12, 52);
+            label14.Location = new Point(1130, 9);
             label14.Margin = new Padding(4, 0, 4, 0);
             label14.Name = "label14";
             label14.Size = new Size(82, 13);
@@ -391,7 +396,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(14, 243);
+            label2.Location = new Point(14, 227);
             label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
             label2.Size = new Size(101, 13);
@@ -422,9 +427,9 @@
             panel2.Controls.Add(cboPeriodicidadeRefil);
             panel2.Controls.Add(txtQtddAnterior);
             panel2.Controls.Add(txtQtdd);
-            panel2.Location = new Point(11, 251);
+            panel2.Location = new Point(11, 235);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1245, 302);
+            panel2.Size = new Size(1245, 323);
             panel2.TabIndex = 101;
             // 
             // lblObs
@@ -477,7 +482,7 @@
             dGVReceitaItens.Location = new Point(18, 60);
             dGVReceitaItens.Margin = new Padding(4, 3, 4, 3);
             dGVReceitaItens.Name = "dGVReceitaItens";
-            dGVReceitaItens.Size = new Size(1212, 237);
+            dGVReceitaItens.Size = new Size(1212, 258);
             dGVReceitaItens.TabIndex = 90;
             dGVReceitaItens.CellContentClick += dGVReceitaItens_CellContentClick;
             // 

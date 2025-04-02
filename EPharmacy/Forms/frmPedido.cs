@@ -797,7 +797,7 @@ namespace EPharmacy.Forms
         {
             btnAdicionar_Click(null, null);
 
-            btnProximaLinha_Click();
+           // btnProximaLinha_Click();
         }
 
 

@@ -230,6 +230,7 @@ namespace EPharmacy.Forms
             btnNovo.Enabled = false;
             btnPesquisar.Enabled = true;
             btnSalvar.Enabled = false;
+            btnSalvar2.Enabled = false;
             btnLimpar.Enabled = true;
             btnSair.Enabled = true;
             btnExcluir.Enabled = false;
@@ -625,6 +626,7 @@ namespace EPharmacy.Forms
                 btnNovo.Enabled = false;
                 btnPesquisar.Enabled = true;
                 btnSalvar.Enabled = true;
+                btnSalvar2.Enabled = true;
                 btnLimpar.Enabled = true;
                 btnSair.Enabled = true;
                 btnExcluir.Enabled = false;
