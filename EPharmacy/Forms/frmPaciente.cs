@@ -144,7 +144,7 @@ namespace EPharmacy.Forms
             //dTPValidade.Value = DateTime.Now;
             cboConvenio.SelectedIndex = 0;
             txtAutorizacao.Clear();
-            chkAtivo.Checked = false;
+            chkAtivo.Checked = true;
 
             dgvLista.DataSource = null;
 
@@ -311,9 +311,9 @@ namespace EPharmacy.Forms
                 retorno += "Preencha o campo Zona\n";
             }
             DateTime? dataTemp = UtilitariosBLL.ConverterParaData(dTPDataPrimeiroAtendimento.Text.Trim());
-            if(dataTemp != null &&  dataTemp.Value.Year < 2023)
+            if(dataTemp != null &&  dataTemp.Value.Year < 2015)
             {
-                retorno += "Digite a Data Primeiro Atendimento maior que 2023\n";
+                retorno += "Digite a Data Primeiro Atendimento maior que 2015\n";
             }
             /*if (Utilitarios.limpaString(txtCelular.Text).Trim().IsNullOrEmpty())
             {
@@ -624,7 +624,7 @@ namespace EPharmacy.Forms
             cboConvenio.SelectedIndex = 0;
             txtAutorizacao.Clear();
             cboTipoEntrega.SelectedIndex = 0;
-            chkAtivo.Checked = false;
+            chkAtivo.Checked = true;
 
             dgvLista.DataSource = null;
 

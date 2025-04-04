@@ -78,6 +78,8 @@
             dTPRefil6 = new MaskedTextBox();
             dTPRefilExtra = new MaskedTextBox();
             btnSalvar2 = new Button();
+            label19 = new Label();
+            cboPeriodicidadeRefil = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)dgvLista).BeginInit();
             SuspendLayout();
             // 
@@ -623,14 +625,36 @@
             btnSalvar2.Enabled = false;
             btnSalvar2.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSalvar2.ForeColor = Color.Red;
-            btnSalvar2.Location = new Point(949, 65);
+            btnSalvar2.Location = new Point(1065, 66);
             btnSalvar2.Margin = new Padding(4, 3, 4, 3);
             btnSalvar2.Name = "btnSalvar2";
-            btnSalvar2.Size = new Size(110, 27);
+            btnSalvar2.Size = new Size(280, 27);
             btnSalvar2.TabIndex = 154;
             btnSalvar2.Text = "Salvar";
             btnSalvar2.UseVisualStyleBackColor = true;
             btnSalvar2.Click += btnSalvar_Click;
+            // 
+            // label19
+            // 
+            label19.AutoSize = true;
+            label19.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label19.Location = new Point(895, 55);
+            label19.Margin = new Padding(4, 0, 4, 0);
+            label19.Name = "label19";
+            label19.Size = new Size(84, 13);
+            label19.TabIndex = 156;
+            label19.Text = "Periodicidade";
+            // 
+            // cboPeriodicidadeRefil
+            // 
+            cboPeriodicidadeRefil.Enabled = false;
+            cboPeriodicidadeRefil.Location = new Point(896, 69);
+            cboPeriodicidadeRefil.Margin = new Padding(4, 3, 4, 3);
+            cboPeriodicidadeRefil.MaxLength = 255;
+            cboPeriodicidadeRefil.Name = "cboPeriodicidadeRefil";
+            cboPeriodicidadeRefil.Size = new Size(138, 23);
+            cboPeriodicidadeRefil.TabIndex = 155;
+            cboPeriodicidadeRefil.SelectedIndexChanged += cboPeriodicidadeRefil_SelectedIndexChanged;
             // 
             // frmBaseCadastral
             // 
@@ -638,6 +662,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FloralWhite;
             ClientSize = new Size(1355, 667);
+            Controls.Add(label19);
+            Controls.Add(cboPeriodicidadeRefil);
             Controls.Add(btnSalvar2);
             Controls.Add(dTPRefilExtra);
             Controls.Add(dTPRefil6);
@@ -753,5 +779,7 @@
         private MaskedTextBox dTPRefil6;
         private MaskedTextBox dTPRefilExtra;
         private Button btnSalvar2;
+        private Label label19;
+        private ComboBox cboPeriodicidadeRefil;
     }
 }

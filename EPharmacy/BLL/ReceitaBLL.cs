@@ -316,21 +316,26 @@ namespace EPharmacy.BLL
                                           Produto = m.Produto,
                                           Qtdd = ri.Qtdd,
                                           Real = receitaItemEntrega.Real.Value != null ? receitaItemEntrega.Real.Value : (int?)null,
-    
+
+                                          PrecoAcordado = mp.PrecoAcordado,
+                                          Total = $"{ri.Qtdd.Value * mp.PrecoAcordado:F2}",
                                           NotaFiscal = receitaItemEntrega.NumNotaFiscal,             
                                           StatusEntregaId = receitaItemEntrega.StatusEntregaId != null ? receitaItemEntrega.StatusEntregaId : (int?)null,
                                           StatusEntrega = sen.Descricao,     
                                           Lote = receitaItemEntrega.NumLote,
+                                         
                                           Obs = ri.Obs,
                                           PeriodicidadeId = ri.PeriodicidadeRefilId,
                                           Periodicidade = pe.Descricao,
                                           TipoReceitaId = m.TipoReceitaId,
                                           TipoReceita = tr.Descricao,
+
                                           Celular = pc.Celular,
                                           Telefone = pc.Telefone,
                                           Logradouro = pc.Logradouro,
                                           Numero = pc.Numero,
                                           Bairro = pc.Bairro,
+                                          Municipio = pc.Municipio,
                                           CEP = pc.CEP,
 
                                           RefilId = refi.Id != null ? refi.Id : (int?)null,
@@ -345,10 +350,10 @@ namespace EPharmacy.BLL
                                           FabricanteId = m.FabricanteId,
                                           SubstanciaId = m.SubstanciaId,
                                           MedicamentoPrecoId = mp.Id,*/
-                                          PrecoAcordado = mp.PrecoAcordado,
+                             
                                           //Total = ri.Qtdd.Value* mp.PrecoAcordado,
                                           //Total = Math.Round(ri.Qtdd.Value * mp.PrecoAcordado, 2),
-                                          Total = $"{ri.Qtdd.Value * mp.PrecoAcordado:F2}",
+                                   
                                    
                                           ReceitaDescricao = re.Descricao,
                                           DataReceitaAnterior = ri.DataReceitaAnterior,

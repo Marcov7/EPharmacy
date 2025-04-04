@@ -173,12 +173,13 @@ namespace EPharmacy.Forms
             dgvLista.Columns["Substancia"].Visible = chkMostrarIds.Checked;
             dgvLista.Columns["Fabricante"].Visible = chkMostrarIds.Checked;
             dgvLista.Columns["Telefone"].Visible = chkMostrarIds.Checked;
-            dgvLista.Columns["Telefone"].Visible = chkMostrarIds.Checked;
-            dgvLista.Columns["Telefone"].Visible = chkMostrarIds.Checked;
-            dgvLista.Columns["Telefone"].Visible = chkMostrarIds.Checked;
-            dgvLista.Columns["Telefone"].Visible = chkMostrarIds.Checked;
-
-
+            dgvLista.Columns["Autorizacao"].Visible = chkMostrarIds.Checked;
+            dgvLista.Columns["Refil"].Visible = chkMostrarIds.Checked;
+            dgvLista.Columns["Status"].Visible = chkMostrarIds.Checked;
+            dgvLista.Columns["DataInclusaoConvenio"].Visible = chkMostrarIds.Checked;
+            dgvLista.Columns["DataReceitaAnterior"].Visible = chkMostrarIds.Checked;
+            dgvLista.Columns["DataReceita"].Visible = chkMostrarIds.Checked;
+         
             HighlightRowsByNameChange();
 
             btnExportar.Enabled = true;

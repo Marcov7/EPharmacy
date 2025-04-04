@@ -207,6 +207,7 @@ namespace EPharmacy.Forms
             dTPRefil6.Clear();
             dTPRefilExtra.Clear();
             cboStatusParaGravar.SelectedIndex = 0;
+            cboPeriodicidadeRefil.SelectedIndex = 0;
 
             dgvLista.DataSource = null;
 
@@ -243,7 +244,7 @@ namespace EPharmacy.Forms
             var paciente = _context.Paciente.OrderBy(p => p.Nome).ToList();
             Paciente c = new Paciente();
             c.Id = 0;
-            c.Nome = "<Selecione uma opção>";
+            c.Nome = "<Selecione>";
             paciente.Insert(0, c);
             cboPaciente.DataSource = paciente.ToList();
             cboPaciente.DisplayMember = "Nome";
@@ -252,7 +253,7 @@ namespace EPharmacy.Forms
             var convenio = _context.Convenio.OrderBy(p => p.Descricao).ToList();
             Convenio f = new Convenio();
             f.Id = 0;
-            f.Descricao = "<Selecione uma opção>";
+            f.Descricao = "<Selecione>";
             convenio.Insert(0, f);
             cboConvenio.DataSource = convenio.ToList();
             cboConvenio.DisplayMember = "Descricao";
@@ -261,7 +262,7 @@ namespace EPharmacy.Forms
             var status = _context.Status.OrderBy(p => p.Descricao).ToList();
             Status st = new Status();
             st.Id = 0;
-            st.Descricao = "<Selecione uma opção>";
+            st.Descricao = "<Selecione>";
             status.Insert(0, st);
             cboStatus.DataSource = status.ToList();
             cboStatus.DisplayMember = "Descricao";
@@ -270,16 +271,25 @@ namespace EPharmacy.Forms
             var statusParaGravar = _context.Status.OrderBy(p => p.Descricao).ToList();
             Status stpg = new Status();
             stpg.Id = 0;
-            stpg.Descricao = "<Selecione uma opção>";
+            stpg.Descricao = "<Selecione>";
             statusParaGravar.Insert(0, stpg);
             cboStatusParaGravar.DataSource = statusParaGravar.ToList();
             cboStatusParaGravar.DisplayMember = "Descricao";
             cboStatusParaGravar.ValueMember = "Id";
 
+            var periodicidadeRefil = _context.PeriodicidadeRefil.OrderBy(p => p.Descricao).ToList();
+            PeriodicidadeRefil p = new PeriodicidadeRefil();
+            p.Id = 0;
+            p.Descricao = "<Selecione>";
+            periodicidadeRefil.Insert(0, p);
+            cboPeriodicidadeRefil.DataSource = periodicidadeRefil.ToList();
+            cboPeriodicidadeRefil.DisplayMember = "Descricao";
+            cboPeriodicidadeRefil.ValueMember = "Id";
+
             var medicamento = _context.Medicamento.OrderBy(p => p.Produto).ToList();
             Medicamento md = new Medicamento();
             md.Id = 0;
-            md.Produto = "<Selecione uma opção>";
+            md.Produto = "<Selecione>";
             medicamento.Insert(0, md);
             cboMedicamento.DataSource = medicamento.ToList();
             cboMedicamento.DisplayMember = "Produto";
@@ -288,7 +298,7 @@ namespace EPharmacy.Forms
             var bairroZona = _context.BairroZona.OrderBy(p => p.Bairro).Distinct().ToList();
             BairroZona bz = new BairroZona();
             //bz.Id = 0;
-            bz.Bairro = "<Selecione uma opção>";
+            bz.Bairro = "<Selecione>";
             bairroZona.Insert(0, bz);
             cboBairro.DataSource = bairroZona.ToList();
             cboBairro.DisplayMember = "Bairro";
@@ -302,7 +312,7 @@ namespace EPharmacy.Forms
                    .ToList();
 
             BairroZona bzz = new BairroZona();
-            bzz.Zona = "<Selecione uma opção>";
+            bzz.Zona = "<Selecione>";
 
             // Criando uma lista de BairroZona que inclui a opção inicial
             var listaZona = new List<BairroZona> { bzz };
@@ -324,7 +334,7 @@ namespace EPharmacy.Forms
             var tipoReceita = _context.TipoReceita.OrderBy(p => p.Descricao).ToList();
             TipoReceita tr = new TipoReceita();
             tr.Id = 0;
-            tr.Descricao = "<Selecione uma opção>";
+            tr.Descricao = "<Selecione>";
             tipoReceita.Insert(0, tr);
             cboTipoReceita.DataSource = tipoReceita.ToList();
             cboTipoReceita.DisplayMember = "Descricao";
@@ -483,6 +493,7 @@ namespace EPharmacy.Forms
                 var refil6Cell = row.Cells["Refil6"];
                 var refilExtraCell = row.Cells["RefilExtra"];
                 var statusParaGravarIdCell = row.Cells["StatusId"];
+                var periodicidadeParaGravarIdCell = row.Cells["PeriodicidadeId"];
                 var periodicidadeCell = (row.Cells["Periodicidade"]);
 
                 int? Id = Convert.ToInt32(IdCell.Value);
@@ -506,6 +517,8 @@ namespace EPharmacy.Forms
                 DateTime? refil6 = refil6Cell.Value == null ? null : Convert.ToDateTime(refil6Cell.Value);
                 DateTime? refilExtra = refilExtraCell.Value == null ? null : Convert.ToDateTime(refilExtraCell.Value);
                 int? statusParaGravar = Convert.ToInt32(statusParaGravarIdCell.Value);
+                int? periodicidadeParaGravarId = Convert.ToInt32(periodicidadeParaGravarIdCell.Value);
+
                 periodicidade = periodicidadeCell.Value.ToString();
 
                 entidadeApoio = new EntidadeApoio();
@@ -558,6 +571,7 @@ namespace EPharmacy.Forms
                 dTPRefil6.Clear();
                 dTPRefilExtra.Clear();
                 cboStatusParaGravar.SelectedValue = statusParaGravar;
+                cboPeriodicidadeRefil.SelectedValue = periodicidadeParaGravarId;
 
                 if (refil1 != null)
                 {
@@ -621,6 +635,7 @@ namespace EPharmacy.Forms
                 dTPRefil6.Enabled = true;
                 dTPRefilExtra.Enabled = true;
                 cboStatusParaGravar.Enabled = true;
+                cboPeriodicidadeRefil.Enabled = true;
 
                 btnExportar.Enabled = true;
                 btnNovo.Enabled = false;
@@ -677,6 +692,11 @@ namespace EPharmacy.Forms
             }
             */
 
+            if (cboPeriodicidadeRefil.SelectedIndex == -1 || cboPeriodicidadeRefil.SelectedValue.ToString() == "0")
+            {
+                retorno += "Selecione o campo Periodicidade do Refil\n";
+            }
+
             if (cboStatusParaGravar.SelectedIndex == 0)
             {
                 retorno += "Preencha o campo Status\n";
@@ -696,7 +716,7 @@ namespace EPharmacy.Forms
             DateTime? refil5_ = null;
             DateTime? refil6_ = null;
             DateTime? refilExtra_ = null;
- 
+
             if (!UtilitariosBLL.limpaString2(dTPRefil2.Text).IsNullOrEmpty()) refil2_ = UtilitariosBLL.ConverterParaData(dTPRefil2.Text);
             if (!UtilitariosBLL.limpaString2(dTPRefil3.Text).IsNullOrEmpty()) refil3_ = UtilitariosBLL.ConverterParaData(dTPRefil3.Text);
             if (!UtilitariosBLL.limpaString2(dTPRefil4.Text).IsNullOrEmpty()) refil4_ = UtilitariosBLL.ConverterParaData(dTPRefil4.Text);
@@ -704,6 +724,8 @@ namespace EPharmacy.Forms
             if (!UtilitariosBLL.limpaString2(dTPRefil6.Text).IsNullOrEmpty()) refil6_ = UtilitariosBLL.ConverterParaData(dTPRefil6.Text);
             if (!UtilitariosBLL.limpaString2(dTPRefilExtra.Text).IsNullOrEmpty()) refilExtra_ = UtilitariosBLL.ConverterParaData(dTPRefilExtra.Text);
             int statatusParaGravar_ = Convert.ToInt32(cboStatusParaGravar.SelectedValue);
+            int periodicdadeParaGravar = Convert.ToInt32(cboPeriodicidadeRefil.SelectedValue);
+
 
             var entityUpdate = new ReceitaItens();
 
@@ -718,6 +740,7 @@ namespace EPharmacy.Forms
             entityUpdate.Refil6 = refil6_;
             entityUpdate.RefilExtra = refilExtra_;
             entityUpdate.StatusId = statatusParaGravar_;
+            entityUpdate.PeriodicidadeRefilId = periodicdadeParaGravar;
             entityUpdate.DataCadastro = DateTime.Now;
             entityUpdate.Usuario = GlobalVariables.LoginId;
 
@@ -752,6 +775,7 @@ namespace EPharmacy.Forms
             dTPRefil6.Clear();
             dTPRefilExtra.Clear();
             cboStatusParaGravar.SelectedIndex = 0;
+            cboPeriodicidadeRefil.SelectedIndex = 0;
 
             btnPesquisar_Click(null, null);
 
@@ -790,7 +814,7 @@ namespace EPharmacy.Forms
         {
             if (UtilitariosBLL.limpaString2(dTPRefil1.Text.Trim()).IsNullOrEmpty()) return;
             string userInput = dTPRefil1.Text;
-            if (DateTime.TryParse(userInput, out DateTime parsedDate) && (parsedDate.Year > 2023 && parsedDate.Year < 2040)) {}
+            if (DateTime.TryParse(userInput, out DateTime parsedDate) && (parsedDate.Year > 2023 && parsedDate.Year < 2040)) { }
             else
             {
                 MessageBox.Show("Digite uma Data dTPRefil1 válida.", "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -801,8 +825,8 @@ namespace EPharmacy.Forms
             double dblperiodicidade = Convert.ToDouble(periodicidade);
             if ("25,27,28,30,56,60,90,120".Contains(dblperiodicidade.ToString()))
             {
-               dTPRefil2.Text = UtilitariosBLL.ConverterParaData(dTPRefil1.Text).Value.AddDays(dblperiodicidade).ToString();
-               dTPRefil2_Leave(null, null);
+                dTPRefil2.Text = UtilitariosBLL.ConverterParaData(dTPRefil1.Text).Value.AddDays(dblperiodicidade).ToString();
+                dTPRefil2_Leave(null, null);
             }
         }
 
@@ -832,7 +856,7 @@ namespace EPharmacy.Forms
         {
             if (UtilitariosBLL.limpaString2(dTPRefil2.Text.Trim()).IsNullOrEmpty()) return;
             string userInput = dTPRefil2.Text;
-            if (DateTime.TryParse(userInput, out DateTime parsedDate) && (parsedDate.Year > 2023 && parsedDate.Year < 2040)) {}
+            if (DateTime.TryParse(userInput, out DateTime parsedDate) && (parsedDate.Year > 2023 && parsedDate.Year < 2040)) { }
             else
             {
                 MessageBox.Show("Digite uma Data dTPRefil2 válida.", "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -871,7 +895,7 @@ namespace EPharmacy.Forms
         {
             if (UtilitariosBLL.limpaString2(dTPRefil3.Text.Trim()).IsNullOrEmpty()) return;
             string userInput = dTPRefil3.Text;
-            if (DateTime.TryParse(userInput, out DateTime parsedDate) && (parsedDate.Year > 2023 && parsedDate.Year < 2040)) {}
+            if (DateTime.TryParse(userInput, out DateTime parsedDate) && (parsedDate.Year > 2023 && parsedDate.Year < 2040)) { }
             else
             {
                 MessageBox.Show("Digite uma Data dTPRefil3 válida.", "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -907,7 +931,7 @@ namespace EPharmacy.Forms
         {
             if (UtilitariosBLL.limpaString2(dTPRefil4.Text.Trim()).IsNullOrEmpty()) return;
             string userInput = dTPRefil4.Text;
-            if (DateTime.TryParse(userInput, out DateTime parsedDate) && (parsedDate.Year > 2023 && parsedDate.Year < 2040)) {}
+            if (DateTime.TryParse(userInput, out DateTime parsedDate) && (parsedDate.Year > 2023 && parsedDate.Year < 2040)) { }
             else
             {
                 MessageBox.Show("Digite uma Data dTPRefil4 válida.", "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -940,7 +964,7 @@ namespace EPharmacy.Forms
         {
             if (UtilitariosBLL.limpaString2(dTPRefil5.Text.Trim()).IsNullOrEmpty()) return;
             string userInput = dTPRefil5.Text;
-            if (DateTime.TryParse(userInput, out DateTime parsedDate) && (parsedDate.Year > 2023 && parsedDate.Year < 2040)) {}
+            if (DateTime.TryParse(userInput, out DateTime parsedDate) && (parsedDate.Year > 2023 && parsedDate.Year < 2040)) { }
             else
             {
                 MessageBox.Show("Digite uma Data dTPRefil5 válida.", "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -960,7 +984,7 @@ namespace EPharmacy.Forms
         {
             if (UtilitariosBLL.limpaString2(dTPRefil6.Text.Trim()).IsNullOrEmpty()) return;
             string userInput = dTPRefil6.Text;
-            if (DateTime.TryParse(userInput, out DateTime parsedDate) && (parsedDate.Year > 2023 && parsedDate.Year < 2040)) {}
+            if (DateTime.TryParse(userInput, out DateTime parsedDate) && (parsedDate.Year > 2023 && parsedDate.Year < 2040)) { }
             else
             {
                 MessageBox.Show("Digite uma Data dTPRefil6 válida.", "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -982,7 +1006,7 @@ namespace EPharmacy.Forms
         {
             if (UtilitariosBLL.limpaString2(dTPRefilExtra.Text.Trim()).IsNullOrEmpty()) return;
             string userInput = dTPRefilExtra.Text;
-            if (DateTime.TryParse(userInput, out DateTime parsedDate) && (parsedDate.Year > 2023 && parsedDate.Year < 2040)) {}
+            if (DateTime.TryParse(userInput, out DateTime parsedDate) && (parsedDate.Year > 2023 && parsedDate.Year < 2040)) { }
             else
             {
                 MessageBox.Show("Digite uma Data dTPRefilExtra válida.", "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -1019,6 +1043,22 @@ namespace EPharmacy.Forms
 
         }
 
+        private void cboPeriodicidadeRefil_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboPeriodicidadeRefil.SelectedIndex > 0)
+            {
+                //dTPRefil1.Clear();
+                dTPRefil2.Clear();
+                dTPRefil3.Clear();
+                dTPRefil4.Clear();
+                dTPRefil5.Clear();
+                dTPRefil6.Clear();
+                dTPRefilExtra.Clear();
 
+                periodicidade = cboPeriodicidadeRefil.Text;
+                dTPRefil1_Leave(null, null);
+
+            }
+        }
     }
 }

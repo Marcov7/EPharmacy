@@ -47,13 +47,13 @@
             // 
             // lblVersao
             // 
-            lblVersao.AutoSize = true;
             lblVersao.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblVersao.Location = new Point(119, 482);
+            lblVersao.Location = new Point(157, 482);
             lblVersao.Name = "lblVersao";
-            lblVersao.Size = new Size(58, 19);
+            lblVersao.Size = new Size(483, 19);
             lblVersao.TabIndex = 6;
             lblVersao.Text = "Versão ";
+            lblVersao.TextAlign = ContentAlignment.TopCenter;
             // 
             // imageList1
             // 
