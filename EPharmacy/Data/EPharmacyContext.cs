@@ -33,7 +33,7 @@ namespace EPharmacy.Data
         public DbSet<ReceitaItensEntrega> ReceitaItensEntrega { get; set; }
         public DbSet<Refil> Refil { get; set; }
         public DbSet<Perfil> Perfil { get; set; }
-
+        public DbSet<Ncm> Ncm { get; set; }
         public EPharmacyContext(DbContextOptions<EPharmacyContext> options) : base(options) { }
 
 

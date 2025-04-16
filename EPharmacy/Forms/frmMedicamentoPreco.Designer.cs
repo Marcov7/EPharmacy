@@ -53,10 +53,7 @@
             txtUnidadesCaixa = new MaskedTextBox();
             label8 = new Label();
             txtPrecoUnitario = new NumericUpDown();
-            label9 = new Label();
-            numericUpDown2 = new NumericUpDown();
             btnCalcularPrecounitario = new Button();
-            maskedTextBox1 = new MaskedTextBox();
             label10 = new Label();
             chkAumentaLarguraColunasGrid = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)dgvMedicamentos).BeginInit();
@@ -64,7 +61,6 @@
             ((System.ComponentModel.ISupportInitialize)txtPMCBrasindice).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtPrecoAcordo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtPrecoUnitario).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
             SuspendLayout();
             // 
             // btnNovo
@@ -119,10 +115,10 @@
             // dgvMedicamentos
             // 
             dgvMedicamentos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvMedicamentos.Location = new Point(26, 142);
+            dgvMedicamentos.Location = new Point(14, 142);
             dgvMedicamentos.Margin = new Padding(4, 3, 4, 3);
             dgvMedicamentos.Name = "dgvMedicamentos";
-            dgvMedicamentos.Size = new Size(1168, 410);
+            dgvMedicamentos.Size = new Size(1180, 410);
             dgvMedicamentos.TabIndex = 19;
             dgvMedicamentos.CellClick += dgvMedicamentos_CellClick;
             // 
@@ -301,7 +297,7 @@
             // 
             // txtUnidadesCaixa
             // 
-            txtUnidadesCaixa.Location = new Point(790, 115);
+            txtUnidadesCaixa.Location = new Point(785, 115);
             txtUnidadesCaixa.Margin = new Padding(4, 3, 4, 3);
             txtUnidadesCaixa.Mask = "000";
             txtUnidadesCaixa.Name = "txtUnidadesCaixa";
@@ -312,7 +308,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.Location = new Point(849, 101);
+            label8.Location = new Point(844, 101);
             label8.Margin = new Padding(4, 0, 4, 0);
             label8.Name = "label8";
             label8.Size = new Size(88, 13);
@@ -323,36 +319,16 @@
             // 
             txtPrecoUnitario.DecimalPlaces = 2;
             txtPrecoUnitario.Enabled = false;
-            txtPrecoUnitario.Location = new Point(846, 116);
+            txtPrecoUnitario.Location = new Point(841, 116);
             txtPrecoUnitario.Name = "txtPrecoUnitario";
             txtPrecoUnitario.Size = new Size(217, 23);
             txtPrecoUnitario.TabIndex = 30;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label9.Location = new Point(1315, 100);
-            label9.Margin = new Padding(4, 0, 4, 0);
-            label9.Name = "label9";
-            label9.Size = new Size(82, 13);
-            label9.TabIndex = 15;
-            label9.Text = "Acordo (15%)";
-            // 
-            // numericUpDown2
-            // 
-            numericUpDown2.DecimalPlaces = 2;
-            numericUpDown2.Enabled = false;
-            numericUpDown2.Location = new Point(1312, 115);
-            numericUpDown2.Name = "numericUpDown2";
-            numericUpDown2.Size = new Size(217, 23);
-            numericUpDown2.TabIndex = 30;
             // 
             // btnCalcularPrecounitario
             // 
             btnCalcularPrecounitario.Font = new Font("Segoe UI", 7F, FontStyle.Bold);
             btnCalcularPrecounitario.ForeColor = Color.DarkGreen;
-            btnCalcularPrecounitario.Location = new Point(1066, 114);
+            btnCalcularPrecounitario.Location = new Point(1061, 114);
             btnCalcularPrecounitario.Name = "btnCalcularPrecounitario";
             btnCalcularPrecounitario.Size = new Size(128, 23);
             btnCalcularPrecounitario.TabIndex = 100;
@@ -360,20 +336,11 @@
             btnCalcularPrecounitario.UseVisualStyleBackColor = true;
             btnCalcularPrecounitario.Click += bntCalcularPrecounitario_Click;
             // 
-            // maskedTextBox1
-            // 
-            maskedTextBox1.Location = new Point(1267, 114);
-            maskedTextBox1.Margin = new Padding(4, 3, 4, 3);
-            maskedTextBox1.Mask = "000";
-            maskedTextBox1.Name = "maskedTextBox1";
-            maskedTextBox1.Size = new Size(41, 23);
-            maskedTextBox1.TabIndex = 101;
-            // 
             // label10
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label10.Location = new Point(790, 101);
+            label10.Location = new Point(785, 101);
             label10.Margin = new Padding(4, 0, 4, 0);
             label10.Name = "label10";
             label10.Size = new Size(52, 13);
@@ -387,7 +354,7 @@
             chkAumentaLarguraColunasGrid.CheckState = CheckState.Checked;
             chkAumentaLarguraColunasGrid.Location = new Point(25, 574);
             chkAumentaLarguraColunasGrid.Name = "chkAumentaLarguraColunasGrid";
-            chkAumentaLarguraColunasGrid.Size = new Size(183, 19);
+            chkAumentaLarguraColunasGrid.Size = new Size(184, 19);
             chkAumentaLarguraColunasGrid.TabIndex = 154;
             chkAumentaLarguraColunasGrid.Text = "Largura do Tamanho do Dado";
             chkAumentaLarguraColunasGrid.UseVisualStyleBackColor = true;
@@ -397,12 +364,10 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1217, 600);
+            ClientSize = new Size(1328, 600);
             Controls.Add(chkAumentaLarguraColunasGrid);
-            Controls.Add(maskedTextBox1);
             Controls.Add(btnCalcularPrecounitario);
             Controls.Add(txtUnidadesCaixa);
-            Controls.Add(numericUpDown2);
             Controls.Add(btnCalcular);
             Controls.Add(txtPrecoUnitario);
             Controls.Add(txtPrecoAcordo);
@@ -420,7 +385,6 @@
             Controls.Add(btnSalvar);
             Controls.Add(btnLimpar);
             Controls.Add(btnSair);
-            Controls.Add(label9);
             Controls.Add(dgvMedicamentos);
             Controls.Add(label10);
             Controls.Add(label8);
@@ -438,7 +402,6 @@
             ((System.ComponentModel.ISupportInitialize)txtPMCBrasindice).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtPrecoAcordo).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtPrecoUnitario).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -476,10 +439,7 @@
         private MaskedTextBox txtUnidadesCaixa;
         private Label label8;
         private NumericUpDown txtPrecoUnitario;
-        private Label label9;
-        private NumericUpDown numericUpDown2;
         private Button btnCalcularPrecounitario;
-        private MaskedTextBox maskedTextBox1;
         private Label label10;
         private CheckBox chkAumentaLarguraColunasGrid;
     }

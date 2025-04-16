@@ -30,7 +30,7 @@ namespace ControleEntregada.Forms
             var classeTerapeutica = _context.ClasseTerapeutica.OrderBy(p => p.Descricao).ToList();
             ClasseTerapeutica c = new ClasseTerapeutica();
             c.Id = 0;
-            c.Descricao = "<Selecione uma opção>";
+            c.Descricao = "<Selecione>";
             classeTerapeutica.Insert(0, c);
             cboClasseTerapeutica.DataSource = classeTerapeutica.ToList();
             cboClasseTerapeutica.DisplayMember = "Descricao";
@@ -39,7 +39,7 @@ namespace ControleEntregada.Forms
             var tipoReceita = _context.TipoReceita.OrderBy(p => p.Descricao).ToList();
             TipoReceita t = new TipoReceita();
             t.Id = 0;
-            t.Descricao = "<Selecione uma opção>";
+            t.Descricao = "<Selecione>";
             tipoReceita.Insert(0, t);
             cboTipoReceita.DataSource = tipoReceita.ToList();
             cboTipoReceita.DisplayMember = "Descricao";
@@ -48,7 +48,7 @@ namespace ControleEntregada.Forms
             var substancia = _context.Substancia.OrderBy(p => p.Descricao).ToList();
             Substancia s = new Substancia();
             s.Id = 0;
-            s.Descricao = "<Selecione uma opção>";
+            s.Descricao = "<Selecione>";
             substancia.Insert(0, s);
             cboSubstancia.DataSource = substancia.ToList();
             cboSubstancia.DisplayMember = "Descricao";
@@ -57,11 +57,46 @@ namespace ControleEntregada.Forms
             var fabricante = _context.Fabricante.OrderBy(p => p.Descricao).ToList();
             Fabricante f = new Fabricante();
             f.Id = 0;
-            f.Descricao = "<Selecione uma opção>";
+            f.Descricao = "<Selecione>";
             fabricante.Insert(0, f);
             cboFabricante.DataSource = fabricante.ToList();
             cboFabricante.DisplayMember = "Descricao";
             cboFabricante.ValueMember = "Id";
+
+
+
+            var ncm = _context.Ncm.OrderBy(p => p.Descricao).ToList();
+            Ncm nc = new Ncm();
+            nc.Id = 0;
+            nc.Descricao = "<Selecione>";
+            ncm.Insert(0, nc);
+            cboNcm.DataSource = ncm.ToList();
+            cboNcm.DisplayMember = "Descricao";
+            cboNcm.ValueMember = "Id";
+
+
+
+            var lista = new List<Lista>
+            {
+                new Lista { Id = 0, Descricao = "Selecione" },
+                new Lista { Id = 1, Descricao = "Positiva" },
+                new Lista { Id = 2, Descricao = "Negativa" },
+                new Lista { Id = 3, Descricao = "Neutra" },
+            };
+            cboLista.DataSource = lista;
+            cboLista.DisplayMember = "Descricao";  // o que aparece
+            cboLista.ValueMember = "Id";  // o valor associado
+
+
+            var regime = new List<Regime>
+            {
+                new Regime { Id = 0, Descricao = "Selecione" },
+                new Regime { Id = 1, Descricao = "Monitorado " },
+                new Regime { Id = 2, Descricao = "Liberado" },
+            };
+            cboRegime.DataSource = regime;
+            cboRegime.DisplayMember = "Descricao";  // o que aparece
+            cboRegime.ValueMember = "Id";  // o valor associado
             // FIM
 
             // Adiciona uma coluna de botões ao DataGridView
@@ -122,6 +157,11 @@ namespace ControleEntregada.Forms
             cboTipoReceita.SelectedIndex = 0;
             cboSubstancia.SelectedIndex = 0;
             cboFabricante.SelectedIndex = 0;
+
+            cboNcm.SelectedIndex = 0;
+            cboLista.SelectedIndex = 0;
+            cboRegime.SelectedIndex = 0;
+
             dgvMedicamentos.DataSource = null;
 
             txtId.Enabled = false;
@@ -131,6 +171,11 @@ namespace ControleEntregada.Forms
             cboTipoReceita.Enabled = true;
             cboSubstancia.Enabled = true;
             cboFabricante.Enabled = true;
+
+            cboNcm.Enabled = true;
+            cboLista.Enabled = true;
+            cboRegime.Enabled = true;
+
             dgvMedicamentos.Enabled = false;
 
             btnNovo.Enabled = false;
@@ -197,6 +242,10 @@ namespace ControleEntregada.Forms
             int Fabricante_ = Convert.ToInt32(cboFabricante.SelectedValue);
             string TUSS_ = txtTUSS.Text;
 
+            int NcmId_ = Convert.ToInt32(cboNcm.SelectedValue);
+            int ListaId_ = Convert.ToInt32(cboLista.SelectedValue);
+            int RegimeId_ = Convert.ToInt32(cboRegime.SelectedValue);
+
             var medicamentoNew = new Medicamento();
             var medicamentoUpdate = new Medicamento();
 
@@ -211,6 +260,11 @@ namespace ControleEntregada.Forms
                     SubstanciaId = Substancia_,
                     FabricanteId = Fabricante_,
                     TUSS = TUSS_,
+
+                    NcmId = NcmId_== 0 ? null : NcmId_, 
+                    ListaId = ListaId_ == 0 ? null : ListaId_,
+                    RegimeId = RegimeId_ == 0 ? null : RegimeId_,
+
                     DataCadastro = DateTime.Now.Date,
                     Usuario = GlobalVariables.LoginId,
                 };
@@ -238,6 +292,11 @@ namespace ControleEntregada.Forms
                 medicamentoUpdate.SubstanciaId = Substancia_;
                 medicamentoUpdate.FabricanteId = Fabricante_;
                 medicamentoUpdate.TUSS = TUSS_;
+
+                medicamentoUpdate.NcmId = NcmId_ == 0 ? null : NcmId_;
+                medicamentoUpdate.ListaId = ListaId_ == 0 ? null : ListaId_;
+                medicamentoUpdate.RegimeId = RegimeId_ == 0 ? null : RegimeId_;
+
                 medicamentoUpdate.DataCadastro = DateTime.Now;
                 medicamentoUpdate.Usuario = GlobalVariables.LoginId;
 
@@ -294,6 +353,11 @@ namespace ControleEntregada.Forms
             cboSubstancia.SelectedIndex = 0;
             cboFabricante.SelectedIndex = 0;
             txtTUSS.Clear();
+
+            cboNcm.SelectedIndex = 0;
+            cboLista.SelectedIndex = 0;
+            cboRegime.SelectedIndex = 0;
+
             dgvMedicamentos.DataSource = null;
 
             txtId.Enabled = true;
@@ -304,6 +368,11 @@ namespace ControleEntregada.Forms
             cboSubstancia.Enabled = true;
             cboFabricante.Enabled = true;
             txtTUSS.Enabled = true;
+
+            cboNcm.Enabled = true;
+            cboLista.Enabled = true;
+            cboRegime.Enabled = true;
+
             dgvMedicamentos.Enabled = true;
 
             btnNovo.Enabled = true;
@@ -324,6 +393,10 @@ namespace ControleEntregada.Forms
             int? TipoReceita_ = cboTipoReceita.SelectedIndex > 0 ? Convert.ToInt32(cboTipoReceita.SelectedValue) : null;
             int? Substancia_ = cboSubstancia.SelectedIndex > 0 ? Convert.ToInt32(cboSubstancia.SelectedValue) : null;
             int? Fabricante_ = cboFabricante.SelectedIndex > 0 ? Convert.ToInt32(cboFabricante.SelectedValue) : null;
+
+            int? ncmId_ = cboNcm.SelectedIndex > 0 ? Convert.ToInt32(cboNcm.SelectedValue) : null;
+            int? listaId_ = cboLista.SelectedIndex > 0 ? Convert.ToInt32(cboLista.SelectedValue) : null;
+            int? regimeId_ = cboRegime.SelectedIndex > 0 ? Convert.ToInt32(cboRegime.SelectedValue) : null;
 
             var medicamento = _context.Medicamento.AsQueryable();
 
@@ -348,6 +421,14 @@ namespace ControleEntregada.Forms
             if (Fabricante_ != null)
                 medicamento = medicamento.Where(p => p.FabricanteId == Fabricante_);
 
+
+            if (ncmId_ != null)
+                medicamento = medicamento.Where(p => p.NcmId == ncmId_);
+            if (listaId_ != null)
+                medicamento = medicamento.Where(p => p.ListaId == listaId_);
+            if (regimeId_ != null)
+                medicamento = medicamento.Where(p => p.RegimeId == regimeId_);
+
             var medicamentoz = from r in medicamento
                                join p in _context.Fabricante on r.FabricanteId equals p.Id into fabricanteJoin
                                from p in fabricanteJoin.DefaultIfEmpty()
@@ -357,6 +438,10 @@ namespace ControleEntregada.Forms
                                from t in TipoReceitaJoin.DefaultIfEmpty()
                                join c in _context.ClasseTerapeutica on r.ClasseTerapeuticaId equals c.Id into ClasseTerapeuticaJoin
                                from c in ClasseTerapeuticaJoin.DefaultIfEmpty()
+
+                               join x in _context.Ncm on r.NcmId equals x.Id into NcmJoin
+                               from x in NcmJoin.DefaultIfEmpty()
+
                                select new
                                {
                                    Id = r.Id,
@@ -370,7 +455,13 @@ namespace ControleEntregada.Forms
                                    Substancia = m.Descricao,
                                    FabricanteId = p.Id,
                                    Fabricante = p.Descricao,
-                                   r.TUSS
+                                   r.TUSS,
+                                   NcmId = r.NcmId,
+                                   Ncm = x.Descricao,
+                                   ListaId = r.ListaId,
+                                   Lista = Lista.ObterLista(r.ListaId).Descricao,
+                                   RegimeId = r.RegimeId,
+                                   Regime = Regime.ObterRegime(r.RegimeId).Descricao
                                };
 
 
@@ -391,6 +482,10 @@ namespace ControleEntregada.Forms
             dgvMedicamentos.Columns["TipoReceitaId"].Visible = chkMostrarIds.Checked;
             dgvMedicamentos.Columns["FabricanteId"].Visible = chkMostrarIds.Checked;
             dgvMedicamentos.Columns["SubstanciaId"].Visible = chkMostrarIds.Checked;
+
+            dgvMedicamentos.Columns["NcmId"].Visible = chkMostrarIds.Checked;
+            dgvMedicamentos.Columns["ListaId"].Visible = chkMostrarIds.Checked;
+            dgvMedicamentos.Columns["RegimeId"].Visible = chkMostrarIds.Checked;
         }
 
 
@@ -407,6 +502,11 @@ namespace ControleEntregada.Forms
                 var tipoReceitaCell = row.Cells["TipoReceitaId"];
                 var fabricanteCell = row.Cells["FabricanteId"];
                 var substanciaCell = row.Cells["SubstanciaId"];
+
+                var ncmIdCell = row.Cells["NcmId"];
+                var listaIdCell = row.Cells["listaId"];
+                var regimeIdCell = row.Cells["regimeId"];
+
                 var TUSSCell = row.Cells["TUSS"];
 
                 if (idCell.Value != null && produtoCell.Value != null)
@@ -420,6 +520,10 @@ namespace ControleEntregada.Forms
                     int substancia = Convert.ToInt32(substanciaCell.Value);
                     string TUSS = TUSSCell.Value == null ? null : TUSSCell.Value.ToString();
 
+                    int ncmId = Convert.ToInt32(ncmIdCell.Value);
+                    int listaId = Convert.ToInt32(listaIdCell.Value);
+                    int regimeId = Convert.ToInt32(regimeIdCell.Value);
+
                     txtId.Enabled = false;
                     txtId.Text = id.ToString();
                     txtEAN.Text = ean;
@@ -430,6 +534,10 @@ namespace ControleEntregada.Forms
                     cboSubstancia.SelectedValue = substancia;
                     txtTUSS.Text = TUSS;
 
+                    cboNcm.SelectedValue = ncmId;
+                    cboLista.SelectedValue = listaId;
+                    cboRegime.SelectedValue = regimeId;
+
                     txtId.Enabled = false;
                     txtEAN.Enabled = true;
                     txtProduto.Enabled = true;
@@ -438,6 +546,11 @@ namespace ControleEntregada.Forms
                     cboSubstancia.Enabled = true;
                     cboFabricante.Enabled = true;
                     txtTUSS.Enabled = true;
+
+                    cboNcm.Enabled = true;
+                    cboLista.Enabled = true;
+                    cboRegime.Enabled = true;
+
                     dgvMedicamentos.Enabled = true;
 
                     btnNovo.Enabled = true;

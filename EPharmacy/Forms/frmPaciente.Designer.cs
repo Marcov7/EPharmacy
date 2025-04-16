@@ -87,6 +87,8 @@
             chkAumentaLarguraColunasGrid = new CheckBox();
             dTPDataPrimeiroAtendimento = new MaskedTextBox();
             dTPNascimento = new MaskedTextBox();
+            btnTrocarMask = new Button();
+            btnTrocarMaskTel = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvLista).BeginInit();
             SuspendLayout();
             // 
@@ -179,7 +181,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(185, 60);
+            label3.Location = new Point(209, 60);
             label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
             label3.Size = new Size(71, 13);
@@ -266,7 +268,7 @@
             // txtLogradouro
             // 
             txtLogradouro.Enabled = false;
-            txtLogradouro.Location = new Point(183, 74);
+            txtLogradouro.Location = new Point(207, 74);
             txtLogradouro.Margin = new Padding(4, 3, 4, 3);
             txtLogradouro.MaxLength = 255;
             txtLogradouro.Multiline = true;
@@ -316,7 +318,7 @@
             // txtComplemento
             // 
             txtComplemento.Enabled = false;
-            txtComplemento.Location = new Point(968, 73);
+            txtComplemento.Location = new Point(992, 73);
             txtComplemento.Margin = new Padding(4, 3, 4, 3);
             txtComplemento.MaxLength = 255;
             txtComplemento.Multiline = true;
@@ -327,7 +329,7 @@
             // txtUF
             // 
             txtUF.Enabled = false;
-            txtUF.Location = new Point(1158, 73);
+            txtUF.Location = new Point(1182, 73);
             txtUF.Margin = new Padding(4, 3, 4, 3);
             txtUF.MaxLength = 255;
             txtUF.Multiline = true;
@@ -338,7 +340,7 @@
             // txtEmail
             // 
             txtEmail.Enabled = false;
-            txtEmail.Location = new Point(204, 129);
+            txtEmail.Location = new Point(301, 129);
             txtEmail.Margin = new Padding(4, 3, 4, 3);
             txtEmail.MaxLength = 255;
             txtEmail.Multiline = true;
@@ -350,7 +352,7 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label9.Location = new Point(969, 57);
+            label9.Location = new Point(993, 57);
             label9.Margin = new Padding(4, 0, 4, 0);
             label9.Name = "label9";
             label9.Size = new Size(82, 13);
@@ -361,7 +363,7 @@
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label10.Location = new Point(1161, 57);
+            label10.Location = new Point(1185, 57);
             label10.Margin = new Padding(4, 0, 4, 0);
             label10.Name = "label10";
             label10.Size = new Size(71, 13);
@@ -372,7 +374,7 @@
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label11.Location = new Point(198, 113);
+            label11.Location = new Point(300, 113);
             label11.Margin = new Padding(4, 0, 4, 0);
             label11.Name = "label11";
             label11.Size = new Size(37, 13);
@@ -382,7 +384,7 @@
             // txtNumero
             // 
             txtNumero.Enabled = false;
-            txtNumero.Location = new Point(485, 74);
+            txtNumero.Location = new Point(509, 74);
             txtNumero.Margin = new Padding(4, 3, 4, 3);
             txtNumero.MaxLength = 255;
             txtNumero.Multiline = true;
@@ -394,7 +396,7 @@
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label12.Location = new Point(486, 60);
+            label12.Location = new Point(510, 60);
             label12.Margin = new Padding(4, 0, 4, 0);
             label12.Name = "label12";
             label12.Size = new Size(50, 13);
@@ -404,7 +406,7 @@
             // txtBairro
             // 
             txtBairro.Enabled = false;
-            txtBairro.Location = new Point(542, 74);
+            txtBairro.Location = new Point(566, 74);
             txtBairro.Margin = new Padding(4, 3, 4, 3);
             txtBairro.MaxLength = 255;
             txtBairro.Multiline = true;
@@ -416,7 +418,7 @@
             // 
             label13.AutoSize = true;
             label13.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label13.Location = new Point(544, 60);
+            label13.Location = new Point(568, 60);
             label13.Margin = new Padding(4, 0, 4, 0);
             label13.Name = "label13";
             label13.Size = new Size(40, 13);
@@ -426,7 +428,7 @@
             // txtMunicipio
             // 
             txtMunicipio.Enabled = false;
-            txtMunicipio.Location = new Point(716, 74);
+            txtMunicipio.Location = new Point(740, 74);
             txtMunicipio.Margin = new Padding(4, 3, 4, 3);
             txtMunicipio.MaxLength = 255;
             txtMunicipio.Multiline = true;
@@ -438,7 +440,7 @@
             // 
             label14.AutoSize = true;
             label14.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label14.Location = new Point(719, 60);
+            label14.Location = new Point(743, 60);
             label14.Margin = new Padding(4, 0, 4, 0);
             label14.Name = "label14";
             label14.Size = new Size(61, 13);
@@ -478,28 +480,28 @@
             // txtCelular
             // 
             txtCelular.Enabled = false;
-            txtCelular.Location = new Point(26, 129);
+            txtCelular.Location = new Point(23, 129);
             txtCelular.Margin = new Padding(4, 3, 4, 3);
             txtCelular.Mask = "(00)00000-0000";
             txtCelular.Name = "txtCelular";
-            txtCelular.Size = new Size(100, 23);
+            txtCelular.Size = new Size(131, 23);
             txtCelular.TabIndex = 63;
             // 
             // label16
             // 
             label16.AutoSize = true;
             label16.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label16.Location = new Point(344, 113);
+            label16.Location = new Point(443, 113);
             label16.Margin = new Padding(4, 0, 4, 0);
             label16.Name = "label16";
-            label16.Size = new Size(157, 13);
+            label16.Size = new Size(143, 13);
             label16.TabIndex = 73;
-            label16.Text = "Data Primeiro Atendimento";
+            label16.Text = "Dt Primeiro Atendimento";
             // 
             // txtCarteirinha
             // 
             txtCarteirinha.Enabled = false;
-            txtCarteirinha.Location = new Point(683, 129);
+            txtCarteirinha.Location = new Point(746, 129);
             txtCarteirinha.Margin = new Padding(4, 3, 4, 3);
             txtCarteirinha.MaxLength = 255;
             txtCarteirinha.Multiline = true;
@@ -511,7 +513,7 @@
             // 
             label17.AutoSize = true;
             label17.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label17.Location = new Point(618, 112);
+            label17.Location = new Point(680, 112);
             label17.Margin = new Padding(4, 0, 4, 0);
             label17.Name = "label17";
             label17.Size = new Size(59, 13);
@@ -521,7 +523,7 @@
             // txtMatricula
             // 
             txtMatricula.Enabled = false;
-            txtMatricula.Location = new Point(617, 129);
+            txtMatricula.Location = new Point(682, 129);
             txtMatricula.Margin = new Padding(4, 3, 4, 3);
             txtMatricula.Mask = "0000000000";
             txtMatricula.Name = "txtMatricula";
@@ -532,7 +534,7 @@
             // 
             label18.AutoSize = true;
             label18.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label18.Location = new Point(685, 112);
+            label18.Location = new Point(747, 112);
             label18.Margin = new Padding(4, 0, 4, 0);
             label18.Name = "label18";
             label18.Size = new Size(68, 13);
@@ -543,7 +545,7 @@
             // 
             label20.AutoSize = true;
             label20.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label20.Location = new Point(500, 112);
+            label20.Location = new Point(585, 112);
             label20.Margin = new Padding(4, 0, 4, 0);
             label20.Name = "label20";
             label20.Size = new Size(60, 13);
@@ -554,16 +556,16 @@
             // 
             cboConvenio.Enabled = false;
             cboConvenio.FormattingEnabled = true;
-            cboConvenio.Location = new Point(499, 129);
+            cboConvenio.Location = new Point(586, 129);
             cboConvenio.Margin = new Padding(4, 3, 4, 3);
             cboConvenio.Name = "cboConvenio";
-            cboConvenio.Size = new Size(116, 23);
+            cboConvenio.Size = new Size(94, 23);
             cboConvenio.TabIndex = 87;
             // 
             // txtAutorizacao
             // 
             txtAutorizacao.Enabled = false;
-            txtAutorizacao.Location = new Point(828, 129);
+            txtAutorizacao.Location = new Point(890, 129);
             txtAutorizacao.Margin = new Padding(4, 3, 4, 3);
             txtAutorizacao.MaxLength = 255;
             txtAutorizacao.Multiline = true;
@@ -575,7 +577,7 @@
             // 
             label21.AutoSize = true;
             label21.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label21.Location = new Point(830, 112);
+            label21.Location = new Point(892, 112);
             label21.Margin = new Padding(4, 0, 4, 0);
             label21.Name = "label21";
             label21.Size = new Size(74, 13);
@@ -585,7 +587,7 @@
             // txtZona
             // 
             txtZona.Enabled = false;
-            txtZona.Location = new Point(858, 74);
+            txtZona.Location = new Point(882, 74);
             txtZona.Margin = new Padding(4, 3, 4, 3);
             txtZona.MaxLength = 30;
             txtZona.Multiline = true;
@@ -597,7 +599,7 @@
             // 
             label22.AutoSize = true;
             label22.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label22.Location = new Point(859, 60);
+            label22.Location = new Point(883, 60);
             label22.Margin = new Padding(4, 0, 4, 0);
             label22.Name = "label22";
             label22.Size = new Size(36, 13);
@@ -608,9 +610,10 @@
             // 
             btnBuscar.Enabled = false;
             btnBuscar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnBuscar.ForeColor = Color.ForestGreen;
             btnBuscar.Location = new Point(104, 73);
             btnBuscar.Name = "btnBuscar";
-            btnBuscar.Size = new Size(63, 24);
+            btnBuscar.Size = new Size(87, 24);
             btnBuscar.TabIndex = 88;
             btnBuscar.Text = "BUSCAR";
             btnBuscar.UseVisualStyleBackColor = true;
@@ -619,18 +622,18 @@
             // txtTelefone
             // 
             txtTelefone.Enabled = false;
-            txtTelefone.Location = new Point(128, 129);
+            txtTelefone.Location = new Point(169, 129);
             txtTelefone.Margin = new Padding(4, 3, 4, 3);
             txtTelefone.Mask = "(00)0000-0000";
             txtTelefone.Name = "txtTelefone";
-            txtTelefone.Size = new Size(73, 23);
+            txtTelefone.Size = new Size(118, 23);
             txtTelefone.TabIndex = 63;
             // 
             // label23
             // 
             label23.AutoSize = true;
             label23.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label23.Location = new Point(122, 113);
+            label23.Location = new Point(169, 113);
             label23.Margin = new Padding(4, 0, 4, 0);
             label23.Name = "label23";
             label23.Size = new Size(57, 13);
@@ -641,7 +644,7 @@
             // 
             cboModalidadeEntrega.Enabled = false;
             cboModalidadeEntrega.FormattingEnabled = true;
-            cboModalidadeEntrega.Location = new Point(965, 129);
+            cboModalidadeEntrega.Location = new Point(1027, 129);
             cboModalidadeEntrega.Margin = new Padding(4, 3, 4, 3);
             cboModalidadeEntrega.Name = "cboModalidadeEntrega";
             cboModalidadeEntrega.Size = new Size(138, 23);
@@ -651,7 +654,7 @@
             // 
             label24.AutoSize = true;
             label24.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label24.Location = new Point(963, 112);
+            label24.Location = new Point(1025, 112);
             label24.Margin = new Padding(4, 0, 4, 0);
             label24.Name = "label24";
             label24.Size = new Size(138, 13);
@@ -661,7 +664,7 @@
             // cboTipoEntrega
             // 
             cboTipoEntrega.Enabled = false;
-            cboTipoEntrega.Location = new Point(1105, 129);
+            cboTipoEntrega.Location = new Point(1167, 129);
             cboTipoEntrega.Margin = new Padding(4, 3, 4, 3);
             cboTipoEntrega.MaxLength = 255;
             cboTipoEntrega.Name = "cboTipoEntrega";
@@ -672,7 +675,7 @@
             // 
             label19.AutoSize = true;
             label19.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label19.Location = new Point(1104, 112);
+            label19.Location = new Point(1166, 112);
             label19.Margin = new Padding(4, 0, 4, 0);
             label19.Name = "label19";
             label19.Size = new Size(80, 13);
@@ -685,7 +688,7 @@
             chkAtivo.Checked = true;
             chkAtivo.CheckState = CheckState.Checked;
             chkAtivo.Enabled = false;
-            chkAtivo.Location = new Point(1222, 133);
+            chkAtivo.Location = new Point(1284, 133);
             chkAtivo.Name = "chkAtivo";
             chkAtivo.Size = new Size(56, 19);
             chkAtivo.TabIndex = 101;
@@ -717,10 +720,10 @@
             // 
             // dTPDataPrimeiroAtendimento
             // 
-            dTPDataPrimeiroAtendimento.Location = new Point(350, 129);
+            dTPDataPrimeiroAtendimento.Location = new Point(447, 129);
             dTPDataPrimeiroAtendimento.Mask = "00/00/0000";
             dTPDataPrimeiroAtendimento.Name = "dTPDataPrimeiroAtendimento";
-            dTPDataPrimeiroAtendimento.Size = new Size(147, 23);
+            dTPDataPrimeiroAtendimento.Size = new Size(137, 23);
             dTPDataPrimeiroAtendimento.TabIndex = 150;
             dTPDataPrimeiroAtendimento.ValidatingType = typeof(DateTime);
             dTPDataPrimeiroAtendimento.Leave += dTPDataPrimeiroAtendimento_Leave;
@@ -735,11 +738,35 @@
             dTPNascimento.ValidatingType = typeof(DateTime);
             dTPNascimento.Leave += dTPNascimento_Leave;
             // 
+            // btnTrocarMask
+            // 
+            btnTrocarMask.ForeColor = SystemColors.HotTrack;
+            btnTrocarMask.Location = new Point(153, 129);
+            btnTrocarMask.Name = "btnTrocarMask";
+            btnTrocarMask.Size = new Size(17, 23);
+            btnTrocarMask.TabIndex = 151;
+            btnTrocarMask.Text = "T";
+            btnTrocarMask.UseVisualStyleBackColor = true;
+            btnTrocarMask.Click += btnTrocarMask_Click;
+            // 
+            // btnTrocarMaskTel
+            // 
+            btnTrocarMaskTel.ForeColor = SystemColors.HotTrack;
+            btnTrocarMaskTel.Location = new Point(284, 129);
+            btnTrocarMaskTel.Name = "btnTrocarMaskTel";
+            btnTrocarMaskTel.Size = new Size(17, 23);
+            btnTrocarMaskTel.TabIndex = 151;
+            btnTrocarMaskTel.Text = "T";
+            btnTrocarMaskTel.UseVisualStyleBackColor = true;
+            btnTrocarMaskTel.Click += btnTrocarMaskTel_Click;
+            // 
             // frmPaciente
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1349, 680);
+            Controls.Add(btnTrocarMaskTel);
+            Controls.Add(btnTrocarMask);
             Controls.Add(dTPNascimento);
             Controls.Add(dTPDataPrimeiroAtendimento);
             Controls.Add(chkAumentaLarguraColunasGrid);
@@ -874,5 +901,7 @@
         private CheckBox chkAumentaLarguraColunasGrid;
         private MaskedTextBox dTPDataPrimeiroAtendimento;
         private MaskedTextBox dTPNascimento;
+        private Button btnTrocarMask;
+        private Button btnTrocarMaskTel;
     }
 }

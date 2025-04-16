@@ -53,6 +53,12 @@
             txtTUSS = new MaskedTextBox();
             chkMostrarIds = new CheckBox();
             chkAumentaLarguraColunasGrid = new CheckBox();
+            cboNcm = new ComboBox();
+            cboLista = new ComboBox();
+            cboRegime = new ComboBox();
+            label9 = new Label();
+            label10 = new Label();
+            label11 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvMedicamentos).BeginInit();
             SuspendLayout();
             // 
@@ -63,7 +69,7 @@
             cboClasseTerapeutica.Margin = new Padding(4, 3, 4, 3);
             cboClasseTerapeutica.Name = "cboClasseTerapeutica";
             cboClasseTerapeutica.Size = new Size(854, 23);
-            cboClasseTerapeutica.TabIndex = 3;
+            cboClasseTerapeutica.TabIndex = 4;
             // 
             // cboTipoReceita
             // 
@@ -72,7 +78,7 @@
             cboTipoReceita.Margin = new Padding(4, 3, 4, 3);
             cboTipoReceita.Name = "cboTipoReceita";
             cboTipoReceita.Size = new Size(393, 23);
-            cboTipoReceita.TabIndex = 4;
+            cboTipoReceita.TabIndex = 5;
             // 
             // txtEAN
             // 
@@ -90,7 +96,7 @@
             txtProduto.MaxLength = 280;
             txtProduto.Multiline = true;
             txtProduto.Name = "txtProduto";
-            txtProduto.Size = new Size(1044, 47);
+            txtProduto.Size = new Size(915, 47);
             txtProduto.TabIndex = 2;
             // 
             // cboSubstancia
@@ -99,17 +105,17 @@
             cboSubstancia.Location = new Point(24, 163);
             cboSubstancia.Margin = new Padding(4, 3, 4, 3);
             cboSubstancia.Name = "cboSubstancia";
-            cboSubstancia.Size = new Size(704, 23);
-            cboSubstancia.TabIndex = 5;
+            cboSubstancia.Size = new Size(465, 23);
+            cboSubstancia.TabIndex = 6;
             // 
             // cboFabricante
             // 
             cboFabricante.FormattingEnabled = true;
-            cboFabricante.Location = new Point(733, 163);
+            cboFabricante.Location = new Point(497, 163);
             cboFabricante.Margin = new Padding(4, 3, 4, 3);
             cboFabricante.Name = "cboFabricante";
-            cboFabricante.Size = new Size(393, 23);
-            cboFabricante.TabIndex = 6;
+            cboFabricante.Size = new Size(339, 23);
+            cboFabricante.TabIndex = 7;
             // 
             // label1
             // 
@@ -170,7 +176,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(733, 145);
+            label6.Location = new Point(497, 145);
             label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
             label6.Size = new Size(67, 13);
@@ -284,7 +290,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.Location = new Point(1134, 147);
+            label8.Location = new Point(1155, 23);
             label8.Margin = new Padding(4, 0, 4, 0);
             label8.Name = "label8";
             label8.Size = new Size(40, 13);
@@ -293,12 +299,12 @@
             // 
             // txtTUSS
             // 
-            txtTUSS.Location = new Point(1134, 163);
+            txtTUSS.Location = new Point(1155, 39);
             txtTUSS.Margin = new Padding(4, 3, 4, 3);
             txtTUSS.Mask = "00000000";
             txtTUSS.Name = "txtTUSS";
-            txtTUSS.Size = new Size(145, 23);
-            txtTUSS.TabIndex = 13;
+            txtTUSS.Size = new Size(124, 23);
+            txtTUSS.TabIndex = 3;
             // 
             // chkMostrarIds
             // 
@@ -317,11 +323,71 @@
             chkAumentaLarguraColunasGrid.CheckState = CheckState.Checked;
             chkAumentaLarguraColunasGrid.Location = new Point(142, 612);
             chkAumentaLarguraColunasGrid.Name = "chkAumentaLarguraColunasGrid";
-            chkAumentaLarguraColunasGrid.Size = new Size(183, 19);
+            chkAumentaLarguraColunasGrid.Size = new Size(184, 19);
             chkAumentaLarguraColunasGrid.TabIndex = 153;
             chkAumentaLarguraColunasGrid.Text = "Largura do Tamanho do Dado";
             chkAumentaLarguraColunasGrid.UseVisualStyleBackColor = true;
             chkAumentaLarguraColunasGrid.CheckedChanged += chkAumentaLarguraColunasGrid_CheckedChanged;
+            // 
+            // cboNcm
+            // 
+            cboNcm.FormattingEnabled = true;
+            cboNcm.Location = new Point(840, 163);
+            cboNcm.Margin = new Padding(4, 3, 4, 3);
+            cboNcm.Name = "cboNcm";
+            cboNcm.Size = new Size(143, 23);
+            cboNcm.TabIndex = 8;
+            // 
+            // cboLista
+            // 
+            cboLista.FormattingEnabled = true;
+            cboLista.Location = new Point(988, 163);
+            cboLista.Margin = new Padding(4, 3, 4, 3);
+            cboLista.Name = "cboLista";
+            cboLista.Size = new Size(143, 23);
+            cboLista.TabIndex = 9;
+            // 
+            // cboRegime
+            // 
+            cboRegime.FormattingEnabled = true;
+            cboRegime.Location = new Point(1136, 163);
+            cboRegime.Margin = new Padding(4, 3, 4, 3);
+            cboRegime.Name = "cboRegime";
+            cboRegime.Size = new Size(143, 23);
+            cboRegime.TabIndex = 10;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label9.Location = new Point(840, 147);
+            label9.Margin = new Padding(4, 0, 4, 0);
+            label9.Name = "label9";
+            label9.Size = new Size(32, 13);
+            label9.TabIndex = 3;
+            label9.Text = "Ncm";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label10.Location = new Point(988, 145);
+            label10.Margin = new Padding(4, 0, 4, 0);
+            label10.Name = "label10";
+            label10.Size = new Size(34, 13);
+            label10.TabIndex = 3;
+            label10.Text = "Lista";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label11.Location = new Point(1136, 147);
+            label11.Margin = new Padding(4, 0, 4, 0);
+            label11.Name = "label11";
+            label11.Size = new Size(49, 13);
+            label11.TabIndex = 3;
+            label11.Text = "Regime";
             // 
             // frmMedicamento
             // 
@@ -340,6 +406,9 @@
             Controls.Add(btnLimpar);
             Controls.Add(btnSair);
             Controls.Add(dgvMedicamentos);
+            Controls.Add(label11);
+            Controls.Add(label10);
+            Controls.Add(label9);
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(label4);
@@ -350,6 +419,9 @@
             Controls.Add(txtProduto);
             Controls.Add(txtId);
             Controls.Add(txtEAN);
+            Controls.Add(cboRegime);
+            Controls.Add(cboLista);
+            Controls.Add(cboNcm);
             Controls.Add(cboFabricante);
             Controls.Add(cboSubstancia);
             Controls.Add(cboTipoReceita);
@@ -393,5 +465,11 @@
         private MaskedTextBox txtTUSS;
         private CheckBox chkMostrarIds;
         private CheckBox chkAumentaLarguraColunasGrid;
+        private ComboBox cboNcm;
+        private ComboBox cboLista;
+        private ComboBox cboRegime;
+        private Label label9;
+        private Label label10;
+        private Label label11;
     }
 }
