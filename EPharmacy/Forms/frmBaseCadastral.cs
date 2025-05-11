@@ -137,7 +137,8 @@ namespace EPharmacy.Forms
             dgvLista.Columns["ConvenioId"].HeaderText = "Id Convenio";
             dgvLista.Columns["PrecoAcordado"].HeaderText = "Preço Acordado";
             dgvLista.Columns["DataReceitaAnterior"].HeaderText = "Dt Rec.Anterior";
-            dgvLista.Columns["DataInclusaoConvenio"].HeaderText = "Dt Inclusão Convênio";
+            //dgvLista.Columns["DataInclusaoConvenio"].HeaderText = "Dt Inclusão Convênio";
+            dgvLista.Columns["DataPrimeiroAtendimento"].HeaderText = "Dt Primeiro Atendimento";
             dgvLista.Columns["DataReceita"].HeaderText = "Dt Receita";
             //dgvLista.Columns["DataReceita"].HeaderText = "Dt Receita";
             dgvLista.Columns["ClasseTerapeutica"].HeaderText = "Classe Terapeutica";
@@ -1059,6 +1060,16 @@ namespace EPharmacy.Forms
                 dTPRefil1_Leave(null, null);
 
             }
+        }
+
+        private void btnPesqusiarIgual_Click(object sender, EventArgs e)
+        {
+            btnPesquisar_Click(null, null);
+        }
+
+        private void btnLimparIgual_Click(object sender, EventArgs e)
+        {
+            btnLimpar_Click(null, null);
         }
     }
 }

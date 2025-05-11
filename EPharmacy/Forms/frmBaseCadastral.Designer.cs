@@ -80,6 +80,8 @@
             btnSalvar2 = new Button();
             label19 = new Label();
             cboPeriodicidadeRefil = new ComboBox();
+            btnPesqusiarIgual = new Button();
+            btnLimparIgual = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvLista).BeginInit();
             SuspendLayout();
             // 
@@ -625,10 +627,10 @@
             btnSalvar2.Enabled = false;
             btnSalvar2.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSalvar2.ForeColor = Color.Red;
-            btnSalvar2.Location = new Point(1065, 66);
+            btnSalvar2.Location = new Point(1167, 67);
             btnSalvar2.Margin = new Padding(4, 3, 4, 3);
             btnSalvar2.Name = "btnSalvar2";
-            btnSalvar2.Size = new Size(280, 27);
+            btnSalvar2.Size = new Size(84, 27);
             btnSalvar2.TabIndex = 154;
             btnSalvar2.Text = "Salvar";
             btnSalvar2.UseVisualStyleBackColor = true;
@@ -656,12 +658,38 @@
             cboPeriodicidadeRefil.TabIndex = 155;
             cboPeriodicidadeRefil.SelectedIndexChanged += cboPeriodicidadeRefil_SelectedIndexChanged;
             // 
+            // btnPesqusiarIgual
+            // 
+            btnPesqusiarIgual.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnPesqusiarIgual.Location = new Point(1075, 67);
+            btnPesqusiarIgual.Margin = new Padding(4, 3, 4, 3);
+            btnPesqusiarIgual.Name = "btnPesqusiarIgual";
+            btnPesqusiarIgual.Size = new Size(89, 27);
+            btnPesqusiarIgual.TabIndex = 157;
+            btnPesqusiarIgual.Text = "&Pesquisar";
+            btnPesqusiarIgual.UseVisualStyleBackColor = true;
+            btnPesqusiarIgual.Click += btnPesqusiarIgual_Click;
+            // 
+            // btnLimparIgual
+            // 
+            btnLimparIgual.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnLimparIgual.Location = new Point(1255, 67);
+            btnLimparIgual.Margin = new Padding(4, 3, 4, 3);
+            btnLimparIgual.Name = "btnLimparIgual";
+            btnLimparIgual.Size = new Size(91, 27);
+            btnLimparIgual.TabIndex = 158;
+            btnLimparIgual.Text = "&Limpar";
+            btnLimparIgual.UseVisualStyleBackColor = true;
+            btnLimparIgual.Click += btnLimparIgual_Click;
+            // 
             // frmBaseCadastral
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FloralWhite;
             ClientSize = new Size(1355, 667);
+            Controls.Add(btnLimparIgual);
+            Controls.Add(btnPesqusiarIgual);
             Controls.Add(label19);
             Controls.Add(cboPeriodicidadeRefil);
             Controls.Add(btnSalvar2);
@@ -781,5 +809,7 @@
         private Button btnSalvar2;
         private Label label19;
         private ComboBox cboPeriodicidadeRefil;
+        private Button btnPesqusiarIgual;
+        private Button btnLimparIgual;
     }
 }

@@ -242,9 +242,9 @@ namespace ControleEntregada.Forms
             int Fabricante_ = Convert.ToInt32(cboFabricante.SelectedValue);
             string TUSS_ = txtTUSS.Text;
 
-            int NcmId_ = Convert.ToInt32(cboNcm.SelectedValue);
-            int ListaId_ = Convert.ToInt32(cboLista.SelectedValue);
-            int RegimeId_ = Convert.ToInt32(cboRegime.SelectedValue);
+            int ?NcmId_ = Convert.ToInt32(cboNcm.SelectedValue);
+            int ?ListaId_ = Convert.ToInt32(cboLista.SelectedValue);
+            int ?RegimeId_ = Convert.ToInt32(cboRegime.SelectedValue);
 
             var medicamentoNew = new Medicamento();
             var medicamentoUpdate = new Medicamento();
@@ -261,9 +261,9 @@ namespace ControleEntregada.Forms
                     FabricanteId = Fabricante_,
                     TUSS = TUSS_,
 
-                    NcmId = NcmId_== 0 ? null : NcmId_, 
-                    ListaId = ListaId_ == 0 ? null : ListaId_,
-                    RegimeId = RegimeId_ == 0 ? null : RegimeId_,
+                    NcmId = NcmId_== 0 ? null : NcmId_.Value, 
+                    ListaId = ListaId_ == 0 ? null : ListaId_.Value,
+                    RegimeId = RegimeId_ == 0 ? null : RegimeId_.Value,
 
                     DataCadastro = DateTime.Now.Date,
                     Usuario = GlobalVariables.LoginId,
@@ -293,9 +293,9 @@ namespace ControleEntregada.Forms
                 medicamentoUpdate.FabricanteId = Fabricante_;
                 medicamentoUpdate.TUSS = TUSS_;
 
-                medicamentoUpdate.NcmId = NcmId_ == 0 ? null : NcmId_;
-                medicamentoUpdate.ListaId = ListaId_ == 0 ? null : ListaId_;
-                medicamentoUpdate.RegimeId = RegimeId_ == 0 ? null : RegimeId_;
+                medicamentoUpdate.NcmId = NcmId_ == 0 ? null : NcmId_.Value;
+                medicamentoUpdate.ListaId = ListaId_ == 0 ? null : ListaId_.Value;
+                medicamentoUpdate.RegimeId = RegimeId_ == 0 ? null : RegimeId_.Value;
 
                 medicamentoUpdate.DataCadastro = DateTime.Now;
                 medicamentoUpdate.Usuario = GlobalVariables.LoginId;
@@ -430,16 +430,16 @@ namespace ControleEntregada.Forms
                 medicamento = medicamento.Where(p => p.RegimeId == regimeId_);
 
             var medicamentoz = from r in medicamento
-                               join p in _context.Fabricante on r.FabricanteId equals p.Id into fabricanteJoin
+                               join p in _context.Fabricante on r.FabricanteId.Value equals p.Id into fabricanteJoin
                                from p in fabricanteJoin.DefaultIfEmpty()
-                               join m in _context.Substancia on r.SubstanciaId equals m.Id into SubstanciaJoin
+                               join m in _context.Substancia on r.SubstanciaId.Value equals m.Id into SubstanciaJoin
                                from m in SubstanciaJoin.DefaultIfEmpty()
-                               join t in _context.TipoReceita on r.TipoReceitaId equals t.Id into TipoReceitaJoin
+                               join t in _context.TipoReceita on r.TipoReceitaId.Value equals t.Id into TipoReceitaJoin
                                from t in TipoReceitaJoin.DefaultIfEmpty()
-                               join c in _context.ClasseTerapeutica on r.ClasseTerapeuticaId equals c.Id into ClasseTerapeuticaJoin
+                               join c in _context.ClasseTerapeutica on r.ClasseTerapeuticaId.Value equals c.Id into ClasseTerapeuticaJoin
                                from c in ClasseTerapeuticaJoin.DefaultIfEmpty()
 
-                               join x in _context.Ncm on r.NcmId equals x.Id into NcmJoin
+                               join x in _context.Ncm on r.NcmId.Value equals x.Id into NcmJoin
                                from x in NcmJoin.DefaultIfEmpty()
 
                                select new
@@ -456,12 +456,12 @@ namespace ControleEntregada.Forms
                                    FabricanteId = p.Id,
                                    Fabricante = p.Descricao,
                                    r.TUSS,
-                                   NcmId = r.NcmId,
+                                   NcmId = r.NcmId == null ? 0 : r.NcmId.Value,
                                    Ncm = x.Descricao,
-                                   ListaId = r.ListaId,
-                                   Lista = Lista.ObterLista(r.ListaId).Descricao,
-                                   RegimeId = r.RegimeId,
-                                   Regime = Regime.ObterRegime(r.RegimeId).Descricao
+                                   ListaId = r.ListaId == null ? 0 : r.ListaId.Value,
+                                   Lista = Lista.ObterLista(r.ListaId.Value).Descricao,
+                                   RegimeId = r.RegimeId == null ? 0 : r.RegimeId.Value,
+                                   Regime = Regime.ObterRegime(r.RegimeId.Value).Descricao
                                };
 
 
@@ -498,7 +498,7 @@ namespace ControleEntregada.Forms
                 var idCell = row.Cells["Id"];
                 var eanCell = row.Cells["EAN"];
                 var produtoCell = row.Cells["Produto"];
-                var classeTerapeuticaCell = row.Cells["ClasseTerapeuticaId"];
+                var classeTerapeuticaCell = row.Cells["ClasseTerapeuticaId"] == null ? null : row.Cells["ClasseTerapeuticaId"];
                 var tipoReceitaCell = row.Cells["TipoReceitaId"];
                 var fabricanteCell = row.Cells["FabricanteId"];
                 var substanciaCell = row.Cells["SubstanciaId"];

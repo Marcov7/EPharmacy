@@ -179,7 +179,8 @@ namespace EPharmacy.BLL
                                           Nome = pc.Nome,
                                           StatusId = ri.StatusId,
                                           Status = st.Descricao,
-                                          DataInclusaoConvenio = DateTime.Now.Date,
+                                          //DataInclusaoConvenio = pc.DataInclusaoConvenio,
+                                          DataPrimeiroAtendimento = pc.DataPrimeiroAtendimento,
                                           MedicamentoId = m.Id,
                                           EAN = m.EAN,
                                           Produto = m.Produto,
@@ -208,7 +209,7 @@ namespace EPharmacy.BLL
                                           Refil6 = ri.Refil6.Value,
                                           RefilExtra = ri.RefilExtra.Value,
 
-                                          TipoReceitaId = m.TipoReceitaId,
+                                          TipoReceitaId =  m.TipoReceitaId.Value,
                                           TipoReceita = tr.Descricao,
                                           Obs = ri.Obs,
                                           Celular = pc.Celular,
@@ -327,7 +328,7 @@ namespace EPharmacy.BLL
                                           Obs = ri.Obs,
                                           PeriodicidadeId = ri.PeriodicidadeRefilId,
                                           Periodicidade = pe.Descricao,
-                                          TipoReceitaId = m.TipoReceitaId,
+                                          TipoReceitaId = m.TipoReceitaId.Value,
                                           TipoReceita = tr.Descricao,
 
                                           Celular = pc.Celular,

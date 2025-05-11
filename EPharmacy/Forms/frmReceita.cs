@@ -291,9 +291,9 @@ namespace EPharmacy.Forms
             }
             else
             {
-                if (UtilitariosBLL.ConverterParaData(dTPReceita.Text).Value.Year < 2024)
+                if (UtilitariosBLL.ConverterParaData(dTPReceita.Text).Value.Year < 2000)
                 {
-                    retorno += "Digite a Data da Receita a partir de 2024\n";
+                    retorno += "Digite a Data da Receita a partir de 2000\n";
                 }
             }
 

@@ -21,8 +21,9 @@ namespace EPharmacy.Models
         public string CPF { get; set; }
         public string Nome { get; set; }
         public int? StatusId { get; set; }
-        public string Status { get; set; }
-        public DateTime DataInclusaoConvenio { get; set; }
+        public string? Status { get; set; }
+        //public DateTime? DataInclusaoConvenio { get; set; }
+        public DateTime? DataPrimeiroAtendimento { get; set; }
         public int MedicamentoId { get; set; }
         public string EAN { get; set; }
         public string Produto { get; set; }
