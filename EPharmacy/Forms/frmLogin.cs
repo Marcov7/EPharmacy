@@ -17,7 +17,7 @@ namespace EPharmacy
             this.MaximizeBox = false;
             this.MinimizeBox = false;
 
-            GlobalVariables.Versao = "1.00b - 05/05/2025";
+            GlobalVariables.Versao = "1.01b - 22/05/2025";
 
             lblVersao.Text += GlobalVariables.Versao;
         }

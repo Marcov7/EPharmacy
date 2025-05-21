@@ -119,7 +119,7 @@ namespace EPharmacy.Forms
             dgvLista.Columns["MedicamentoId"].Visible = chkMostrarIds.Checked;
             dgvLista.Columns["PeriodicidadeId"].Visible = chkMostrarIds.Checked;
             dgvLista.Columns["ReceitaId"].Visible = chkMostrarIds.Checked;
-            //dgvLista.Columns["ReceitaDescricao"].Visible = chkMostrarIds.Checked;
+            dgvLista.Columns["ReceitaDescricao"].Visible = chkMostrarIds.Checked;
             dgvLista.Columns["TipoReceitaId"].Visible = chkMostrarIds.Checked;
             dgvLista.Columns["ConvenioId"].Visible = chkMostrarIds.Checked;
 
@@ -380,8 +380,8 @@ namespace EPharmacy.Forms
             cor[6] = ColorTranslator.FromHtml("#8e8e8d");
             cor[7] = ColorTranslator.FromHtml("#7b7b7a");
             cor[8] = ColorTranslator.FromHtml("#686867");
-            cor[9] = ColorTranslator.FromHtml("#565654");
-            cor[10] = ColorTranslator.FromHtml("#434341");
+            cor[9] = ColorTranslator.FromHtml("#8e8e8d");
+            cor[10] = ColorTranslator.FromHtml("#b3b3b3");
 
             Random random = new Random();
             // Gerar um número aleatório entre 0 e 11

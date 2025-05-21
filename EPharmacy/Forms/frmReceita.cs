@@ -700,6 +700,9 @@ namespace EPharmacy.Forms
                 txtQtdd.Enabled = true;
                 btnAdicionar.Enabled = true;
                 dGVReceitaItens.Enabled = true;
+
+                // ja coloca o status como Ativo
+                cboStatus.SelectedIndex = 1;
             }
         }
 
@@ -774,7 +777,7 @@ namespace EPharmacy.Forms
             //txtReceitaId.Clear();
             cboMedicamento.SelectedIndex = 0;
             cboPeriodicidadeRefil.SelectedIndex = 0;
-            cboStatus.SelectedIndex = 0;
+            cboStatus.SelectedIndex = 1;
             txtObs.Clear();
             txtQtdd.Clear();
         }
@@ -875,12 +878,14 @@ namespace EPharmacy.Forms
                     dTPDataReceitaAnterior.Value = dataReceita;
                     dTPDataReceitaAnterior.Format = DateTimePickerFormat.Short;
                     txtQtddAnterior.Text = listaRx.Qtdd.ToString();
+                    cboPeriodicidadeRefilAnterior.SelectedValue = listaRx.PeriodicidadeRefilId.ToString();
                 }
                 else
                 {
                     dTPDataReceitaAnterior.Value = dTPDataReceitaAnterior.MaxDate;
                     dTPDataReceitaAnterior.Format = DateTimePickerFormat.Custom;
                     dTPDataReceitaAnterior.CustomFormat = " ";
+                    cboPeriodicidadeRefilAnterior.SelectedIndex = -1;
 
                     txtQtddAnterior.Text = "";
                 }
