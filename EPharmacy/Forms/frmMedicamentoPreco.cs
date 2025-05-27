@@ -97,8 +97,8 @@ namespace ControleEntregada.Forms
             txtPrecoUnitario.Value = 0;
 
             txtId.Enabled = false;
-            txtMedicamentoId.Enabled = true;
-            txtEAN.Enabled = false;
+            txtMedicamentoId.Enabled = false;
+            txtEAN.Enabled = true;
             txtProduto.Enabled = false;
             txtPMCBrasindice.Enabled = true;
             txtPrecoFabrica.Enabled = true;
@@ -120,9 +120,9 @@ namespace ControleEntregada.Forms
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             string retorno = "";
-            if (txtMedicamentoId.Text.IsNullOrEmpty())
+            if (txtEAN.Text.IsNullOrEmpty())
             {
-                retorno += "Preencha o campo Medicamento Id \n";
+                retorno += "Preencha o campo EAN do Medicamento\n";
             }
             if (txtPrecoFabrica.Text.IsNullOrEmpty())
             {
@@ -136,6 +136,23 @@ namespace ControleEntregada.Forms
             {
                 retorno += "Preencha o campo Preço Acordado \n";
             }
+
+            if (!txtEAN.Text.IsNullOrEmpty())
+            {
+                string txtEAN_ = txtEAN.Text;
+                var medicamentoInt = _context.Medicamento
+                         .FirstOrDefault(m => m.EAN == txtEAN_);
+
+                if (medicamentoInt == null)
+                {
+                    retorno += "Preencha o campo EAN do Medicamento com um EAN válido\n";
+                }
+                else
+                {
+                    txtMedicamentoId.Text = medicamentoInt.Id.ToString();
+                }
+            }
+
 
             if (!retorno.IsNullOrEmpty())
             {
@@ -487,6 +504,7 @@ namespace ControleEntregada.Forms
 
         }
 
+
         private void chkAumentaLarguraColunasGrid_CheckedChanged(object sender, EventArgs e)
         {
             // fazendo ficar com as colunas autoajuestadas ao tamanho
@@ -497,6 +515,26 @@ namespace ControleEntregada.Forms
             else
             {
                 dgvMedicamentos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+            }
+        }
+
+
+        private void txtEAN_TextChanged(object sender, EventArgs e)
+        {
+            if (!txtEAN.Text.IsNullOrEmpty())
+            {
+                string txtEAN_ = txtEAN.Text;
+                var medicamentoInt = _context.Medicamento
+                         .FirstOrDefault(m => m.EAN == txtEAN_);
+
+                if (medicamentoInt != null)
+                {
+                    txtProduto.Text = medicamentoInt.Produto; 
+                }
+                else
+                {
+                    txtProduto.Text = "";
+                }
             }
         }
 

@@ -473,5 +473,30 @@ namespace EPharmacy.Forms
             }
         }
 
+
+        // Tornar o texto colado como a opção selecionada na combo
+        private void cboSelecaoPadrao_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            System.Windows.Forms.ComboBox comboBox = sender as System.Windows.Forms.ComboBox;
+            if (comboBox == null) return;
+
+            string enteredText = comboBox.Text;
+
+            if (!string.IsNullOrEmpty(enteredText))
+            {
+                int index = comboBox.FindStringExact(enteredText);
+
+                if (index != -1)
+                {
+                    comboBox.SelectedIndex = index; // Seleciona o item encontrado
+                }
+                else
+                { }
+            }
+            else
+            { }
+        }
+
+
     }
 }

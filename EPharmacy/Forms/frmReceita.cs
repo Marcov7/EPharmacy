@@ -34,7 +34,7 @@ namespace EPharmacy.Forms
             var paciente = _context.Paciente.OrderBy(p => p.Nome).ToList();
             Paciente c = new Paciente();
             c.Id = 0;
-            c.Nome = "<Selecione uma opção>";
+            c.Nome = "<Selecione>";
             paciente.Insert(0, c);
             cboPaciente.DataSource = paciente.ToList();
             cboPaciente.DisplayMember = "Nome";
@@ -52,11 +52,21 @@ namespace EPharmacy.Forms
             var periodicidadeRefil = _context.PeriodicidadeRefil.OrderBy(p => p.Descricao).ToList();
             PeriodicidadeRefil p = new PeriodicidadeRefil();
             p.Id = 0;
-            p.Descricao = "<Selecione uma opção>";
+            p.Descricao = "<Selecione>";
             periodicidadeRefil.Insert(0, p);
             cboPeriodicidadeRefil.DataSource = periodicidadeRefil.ToList();
             cboPeriodicidadeRefil.DisplayMember = "Descricao";
             cboPeriodicidadeRefil.ValueMember = "Id";
+
+            // cboPeriodicidadeRefilAnterior
+            var periodicidadeRefilAnterior = _context.PeriodicidadeRefil.OrderBy(p => p.Descricao).ToList();
+            PeriodicidadeRefil pan = new PeriodicidadeRefil();
+            pan.Id = 0;
+            pan.Descricao = "<Selecione>";
+            periodicidadeRefilAnterior.Insert(0, pan);
+            cboPeriodicidadeRefilAnterior.DataSource = periodicidadeRefilAnterior.ToList();
+            cboPeriodicidadeRefilAnterior.DisplayMember = "Descricao";
+            cboPeriodicidadeRefilAnterior.ValueMember = "Id";
 
             //var convenio = _context.Convenio.OrderBy(p => p.Descricao).ToList();
             //Convenio co = new Convenio();
@@ -70,7 +80,7 @@ namespace EPharmacy.Forms
             var clinica = _context.Clinica.OrderBy(p => p.Descricao).ToList();
             Clinica cl = new Clinica();
             cl.Id = 0;
-            cl.Descricao = "<Selecione uma opção>";
+            cl.Descricao = "<Selecione>";
             clinica.Insert(0, cl);
             cboClinica.DataSource = clinica.ToList();
             cboClinica.DisplayMember = "Descricao";
@@ -79,7 +89,7 @@ namespace EPharmacy.Forms
             var medico = _context.Medico.OrderBy(p => p.Nome).ToList();
             Medico me = new Medico();
             me.Id = 0;
-            me.Nome = "<Selecione uma opção>";
+            me.Nome = "<Selecione>";
             medico.Insert(0, me);
             cboMedico.DataSource = medico.ToList();
             cboMedico.DisplayMember = "Nome";
@@ -88,7 +98,7 @@ namespace EPharmacy.Forms
             var status = _context.Status.OrderBy(p => p.Descricao).ToList();
             Status st = new Status();
             st.Id = 0;
-            st.Descricao = "<Selecione uma opção>";
+            st.Descricao = "<Selecione>";
             status.Insert(0, st);
             cboStatus.DataSource = status.ToList();
             cboStatus.DisplayMember = "Descricao";
@@ -97,7 +107,7 @@ namespace EPharmacy.Forms
             var medicamento = _context.Medicamento.OrderBy(p => p.Produto).ToList();
             Medicamento md = new Medicamento();
             md.Id = 0;
-            md.Produto = "<Selecione uma opção>";
+            md.Produto = "";
             medicamento.Insert(0, md);
             cboMedicamento.DataSource = medicamento.ToList();
             cboMedicamento.DisplayMember = "Produto";
@@ -771,7 +781,6 @@ namespace EPharmacy.Forms
             _context.ReceitaItens.Add(entityNew);
             _context.SaveChanges();
 
-            // Limpar();
             dgvLista_CellClick_Para_dgvReceitaItens();
             //txtReceitaItemId.Clear();
             //txtReceitaId.Clear();
@@ -780,6 +789,8 @@ namespace EPharmacy.Forms
             cboStatus.SelectedIndex = 1;
             txtObs.Clear();
             txtQtdd.Clear();
+
+
         }
 
 
@@ -878,7 +889,8 @@ namespace EPharmacy.Forms
                     dTPDataReceitaAnterior.Value = dataReceita;
                     dTPDataReceitaAnterior.Format = DateTimePickerFormat.Short;
                     txtQtddAnterior.Text = listaRx.Qtdd.ToString();
-                    cboPeriodicidadeRefilAnterior.SelectedValue = listaRx.PeriodicidadeRefilId.ToString();
+                    var PeriodicidadeRefilIdLocal = listaRx.PeriodicidadeRefilId;
+                    cboPeriodicidadeRefilAnterior.SelectedValue = PeriodicidadeRefilIdLocal;
                 }
                 else
                 {
@@ -970,10 +982,131 @@ namespace EPharmacy.Forms
             if (cboPaciente.SelectedItem != null)
             {
                 var pacienteSelecionado = (Paciente)cboPaciente.SelectedItem;
-
                 txtCPF.Text = pacienteSelecionado.CPF;
+
+                dTPReceita.Clear();
+                txtId.Clear();
+
+                if (cboPaciente.SelectedIndex <= 0) return;
+
+                int xpacienteId_ = Convert.ToInt32(cboPaciente.SelectedValue);
+
+                var lista = _context.Medicamento.AsQueryable();
+
+                if (xpacienteId_ > 0)
+                {
+                    lista = from me in lista
+                            join ri in _context.ReceitaItens on me.Id equals ri.MedicamentoId
+                            join r in _context.Receita on ri.ReceitaId equals r.Id
+
+                            where r.PacienteId == xpacienteId_
+                            select me;
+
+                    var listax = lista.Distinct().ToList();
+
+                    dGVMedicamentosReceitasPac.DataSource = listax;
+
+                    dGVMedicamentosReceitasPac.ColumnHeadersHeight = 8; // altura do cabeçalho das colunas
+                    dGVMedicamentosReceitasPac.RowHeadersWidth = 8; ;
+
+                    dGVMedicamentosReceitasPac.Columns["Produto"].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+                    dGVMedicamentosReceitasPac.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+                    dGVMedicamentosReceitasPac.Columns["EAN"].DefaultCellStyle.Font = new Font("Segoe UI", 7);
+                    dGVMedicamentosReceitasPac.Columns["Produto"].DefaultCellStyle.Font = new Font("Segoe UI", 7);
+
+                    dGVMedicamentosReceitasPac.Columns["Produto"].Width = 195;
+                    dGVMedicamentosReceitasPac.Columns["EAN"].Width = 75;
+
+                    dGVMedicamentosReceitasPac.Columns["Id"].HeaderText = "Id Medicamento";
+                    dGVMedicamentosReceitasPac.Columns["Produto"].HeaderText = "Produto";
+                    dGVMedicamentosReceitasPac.Columns["EAN"].HeaderText = "EAN";
+
+                    dGVMedicamentosReceitasPac.Columns["Id"].Visible = false;
+                    dGVMedicamentosReceitasPac.Columns["ClasseTerapeuticaId"].Visible = false;
+                    dGVMedicamentosReceitasPac.Columns["TipoReceitaId"].Visible = false;
+                    dGVMedicamentosReceitasPac.Columns["FabricanteId"].Visible = false;
+                    dGVMedicamentosReceitasPac.Columns["SubstanciaId"].Visible = false;
+                    dGVMedicamentosReceitasPac.Columns["TUSS"].Visible = false;
+                    dGVMedicamentosReceitasPac.Columns["NcmId"].Visible = false;
+                    dGVMedicamentosReceitasPac.Columns["ListaId"].Visible = false;
+                    dGVMedicamentosReceitasPac.Columns["RegimeId"].Visible = false;
+                    dGVMedicamentosReceitasPac.Columns["Ativo"].Visible = false;
+                    dGVMedicamentosReceitasPac.Columns["DataCadastro"].Visible = false;
+                    dGVMedicamentosReceitasPac.Columns["Usuario"].Visible = false;
+
+                    btnPesquisar_Click(null, null);
+                }
+
             }
         }
+
+
+        private void dGVMedicamentosReceitasPac_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dGVMedicamentosReceitasPac.Rows[e.RowIndex];
+
+                var ProdutoCell = row.Cells["Produto"];
+
+                if (ProdutoCell.Value != null)
+                {
+                    string Produto = ProdutoCell.Value.ToString();
+                    cboMedicamento.SelectedText = "";
+                    cboMedicamento.Text = Produto;
+
+                    //cboMedicamento.SelectedText= Produto;
+                }
+            }
+        }
+
+
+
+        private void btnAtualizaListaMedicamentos_Click(object sender, EventArgs e)
+        {
+            cboPaciente_SelectedIndexChanged(null, null);
+        }
+
+
+
+        // Tornar o texto colado como a opção selecionada na combo
+        private void cboSelecaoPadrao_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            System.Windows.Forms.ComboBox comboBox = sender as System.Windows.Forms.ComboBox;
+            if (comboBox == null) return;
+
+            string enteredText = comboBox.Text;
+
+            // Se o texto não estiver vazio
+            if (!string.IsNullOrEmpty(enteredText))
+            {
+                // Tenta encontrar o item que corresponde exatamente ao texto digitado/colado
+                int index = comboBox.FindStringExact(enteredText);
+
+                if (index != -1) // Se encontrou uma correspondência exata
+                {
+                    comboBox.SelectedIndex = index; // Seleciona o item encontrado
+                }
+                else
+                {
+                    // Opcional: Se não encontrou correspondência exata, você pode:
+                    // 1. Limpar o texto:
+                    // comboBox.Text = "";
+                    // 2. Avisar o usuário:
+                    // MessageBox.Show("Opção inválida. Por favor, selecione uma opção da lista.");
+                    // e.Cancel = true; // Impede que o foco saia do ComboBox
+                    // 3. Tentar uma busca parcial (FindString)
+                    // int partialIndex = comboBox.FindString(enteredText);
+                    // if (partialIndex != -1) { comboBox.SelectedIndex = partialIndex; }
+                }
+            }
+            else // Se o texto estiver vazio, pode querer desselecionar ou manter o estado
+            {
+                // Opcional: Se o campo ficou vazio, desseleciona
+                // comboBox.SelectedIndex = -1;
+            }
+        }
+
     }
 
 }

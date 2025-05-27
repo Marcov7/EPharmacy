@@ -227,6 +227,7 @@
             txtEAN.Name = "txtEAN";
             txtEAN.Size = new Size(123, 23);
             txtEAN.TabIndex = 26;
+            txtEAN.TextChanged += txtEAN_TextChanged;
             // 
             // btnExcluir
             // 

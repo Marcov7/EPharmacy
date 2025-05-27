@@ -260,6 +260,7 @@
             cboPerfil.Name = "cboPerfil";
             cboPerfil.Size = new Size(221, 23);
             cboPerfil.TabIndex = 134;
+            cboPerfil.Validating += cboSelecaoPadrao_Validating;
             // 
             // frmUsuarioSistema
             // 

@@ -256,7 +256,7 @@
             // receitaToolStripMenuItem1
             // 
             receitaToolStripMenuItem1.Name = "receitaToolStripMenuItem1";
-            receitaToolStripMenuItem1.Size = new Size(178, 22);
+            receitaToolStripMenuItem1.Size = new Size(1, 1);
             receitaToolStripMenuItem1.Text = "Cadastro de Receita";
             receitaToolStripMenuItem1.Click += receitaToolStripMenuItem1_Click;
             receitaToolStripMenuItem1.Enabled = "123".Contains(GlobalVariables.PerfilId.ToString()) ? true : false;

@@ -295,6 +295,7 @@
             cboSexo.Name = "cboSexo";
             cboSexo.Size = new Size(113, 23);
             cboSexo.TabIndex = 64;
+            cboSexo.Validating += cboSelecaoPadrao_Validating;
             // 
             // txtNome
             // 
@@ -561,6 +562,7 @@
             cboConvenio.Name = "cboConvenio";
             cboConvenio.Size = new Size(94, 23);
             cboConvenio.TabIndex = 87;
+            cboConvenio.Validating += cboSelecaoPadrao_Validating;
             // 
             // txtAutorizacao
             // 
@@ -649,6 +651,7 @@
             cboModalidadeEntrega.Name = "cboModalidadeEntrega";
             cboModalidadeEntrega.Size = new Size(138, 23);
             cboModalidadeEntrega.TabIndex = 87;
+            cboModalidadeEntrega.Validating += cboSelecaoPadrao_Validating;
             // 
             // label24
             // 
@@ -670,6 +673,7 @@
             cboTipoEntrega.Name = "cboTipoEntrega";
             cboTipoEntrega.Size = new Size(113, 23);
             cboTipoEntrega.TabIndex = 99;
+            cboTipoEntrega.Validating += cboSelecaoPadrao_Validating;
             // 
             // label19
             // 

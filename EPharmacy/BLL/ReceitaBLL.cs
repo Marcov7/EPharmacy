@@ -277,7 +277,7 @@ namespace EPharmacy.BLL
                                       && ((receitaItemEntrega.DataRefil.Value.Month == Mes && receitaItemEntrega.DataRefil.Value.Year == Ano) ||
                                            (receitaItemEntrega.DataRefil.Value.Month == null || receitaItemEntrega.DataRefil.Value.Year == null) || dataComparacao == null)
 
-                                      && (ri.StatusId == 2)
+                                      && "1, 2, 3".Contains(ri.StatusId.ToString())
                                       /*&& ((ri.Refil1.Value.Month == Mes && ri.Refil1.Value.Year == Ano) ||
                                           (ri.Refil2.Value.Month == Mes && ri.Refil2.Value.Year == Ano) ||
                                           (ri.Refil3.Value.Month == Mes && ri.Refil3.Value.Year == Ano) ||

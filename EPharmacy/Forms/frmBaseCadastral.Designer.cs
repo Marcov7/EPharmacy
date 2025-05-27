@@ -212,6 +212,7 @@
             cboConvenio.Name = "cboConvenio";
             cboConvenio.Size = new Size(96, 23);
             cboConvenio.TabIndex = 94;
+            cboConvenio.Validating += cboSelecaoPadrao_Validating;
             // 
             // label17
             // 
@@ -254,6 +255,7 @@
             cboStatus.Name = "cboStatus";
             cboStatus.Size = new Size(86, 23);
             cboStatus.TabIndex = 94;
+            cboStatus.Validating += cboSelecaoPadrao_Validating;
             // 
             // label1
             // 
@@ -306,6 +308,7 @@
             cboMedicamento.Name = "cboMedicamento";
             cboMedicamento.Size = new Size(312, 23);
             cboMedicamento.TabIndex = 94;
+            cboMedicamento.Validating += cboSelecaoPadrao_Validating;
             // 
             // cboPaciente
             // 
@@ -316,6 +319,7 @@
             cboPaciente.Name = "cboPaciente";
             cboPaciente.Size = new Size(230, 23);
             cboPaciente.TabIndex = 94;
+            cboPaciente.Validating += cboSelecaoPadrao_Validating;
             // 
             // label5
             // 
@@ -452,6 +456,7 @@
             cboBairro.Name = "cboBairro";
             cboBairro.Size = new Size(115, 23);
             cboBairro.TabIndex = 94;
+            cboBairro.Validating += cboSelecaoPadrao_Validating;
             // 
             // label14
             // 
@@ -473,6 +478,7 @@
             cboZona.Name = "cboZona";
             cboZona.Size = new Size(96, 23);
             cboZona.TabIndex = 94;
+            cboZona.Validating += cboSelecaoPadrao_Validating;
             // 
             // label15
             // 
@@ -494,6 +500,7 @@
             cboTipoReceita.Name = "cboTipoReceita";
             cboTipoReceita.Size = new Size(96, 23);
             cboTipoReceita.TabIndex = 94;
+            cboTipoReceita.Validating += cboSelecaoPadrao_Validating;
             // 
             // label16
             // 
@@ -541,6 +548,7 @@
             cboStatusParaGravar.Name = "cboStatusParaGravar";
             cboStatusParaGravar.Size = new Size(100, 23);
             cboStatusParaGravar.TabIndex = 94;
+            cboStatusParaGravar.Validating += cboSelecaoPadrao_Validating;
             // 
             // label18
             // 
@@ -657,6 +665,7 @@
             cboPeriodicidadeRefil.Size = new Size(138, 23);
             cboPeriodicidadeRefil.TabIndex = 155;
             cboPeriodicidadeRefil.SelectedIndexChanged += cboPeriodicidadeRefil_SelectedIndexChanged;
+            cboPeriodicidadeRefil.Validating += cboSelecaoPadrao_Validating;
             // 
             // btnPesqusiarIgual
             // 

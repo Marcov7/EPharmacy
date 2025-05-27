@@ -70,6 +70,7 @@
             cboClasseTerapeutica.Name = "cboClasseTerapeutica";
             cboClasseTerapeutica.Size = new Size(854, 23);
             cboClasseTerapeutica.TabIndex = 4;
+            cboClasseTerapeutica.Validating += cboSelecaoPadrao_Validating;
             // 
             // cboTipoReceita
             // 
@@ -79,6 +80,7 @@
             cboTipoReceita.Name = "cboTipoReceita";
             cboTipoReceita.Size = new Size(393, 23);
             cboTipoReceita.TabIndex = 5;
+            cboTipoReceita.Validating += cboSelecaoPadrao_Validating;
             // 
             // txtEAN
             // 
@@ -107,6 +109,7 @@
             cboSubstancia.Name = "cboSubstancia";
             cboSubstancia.Size = new Size(465, 23);
             cboSubstancia.TabIndex = 6;
+            cboSubstancia.Validating += cboSelecaoPadrao_Validating;
             // 
             // cboFabricante
             // 
@@ -116,6 +119,7 @@
             cboFabricante.Name = "cboFabricante";
             cboFabricante.Size = new Size(339, 23);
             cboFabricante.TabIndex = 7;
+            cboFabricante.Validating += cboSelecaoPadrao_Validating;
             // 
             // label1
             // 
@@ -337,6 +341,7 @@
             cboNcm.Name = "cboNcm";
             cboNcm.Size = new Size(143, 23);
             cboNcm.TabIndex = 8;
+            cboNcm.Validating += cboSelecaoPadrao_Validating;
             // 
             // cboLista
             // 
@@ -346,6 +351,7 @@
             cboLista.Name = "cboLista";
             cboLista.Size = new Size(143, 23);
             cboLista.TabIndex = 9;
+            cboLista.Validating += cboSelecaoPadrao_Validating;
             // 
             // cboRegime
             // 
@@ -355,6 +361,7 @@
             cboRegime.Name = "cboRegime";
             cboRegime.Size = new Size(143, 23);
             cboRegime.TabIndex = 10;
+            cboRegime.Validating += cboSelecaoPadrao_Validating;
             // 
             // label9
             // 

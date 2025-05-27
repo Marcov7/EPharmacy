@@ -221,6 +221,7 @@
             cboPaciente.Name = "cboPaciente";
             cboPaciente.Size = new Size(230, 23);
             cboPaciente.TabIndex = 131;
+            cboPaciente.Validating += cboSelecaoPadrao_Validating;
             // 
             // cboStatus
             // 
@@ -231,6 +232,7 @@
             cboStatus.Name = "cboStatus";
             cboStatus.Size = new Size(90, 23);
             cboStatus.TabIndex = 130;
+            cboStatus.Validating += cboSelecaoPadrao_Validating;
             // 
             // cboMedicamento
             // 
@@ -241,6 +243,7 @@
             cboMedicamento.Name = "cboMedicamento";
             cboMedicamento.Size = new Size(312, 23);
             cboMedicamento.TabIndex = 129;
+            cboMedicamento.Validating += cboSelecaoPadrao_Validating;
             // 
             // cboTipoReceita
             // 
@@ -251,6 +254,7 @@
             cboTipoReceita.Name = "cboTipoReceita";
             cboTipoReceita.Size = new Size(96, 23);
             cboTipoReceita.TabIndex = 126;
+            cboTipoReceita.Validating += cboSelecaoPadrao_Validating;
             // 
             // cboZona
             // 
@@ -261,6 +265,7 @@
             cboZona.Name = "cboZona";
             cboZona.Size = new Size(96, 23);
             cboZona.TabIndex = 128;
+            cboZona.Validating += cboSelecaoPadrao_Validating;
             // 
             // cboBairro
             // 
@@ -271,6 +276,7 @@
             cboBairro.Name = "cboBairro";
             cboBairro.Size = new Size(115, 23);
             cboBairro.TabIndex = 127;
+            cboBairro.Validating += cboSelecaoPadrao_Validating;
             // 
             // cboConvenio
             // 
@@ -281,6 +287,7 @@
             cboConvenio.Name = "cboConvenio";
             cboConvenio.Size = new Size(96, 23);
             cboConvenio.TabIndex = 132;
+            cboConvenio.Validating += cboSelecaoPadrao_Validating;
             // 
             // label17
             // 
@@ -538,6 +545,7 @@
             cboRefil.Name = "cboRefil";
             cboRefil.Size = new Size(150, 23);
             cboRefil.TabIndex = 130;
+            cboRefil.Validating += cboSelecaoPadrao_Validating;
             // 
             // cboStatusEntrega
             // 
@@ -548,6 +556,7 @@
             cboStatusEntrega.Name = "cboStatusEntrega";
             cboStatusEntrega.Size = new Size(138, 23);
             cboStatusEntrega.TabIndex = 130;
+            cboStatusEntrega.Validating += cboSelecaoPadrao_Validating;
             // 
             // label5
             // 
